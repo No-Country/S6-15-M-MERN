@@ -1,4 +1,4 @@
-## Web app Cotizadora para tienda de serigrafía UNO-Textil 🙌
+## Web app 
 
 
 [Nombre app](https://.vercel.app/)
