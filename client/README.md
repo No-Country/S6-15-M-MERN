@@ -1,23 +1,9 @@
-## Web app 
+Título de Proyecto:
 
-
-[Nombre app](https://.vercel.app/)
-
-descripcion
-
-## Correr la aplicacion en local 
-
-# Descripcion de lo realizado ✌
-
-## Problema
-
-## Solución
-
-El servidor esta deployado en 
-
-## Deploy 🚀
-
-Puedes ver la aplicacion funcionando en produccion mediante este link: [Nombre app](https://.vercel.app/) .
-
+Descripción de Proyecto: 
  
-Si llegaste aqui muchas gracias, que tengas un Buen Dia!!!
+Stack/Tecnologías:
+ 
+Roles de cada integrante:
+
+Link del Deploy: 
