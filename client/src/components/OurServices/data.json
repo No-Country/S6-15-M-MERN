@@ -1,0 +1,29 @@
+{
+  "resources": [
+    {
+      "title": "Find me on Mastodon",
+      "link": "https://indieweb.social/@kendalmintcode",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/db-demo-e7d23.appspot.com/o/Rectangle%2013.png?alt=media&token=bb341705-a71e-4c15-b972-3612883c3966"
+    },
+    {
+      "title": "Welcome to Ark Labs",
+      "link": "https://ark-labs.co.uk",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/db-demo-e7d23.appspot.com/o/Rectangle%204769.png?alt=media&token=2e954c12-33da-4199-b3b0-661057d6a949"
+    },
+    {
+      "title": "Some sort of third title",
+      "link": "https://indieweb.social/@kendalmintcode",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/db-demo-e7d23.appspot.com/o/collins-lesulie-2i9hqT5qPgI-unsplash%201.png?alt=media&token=9abf505f-706d-47ad-a674-63e14c22f92f"
+    },
+    {
+      "title": "Super item number the last",
+      "link": "https://firebasestorage.googleapis.com/v0/b/db-demo-e7d23.appspot.com/o/madison-lavern-4gcqRf3-f2I-unsplash%201.png?alt=media&token=4642a194-09ef-4762-b876-6707a09ebd79",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/db-demo-e7d23.appspot.com/o/madison-lavern-4gcqRf3-f2I-unsplash%201.png?alt=media&token=4642a194-09ef-4762-b876-6707a09ebd79"
+    },
+    {
+      "title": "Super item number the last",
+      "link": "https://firebasestorage.googleapis.com/v0/b/db-demo-e7d23.appspot.com/o/markus-spiske.png?alt=media&token=06c8bde3-2f28-44e0-b997-ff219ee08a98",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/db-demo-e7d23.appspot.com/o/markus-spiske.png?alt=media&token=06c8bde3-2f28-44e0-b997-ff219ee08a98"
+    }
+  ]
+}
