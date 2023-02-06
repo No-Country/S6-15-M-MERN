@@ -8,7 +8,7 @@ function App() {
   return (
  
     <div className='bg-background-color'>
-         <NavBar/>
+       <NavBar/>
       <h1 className="text-3xl font-bold underline">
         PROBANDO
       </h1>
