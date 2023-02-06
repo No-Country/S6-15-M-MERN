@@ -1,17 +1,19 @@
 import { useState } from 'react'
 import './App.css'
 import NavBar from './components/NavBar';
-
+import Register from './components/Register';
+import Login from './components/Login';
 function App() {
   const [count, setCount] = useState(0)
 
   return (
  
     <div className='bg-background-color'>
-         <NavBar/>
-      <h1 className="text-3xl font-bold underline">
+     <Login/>
+         {/* <NavBar/> */}
+      {/* <h1 className="text-3xl font-bold underline">
         PROBANDO
-      </h1>
+      </h1> */}
     </div>
 
   )

@@ -7,7 +7,14 @@ module.exports = {
   theme: {
     colors: {
       'background-color':'#F5F5F5',
+      'primary':'#28315C',
+      'btn-color':'#7CC298',
+      
+
       // Configure your color palette here
+    },
+    fontFamily:{
+      khula:[ 'Khula', 'sans-serif']
     },
     extend: {},
   },
