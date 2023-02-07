@@ -16,6 +16,12 @@ module.exports = {
     fontFamily:{
       khula:[ 'Khula', 'sans-serif']
     },
+    // colors: {
+    //   'backgroundColor':'#F5F5F5',
+      
+    //   // Configure your color palette here
+    // },
+    
     extend: {},
   },
   plugins: [],

@@ -1,20 +1,23 @@
 import { useState } from 'react'
 import './App.css'
 import NavBar from './components/NavBar';
-import Register from './components/Register';
+import OurServices from './components/OurServices/OurServices';
 import Login from './components/Login';
+import Register from './components/Register';
 function App() {
   const [count, setCount] = useState(0)
 
   return (
  
     <div className='bg-background-color'>
-     <Login/>
-         {/* <NavBar/> */}
-      {/* <h1 className="text-3xl font-bold underline">
+      <Register/>
+       {/* <NavBar/>
+      <h1 className="text-3xl font-bold underline">
         PROBANDO
-      </h1> */}
+      </h1>
+      <OurServices/> */}
     </div>
+
 
   )
 }
