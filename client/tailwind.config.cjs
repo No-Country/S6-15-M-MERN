@@ -15,6 +15,7 @@ module.exports = {
       'background-color':'#F5F5F5',
       'primary':'#28315C',
       'btn-color':'#7CC298',
+      'text-white': ' #FFFFFF;'
       
 
       // Configure your color palette here

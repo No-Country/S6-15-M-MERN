@@ -5,6 +5,9 @@ import OurServices from './components/OurServices/OurServices';
 
 import Register from './components/Register';
 import Login from './components/Login';
+import { HeaderHome } from './components/HeaderHome';
+
+
 function App() {
   const [count, setCount] = useState(0)
 
@@ -12,15 +15,9 @@ function App() {
  
     <div className='bg-background-color'>
        <NavBar/>
-      <h1 className="text-3xl font-bold underline">
-        PROBANDO
-      </h1>
+       <HeaderHome/>
       <OurServices/>
      <Login/>
-         {/* <NavBar/> */}
-      {/* <h1 className="text-3xl font-bold underline">
-        PROBANDO
-      </h1> */}
     </div>
 
 
