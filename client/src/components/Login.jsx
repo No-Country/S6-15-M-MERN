@@ -32,7 +32,7 @@ function Login() {
       >
         <Form>
         <div>
-        <label className="  font-bold block text-[#ffffff] mt-5 mr-56" htmlFor="email font-khula">Gmail</label>
+        <label className="  font-bold block text-[#ffffff] mt-5 mr-56 font-khula" htmlFor="gmail ">Gmail</label>
               <Field
                 name="gmail"
                 id="gmail"
