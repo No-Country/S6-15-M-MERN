@@ -3,6 +3,8 @@ import './App.css'
 import NavBar from './components/NavBar';
 import OurServices from './components/OurServices/OurServices';
 
+import Register from './components/Register';
+import Login from './components/Login';
 function App() {
   const [count, setCount] = useState(0)
 
@@ -14,6 +16,11 @@ function App() {
         PROBANDO
       </h1>
       <OurServices/>
+     <Login/>
+         {/* <NavBar/> */}
+      {/* <h1 className="text-3xl font-bold underline">
+        PROBANDO
+      </h1> */}
     </div>
 
 
