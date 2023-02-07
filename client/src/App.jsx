@@ -6,6 +6,7 @@ import Login from './components/Login';
 import { HeaderHome } from './components/HeaderHome';
 
 import Reviews from './components/Reviews';
+import MostRequested from './components/MostRequested/MostRequested';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -16,6 +17,7 @@ function App() {
       <NavBar/>
       <HeaderHome/>
       <OurServices/>
+      <MostRequested />
       <Login/>
       <Reviews />
     </div>
