@@ -1,0 +1,66 @@
+
+
+.divHeader{
+    display: flex;
+    justify-content: space-around;
+}
+
+.textDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+}
+.textDiv h1{
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 56px;
+    line-height: 45px;
+    color: #28315C;
+}
+.textDiv p {
+    font-family: 'Gilroy-Regular';
+    font-size: 25px;
+    line-height: 29px;
+    color: #333333;
+}
+.buttomHome{
+font-family: 'Gilroy';
+font-style: normal;
+font-weight: 800;
+font-size: 24px;
+line-height: 35px;
+color: #FFFFFF;
+}
+
+
+@media (max-width: 1240px) {
+    .textDiv h1{
+        font-size: 40px;
+        line-height: 40px;
+    }
+    .textDiv p {
+        font-size: 25px;
+        line-height: 35px;
+    }
+}
+@media (max-width: 780px) {
+    .divHeader{
+        flex-direction: column;
+        align-items: center;
+    }
+    .divHeader div{
+        width: 80%;
+        align-items: center;
+        padding: 3%;
+    }
+    .textDiv h1{
+        font-size: 35px;
+        line-height: 40px;
+    }
+    .textDiv p {
+        font-size: 16px;
+        line-height: 35px;
+    }
+}
