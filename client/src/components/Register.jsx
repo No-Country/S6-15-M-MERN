@@ -21,14 +21,14 @@ const userSchema = yup.object().shape({
 
 function Register() {
   return (
-    <div className=" bg-primary rounded-xl  md:m-auto md:w-1/2 pr-  " >
-      <div className=" mb-4 py-16 text-center flex-col justify-center items-center m-auto ">
+    <div className=" bg-primary rounded-xl  md:m-auto md:w-1/3 xl:m-auto xl: w-1/4   " >
+      <div className=" mb-4 py-16 text-center flex-col justify-center items-center pr-10  ">
         <header className="">
           <h2 className="text-5xl font-bold text-[#ffffff] text-left ml-14 mb-7 font-khula">Regístrate</h2>
-          <div className="inline-grid grid-cols-3 gap-9 mr-20
+          <div className="inline-grid grid-cols-2 gap-3 mr-20
            ">
-          <h3 onClick="text-decoration-line: underline;"  className="text-[#ffffff]  text-2xl  ml-14 mb-7 mr-1 font-khula">Registro</h3>
-          <h3 className="text-[#ffffff]  text-2xl   mb-7 font-khula"> Inicia sesión</h3>
+          <h3 onClick="text-decoration-line: underline;"  className="text-[#ffffff]  text-xl  ml-14 mb-7 mr-1 font-khula">Registro</h3>
+          <h3 className="text-[#ffffff]  text-xl ml-10  mb-5 font-khula">Iniciar sesión</h3>
           </div>
         </header>
         
