@@ -14,6 +14,7 @@ module.exports = {
       'btn-color':'#7CC298',
       'text-white': ' #FFFFFF',
       'background-card-color': '#F5F7FA',
+      'price-color': "#7CC298"
     },
     fontFamily:{
       khula:[ 'Khula', 'sans-serif']
