@@ -1,7 +1,7 @@
+import React, { useState } from "react";
 import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import {
-  ArrowPathIcon,
   Bars3Icon,
   BookmarkSquareIcon,
   CalendarIcon,
@@ -14,8 +14,8 @@ import {
   Squares2X2Icon,
   XMarkIcon,
 } from '@heroicons/react/24/outline'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import contrata from '../assets/contrata.png'
+import Login from "./Login";
 
 const solutions = [
   {
@@ -73,9 +73,10 @@ function classNames(...classes) {
 }
 
 export default function NavBar() {
+  const [showModal, setShowModal] = useState(false);
   return (
     <Popover className="relative bg-background-color w-screen">
-      <div className="mx-auto max-w-7xl px-7">
+      <div className="px-7">
         <div className="flex items-center justify-between py-6 md:justify-start md:space-x-10">
           <div className="flex justify-start lg:w-0 lg:flex-1">
             <a href="#">
@@ -111,13 +112,13 @@ export default function NavBar() {
             <a
               href="#"
               className="inline-flex items-center justify-center whitespace-nowrap rounded-md border-transparent bg-btn-color px-4 py-2 text-base font-medium text-text-white shadow-sm hover:bg-indigo-700"
-            >
+              onClick={()=> setShowModal(true)}
+           >
               Sign up
             </a>
           </div>
         </div>
       </div>
-
       <Transition
         as={Fragment}
         enter="duration-200 ease-out"
@@ -170,7 +171,8 @@ export default function NavBar() {
                 </a>
                 <p className="mt-6 text-center text-base font-medium text-gray-500">
                   Tenes cuenta?{' '}
-                  <a href="#" className="text-indigo-600 hover:text-indigo-500">
+                  <a href="#" className="text-indigo-600 hover:text-indigo-500"
+                  onClick={()=> setShowModal(true)}>
                     Ingresar
                   </a>
                 </p>
@@ -180,5 +182,6 @@ export default function NavBar() {
         </Popover.Panel>
       </Transition>
     </Popover>
+    // {showModal ? <> (<div> <Login/> </div>) : null</> }
   )
 }
