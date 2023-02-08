@@ -111,7 +111,7 @@ export default function NavBar() {
             </a> */}
             <a
               href="#"
-              className="inline-flex items-center justify-center whitespace-nowrap rounded-md border-transparent bg-btn-color px-4 py-2 text-base font-medium text-text-white shadow-sm hover:bg-indigo-700"
+              className="inline-flex items-center justify-center whitespace-nowrap rounded-md border-transparent bg-buttons-buttonGreen px-4 py-2 text-base font-medium text-text-white shadow-sm hover:bg-indigo-700"
               onClick={()=> setShowModal(true)}
            >
               Sign up
@@ -129,7 +129,7 @@ export default function NavBar() {
         leaveTo="opacity-0 scale-95"
       >
         <Popover.Panel focus className="absolute inset-x-0 top-0 origin-top-right transform p-2 transition md:hidden">
-          <div className="divide-y-2 divide-gray-50 rounded-lg bg-background-color shadow-lg ring-1 ring-black ring-opacity-5">
+          <div className="divide-y-2 divide-gray-50 rounded-lg bg-backgroundColor  shadow-lg ring-1 ring-black ring-opacity-5">
             <div className="px-5 pt-5 pb-6">
               <div className="flex items-center justify-between">
                 <div>
