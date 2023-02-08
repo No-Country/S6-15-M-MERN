@@ -1,7 +1,6 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
-
 const loginSchema = yup.object().shape({
   password: yup
     .string()
@@ -9,11 +8,13 @@ const loginSchema = yup.object().shape({
     .max(50, "Demasiado larga!")
     .required("Ingresa tu contraseña"),
   email: yup.string().email("Mail no valido").required("Ingresa tu email"),
+  gmail: yup.string().email("Gmail no valido").matches(/^[a-z0-9](\.?[a-z0-9]){5,}@g(oogle)?mail\.com$/,"Debes ingresar un gmail válido")
 });
-
 function Login() {
   return (
-    <div className=" bg-primary rounded-xl  md:m-auto md:w-1/2">
+
+    <div className=" bg-[#28315C] rounded-xl  md:m-auto md:w-1/2">
+
     <div className=" mb-4 py-16 text-center flex-col justify-center items-center m-auto ">
     <header className="">
           <h2 className="text-5xl font-bold text-[#ffffff] text-left ml-14 mb-7 font-khula">Iniciar Sesión</h2>
@@ -31,6 +32,15 @@ function Login() {
       >
         <Form>
         <div>
+        <label className="  font-bold block text-[#ffffff] mt-5 mr-56 font-khula" htmlFor="gmail ">Gmail</label>
+              <Field
+                name="gmail"
+                id="gmail"
+                type="text"
+                placeholder="Ingresa con google"
+                className=" px-3 py-2 focus: outline-none rounded-xl pl-24 text-left"
+              />
+              <ErrorMessage name="gmail" component="p" className="font-bold  text-[#ffffff]" />
               <label className="  font-bold block text-[#ffffff] mt-5 mr-56" htmlFor="email font-khula">Email</label>
               <Field
                 name="email"
