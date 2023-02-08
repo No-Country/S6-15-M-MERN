@@ -19,6 +19,6 @@ module.exports = {
       khula: ['Khula', 'sans-serif']
 
     },
-    extend: {},
+    // extend: {}, para eliminar, se repite en la línea 5:
   plugins: [],
 };
