@@ -13,7 +13,9 @@ const loginSchema = yup.object().shape({
 
 function Login() {
   return (
-    <div className=" bg-primary rounded-xl  md:m-auto md:w-1/2">
+
+    <div className=" bg-[#28315C] rounded-xl  md:m-auto md:w-1/2">
+
     <div className=" mb-4 py-16 text-center flex-col justify-center items-center m-auto ">
     <header className="">
           <h2 className="text-5xl font-bold text-[#ffffff] text-left ml-14 mb-7 font-khula">Iniciar Sesión</h2>
