@@ -8,6 +8,7 @@ module.exports = {
     //   // Configure your color palette here
     // },
 
+
     // colors: {
     //   'background-color':'#F5F5F5',
     //   'primary':'#28315C',
@@ -28,6 +29,7 @@ module.exports = {
     },
     fontFamily: {
       khula: ['Khula', 'sans-serif']
+
     },
     extend: {},
   },
