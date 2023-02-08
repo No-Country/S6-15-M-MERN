@@ -77,7 +77,7 @@ export default function NavBar() {
   return (
     <Popover className="relative bg-background-color w-screen">
       <div className="px-7">
-        <div className="flex items-center justify-between py-6 md:justify-start md:space-x-10">
+        <div className="flex items-center justify-between py-6 md:justify-start xl:justify-center md:space-x-10">
           <div className="flex justify-start lg:w-0 lg:flex-1">
             <a href="#">
               <span className="sr-only">Your Company</span>
