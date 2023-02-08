@@ -1,6 +1,5 @@
+import React from "react";
 import { useState, useRef, useEffect } from "react";
-
-// Data
 import data from "./data.json";
 
 const OurServices = () => {

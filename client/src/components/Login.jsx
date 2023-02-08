@@ -1,7 +1,6 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
-
 const loginSchema = yup.object().shape({
   password: yup
     .string()
@@ -11,7 +10,6 @@ const loginSchema = yup.object().shape({
   email: yup.string().email("Mail no valido").required("Ingresa tu email"),
   gmail: yup.string().email("Gmail no valido").matches(/^[a-z0-9](\.?[a-z0-9]){5,}@g(oogle)?mail\.com$/,"Debes ingresar un gmail válido")
 });
-
 function Login() {
   return (
 
