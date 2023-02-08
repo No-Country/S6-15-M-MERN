@@ -4,6 +4,7 @@ import NavBar from '../components/NavBar'
 import { HeaderHome } from './../components/HeaderHome';
 import OurServices from './../components/OurServices/OurServices';
 import Reviews from './../components/Reviews';
+import MostRequested from './../components/MostRequested/MostRequested';
 
 export const Home = () => {
   return (
@@ -12,6 +13,7 @@ export const Home = () => {
       <HeaderHome/>
       <OurServices/>
       <Login/>
+      <MostRequested/>
       <Reviews/>
     </>
   )
