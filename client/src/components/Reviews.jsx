@@ -1,17 +1,13 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import Right from '../assets/Right.svg';
 import Left from '../assets/Left.svg';
 const Reviews = () => {
-  const ref = useRef();
-  /*  const slideLeft = () => {
-    document.getElementById('carousel').scrolLeft += 400;
+  const slideLeft = () => {
+   console.log('left')
   };
 
   const slideRight = () => {
-    document.getElementById('carousel').scrolRight += 400;
-  }; */
-  const scroll = (scrollOffset) => {
-    ref.current.scrollLeft += scrollOffset;
+        console.log('right')
   };
 
   return (
@@ -19,12 +15,12 @@ const Reviews = () => {
       <div>
         <button
           className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
-          onClick={() => scroll(-20)}
+          onClick={slideLeft}
         >
           HOLA {/*  <img className='' src={Left}></img> */}
         </button>
 
-        <button onClick={() => scroll(20)}>
+        <button onClick={slideRight}>
           HOLA2
           {/*           <img className='' src={Right}></img> */}
         </button>
