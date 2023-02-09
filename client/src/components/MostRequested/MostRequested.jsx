@@ -7,11 +7,11 @@ const MostRequested = () => {
   const carousel = useRef(null);
   let ref = useRef(0);
   const cardWidth = 310;
+ 
 
 
   const scrollLeft = () => {
     if (ref.current > 0) {
-      console.log(ref.current)
       ref.current -= cardWidth;
       carousel.current.scrollTo({
         top: 0,
@@ -25,7 +25,6 @@ const MostRequested = () => {
 
   const scrollrigth = () => {
     if (ref.current < 930) {
-      console.log(ref.current)
       ref.current += cardWidth;
       carousel.current.scrollTo({
         top: 0,
