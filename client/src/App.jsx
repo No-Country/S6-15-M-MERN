@@ -1,7 +1,8 @@
 import './App.css';
-import { Home } from './screens/Home';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Services } from './screens/Services';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Home } from './screens/Home';
+
 
 function App() {
   return (
@@ -13,6 +14,8 @@ function App() {
           <Route path="/servicios" element={<Services />} /> 
         </Routes>
       </BrowserRouter>
+
+      
 
   );
 }
