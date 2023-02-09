@@ -1,23 +1,23 @@
-import { useState } from 'react'
-import './App.css'
-import NavBar from './components/NavBar';
-import OurServices from './components/OurServices/OurServices';
+import './App.css';
+import { Services } from './screens/Services';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Home } from './screens/Home';
+
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
- 
-    <div className='bg-background-color'>
-       <NavBar/>
-      <h1 className="text-3xl font-bold underline">
-        PROBANDO
-      </h1>
-      <OurServices/>
-    </div>
+    
 
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/servicios" element={<Services />} /> 
+        </Routes>
+      </BrowserRouter>
 
-  )
+      
+
+  );
 }
 
-export default App
+export default App;
