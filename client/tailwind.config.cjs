@@ -15,10 +15,19 @@ module.exports = {
         backgroundCardColor: '#F5F7FA',
       },
     },
+<<<<<<< HEAD
   },
   fontFamily: {
     khula: ['Khula', 'sans-serif'],
   },
   extend: {},
   plugins: [require('tailwind-scrollbar-hide')],
+=======
+    fontFamily: {
+      khula: ['Khula', 'sans-serif']
+
+    },
+    // extend: {}, para eliminar, se repite en la línea 5:
+  plugins: [],
+>>>>>>> 834a086a982cb95846a80af14aa6ff1187bdeb5e
 };
