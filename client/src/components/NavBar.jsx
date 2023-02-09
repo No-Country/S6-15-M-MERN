@@ -75,7 +75,7 @@ function classNames(...classes) {
 export default function NavBar() {
   const [showModal, setShowModal] = useState(false);
   return (
-    <Popover className="relative bg-background-color w-screen">
+    <Popover className="relative bg-backgroundColor w-screen">
       <div className="px-7">
         <div className="flex items-center justify-between py-6 md:justify-start xl:justify-center md:space-x-10">
           <div className="flex justify-start lg:w-0 lg:flex-1">
