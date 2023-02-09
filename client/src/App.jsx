@@ -11,7 +11,7 @@ function App() {
     <div className='bg-background-color'>
        <NavBar/>
       <h1 className="text-3xl font-bold underline">
-        PROBANDO desde mi rama
+        PROBANDO
       </h1>
       <OurServices/>
     </div>
