@@ -1,5 +1,6 @@
 import './App.css';
 import { Home } from './screens/Home';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (

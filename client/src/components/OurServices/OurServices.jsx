@@ -68,7 +68,7 @@ const OurServices = () => {
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-12 w-20 -ml-5"
+                className="h-2 w-2 -ml-5"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
