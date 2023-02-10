@@ -28,7 +28,7 @@ const Reviews = () => {
     <div>
       <div
         ref={carousel}
-        className=' cards-carousel mt-[19rem] p-4 flex  overflow-hidden   scroll-smooth scrollbar-hide items-center justify-center '
+        className=' cards-carousel mt-[19rem] p-4 flex  overflow-hidden   scroll-smooth  items-center justify-center mb-[12rem]'
       >
         <div className='card-1 m-2 rounded-[100px] border-2 w-[295px] h-[435px] '>
           <div className='card-content '>
