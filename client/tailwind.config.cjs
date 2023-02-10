@@ -35,6 +35,7 @@ module.exports = {
     khula: ['Khula', 'sans-serif'],
   },
   extend: {},
+<<<<<<< HEAD
   plugins: [require('tailwind-scrollbar-hide')],
 =======
     khula: ["Khula", "sans-serif"],
@@ -42,4 +43,7 @@ module.exports = {
   extend: {},
   plugins: [],
 >>>>>>> 4530987c0a0acade8c17642ca84039945cf3836a
+=======
+  plugins: [],
+>>>>>>> 3b3f25c3155a389ae788d407bd3b9f8740962854
 };
