@@ -79,7 +79,7 @@ export default function NavBar() {
       <div className="px-7">
         <div className="flex items-center justify-between py-6 md:justify-start xl:justify-center md:space-x-10">
           <div className="flex justify-start lg:w-0 lg:flex-1">
-            <a href="#">
+            <a href="/">
               <span className="sr-only">Your Company</span>
               <img
                 className="h-9 ml-3 w-auto sm:h-10"
@@ -98,7 +98,7 @@ export default function NavBar() {
           <a href="#" className=" ml-3 text-base font-medium text-gray-500 hover:text-gray-900">
            Como funciona
             </a>
-            <a href="#" className=" ml-3 text-base font-medium text-gray-500 hover:text-gray-900">
+            <a href="/servicios" className=" ml-3 text-base font-medium text-gray-500 hover:text-gray-900">
               Servicios
             </a>
             <a href="#" className=" ml-3 text-base font-medium text-gray-500 hover:text-gray-900">
