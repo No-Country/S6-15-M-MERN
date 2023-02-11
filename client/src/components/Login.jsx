@@ -9,10 +9,11 @@ const loginSchema = yup.object().shape({
     .min(6, "Contraseña muy corta!")
     .max(50, "Demasiado larga!")
     .required("Ingresa tu contraseña"),
-  email: yup.string().email("Mail no valido").required("Ingresa tu email"),
-  gmail: yup.string().email("Gmail no valido").matches(/^[a-z0-9](\.?[a-z0-9]){5,}@g(oogle)?mail\.com$/,"Debes ingresar un gmail válido")
+  email: yup.string().email("Mail no válido").required("Ingresa tu email"),
+  gmail: yup.string().email("Gmail no válido").matches(/^[a-z0-9](\.?[a-z0-9]){5,}@g(oogle)?mail\.com$/,"Debes ingresar un gmail válido")
 });
-function Login() {
+function Login({modalOpen,closeModal}) {
+  if(!modalOpen) return null 
   return (
 
     <div className=" bg-[#28315C] rounded-xl  md:m-auto md:w-1/2">
@@ -35,7 +36,7 @@ function Login() {
         <Form>
         <div>
        
-               <FcGoogle className=" w-8 h-8 ml-52 absolute mt-2   " />
+               <FcGoogle className=" w-8 h-8  absolute mt-2  text-left 2xl:ml-96 md:ml-52 " />
               <Field
                 name="gmail"
                 id="gmail"
@@ -68,7 +69,7 @@ function Login() {
               <span className=" block text-[#ffffff]  ml-28 mb-5">¿Olvidaste tu contraseña?</span>
               </div>
               <button className="bg-[#ffffff] w-48 h-12 mr-5 rounded-full text-xl mb-4  font-bold  active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all  active:hover:bg-[#83e3be]  disabled:cursor-not-allowed  mt-4 hover:shadow-228b active:shadow  ">Cancelar</button>
-            <button type="submit"  className="bg-btnColor w-48 h-12 rounded-full text-xl mb-4 text-[#ffffff] font-bold  active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all  active:hover:bg-[#83e3be]  disabled:cursor-not-allowed  mt-4 hover:shadow-228b active:shadow " >Ingresar</button>
+            <button type="submit" onClick={closeModal} className="bg-btnColor w-48 h-12 rounded-full text-xl mb-4 text-[#ffffff] font-bold  active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all  active:hover:bg-[#83e3be]  disabled:cursor-not-allowed  mt-4 hover:shadow-228b active:shadow " >Ingresar</button>
         </Form>
       </Formik>
     </div>
