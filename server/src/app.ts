@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(router);
 db().then(() => console.log("Conexion Ready"));
 app.get('/', (req,res) => {
-  res.json({message: 'Welcome to myAPI'})
+  res.json({message: 'Welcome to myAPI v1'})
 })
 
 app.listen(PORT, ()=> {
