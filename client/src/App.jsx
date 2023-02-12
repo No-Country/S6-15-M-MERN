@@ -6,17 +6,12 @@ import { Home } from './screens/Home';
 
 function App() {
   return (
-    
-
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/servicios" element={<Services />} /> 
         </Routes>
       </BrowserRouter>
-
-      
-
   );
 }
 

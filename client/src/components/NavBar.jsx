@@ -73,14 +73,13 @@ function classNames(...classes) {
 }
 
 export default function NavBar() {
-  const [showModal, setShowModal] = useState(false);
   return (
-    <Popover className="relative bg-backgroundColor w-screen">
+    <Popover className="relative bg-backgroundColor ">
       <div className="px-7">
         <div className="flex items-center justify-between py-6 md:justify-start xl:justify-center md:space-x-10">
           <div className="flex justify-start lg:w-0 lg:flex-1">
             <a href="/">
-              <span className="sr-only">Your Company</span>
+              <span className="sr-only"></span>
               <img
                 className="h-9 ml-3 w-auto sm:h-10"
                 src={contrata}
@@ -90,7 +89,7 @@ export default function NavBar() {
           </div>
           <div className="-my-2 -mr-2 md:hidden">
             <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
-              <span className="sr-only">Open menu</span>
+              <span className="sr-only">Abrir</span>
               <Bars3Icon className="h-6 w-6" aria-hidden="true" />
             </Popover.Button>
           </div>
@@ -106,15 +105,11 @@ export default function NavBar() {
             </a>
           </Popover.Group>
           <div className="hidden items-center justify-end md:flex md:flex-2 lg:w-0">
-            {/* <a href="#" className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
-              Sign in
-            </a> */}
             <a
               href="#"
-              className="inline-flex items-center justify-center whitespace-nowrap rounded-md border-transparent bg-buttons-buttonGreen px-4 py-2 text-base font-medium text-text-white shadow-sm hover:bg-indigo-700"
-              onClick={()=> setShowModal(true)}
+              className="inline-flex items-center justify-center whitespace-nowrap rounded-md border-transparent bg-buttons-buttonGreen px-4 py-2 text-base font-medium text-textWhite shadow-sm hover:bg-indigo-700"           
            >
-              Sign up
+              Registrarse
             </a>
           </div>
         </div>
