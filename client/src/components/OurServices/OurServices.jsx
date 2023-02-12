@@ -39,7 +39,7 @@ const OurServices = () => {
   useEffect(() => {
     if (carousel !== null && carousel.current !== null) {
       carousel.current["scrollLeft"] =
-        2 * currentIndex;
+        carousel.current.offsetWidth * currentIndex;
     }
   }, [currentIndex]);
 
