@@ -1,19 +1,16 @@
-
 /*Modelo de usuario */
 
 import {Schema , Types , model , Model} from 'mongoose'
 import { User } from '../interfaces/user.interface';
 
 const userSchema = new Schema<User>(
-	{
+	{	
+
 		name: {
 			type: String,
 			required: [true, 'Please provide a valid name'],
 		},
-		// age: {
-		// 	type: Number,
-		// 	required: [true , 'Please enter your age'],
-		// },
+
 		email: {
 			type: String,
 			required: [true, 'Please enter your email'],
@@ -23,10 +20,63 @@ const userSchema = new Schema<User>(
 			type: String,
 			required: [true, 'Please enter your password'],
 		},
-        description: {
-            type:String,
-            default: 'Hola , Soy la Descripcion',
-        },
+
+		birthdate: {
+			type:String,
+			required: true,
+		},
+
+		phonecontact: {
+			type:Number,
+			required: true,
+		},
+
+		country: {
+			type:String,
+			required: true,
+		},
+
+		city: {
+			type:String,
+			required: true,
+		},
+		
+		terms: {
+			type: String, 
+			required: false,
+		}, 
+
+		idgoogle: {
+			type:String,
+			required: true,
+		},
+
+		proveedor: {
+			type:String,
+			required: true,
+		},
+
+		avatarURL:{
+				type: String,
+				required: [true, 'Please provide an img url'],
+		},
+
+		job: {
+			type:String,
+			required: true,
+		},
+		
+		postalCode: {
+			type:Number,
+			required: true,
+		},
+
+		/*cantindad minima precio*/
+		minimumquantityprice : {
+			type:Number,
+			required:true,
+			min:0,
+		},
 		
 	},
 	{
