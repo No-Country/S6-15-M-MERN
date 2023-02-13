@@ -11,11 +11,10 @@ app.use(express.json());
 app.use(router);
 dbConnect().then(() => console.log('conexion ready'));
 
-
 // Definir endpoints
-
-
-
+// app.use('/register')
+// app.use('/login')
+// app.use('/')
 
 app.get('/', (req,res) => {
   res.json({message: 'Welcome to myAPI'})
@@ -24,5 +23,3 @@ app.get('/', (req,res) => {
 app.listen(PORT, ()=> {
   console.log(`Server started at port: ${PORT}`);
 });
-
-
