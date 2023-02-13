@@ -2,7 +2,7 @@
 /*Modelo de usuario */
 
 import {Schema , Types , model , Model} from 'mongoose'
-import { User } from '../interface/user.interface';
+import { User } from '../interfaces/user.interface';
 
 const userSchema = new Schema<User>(
 	{
