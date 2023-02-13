@@ -3,7 +3,7 @@
 const Card = ({imagen, title, description, price})=>{
     return(
         <>
-        <div className="card bg-background-card-color w-[277px] h-[302px] rounded-2xl shadow-md m-4">
+        <div className="card bg-background-card-color w-[277px] h-[302px] rounded-2xl shadow-md">
             <div className="top ">
                 <img
                 className="object-cover w-[277px] h-[137px] rounded-t-2xl" 
