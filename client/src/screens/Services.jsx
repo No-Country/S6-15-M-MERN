@@ -3,6 +3,10 @@ import NavBar from '../components/NavBar';
 import data from "../components/MostRequested/data.json";
 import Card from '../components/MostRequested/Card';
 import Footer from '../components/Footer';
+import ServicesCards from '../components/ServicesCards';
+import Footer from "../components/Footer"
+
+
 
 
 export const Services = () => {
@@ -29,6 +33,8 @@ export const Services = () => {
           })}
             </div>
             <Footer/>
+            <ServicesCards />
+            <Footer />
         </>
     )
 }
