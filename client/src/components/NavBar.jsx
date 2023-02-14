@@ -114,11 +114,6 @@ export default function NavBar() {
            >
               Registarse
             </a>
-            <div className="hidden">
-            <Login modalOpen={setShowModal}
-              closeModal={()=>setShowModal(false)}
-            />
-            </div>
           </div>
         </div>
       </div>
