@@ -2,7 +2,7 @@ import React from 'react';
 
 const ReviewCards = () => {
   return (
-    <div className='card-1 m-4 rounded-[100px] border-2 flex grow-[0 0 25%] w-[295px] h-[435px] hover:scale-105  '>
+    <div className='card-1 m-2 rounded-[100px] border-2 flex grow-[0 0 25%] w-[256px] h-[390px] hover:scale-105 cursor-pointer  '>
       <div className='card-content '>
         <div className='foto-estrellas'>
           <img
