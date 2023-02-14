@@ -16,7 +16,7 @@ export const Home = () => {
       <MostRequested/>
       <Login/>      
       <Reviews/>
-      <Footer />
+      <Footer/>
     </>
   )
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import NavBar from '../components/NavBar';
 import data from "../components/MostRequested/data.json";
 import Card from '../components/MostRequested/Card';
+import Footer from '../components/Footer';
 
 
 export const Services = () => {
@@ -21,12 +22,13 @@ export const Services = () => {
             {data.resources.map((requested, index) => {
             return (
               <div key={index}>
-            <Card imagen={requested.imageUrl} title={requested.title} description={requested.descripcion} price={requested.price} />
-          </div>
+                <Card imagen={requested.imageUrl} title={requested.title} description={requested.descripcion} price={requested.price} /> 
+              </div>
 
             )
           })}
             </div>
+            <Footer/>
         </>
     )
 }
