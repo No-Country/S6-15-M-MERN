@@ -12,6 +12,8 @@ module.exports = {
         btnColor: "#7CC298",
         textWhite: " #FFFFFF",
         backgroundCardColor: "#F5F7FA",
+        blueLinks: '#4285F4',
+        greyText: '#666666'
       },
     },
   },

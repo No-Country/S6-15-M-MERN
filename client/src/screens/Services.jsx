@@ -4,7 +4,7 @@ import data from "../components/MostRequested/data.json";
 import Card from '../components/MostRequested/Card';
 import Footer from '../components/Footer';
 import ServicesCards from '../components/ServicesCards';
-import Footer from "../components/Footer"
+
 
 
 
