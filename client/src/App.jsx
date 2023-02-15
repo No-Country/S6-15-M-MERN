@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home } from './screens/Home';
 import Profile from './screens/Profile';
 import { ServicesDetail } from './screens/ServicesDetail';
+import SolicitedService from './screens/SolicitedService';
 
 
 function App() {
@@ -16,6 +17,8 @@ function App() {
           <Route path="/servicios" element={<Services />} /> 
           <Route path= "/perfil" element={<Profile/>}/>
           <Route path='/servicesDetail' element={<ServicesDetail/>}/>
+
+          <Route path='/solicitado' element={<SolicitedService />} />
         </Routes>
       </BrowserRouter>
 
