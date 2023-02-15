@@ -10,17 +10,17 @@ import { BoolHook } from '../hooks/BoolHook';
 
 export const Home = () => {
 
-  const [isModalOpen, changeModalStatus] = BoolHook(false);
+  // const [isModalOpen, changeModalStatus] = BoolHook(false);
   
   return (
     <>
-      <NavBar changeModal={changeModalStatus} />
+      {/* <NavBar changeModal={changeModalStatus} /> */}
       <HeaderHome/>
       <OurServices/>
       <MostRequested/>
-      <Login isOpen={isModalOpen} closeModal={changeModalStatus} />      
+      {/* <Login isOpen={isModalOpen} closeModal={changeModalStatus} />       */}
       <Reviews/>
-      <Footer/>
+      {/* <Footer/> */}
     </>
   )
 }

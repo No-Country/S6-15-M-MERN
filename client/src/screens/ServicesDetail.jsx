@@ -6,7 +6,6 @@ import NavBar from './../components/NavBar';
 export const ServicesDetail = () => {
   return (
     <>
-        <NavBar/>
         <div>
         ServicesDetail Header
         </div>

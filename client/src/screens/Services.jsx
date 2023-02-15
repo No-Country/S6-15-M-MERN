@@ -9,7 +9,7 @@ import ServicesCards from '../components/ServicesCards';
 export const Services = () => {
     return (
         <>
-            <NavBar />
+            {/* <NavBar /> */}
             <ServicesCards />
         </>
     )
