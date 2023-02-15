@@ -323,11 +323,11 @@ const Reviews = () => {
             ref={sliderRefBig}
             onTransitionEnd={handleTransitionEndBig}
           >
-            <div className='card-1 m-2 rounded-[100px] border-2 flex w-[300px] h-[420px] hover:scale-105 cursor-pointer gap-2 grow   max-[1390px]:h-[380px]'>
+            <div className='card-1 m-2 rounded-[100px] border-2 flex w-[300px] h-[420px] hover:scale-105 cursor-pointer gap-2 grow max-[1390px]:h-[380px] max-[1160px]:scale-[0.9] max-[1160px]:w-[380px] max-[1160px]:-m-2 '>
               <div className='card-content '>
                 <div className='foto-estrellas'>
                   <img
-                    className='user-picture h-[100px] w-[100px] rounded-full ml-auto mr-auto mt-10 object-cover'
+                    className='user-picture h-[100px] w-[100px] rounded-full ml-auto mr-auto mt-10 object-cover '
                     src='https://images.pexels.com/photos/428364/pexels-photo-428364.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
                   ></img>
                   <div className='stars-container flex items-center justify-center mt-[4%] '>
@@ -364,7 +364,7 @@ const Reviews = () => {
                   </div>
                 </div>
 
-                <p className='card-text text-base text-center ml-4 mr-4 mt-[8%] font-sans font-normal max-[1390px]:text-sm '>
+                <p className='card-text text-base text-center ml-4 mr-4 mt-[8%] font-sans font-normal max-[1390px]:text-sm max-[1390px]:-mb-2 '>
                   “Amet minim mollit non deserunt ullamco est sit aliqua dolor
                   do amet sint. Velit officia consequat duis enim velit mollit.
                   Exercitation veniam consequat.”
@@ -376,7 +376,7 @@ const Reviews = () => {
                 </div>
               </div>
             </div>
-            <div className='card-1 m-2 rounded-[100px] border-2 flex w-[300px] h-[420px] hover:scale-105 cursor-pointer gap-2 grow max-[1390px]:h-[380px]'>
+            <div className='card-1 m-2 rounded-[100px] border-2 flex w-[300px] h-[420px] hover:scale-105 cursor-pointer gap-2 grow max-[1390px]:h-[380px] max-[1160px]:scale-[0.9] max-[1160px]:w-[380px] max-[1160px]:-m-2'>
               <div className='card-content '>
                 <div className='foto-estrellas'>
                   <img
@@ -417,7 +417,7 @@ const Reviews = () => {
                   </div>
                 </div>
 
-                <p className='card-text text-base text-center ml-4 mr-4 mt-[8%] font-sans font-normal max-[1390px]:text-sm'>
+                <p className='card-text text-base text-center ml-4 mr-4 mt-[8%] font-sans font-normal max-[1390px]:text-sm max-[1390px]:-mb-2'>
                   “Amet minim mollit non deserunt ullamco est sit aliqua dolor
                   do amet sint. Velit officia consequat duis enim velit mollit.
                   Exercitation veniam consequat.”
@@ -429,7 +429,7 @@ const Reviews = () => {
                 </div>
               </div>
             </div>
-            <div className='card-1 m-2 rounded-[100px] border-2 flex w-[300px] h-[420px] hover:scale-105 cursor-pointer gap-2 grow max-[1390px]:h-[380px]'>
+            <div className='card-1 m-2 rounded-[100px] border-2 flex w-[300px] h-[420px] hover:scale-105 cursor-pointer gap-2 grow max-[1390px]:h-[380px] max-[1160px]:scale-[0.9] max-[1160px]:w-[380px] max-[1160px]:-m-2'>
               <div className='card-content '>
                 <div className='foto-estrellas'>
                   <img
@@ -470,7 +470,7 @@ const Reviews = () => {
                   </div>
                 </div>
 
-                <p className='card-text text-base text-center ml-4 mr-4 mt-[8%] font-sans font-normal max-[1390px]:text-sm'>
+                <p className='card-text text-base text-center ml-4 mr-4 mt-[8%] font-sans font-normal max-[1390px]:text-sm max-[1390px]:-mb-2'>
                   “Amet minim mollit non deserunt ullamco est sit aliqua dolor
                   do amet sint. Velit officia consequat duis enim velit mollit.
                   Exercitation veniam consequat.”
@@ -482,7 +482,7 @@ const Reviews = () => {
                 </div>
               </div>
             </div>
-            <div className='card-1 m-2 rounded-[100px] border-2 flex w-[300px] h-[420px] hover:scale-105 cursor-pointer gap-2 grow max-[1390px]:h-[380px]'>
+            <div className='card-1 m-2 rounded-[100px] border-2 flex w-[300px] h-[420px] hover:scale-105 cursor-pointer gap-2 grow max-[1390px]:h-[380px] max-[1160px]:scale-[0.9] max-[1160px]:w-[380px] max-[1160px]:-m-2'>
               <div className='card-content '>
                 <div className='foto-estrellas'>
                   <img
@@ -523,7 +523,7 @@ const Reviews = () => {
                   </div>
                 </div>
 
-                <p className='card-text text-base text-center ml-4 mr-4 mt-[8%] font-sans font-normal max-[1390px]:text-sm'>
+                <p className='card-text text-base text-center ml-4 mr-4 mt-[8%] font-sans font-normal max-[1390px]:text-sm max-[1390px]:-mb-2'>
                   “Amet minim mollit non deserunt ullamco est sit aliqua dolor
                   do amet sint. Velit officia consequat duis enim velit mollit.
                   Exercitation veniam consequat.”
@@ -535,7 +535,7 @@ const Reviews = () => {
                 </div>
               </div>
             </div>
-            <div className='card-1 m-2 rounded-[100px] border-2 flex w-[300px] h-[420px] hover:scale-105 cursor-pointer gap-2 grow max-[1390px]:h-[380px] '>
+            <div className='card-1 m-2 rounded-[100px] border-2 flex w-[300px] h-[420px] hover:scale-105 cursor-pointer gap-2 grow max-[1390px]:h-[380px] max-[1160px]:scale-[0.9] max-[1160px]:w-[380px] max-[1160px]:-m-2'>
               <div className='card-content '>
                 <div className='foto-estrellas'>
                   <img
@@ -576,7 +576,7 @@ const Reviews = () => {
                   </div>
                 </div>
 
-                <p className='card-text text-base text-center ml-4 mr-4 mt-[8%] font-sans font-normal max-[1390px]:text-sm'>
+                <p className='card-text text-base text-center ml-4 mr-4 mt-[8%] font-sans font-normal max-[1390px]:text-sm max-[1390px]:-mb-2'>
                   “Amet minim mollit non deserunt ullamco est sit aliqua dolor
                   do amet sint. Velit officia consequat duis enim velit mollit.
                   Exercitation veniam consequat.”
