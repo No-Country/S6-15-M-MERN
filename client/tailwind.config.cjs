@@ -6,6 +6,7 @@ module.exports = {
       colors: {
         buttons: {
           buttonGreen: "#7CC298",
+          saveButtonGreen:"#43936C"
         },
         backgroundColor: "#F5F5F5",
         blox: "#28315C",
@@ -13,12 +14,15 @@ module.exports = {
         textWhite: " #FFFFFF",
         backgroundCardColor: "#F5F7FA",
         blueLinks: '#4285F4',
-        greyText: '#666666'
+        greyText: '#666666',
+        labelColor:"#083A50",
+        labelGrayColor:"#CACED8",
+        focusColor:"#26B893"
       },
     },
   },
   fontFamily: {
-    khula: ['Khula', 'sans-serif'],
+    khula:['Khula', 'sans-serif'],
   },
   extend: {},
   plugins: [require('tailwind-scrollbar-hide')],
