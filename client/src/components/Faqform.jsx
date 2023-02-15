@@ -26,16 +26,13 @@ function Faqform() {
           initialValues={{
             nombre: "",
             email: "",
-            password: "",
-            passwordConfirmation: "",
-            termsAndConditions: false,
           }}
           validationSchema={userSchema}
         >
           <Form>
             <div>
 
-              <label className="  font-bold block text-[#ffffff] mt-5 mr-56" htmlFor="email font-khula">Nombre</label>
+              <label className="  font-bold block text-[#313D69] mt-5 mr-56" htmlFor="email font-khula">Nombre</label>
               <Field
                 name="nombre"
                 id="nombre"
@@ -45,7 +42,7 @@ function Faqform() {
               />
               <ErrorMessage name="email" component="p" className="font-bold  text-[#ffffff]" />
 
-              <label className="  font-bold block text-[#ffffff] mt-5 mr-56" htmlFor="email font-khula">Email</label>
+              <label className="  font-bold block text-[#313D69] mt-5 mr-56" htmlFor="email font-khula">Email</label>
               <Field
                 name="email"
                 id="email"
@@ -55,35 +52,21 @@ function Faqform() {
               />
               <ErrorMessage name="email" component="p" className="font-bold  text-[#ffffff]" />
 
-              <label  className="  font-bold block text-[#ffffff] mt-5 mr-48  " htmlFor="password font-khula">Contraseña</label>
+              <label  className="  font-bold block text-[#313D69] mt-5 mr-48  " htmlFor="password font-khula">Tu consulta</label>
               <Field
-                name="password"
-                id="password"
-                type="password"
-                placeholder="Ingresa una contraseña"
+                name="consulta"
+                id="consulta"
+                type="text"
+                placeholder="Escribe tu duda o consulta aquí"
                 className=" px-3 py-2 pl-24 focus: outline-none rounded-xl placeholder:-translate-x-6"
               />
               <ErrorMessage name="password" component="p"  className="font-bold  text-[#ffffff]"/>
-              <label  className=" font-bold block text-[#ffffff] mt-5 mr-24 m " htmlFor="password">Confirmá tu contraseña</label>
-              <Field
-                name="passwordConfirmation"
-                id="passwordConfirmation"
-                type="password"
-                placeholder="Confirma tu contraseña"
-                className=" px-3 py-2 focus: outline-none rounded-xl pl-24 text-left placeholder:-translate-x-6  "
-              />
-              <ErrorMessage name="passwordConfirmation" component="p"  className="font-bold  text-[#ffffff]" />
-              <div>
-              <Field 
-              name="termsAndConditions"
-              default="false"
-               type="checkbox" className="mt-5 mb-5" />  
-               <span  className=" font-bold  ml-4 text-[#ffffff] mt-5" >Acepto los términos y condiciones</span>
-               <ErrorMessage name="termsAndConditions" component="p"  className="font-bold  text-[#ffffff]"/>
-               </div>
+
+              
+              
             </div>
-            <button className="bg-[#ffffff] w-48 h-12 mr-5 rounded-full text-xl mb-4  font-bold  active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all  active:hover:bg-[#83e3be]  disabled:cursor-not-allowed  mt-4 hover:shadow-228b active:shadow  ">Cancelar</button>
-            <button type="submit"  className="bg-btnColor w-48 h-12 rounded-full text-xl mb-4 text-[#ffffff] font-bold  active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all  active:hover:bg-[#83e3be]  disabled:cursor-not-allowed  mt-4 hover:shadow-228b active:shadow " >Registrarse</button>
+            
+            <button type="submit"  className="bg-btnColor w-48 h-12 rounded-full text-xl mb-4 text-[#ffffff] font-bold  active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all  active:hover:bg-[#83e3be]  disabled:cursor-not-allowed  mt-4 hover:shadow-228b active:shadow " >Enviar</button>
           </Form>
         </Formik>
       </div>
