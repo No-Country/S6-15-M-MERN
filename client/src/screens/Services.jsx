@@ -34,7 +34,6 @@ export const Services = () => {
             </div>
             <Footer/>
             <ServicesCards />
-            <Footer />
         </>
     )
 }
