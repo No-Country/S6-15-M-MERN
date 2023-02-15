@@ -2,6 +2,7 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
 import {FcGoogle} from "react-icons/fc"
+import Modal from "./Modal"
 
 const loginSchema = yup.object().shape({
   password: yup
@@ -12,11 +13,11 @@ const loginSchema = yup.object().shape({
   email: yup.string().email("Mail no válido").required("Ingresa tu email"),
   gmail: yup.string().email("Gmail no válido").matches(/^[a-z0-9](\.?[a-z0-9]){5,}@g(oogle)?mail\.com$/,"Debes ingresar un gmail válido")
 });
-function Login({modalOpen,closeModal}) {
-  if(!modalOpen) return null 
+function Login({isOpen, closeModal }) {
   return (
-
-    <div className=" bg-[#28315C] rounded-xl  md:m-auto md:w-1/2">
+    <Modal isOpen={isOpen} closeModal={closeModal}>
+      <div className=" bg-[#28315C] rounded-xl  flex ">
+    
 
     <div className=" mb-4 py-16 text-center flex-col justify-center items-center m-auto ">
     <header className="">
@@ -74,6 +75,13 @@ function Login({modalOpen,closeModal}) {
       </Formik>
     </div>
     </div>
+
+
+    </Modal>
+  
+
+
+    
   );
 }
 
