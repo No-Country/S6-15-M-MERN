@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import Faqform from './Faqform';
 const Faq = () => {
   const [menu, setMenu] = useState(null);
 
@@ -93,6 +93,18 @@ const Faq = () => {
           </ul>
         </div>
       </div>
+
+      <div>
+          <h3 className='text-center mt-11 mb-8'>¿Te quedaste con dudas?</h3>
+          <h3 className='text-center mb-8'>¡Comunicate  nostros!</h3>
+          <div>
+
+            <Faqform/>
+          </div>
+
+
+      </div>
+
     </div>
   );
 };
