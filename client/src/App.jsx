@@ -6,6 +6,7 @@ import Profile from './screens/Profile';
 import { ServicesDetail } from './screens/ServicesDetail';
 import SolicitedService from './screens/SolicitedService';
 import Faq from './components/Faq';
+import {OrderService} from './screens/OrderService';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path='/servicesDetail' element={<ServicesDetail/>}/>
           <Route path='faq' element={<Faq />} />
           <Route path='/solicitado' element={<SolicitedService />} />
+          <Route path="/sol-servicio" element={<OrderService />} /> 
         </Routes>
       </BrowserRouter>
   )
