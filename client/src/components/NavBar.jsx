@@ -17,6 +17,8 @@ import {
 import contrata from '../assets/contrata.png'
 import Login from "./Login";
 
+
+
 const solutions = [
   {
     name: 'Como funciona',
@@ -72,7 +74,12 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function NavBar() {
+export default function NavBar({changeModal}) {
+
+  const handleClick = ()=>{
+    console.log(changeStatus());
+  
+  }
   return (
     <Popover className="relative bg-backgroundColor ">
       <div className="px-7">
@@ -109,7 +116,8 @@ export default function NavBar() {
               Sign in
             </a> */}
             <a
-              href="#"
+              /* href="#" */
+              onClick={changeModal}
               className="inline-flex items-center justify-center whitespace-nowrap rounded-md border-transparent bg-buttons-buttonGreen px-4 py-2 text-base font-medium text-textWhite shadow-sm hover:bg-indigo-700"
            >
               Registarse
