@@ -6,17 +6,21 @@ import OurServices from './../components/OurServices/OurServices';
 import Reviews from './../components/Reviews';
 import MostRequested from './../components/MostRequested/MostRequested';
 import Footer from '../components/Footer';
+import { BoolHook } from '../hooks/BoolHook';
 
 export const Home = () => {
+
+  const [isModalOpen, changeModalStatus] = BoolHook(false);
+  
   return (
     <>
-      <NavBar/>
+      <NavBar changeModal={changeModalStatus} />
       <HeaderHome/>
       <OurServices/>
       <MostRequested/>
-      <Login/>      
+      <Login isOpen={isModalOpen} closeModal={changeModalStatus} />      
       <Reviews/>
-      <Footer />
+      <Footer/>
     </>
   )
 }

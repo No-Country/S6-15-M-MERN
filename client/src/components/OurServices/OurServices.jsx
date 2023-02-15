@@ -39,7 +39,7 @@ const OurServices = () => {
   useEffect(() => {
     if (carousel !== null && carousel.current !== null) {
       carousel.current["scrollLeft"] =
-        2 * currentIndex;
+        carousel.current.offsetWidth * currentIndex;
     }
   }, [currentIndex]);
 
@@ -51,7 +51,7 @@ const OurServices = () => {
 
   return (
     <div className="2xl:container 2xl:mx-auto 2xl:px-0 py-3 md:px-10">
-      <section className="carousel my-12 mx-auto font-poppins">
+      <section className="carousel my-12 mx-auto ">
         <div className="py-8 text-center">
           <h2 className="text-gray-600 font-extrabold text-3xl ">
             Nuestros Servicios

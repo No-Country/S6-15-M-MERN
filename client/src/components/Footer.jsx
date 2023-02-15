@@ -1,12 +1,16 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faFacebook, faInstagram, faTwitter } from "@fortawesome/fontawesome-free-brands"
-import Contrata from "../assets/Marcaempresa.png"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faFacebook,
+  faInstagram,
+  faTwitter,
+} from "@fortawesome/fontawesome-free-brands";
+import Contrata from "../assets/Marcaempresa.png";
 
 
 export default function Footer(){
   return(
     <div>
-      <footer className="flex flex-col justify-between relative items-center m-0 p-[64px 24px 8px] w-[100%] top[3299.25px] bottom-0 left-[3px] rounded-none bg-red-600">
+      <footer className="flex flex-col justify-between relative items-center m-0 p-[64px 24px 8px] w-[100%] top[3299.25px] bottom-0 left-[3px] rounded-none">
         <div className="flex justify-start">
           <div className="items-start mr-[150px]">
 
