@@ -20,7 +20,7 @@ export const Home = () => {
       <MostRequested/>
       <Login isOpen={isModalOpen} closeModal={changeModalStatus} />      
       <Reviews/>
-      <Footer />
+      <Footer/>
     </>
   )
 }
