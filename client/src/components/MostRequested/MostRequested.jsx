@@ -49,7 +49,7 @@ const MostRequested = () => {
         <div className="prueba flex">
           <button onClick={scrollLeft} className=" rounded-full  text-3xl text-[#28315C] font-bold my-auto m-2 sm:ml-2 sm:mr-[14px] flex items-center hover:scale-110 "> <FontAwesomeIcon icon={faCircleChevronLeft} /> </button>
 
-          <div id="carousel" className="carousel my-4 py-3 p-0 sm:px-3 flex flex-grow items-center justify-start overflow-x-hidden scroll-smooth snap-mandatory touch-pan-x z-0 gap-6 "
+          <div id="carousel" className="carousel my-4 py-3 p-0 sm:px-3 flex flex-grow items-center justify-start overflow-x-hidden scroll-smooth  touch-pan-x z-0 gap-6 "
             ref={carousel}>
 
             {data.resources.map((requested, index) => {
