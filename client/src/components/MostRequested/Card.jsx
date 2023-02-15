@@ -2,8 +2,8 @@
 
 const Card = ({imagen, title, description, price})=>{
     return(
-        <>
-        <div className="card bg-background-card-color w-[277px] h-[302px] rounded-2xl shadow-md m-4">
+        <a href="./servicesDetail">
+        <div className="card bg-background-card-color w-[277px] h-[302px] rounded-2xl shadow-md">
             <div className="top ">
                 <img
                 className="object-cover w-[277px] h-[137px] rounded-t-2xl" 
@@ -16,12 +16,9 @@ const Card = ({imagen, title, description, price})=>{
             <div className="desde flex ml-3.5 ">
                 <p className="mt-auto">Desde:</p>
                 <p className="ml-1 mt-auto font-black text-[#7CC298] text-xl">{price}</p>
-
             </div>
-
         </div>
-        
-        </>
+        </a>     
     )
 }
 
