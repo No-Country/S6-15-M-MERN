@@ -33,11 +33,11 @@ function EditProfile() {
   });
   return (
     <div>
-      <div className="ml-44 ">
-        <header className="text-labelGrayColor font-bold text-2xl mb-5 font-khula">
+      <div className=" ml-40">
+        <header className="text-labelGrayColor font-bold text-4xl mb-10 font-khula">
           Editar tu perfil
         </header>
-        <h3 className="text-labelGrayColor font-bold mb-14 ">
+        <h3 className="text-labelGrayColor font-bold mb- mt-24 ">
           Información Personal
         </h3>
         <Formik
@@ -51,43 +51,45 @@ function EditProfile() {
           validationSchema={userSchema}
         >
           <Form>
-            <div className="grid gap-6 mb-6 md:grid-cols-2">
-              <div>
-                <label className="  font-bold block text-labelColor mt-5 mr-24    font-khula">
+            <div className="grid gap-6 mb-6 grid-cols-4 grid-rows-4 " >
+            
+              <div className="col-span-1">
+                <label className="  font-bold block text-labelColor mt-5  mb-2    font-khula">
                   Nombre
                 </label>
                 <Field
-                  name="email"
-                  id="email"
+                  name="name"
+                  id="name"
                   type="text"
-                  className=" px-3 py-2 focus: outline-focusColor rounded-xl pl-24   border-labelGrayColor border-2"
+                  className=" px-3 py-2 focus: outline-focusColor rounded-xl w-full    border-labelGrayColor border-2"
                 />
                 <ErrorMessage
-                  name="email"
+                  name="name"
                   component="p"
-                  className="font-bold  text-[#ffffff]"
+                  className="font-bold  text-labelColor"
                 />
               </div>
-              <div className="-ml-72">
+              <div className="  col-start-2 col-end-3">
                 <label
-                  className="  font-bold block text-labelColor  mt-5 mr-24   font-khula "
+                  className="  font-bold block text-labelColor  mt-5  mb-2  font-khula "
                   htmlFor="password "
                 >
                   Apellido
                 </label>
                 <Field
-                  name="password"
-                  id="password"
-                  type="password"
-                  className=" px-3 py-2 focus: outline-focusColor rounded-xl pl-24  border-labelGrayColor border-2 placeholder:-translate-x-6"
+                  name="lastname"
+                  id="lastname"
+                  type="text"
+                  className="  px-3 py-2 focus: outline-focusColor  rounded-xl  w-full border-labelGrayColor border-2 placeholder:-translate-x-6"
                 />
                 <ErrorMessage
-                  name="password"
+                  name="lastname"
                   component="p"
-                  className="font-bold  text-[#ffffff]"
+                  className="font-bold  text-labelColor"
                 />
+              
               </div>
-            <div>
+            <div className="col-start-1 col-end-3">
             <label
               className=" font-bold block text-labelColor mt-5 "
               htmlFor="password"
@@ -95,18 +97,18 @@ function EditProfile() {
               Código Postal
             </label>
             <Field
-              name="passwordConfirmation"
-              id="passwordConfirmation"
-              type="password"
-              className=" px-3 py-2 focus: outline-focusColor rounded-xl pl-96  border-labelGrayColor border-2 placeholder:-translate-x-6  "
+              name="zipCode"
+              id="zipCode"
+              type="number"
+              className=" px-3 py-2 focus: outline-focusColor w-full rounded-xl pl-60 border-labelGrayColor border-2 placeholder:-translate-x-6  "
             />
             <ErrorMessage
-              name="passwordConfirmation"
+              name="zipCode"
               component="p"
-              className="font-bold  text-[#ffffff]"
+              className="font-bold  text-labelColor"
             />
            </div>
-           <div>
+           <div className="col-start-1 col-end-3">
             <label
               className=" font-bold block text-labelColor mt-5 mr-24 m "
               htmlFor="password"
@@ -114,18 +116,19 @@ function EditProfile() {
               Fecha de nacimiento
             </label>
             <Field
-              name="passwordConfirmation"
-              id="passwordConfirmation"
-              type="password"
-              className=" px-3 py-2 focus: outline-focusColor rounded-xl pl-96    border-labelGrayColor border-2 placeholder:-translate-x-6  "
+              name="dateOfBirty"
+              id="dateOfBirty
+              "
+              type="date"
+              className=" px-3 py-2  w-full focus: outline-focusColor rounded-xl pl-72    border-labelGrayColor border-2 placeholder:-translate-x-6  "
             />
             <ErrorMessage
-              name="passwordConfirmation"
+              name="dateOfBirty"
               component="p"
-              className="font-bold  text-[#ffffff]"
+              className="font-bold  text-labelColor"
             />
             </div>
-            <div>
+            <div className="col-start-1 col-end-3">
             <label
               className=" font-bold block text-labelColor mt-5 mr-24 m "
               htmlFor="password"
@@ -136,7 +139,7 @@ function EditProfile() {
               name="passwordConfirmation"
               id="passwordConfirmation"
               type="password"
-              className=" px-3 py-2 focus: outline-focusColor rounded-xl pl-96   border-labelGrayColor border-2 placeholder:-translate-x-6  "
+              className=" px-3 py-2 w-full focus: outline-focusColor rounded-xl pl-60   border-labelGrayColor border-2 placeholder:-translate-x-6  "
             />
             <ErrorMessage
               name="passwordConfirmation"
@@ -144,9 +147,9 @@ function EditProfile() {
               className="font-bold  text-[#ffffff]"
             />
             </div>
-             <div>
+             <div className="col-start-3 col-end-5 row-start-1 row-end-2">
               <label
-                className=" font-bold block text-labelColor mt-5 mr-24 m "
+                className=" font-bold block text-labelColor mt-7 mr-24    "
                 htmlFor="password"
               >
                 Nuevo Email
@@ -155,7 +158,7 @@ function EditProfile() {
                 name="passwordConfirmation"
                 id="passwordConfirmation"
                 type="password"
-                className=" px-3 py-2 focus: outline-focusColor rounded-xl pl-96   border-labelGrayColor border-2 placeholder:-translate-x-6  "
+                className=" w-full px-3 py-2 focus: outline-focusColor rounded-xl pl-60   border-labelGrayColor border-2 placeholder:-translate-x-6  "
               />
               <ErrorMessage
                 name="passwordConfirmation"
@@ -163,7 +166,7 @@ function EditProfile() {
                 className="font-bold  text-[#ffffff]"
               />
               </div>
-              <div>
+              <div className="row-start-2 row-end-3 col-start-3 col-end-5">
               <label
                 className=" font-bold block text-labelColor mt-5 mr-24 m "
                 htmlFor="password"
@@ -174,7 +177,7 @@ function EditProfile() {
                 name="passwordConfirmation"
                 id="passwordConfirmation"
                 type="password"
-                className=" px-3 py-2 focus: outline-focusColor rounded-xl pl-96   border-labelGrayColor border-2 placeholder:-translate-x-6  "
+                className=" w-1/4 px-3 py-2 focus: outline-focusColor rounded-xl pl-60   border-labelGrayColor border-2 placeholder:-translate-x-6  "
               />
               <ErrorMessage
                 name="passwordConfirmation"
@@ -182,7 +185,7 @@ function EditProfile() {
                 className="font-bold  text-[#ffffff]"
               />
               </div>
-              <div>
+              <div className="row-start-3 row-end-4 col-start-3 col-end-5">
               <label
                 className=" font-bold block text-labelColor mt-5 mr-24 m "
                 htmlFor="password"
@@ -193,7 +196,7 @@ function EditProfile() {
                 name="passwordConfirmation"
                 id="passwordConfirmation"
                 type="password"
-                className=" px-3 py-2 focus: outline-focusColor rounded-xl pl-96   border-labelGrayColor border-2 placeholder:-translate-x-6  "
+                className=" w-full px-3 py-2 focus: outline-focusColor rounded-xl pl-60   border-labelGrayColor border-2 placeholder:-translate-x-6  "
               />
               <ErrorMessage
                 name="passwordConfirmation"
@@ -201,9 +204,9 @@ function EditProfile() {
                 className="font-bold  text-[#ffffff]"
               />
               </div>
-              <div>
+              <div className="col-start-3 col-end-5">
               <label
-                className=" font-bold block text-labelColor mt-5 mr-24 m "
+                className=" font-bold block text-labelColor mt-5 mr-24 "
                 htmlFor="password"
               >
                 Ciudad
@@ -212,7 +215,7 @@ function EditProfile() {
                 name="passwordConfirmation"
                 id="passwordConfirmation"
                 type="password"
-                className=" px-3 py-2 focus: outline-focusColor rounded-xl pl-96   border-labelGrayColor border-2 placeholder:-translate-x-6  "
+                className=" w-full px-3 py-2 focus: outline-focusColor rounded-xl pl-60   border-labelGrayColor border-2 placeholder:-translate-x-6  "
               />
               <ErrorMessage
                 name="passwordConfirmation"
@@ -220,13 +223,16 @@ function EditProfile() {
                 className="font-bold  text-[#ffffff]"
               />
              </div> 
-
+             
+            <div>
+            
             <button
               type="submit"
-              className="bg-btnColor w-48 h-12 rounded-xl text-xl mb-4 text-[#ffffff] font-bold  active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all  active:hover:bg-[#83e3be]  disabled:cursor-not-allowed  mt-10 hover:shadow-228b active:shadow "
+              className="bg-btnColor w-48 h-12  rounded-xl text-xl mb-5 text-[#ffffff] font-bold  active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all  active:hover:bg-[#83e3be]  disabled:cursor-not-allowed  mt-28  hover:shadow-228b active:shadow "
             >
               Guardar
             </button>
+            </div>
             </div>
           </Form>
         </Formik>
