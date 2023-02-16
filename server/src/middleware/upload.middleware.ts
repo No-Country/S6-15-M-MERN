@@ -11,7 +11,7 @@ const storage = diskStorage({
     const ext = file.originalname.split(".").pop();
     const fileNameRandom = `image-${Date.now()}.${ext}`;
     cb(null, fileNameRandom);
-  },
+  }
 });
 
 const multerMiddleware = multer({ storage });
