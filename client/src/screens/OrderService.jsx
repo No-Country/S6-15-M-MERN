@@ -36,7 +36,7 @@ export const OrderService = () => {
           </div>
         </div>
       </div>
-      <div className="p-10 text-gray-400 font-normal text-xl">
+      <div className="p-10 text-gray-400 text-xl">
         <p>
           Contanos que problema necesitas solucionar y nosotros te enviaremos
           SIN CARGO un presupuesto.
