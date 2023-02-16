@@ -1,9 +1,11 @@
 import React from 'react'
+import { useSearchParams } from 'react-router-dom';
 import { CardServices } from '../components/services/CardServices'
 import Dropdown from '../components/services/Dropdown'
 import NavBar from './../components/NavBar';
 
-export const ServicesDetail = () => {
+export const ServicesDetail = ({props}) => {
+
   return (
     <>
         <div>
@@ -30,7 +32,7 @@ export const ServicesDetail = () => {
                     <Dropdown/>
                     </div>
                 </div>
-                    <CardServices/>
+                   <CardServices/>
             </div>
         </div>
 
