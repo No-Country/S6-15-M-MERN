@@ -33,7 +33,7 @@ function EditProfile() {
   });
   return (
     <div>
-      <div className=" ml-40">
+      <div className=" ml-40 mr-40">
         <header className="text-labelGrayColor font-bold text-4xl mb-10 font-khula">
           Editar tu perfil
         </header>
