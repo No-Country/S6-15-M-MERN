@@ -26,7 +26,7 @@ export const ServicesDetail = ({props}) => {
             <div className='h-full flex flex-col justify-evenly'>
                 <div>
                     <h6 className='leading-9 text-2xl font-normal pb-5'>
-                    Selecciona la ciudad para tu serviciow
+                    Selecciona la ciudad para tu servicio
                     </h6>
                     <div className='mb-4'>
                     <Dropdown/>
