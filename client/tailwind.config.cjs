@@ -21,11 +21,10 @@ module.exports = {
         labelGrayColor:"#CACED8",
         focusColor:"#26B893"
       },
+      fontFamily: {
+        khula:['Khula', 'sans-serif'],
+        inter:['Inter', 'sans-serif']
+      },
     },
   },
-  fontFamily: {
-    khula:['Khula', 'sans-serif'],
-  },
-  extend: {},
-  plugins: [require('tailwind-scrollbar-hide')],
 };
