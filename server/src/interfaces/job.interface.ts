@@ -1,11 +1,11 @@
 import { Document } from "mongoose";
 
-export interface ICategory {
+export interface IJob {
   service: String;
   description: String;
-  categoryImageUrl: string;
+  jobImageUrl: string;
 }
 
 // Extends document for others champs _id, etc
 // Leave interface separated for validation purposes
-export interface ICategoryModel extends ICategory, Document {}
+export interface IJobModel extends IJob, Document {}

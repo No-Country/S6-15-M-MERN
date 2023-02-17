@@ -62,7 +62,7 @@ const userSchema = new Schema<User>(
 
     job: {
       type: Schema.Types.ObjectId,
-      ref: "Categories",
+      ref: "Jobs",
       required: true
     },
 

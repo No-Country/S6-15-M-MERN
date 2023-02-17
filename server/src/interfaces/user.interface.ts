@@ -13,7 +13,7 @@ export interface User extends Auth {
   avatarURL: String;
   job: {
     type: Schema.Types.ObjectId;
-    ref: "Categories";
+    ref: "Jobs";
   };
   postalCode: Number;
   minimumquantityprice: Number;
