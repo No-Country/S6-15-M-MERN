@@ -2,14 +2,13 @@ import React from 'react'
 import { CardServices } from '../components/services/CardServices'
 import Dropdown from '../components/services/Dropdown'
 import NavBar from './../components/NavBar';
+import HeaderServicios from "./../components/HeaderServicios"
 
 export const ServicesDetail = () => {
   return (
     <>
         <NavBar/>
-        <div>
-        ServicesDetail Header
-        </div>
+        <HeaderServicios/>
         <div className='h-screen flex flex-col p-16 justify-evenly'>
             <div className='flex-col items-center justify-around flex'>
                 <div>
