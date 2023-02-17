@@ -1,6 +1,6 @@
 import { Request , Response } from "express";
 import {NewregisterUser , LoginUser} from '../services/auth.services';
-
+// import UserModel from "../models/user.model";
 
 /* registro de usuario */
 const registerCtrl = async ({body}:Request, res: Response) => {

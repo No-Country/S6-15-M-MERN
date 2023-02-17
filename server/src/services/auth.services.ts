@@ -7,12 +7,12 @@ import { generateToken } from "../utils/jwt.handle";
 /*Nuevo registro de usuario para la base de datos*/
 const NewregisterUser = async ({ email, password, name }: User) => {
   const usercheck = await UserModel.findOne({ email });
-  if (usercheck) return "ALREADY_USER";
+  if (usercheck) return "El_Usuario_ya_Existe";
   const passHash = await encrypt(password);
   const NewregisterUser = await UserModel.create({ 
     email, 
     password:passHash, 
-    name 
+    name,
   });
 
   return NewregisterUser;
@@ -26,7 +26,7 @@ const LoginUser = async ({email , password} :Auth) => {
 
   const passwordHash = LoginUsercheck.password;
   const isCorrect = await verified(password , passwordHash);
-
+ 
   if(!isCorrect) return 'PASSWORD_INCORRECT';
   
   const token = generateToken(LoginUsercheck.email);
@@ -36,10 +36,5 @@ const LoginUser = async ({email , password} :Auth) => {
   };
   return data;
 };
-
-// const getOrders = async ({email} :Auth) => {
-//   const responseItem = await UserModel.findOne({email});
-//   return responseItem;
-// };
 
 export { NewregisterUser, LoginUser};
