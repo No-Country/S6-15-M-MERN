@@ -7,9 +7,7 @@ function SolicitedService() {
 
     return ( 
     <>
-    <NavBar />
     <Ready />
-    <Footer />
     </> 
     );
 }
