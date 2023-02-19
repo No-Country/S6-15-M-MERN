@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
 // import dbConnect from "../config/mongo";
+import {JwtPayload} from 'jsonwebtoken'
 import {
-  CreateUser,
+  // CreateUser,
   getAlluser,
   getUserbyId,
   UpdateUser,
@@ -17,8 +18,11 @@ const getControllerUserbyId = async ({ params }: Request, res: Response) => {
     const response = await getUserbyId( id );
     const data = response ? response : "NOT_FOUND";
     res.send(data);
+    // res.send ({data:
+    //   "Esto lo ven las personas que tengan una session activa, es decir un JWT Valido"
+    // });
   } catch (e) {
-    handleHttp(res, "ERROR_GET_ITEM");
+    handleHttp(res, "ERROR_GET_USERBYID");
   }
 };
 
@@ -26,8 +30,11 @@ const getControllerAllUser = async (req: Request, res: Response) => {
   try {
     const response = await getAlluser();
     res.send(response);
+  //   res.send({data:"Esto lo ven las personas que esten logueadas JWT" , 
+  //   user: req.user,
+  // });
   } catch (e) {
-    handleHttp(res, "ERROR_GET_ITEM");
+    handleHttp(res, "ERROR_GET_ALLUSER");
   }
 };
 
@@ -37,21 +44,21 @@ const UpdateControllerUser = async (
 ) => {
   try {
     const { id } = params;
-    const response = await UpdateUser( id , body);
+    const response = await UpdateUser( id , body );
     res.send(response);
   } catch (e) {
-    handleHttp(res, "ERROR_GET_ITEM");
+    handleHttp(res, "ERROR_PUT_USER");
   }
 };
 
-const postControllerUser = async ({ body }: Request, res: Response) => {
-  try {
-    const responseUser = await CreateUser(body);
-    res.send(responseUser);
-  } catch (e) {
-    handleHttp(res, "ERROR_GET_ITEM", e);
-  }
-};
+// const postControllerUser = async ({ body }: Request, res: Response) => {
+//   try {
+//     const responseUser = await CreateUser(body);
+//     res.send(responseUser);
+//   } catch (e) {
+//     handleHttp(res, "ERROR_GET_ITEM", e);
+//   }
+// };
 
 const DeleteControllerUser = async ({ params }: Request, res: Response) => {
   try {
@@ -59,7 +66,23 @@ const DeleteControllerUser = async ({ params }: Request, res: Response) => {
     const responseDelete = await DeleteUser( id );
     res.send(responseDelete);
   } catch (e) {
-    handleHttp(res, "ERROR_GET_ITEM");
+    handleHttp(res, "ERROR_DELETE_USER");
+  }
+};
+
+
+const getMyUser = async ( req: Request, res: Response) => {
+  try {
+    // console.log(req.user.authorization)
+    // const { id } = params;
+    // const response = await getUserbyId( id );
+    // const data = response ? response : "NOT_FOUND";
+    // res.send(data);
+    // res.send ({data:
+    //   "Esto lo ven las personas que tengan una session activa, es decir un JWT Valido"
+    // });
+  } catch (e) {
+    handleHttp(res, "ERROR_GET_USER");
   }
 };
 
@@ -67,6 +90,7 @@ export {
   getControllerUserbyId,
   getControllerAllUser,
   UpdateControllerUser,
-  postControllerUser,
+  // postControllerUser,
   DeleteControllerUser,
+  getMyUser,
 };
