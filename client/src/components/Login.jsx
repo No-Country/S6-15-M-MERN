@@ -3,6 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
 import {FcGoogle} from "react-icons/fc"
 import Modal from "./Modal"
+import GoogleLogin from "./GoogleLogin";
 
 const loginSchema = yup.object().shape({
   password: yup
@@ -14,6 +15,11 @@ const loginSchema = yup.object().shape({
   gmail: yup.string().email("Gmail no válido").matches(/^[a-z0-9](\.?[a-z0-9]){5,}@g(oogle)?mail\.com$/,"Debes ingresar un gmail válido")
 });
 function Login({isOpen, closeModal }) {
+
+  const googleLoginHandler = (result)=>{
+    console.log("code", result);
+  }
+
   return (
     <Modal isOpen={isOpen} closeModal={closeModal}>
       <div className=" bg-[#28315C] rounded-xl  flex ">
@@ -24,11 +30,14 @@ function Login({isOpen, closeModal }) {
           <h2 className="text-5xl font-bold text-[#ffffff] text-left ml-14 mb-7 font-khula ">Iniciar Sesión</h2>
           <div className="inline-grid grid-cols-3 gap-9 mr-20
            ">
-          <h3 onClick="text-decoration-line: underline;"  className="text-[#ffffff]  text-2xl  ml-14 mb-7 mr-1 font-khula ">Registro</h3>
+          <h3 className="text-[#ffffff]  text-2xl  ml-14 mb-7 mr-1 font-khula ">Registro</h3>
           <h3 className="text-[#ffffff]  text-2xl   mb-7 font-khula underline underline-offset-8 decoration-btnColor decoration-4"> Inicia sesión</h3>
           </div>
           
-        </header>
+    </header>
+    <div className="flex justify-center">
+    <GoogleLogin clientId = {import.meta.env.VITE_APP_GOOGLE_OAUTH_CLIENT_ID} uriresponse={import.meta.env.VITE_APP_GOOGLE_OAUTH_REDIRECT} cbresponse={googleLoginHandler} />
+    </div>
       <Formik
         initialValues={{ email: "", password: "" }}
         validationSchema={loginSchema}
@@ -36,15 +45,14 @@ function Login({isOpen, closeModal }) {
       >
         <Form>
         <div>
-       
-               <FcGoogle className=" w-8 h-8  absolute mt-2  text-left 2xl:ml-96 md:ml-52 " />
+               {/* <FcGoogle className=" w-8 h-8  absolute mt-2  text-left 2xl:ml-96 md:ml-52 " />
               <Field
                 name="gmail"
                 id="gmail"
                 type="text"
                 placeholder="Ingresa con google"
                 className=" px-3 py-3 focus: outline-none rounded-xl pl-20 text-left"
-              />
+              /> */}
               <ErrorMessage name="gmail" component="p" className="font-bold  text-[#ffffff]" />
                 <span className="   block text-[#ffffff] mt-5 ">  O ingresá con tu correo electrónico </span>
             
