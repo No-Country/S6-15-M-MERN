@@ -3,6 +3,7 @@ import express, { Request, Response, NextFunction } from "express";
 import cors from "cors";
 import { router } from "./routes";
 import db from "./config/mongo";
+import errorHandler from "./middleware/errorHandler.middleware";
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -13,6 +14,8 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(router);
 
+app.use(errorHandler);
+
 db().then(() => console.log("Conexion Ready"));
 
 app.get("/", (req, res) => {
@@ -22,14 +25,14 @@ app.get("*", (req, res) => {
   res.json({ message: "not found" });
 });
 
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-  const statusCode = 500;
-  res.status(statusCode).send({
-    success: false,
-    message: err.message,
-    stack: err.stack
-  });
-});
+// app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+//   const statusCode = 500;
+//   res.status(statusCode).send({
+//     success: false,
+//     message: err.message,
+//     stack: err.stack
+//   });
+// });
 
 app.listen(PORT, () => {
   console.log(`Server started at port: ${PORT}`);

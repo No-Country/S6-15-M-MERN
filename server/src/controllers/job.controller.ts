@@ -8,9 +8,10 @@ import {
   deleteServiceFromUsers
 } from "../services/jobs.services";
 import { deleteFilefromFS, getNewUrl } from "../utils/fs.handle";
+import { AppError } from "../utils/errorObjectExtended";
 
 // Create a new job category
-const createJob = async (req: Request, res: Response, _next: NextFunction) => {
+const createJob = async (req: Request, res: Response, next: NextFunction) => {
   const { service, description } = req.body;
   const jobImageUrl = getNewUrl(req);
   if (jobImageUrl) {
@@ -18,45 +19,45 @@ const createJob = async (req: Request, res: Response, _next: NextFunction) => {
     try {
       const newjob = await createJobService(service, description, jobImageUrl);
       res.status(201).json({ job: newjob });
-    } catch (error) {
-      res.status(500).json(error);
+    } catch (error: any) {
+      next(new AppError(400, error.message));
     }
   } else {
-    return res.status(400).json({ error: "No image sent and it is required" });
+    next(new AppError(400, "No image sent and it is required"));
   }
 };
 
 // Get a job category by Id
-const getJobById = async (req: Request, res: Response, _next: NextFunction) => {
+const getJobById = async (req: Request, res: Response, next: NextFunction) => {
   const jobId = req.params.jobId;
   try {
     const jobFounded = await getJobService(jobId);
     if (jobFounded) {
       res.status(200).json({ job: jobFounded });
     } else {
-      res.status(404).json({ message: `Job width ID ${jobId} not found` });
+      next(new AppError(400, `Job width ID ${jobId} not found`));
     }
-  } catch (error) {
-    res.status(500).json({ error });
+  } catch (error: any) {
+    next(new AppError(500, error.message));
   }
 };
 
 // Get all jobs categories
-const getAllJobs = async (_req: Request, res: Response, _next: NextFunction) => {
+const getAllJobs = async (_req: Request, res: Response, next: NextFunction) => {
   try {
     const jobs = await findAllJobsService();
     if (jobs.length > 0) {
       return res.status(200).json({ jobs });
     } else {
-      return res.status(404).json({ message: "No jobs to show" });
+      next(new AppError(404, "No jobs to show"));
     }
-  } catch (error) {
-    res.status(500).json({ error });
+  } catch (error: any) {
+    next(new AppError(500, error.message));
   }
 };
 
 // Upate a category job
-const updateJob = async (req: Request, res: Response, _next: NextFunction) => {
+const updateJob = async (req: Request, res: Response, next: NextFunction) => {
   const jobId = req.params.jobId;
 
   try {
@@ -71,18 +72,17 @@ const updateJob = async (req: Request, res: Response, _next: NextFunction) => {
 
       jobFounded.set({ ...req.body });
       const result = await jobFounded.save();
-      console.log("result updated: ", result);
       return res.status(200).json(result);
     } else {
-      return res.status(404).json({ message: `Job with id ${jobId} not found` });
+      next(new AppError(404, `Job with id ${jobId} not found`));
     }
-  } catch (error) {
-    res.status(500).json({ error });
+  } catch (error: any) {
+    next(new AppError(500, error.message));
   }
 };
 
 // Delete a job category, the image from server associated, and remove it from the users who has this job category
-const deleteJob = async (req: Request, res: Response, _next: NextFunction) => {
+const deleteJob = async (req: Request, res: Response, next: NextFunction) => {
   const jobId = req.params.jobId;
   try {
     const result: IJob | null = await deleteJobService(jobId);
@@ -96,10 +96,10 @@ const deleteJob = async (req: Request, res: Response, _next: NextFunction) => {
       console.log("usuarios borrados ", deletefromusers);
       return res.status(200).json(result);
     } else {
-      return res.status(404).json({ message: `Job width ID ${jobId} not found.` });
+      next(new AppError(404, `Job width ID ${jobId} not found.`));
     }
-  } catch (error) {
-    res.status(500).json({ error });
+  } catch (error: any) {
+    next(new AppError(500, error.message));
   }
 };
 
