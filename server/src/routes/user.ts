@@ -9,8 +9,10 @@ import {checkJwt} from '../middleware/session'
 
 const router = Router();
 
-router.get('/me' , checkJwt , getMyUser);
 router.get('/', checkJwt , getControllerAllUser);
+
+router.get('/me' , checkJwt , getMyUser);
+
 router.get('/:id', checkJwt ,  logMiddleware , getControllerUserbyId);
 // router.post('/', postControllerUser);
 router.put('/:id', UpdateControllerUser);

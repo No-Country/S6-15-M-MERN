@@ -71,13 +71,13 @@ const DeleteControllerUser = async ({ params }: Request, res: Response) => {
 };
 
 
-const getMyUser = async ( req: Request, res: Response) => {
+const getMyUser = async ( req: RequestExt, res: Response) => {
   try {
-    // console.log(req.user.authorization)
-    // const { id } = params;
-    // const response = await getUserbyId( id );
-    // const data = response ? response : "NOT_FOUND";
-    // res.send(data);
+    // console.log(req.user)
+    const id = req.user?.id;
+    const response = await getUserbyId( id );
+    const data = response ? response : "NOT_FOUND";
+    res.send(data);
     // res.send ({data:
     //   "Esto lo ven las personas que tengan una session activa, es decir un JWT Valido"
     // });

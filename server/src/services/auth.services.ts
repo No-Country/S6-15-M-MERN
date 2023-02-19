@@ -29,7 +29,8 @@ const LoginUser = async ({email , password} :Auth) => {
   
   if(!isCorrect) return 'PASSWORD_INCORRECT';
   
-  const token = generateToken(LoginUsercheck.email);
+  //change email for id
+  const token = generateToken(LoginUsercheck.id);
   const data = {
     token,
     user: LoginUsercheck,
