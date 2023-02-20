@@ -17,6 +17,8 @@ import {
 import contrata from '../assets/contrata.png'
 import Login from "./Login";
 
+
+
 const solutions = [
   {
     name: 'Como funciona',
@@ -72,7 +74,12 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function NavBar() {
+export default function NavBar({changeModal}) {
+
+  const handleClick = ()=>{
+    console.log(changeStatus());
+  
+  }
   return (
     <Popover className="relative bg-backgroundColor ">
       <div className="px-7">
@@ -89,7 +96,7 @@ export default function NavBar() {
           </div>
           <div className="-my-2 -mr-2 md:hidden">
             <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
-              <span className="sr-only">Abrir</span>
+              <span className="sr-only">Abrir menu</span>
               <Bars3Icon className="h-6 w-6" aria-hidden="true" />
             </Popover.Button>
           </div>
@@ -106,10 +113,11 @@ export default function NavBar() {
           </Popover.Group>
           <div className="hidden items-center justify-end md:flex md:flex-2 lg:w-0">
             <a
-              href="#"
-              className="inline-flex items-center justify-center whitespace-nowrap rounded-md border-transparent bg-buttons-buttonGreen px-4 py-2 text-base font-medium text-textWhite shadow-sm hover:bg-indigo-700"           
+              /* href="#" */
+              onClick={changeModal}
+              className="inline-flex items-center justify-center whitespace-nowrap rounded-md border-transparent bg-buttons-buttonGreen px-4 py-2 text-base font-medium text-textWhite shadow-sm hover:bg-indigo-700"
            >
-              Registrarse
+              Registarse
             </a>
           </div>
         </div>
@@ -167,7 +175,7 @@ export default function NavBar() {
                 <p className="mt-6 text-center text-base font-medium text-gray-500">
                   Tenes cuenta?{' '}
                   <a href="#" className="text-indigo-600 hover:text-indigo-500"
-                  onClick={()=> setShowModal(true)}>
+                    >
                     Ingresar
                   </a>
                 </p>
@@ -177,6 +185,6 @@ export default function NavBar() {
         </Popover.Panel>
       </Transition>
     </Popover>
-    // {showModal ? <> (<div> <Login/> </div>) : null</> }
+
   )
 }

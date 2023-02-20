@@ -1,8 +1,21 @@
 
+import { CardServices } from './../services/CardServices';
+import {ServicesDetail} from '../../screens/ServicesDetail'
+import { createSearchParams, useNavigate } from 'react-router-dom';
 
 const Card = ({imagen, title, description, price})=>{
+    const navigate = useNavigate();
+    const openCard = (titulo) => {
+        navigate({
+            pathname:'/servicesDetail',
+            search: createSearchParams ({
+                titulo:title
+            }).toString()
+        });
+    };
+    console.log(title, " el titulo")
     return(
-        <>
+        <a onClick={openCard}>
         <div className="card bg-background-card-color w-[277px] h-[302px] rounded-2xl shadow-md">
             <div className="top ">
                 <img
@@ -16,12 +29,9 @@ const Card = ({imagen, title, description, price})=>{
             <div className="desde flex ml-3.5 ">
                 <p className="mt-auto">Desde:</p>
                 <p className="ml-1 mt-auto font-black text-[#7CC298] text-xl">{price}</p>
-
             </div>
-
         </div>
-        
-        </>
+        </a>     
     )
 }
 
