@@ -1,9 +1,10 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
-import {FcGoogle} from "react-icons/fc"
+// import {FcGoogle} from "react-icons/fc"
 import Modal from "./Modal"
 import GoogleLogin from "./GoogleLogin";
+import axios from "axios";
 
 const loginSchema = yup.object().shape({
   password: yup
@@ -16,8 +17,17 @@ const loginSchema = yup.object().shape({
 });
 function Login({isOpen, closeModal }) {
 
-  const googleLoginHandler = (result)=>{
-    console.log("code", result);
+  const googleLoginHandler = async (credentials)=>{
+    // No gestionar esto asi. Hacerlo con redux toolkit o al menos un custom hook de servicios
+    // O un archivo donde reunan todas las llamadas a la api en constantes para usarlas todos.
+    try{
+    const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/auth/google`, credentials);
+    console.log(data);
+    // En data recibiran el token y el user para agregarlo a redux y a la local storage.
+    } catch(error) {
+      console.log("error", error.message);
+      // No se que quieren hacer en caso de error, en front.
+    }
   }
 
   return (
@@ -36,7 +46,7 @@ function Login({isOpen, closeModal }) {
           
     </header>
     <div className="flex justify-center">
-    <GoogleLogin clientId = {import.meta.env.VITE_APP_GOOGLE_OAUTH_CLIENT_ID} uriresponse={import.meta.env.VITE_APP_GOOGLE_OAUTH_REDIRECT} cbresponse={googleLoginHandler} />
+    <GoogleLogin clientId = {import.meta.env.VITE_GOOGLE_CLIENT_ID} cbresponse={googleLoginHandler} />
     </div>
       <Formik
         initialValues={{ email: "", password: "" }}
