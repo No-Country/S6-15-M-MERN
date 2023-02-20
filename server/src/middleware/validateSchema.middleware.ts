@@ -1,6 +1,5 @@
 import Joi, { ObjectSchema } from "joi";
 import { NextFunction, Response, Request } from "express";
-import { User } from "../interfaces/user.interface";
 import { IJob } from "../interfaces/job.interface";
 import { deleteFilefromFS } from "../utils/fs.handle";
 

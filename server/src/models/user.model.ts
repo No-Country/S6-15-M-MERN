@@ -1,8 +1,8 @@
 /*Modelo de usuario */
 import { Schema, model } from "mongoose";
-import { User } from "../interfaces/user.interface";
+import { IUser } from "../interfaces/user.interface";
 
-const userSchema = new Schema<User>(
+const userSchema = new Schema<IUser>(
   {
     name: {
       type: String,
@@ -16,64 +16,54 @@ const userSchema = new Schema<User>(
     },
     password: {
       type: String,
-      required: [true, "Please enter your password"]
+      required: [true, "Please enter your password"],
     },
 
     birthdate: {
       type: String,
-      required: true
     },
 
     phonecontact: {
       type: Number,
-      required: true
     },
 
     country: {
       type: String,
-      required: true
     },
 
     city: {
       type: String,
-      required: true
     },
 
     terms: {
       type: String,
-      required: false
     },
 
     idgoogle: {
       type: String,
-      required: true
     },
 
     proveedor: {
       type: String,
-      required: true
     },
 
     avatarURL: {
       type: String,
-      required: [true, "Please provide an img url"]
+      // required: [true, "Please provide an img url"]
     },
 
     job: {
       type: Schema.Types.ObjectId,
       ref: "Jobs",
-      required: true
     },
 
     postalCode: {
       type: Number,
-      required: true
     },
 
     /*cantindad minima precio*/
     minimumquantityprice: {
       type: Number,
-      required: true,
       min: 0
     }
   },

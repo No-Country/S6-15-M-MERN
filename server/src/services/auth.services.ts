@@ -1,11 +1,11 @@
 import { Auth } from "../interfaces/auth.interface";
-import { User } from "../interfaces/user.interface";
+import { IUser } from "../interfaces/user.interface";
 import UserModel from "../models/user.model";
 import { encrypt, verified } from "../utils/bcrypt.handle";
 import { generateToken } from "../utils/jwt.handle";
 
 /*Nuevo registro de usuario para la base de datos*/
-const NewregisterUser = async ({ email, password, name }: User) => {
+const NewregisterUser = async ({ email, password, name }: IUser) => {
   const usercheck = await UserModel.findOne({ email });
   if (usercheck) return "El_Usuario_ya_Existe";
   const passHash = await encrypt(password);

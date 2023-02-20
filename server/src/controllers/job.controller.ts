@@ -66,7 +66,7 @@ const updateJob = async (req: Request, res: Response, next: NextFunction) => {
     if (jobFounded) {
       const filename = getNewUrl(req);
       if (filename) {
-        deleteFilefromFS(jobFounded.jobImageUrl);
+        deleteFilefromFS(jobFounded.jobImageUrl);  //aqui el jobImageurl me redirije a la interface, en el caso de interface user , cual escojo?
         jobFounded.set({ jobImageUrl: filename });
       }
 
