@@ -6,3 +6,4 @@ const router = Router();
 
 router.post("/register", registerCtrl); /* peticion de registro */
 router.post("/login", loginCtrl); /* peticion de login */
+router.post("/google", googleLoginCtrl); /* peticion de google */
