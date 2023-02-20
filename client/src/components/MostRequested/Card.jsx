@@ -1,10 +1,21 @@
 
 import { CardServices } from './../services/CardServices';
+import {ServicesDetail} from '../../screens/ServicesDetail'
+import { createSearchParams, useNavigate } from 'react-router-dom';
 
 const Card = ({imagen, title, description, price})=>{
-    
+    const navigate = useNavigate();
+    const openCard = (titulo) => {
+        navigate({
+            pathname:'/servicesDetail',
+            search: createSearchParams ({
+                titulo:title
+            }).toString()
+        });
+    };
+    console.log(title, " el titulo")
     return(
-        <a href="./servicesDetail" onClick={<CardServices service={title}/>}>
+        <a onClick={openCard}>
         <div className="card bg-background-card-color w-[277px] h-[302px] rounded-2xl shadow-md">
             <div className="top ">
                 <img

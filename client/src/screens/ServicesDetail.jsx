@@ -1,12 +1,13 @@
 import React from 'react'
+import { useSearchParams } from 'react-router-dom';
 import { CardServices } from '../components/services/CardServices'
 import Dropdown from '../components/services/Dropdown'
 import NavBar from './../components/NavBar';
 
-export const ServicesDetail = () => {
+export const ServicesDetail = ({props}) => {
+
   return (
     <>
-        <NavBar/>
         <div>
         ServicesDetail Header
         </div>
@@ -25,13 +26,13 @@ export const ServicesDetail = () => {
             <div className='h-full flex flex-col justify-evenly'>
                 <div>
                     <h6 className='leading-9 text-2xl font-normal pb-5'>
-                    Selecciona la ciudad para tu serviciow
+                    Selecciona la ciudad para tu servicio
                     </h6>
                     <div className='mb-4'>
                     <Dropdown/>
                     </div>
                 </div>
-                    <CardServices/>
+                   <CardServices/>
             </div>
         </div>
 
