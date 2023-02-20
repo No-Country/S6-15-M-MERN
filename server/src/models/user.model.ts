@@ -1,5 +1,4 @@
 /*Modelo de usuario */
-
 import { Schema, model } from "mongoose";
 import { User } from "../interfaces/user.interface";
 
