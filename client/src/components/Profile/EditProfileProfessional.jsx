@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
-function EditProfile() {
+function EditProfileProfessional() {
   const userSchema = yup.object().shape({
     name: yup
       .string()
@@ -136,13 +136,21 @@ function EditProfile() {
               Oficio
             </label>
             <Field
-              name="passwordConfirmation"
-              id="passwordConfirmation"
+             as="select"
+              name="oficios"
+              id="oficios"
               type="password"
               className=" px-3 py-2 w-full focus: outline-focusColor rounded-xl pl-60   border-labelGrayColor border-2 placeholder:-translate-x-6  "
-            />
+              >
+               <option hidden selected>Selecciona una opción</option>
+              <option value="gasista">Gasista</option>
+             <option value="electricista">Electricista</option>
+             <option value="jardinero">Jardinero</option>
+             <option value="cerrajero">Cerrajero</option>
+            </Field>
+            
             <ErrorMessage
-              name="passwordConfirmation"
+              name="oficios"
               component="p"
               className="font-bold  text-[#ffffff]"
             />
@@ -193,11 +201,18 @@ function EditProfile() {
                 Pais
               </label>
               <Field
+              as="select"
                 name="passwordConfirmation"
                 id="passwordConfirmation"
                 type="password"
                 className=" w-full px-3 py-2 focus: outline-focusColor rounded-xl pl-60   border-labelGrayColor border-2 placeholder:-translate-x-6  "
-              />
+              >
+               <option hidden selected>Selecciona una opción</option>
+              <option value="argentina">Argentina</option>
+             <option value="chile">Chile</option>
+             <option value="colombia">Colombia</option>
+             <option value="ecuador">Ecuador</option>
+              </Field>
               <ErrorMessage
                 name="passwordConfirmation"
                 component="p"
@@ -209,7 +224,7 @@ function EditProfile() {
                 className=" font-bold block text-labelColor mt-5 mr-24 "
                 htmlFor="password"
               >
-                Ciudad
+                Ciudad/Provincia
               </label>
               <Field
                 name="passwordConfirmation"
@@ -241,4 +256,4 @@ function EditProfile() {
   );
 }
 
-export default EditProfile;
+export default EditProfileProfessional;
