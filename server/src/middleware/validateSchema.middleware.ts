@@ -25,10 +25,12 @@ export const Schemas = {
   jobs: {
     create: Joi.object<IJob>({
       service: Joi.string().min(3).max(30).required(),
+      title: Joi.string(),
       description: Joi.string().min(3).max(150).required()
     }),
     update: Joi.object<IJob>({
       service: Joi.string().min(3).max(30),
+      title: Joi.string(),
       description: Joi.string().min(3).max(150)
     })
   }

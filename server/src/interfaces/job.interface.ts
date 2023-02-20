@@ -2,6 +2,7 @@ import { Document } from "mongoose";
 
 export interface IJob {
   service: String;
+  title: String;
   description: String;
   jobImageUrl: string;
 }
