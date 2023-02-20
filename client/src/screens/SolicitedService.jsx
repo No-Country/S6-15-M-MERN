@@ -1,7 +1,13 @@
+import Footer from "../components/Footer";
+import NavBar from "../components/NavBar";
+import Ready from "../components/Ready";
+
+
 function SolicitedService() {
+
     return ( 
     <>
-    servicio solicitado
+    <Ready />
     </> 
     );
 }
