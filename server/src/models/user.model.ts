@@ -16,49 +16,45 @@ const userSchema = new Schema<IUser>(
     },
     password: {
       type: String,
-      required: [true, "Please enter your password"],
+      required: [true, "Please enter your password"]
     },
 
     birthdate: {
-      type: String,
+      type: String
     },
 
     phonecontact: {
-      type: Number,
+      type: Number
     },
 
     country: {
-      type: String,
+      type: String
     },
 
     city: {
-      type: String,
+      type: String
     },
 
     terms: {
-      type: String,
+      type: String
     },
 
     idgoogle: {
-      type: String,
-    },
-
-    proveedor: {
-      type: String,
+      type: String
     },
 
     avatarURL: {
-      type: String,
+      type: String
       // required: [true, "Please provide an img url"]
     },
 
     job: {
       type: Schema.Types.ObjectId,
-      ref: "Jobs",
+      ref: "Jobs"
     },
 
     postalCode: {
-      type: Number,
+      type: Number
     },
 
     /*cantindad minima precio*/
