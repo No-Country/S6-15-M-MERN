@@ -1,6 +1,5 @@
 import Joi, { ObjectSchema } from "joi";
 import { NextFunction, Response, Request } from "express";
-import { User } from "../interfaces/user.interface";
 import { IJob } from "../interfaces/job.interface";
 import { deleteFilefromFS } from "../utils/fs.handle";
 
@@ -25,10 +24,12 @@ export const Schemas = {
   jobs: {
     create: Joi.object<IJob>({
       service: Joi.string().min(3).max(30).required(),
+      title: Joi.string(),
       description: Joi.string().min(3).max(150).required()
     }),
     update: Joi.object<IJob>({
       service: Joi.string().min(3).max(30),
+      title: Joi.string(),
       description: Joi.string().min(3).max(150)
     })
   }

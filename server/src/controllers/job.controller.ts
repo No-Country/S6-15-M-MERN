@@ -12,12 +12,12 @@ import { AppError } from "../utils/errorObjectExtended";
 
 // Create a new job category
 const createJob = async (req: Request, res: Response, next: NextFunction) => {
-  const { service, description } = req.body;
+  const { service, title, description } = req.body;
   const jobImageUrl = getNewUrl(req);
   if (jobImageUrl) {
     // Getting file name
     try {
-      const newjob = await createJobService(service, description, jobImageUrl);
+      const newjob = await createJobService(service, title, description, jobImageUrl);
       res.status(201).json({ job: newjob });
     } catch (error: any) {
       next(new AppError(400, error.message));
@@ -66,7 +66,7 @@ const updateJob = async (req: Request, res: Response, next: NextFunction) => {
     if (jobFounded) {
       const filename = getNewUrl(req);
       if (filename) {
-        deleteFilefromFS(jobFounded.jobImageUrl);
+        deleteFilefromFS(jobFounded.jobImageUrl);  //aqui el jobImageurl me redirije a la interface, en el caso de interface user , cual escojo?
         jobFounded.set({ jobImageUrl: filename });
       }
 

@@ -11,12 +11,15 @@ const router = Router();
 
 router.get('/', checkJwt , getControllerAllUser);
 
-router.get('/me' , checkJwt , getMyUser);
+router
+    .route('/me')
+    .get(checkJwt , getMyUser)
+    .put( checkJwt, UpdateControllerUser)
 
-router.get('/:id', checkJwt ,  logMiddleware , getControllerUserbyId);
-// router.post('/', postControllerUser);
-router.put('/:id', UpdateControllerUser);
-router.delete('/:id', DeleteControllerUser);
+router
+    .route('/:id')
+    .get( checkJwt ,  logMiddleware , getControllerUserbyId)
+    .delete(checkJwt, DeleteControllerUser)
 
 
 export {router}

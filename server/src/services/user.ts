@@ -1,5 +1,5 @@
 import {Request , Response} from 'express';
-import {User} from '../interfaces/user.interface'
+import {IUser} from '../interfaces/user.interface'
 import UserModel from '../models/user.model';
 import {encrypt, verified} from '../utils/bcrypt.handle';
 
@@ -30,15 +30,20 @@ const getUserbyId = async (id: string) => {
 //     return newpassword;
 
 
-const UpdateUser = async (id:string, data: User) => {
+const UpdateUser = async (id:string, data: IUser) => {
     const UpdateUserbyId = await UserModel.findByIdAndUpdate({ _id: id}, data , {
         new: true,
     });
     return UpdateUserbyId;
 };
 
+// const DeleteUserService = async (id:string) => {
+//     const DeleteUserbyId = await UserModel.findByIdAndDelete({ _id: id});
+//     return DeleteUserbyId;
+// };
+
 const DeleteUser = async (id:string) => {
-    const DeleteUserbyId = await UserModel.remove({ _id: id});
+    const DeleteUserbyId = await UserModel.findByIdAndDelete({ _id: id});
     return DeleteUserbyId;
 };
 

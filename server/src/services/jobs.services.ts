@@ -3,9 +3,15 @@ import User from "../models/user.model";
 
 const findAllJobsService = () => Job.find();
 
-const createJobService = (service: string, description: string, jobImageUrl: string) => {
+const createJobService = (
+  service: string,
+  title: string,
+  description: string,
+  jobImageUrl: string
+) => {
   return new Job({
     service,
+    title,
     description,
     jobImageUrl
   }).save();

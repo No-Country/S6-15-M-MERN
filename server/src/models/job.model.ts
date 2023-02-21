@@ -3,6 +3,7 @@ import { IJobModel } from "../interfaces/job.interface";
 
 const JobsSchema: Schema = new Schema({
   service: { type: String, required: true, unique: true },
+  title: { type: String, required: true },
   description: { type: String, required: true },
   jobImageUrl: { type: String }
 });
