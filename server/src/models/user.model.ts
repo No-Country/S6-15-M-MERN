@@ -1,4 +1,5 @@
 /*Modelo de usuario */
+import { boolean } from "joi";
 import { Schema, model } from "mongoose";
 import { IUser } from "../interfaces/user.interface";
 
@@ -44,7 +45,8 @@ const userSchema = new Schema<IUser>(
     },
 
     avatarURL: {
-      type: String
+      type: String,
+      default: ""
       // required: [true, "Please provide an img url"]
     },
 
@@ -61,6 +63,10 @@ const userSchema = new Schema<IUser>(
     minimumquantityprice: {
       type: Number,
       min: 0
+    },
+    professional: {
+      type: Boolean,
+      default: false
     }
   },
   {

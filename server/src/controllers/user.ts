@@ -78,8 +78,8 @@ const UpdateControllerUser = async (
             User.set({avatarURL: fileuser});
           }
           const {password, ...restOfProperties} = req.body;
-          const passHash = await encrypt(password);
-          User.set({  ...restOfProperties, password: passHash});
+          //const passHash = await encrypt(password);
+          User.set({  ...restOfProperties});
           const result = await User.save();
           return res.status(201).json(result);   
         } else {
