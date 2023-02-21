@@ -13,10 +13,11 @@ router.get('/', checkJwt , getControllerAllUser);
 
 router.get('/me' , checkJwt , getMyUser);
 
-router.get('/:id', checkJwt ,  logMiddleware , getControllerUserbyId);
-// router.post('/', postControllerUser);
-router.put('/:id', UpdateControllerUser);
-router.delete('/:id', DeleteControllerUser);
+router
+    .route('/:id')
+    .get( checkJwt ,  logMiddleware , getControllerUserbyId)
+    .put( checkJwt, UpdateControllerUser)
+    .delete(checkJwt, DeleteControllerUser)
 
 
 export {router}

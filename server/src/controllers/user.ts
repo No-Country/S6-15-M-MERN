@@ -14,17 +14,19 @@ import { handleHttp } from "../utils/error.handle";
 import {RequestExt} from '../interfaces/req-ext';
 import {IUser} from '../interfaces/user.interface';
 import {AppError} from '../utils/errorObjectExtended';
+import { encrypt } from "../utils/bcrypt.handle";
 
 
 const getControllerUserbyId = async (req: Request, res: Response, next: NextFunction) => {
-  const UserbyId = req.params.userId
+  const UserbyId = req.params.id
   try {
     // const { id } = params;
-    const response = await getUserbyId(  UserbyId );
+    const response = await getUserbyId(UserbyId);
+    console.log(response)
     if (response) {
-      res.status(200).json({user: UserbyId });
+      res.status(200).json({user: response });
     } else {
-      next(new AppError(400, `user width ID ${UserbyId} not found`));
+      next(new AppError(400, `user width ID ${response} not found`));
     }
     // const data:IUser = response ? response : "NOT_FOUND";
     // res.status(201).json({userid:data.userId})
@@ -64,25 +66,25 @@ const getControllerAllUser = async (req: Request, res: Response , next: NextFunc
 const UpdateControllerUser = async (
   req: RequestExt, res: Response, next: NextFunction) => {
     // const userId = req.params.IUser;
-
     try {
       const id = req.user?.id;
     // const { id } = params;
-    const User = await getUserbyId(id);
-    if (User) {
-      const fileuser = getNewUrl(req);
-      // const (fileuser) {
-        if (fileuser) {
-          deleteFilefromFS(User.avatarURL);  // que parte del interface user poner aqui??
-          User.set({avatarURL: fileuser});
+      const User = await getUserbyId(id);
+      if (User) {
+        const fileuser = getNewUrl(req);
+        // const (fileuser) {
+          if (fileuser) {
+            deleteFilefromFS(User.avatarURL);  // que parte del interface user poner aqui??
+            User.set({avatarURL: fileuser});
+          }
+          const {password, ...restOfProperties} = req.body;
+          const passHash = await encrypt(password);
+          User.set({  ...restOfProperties, password: passHash});
+          const result = await User.save();
+          return res.status(201).json(result);   
+        } else {
+          next(new AppError(404, `User with id ${User} not found`));
         }
-
-        User.set({ ...req.body});
-        const result = await User.save();
-        return res.status(201).json(result);   
-      } else {
-        next(new AppError(404, `Job with id ${User} not found`));
-      }
     // res.send(response);
   } catch (error: any) {
     next(new AppError(500, error.message));
@@ -103,15 +105,16 @@ const DeleteControllerUser = async (req: Request, res: Response, next: NextFunct
   const userId = req.params.id;
   try {
     // const { id } = params;
+    
     const result: IUser | null = await DeleteUser(userId);
-
+    // console.log(result)
     if (result) {
       //Delete user 
-      deleteFilefromFS(result.avatarURL);
-
-      const deletefromusers = await DeleteUser(userId);
-      console.log("usuarios borrados ", deletefromusers);
-      return res.status(200).json(result);
+      //? Para acceder a esta funcion debe crearse el avatar con newUrl?
+      if(result.avatarURL) deleteFilefromFS(result.avatarURL);
+      // const deletefromusers = await DeleteUser(userId);
+      // console.log("usuarios borrados ", deletefromusers);
+      res.status(200).json({status: `User with ID ${userId} deleted`});
     } else {
       next(new AppError(404, `user width ID ${userId} not found.`));
     }

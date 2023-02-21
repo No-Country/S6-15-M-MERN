@@ -15,14 +15,12 @@ const registerCtrl = async ({ body }: Request, res: Response ) => {
 const loginCtrl = async ({ body }: Request, res: Response) => {
   const { email, password } = body;
   const responseUser = await LoginUser({ email, password });
-    // res.status(201).json ({
-    //   status: 'Correct login',
-    //   responseUser, 
-    // });
-  if (responseUser === "PASSWORD_INCORRECT") {
-    res.status(403)
-    // res.send(responseUser);
-  } else {
+
+  if (responseUser === 'PASSWORD_INCORRECT') {
+    res.status(403).json({responseUser});
+  } else if(responseUser === "NOT_FOUND_USER"){
+    res.status(403).json({responseUser});
+  }else {
     res.status(200).json({
       status: 'Correct login',
       responseUser, 

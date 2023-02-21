@@ -37,8 +37,13 @@ const UpdateUser = async (id:string, data: IUser) => {
     return UpdateUserbyId;
 };
 
+// const DeleteUserService = async (id:string) => {
+//     const DeleteUserbyId = await UserModel.findByIdAndDelete({ _id: id});
+//     return DeleteUserbyId;
+// };
+
 const DeleteUser = async (id:string) => {
-    const DeleteUserbyId = await UserModel.remove({ _id: id});
+    const DeleteUserbyId = await UserModel.findByIdAndDelete({ _id: id});
     return DeleteUserbyId;
 };
 
