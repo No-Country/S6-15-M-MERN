@@ -26,7 +26,6 @@ const googleLoginCtrl = async ({ body }: Request, res: Response, next: NextFunct
         const idGoogle = encrypt(client_id);
         await foundUser.set({ idgoogle: idGoogle }).save();
       }
-      //TODO: No entiendo porque le pasas el user.id y eso no existe. Es un user._id y es de tipo ObjectId, no un String.
       const token = generateToken(foundUser._id.toString());
       return res.status(200).json({ token, user: foundUser });
     } else {
