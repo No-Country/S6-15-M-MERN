@@ -11,12 +11,14 @@ const router = Router();
 
 router.get('/', checkJwt , getControllerAllUser);
 
-router.get('/me' , checkJwt , getMyUser);
+router
+    .route('/me')
+    .get(checkJwt , getMyUser)
+    .put( checkJwt, UpdateControllerUser)
 
 router
     .route('/:id')
     .get( checkJwt ,  logMiddleware , getControllerUserbyId)
-    .put( checkJwt, UpdateControllerUser)
     .delete(checkJwt, DeleteControllerUser)
 
 

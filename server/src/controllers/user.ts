@@ -68,7 +68,7 @@ const UpdateControllerUser = async (
     // const userId = req.params.IUser;
     try {
       const id = req.user?.id;
-    // const { id } = params;
+    // const { id } = req.params;
       const User = await getUserbyId(id);
       if (User) {
         const fileuser = getNewUrl(req);
