@@ -33,7 +33,7 @@ export default function Footer(){
               <br/>
 
             <ul>
-              <li class="font-family['Gilroy'] not-italic font-extrabold text-xs text-black 600 leading-8">RECURSOS</li>
+              <li className="font-family['Gilroy'] not-italic font-extrabold text-xs text-black 600 leading-8">RECURSOS</li>
               <li className="text-sm font-family['Gilroy-medium'] leading-[150%] text-black">Blog de consejos para tu 
               <br/>hogar</li>
               <li className="text-sm font-family-['Gilroy-medium'] leading-[150%]">Contáctanos</li>
