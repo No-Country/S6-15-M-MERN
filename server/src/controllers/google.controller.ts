@@ -6,14 +6,11 @@ import { getUserbyEmail } from "../services/user";
 import { encrypt } from "../utils/bcrypt.handle";
 import { createGoogleUser } from "../services/auth.services";
 
-/* registro de usuario */
 const googleLoginCtrl = async ({ body }: Request, res: Response, next: NextFunction) => {
   const { credential, client_id } = body;
   // verify credentials
-  // Puse any porque me da error y no sé qué tipo debe ir aquí typescript
   const result: any = await decodeGoogleCredentials(credential);
   const { email, email_verified, name } = result;
-  console.log("data", email, email_verified, name, client_id);
 
   if (!email_verified) {
     next(new AppError(400, "Email not verified"));
@@ -38,7 +35,6 @@ const googleLoginCtrl = async ({ body }: Request, res: Response, next: NextFunct
       const password = await encrypt(generatePassword());
       const newuser = await createGoogleUser(name, email, idGoogle, password);
       const token = generateToken(newuser._id.toString());
-      console.log("newuser", newuser);
       return res
         .status(201)
         .json({ token, user: { id: newuser._id, name: newuser.name, email: newuser.email } });
@@ -49,6 +45,3 @@ const googleLoginCtrl = async ({ body }: Request, res: Response, next: NextFunct
 };
 
 export { googleLoginCtrl };
-function decodeGoogleLogin(credential: any): any {
-  throw new Error("Function not implemented.");
-}
