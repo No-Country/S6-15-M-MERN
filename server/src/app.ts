@@ -10,12 +10,13 @@ import errorHandler from "./middleware/errorHandler.middleware";
 const PORT = process.env.PORT || 3001;
 const app = express();
 
-app.use(
-  cors({
-    origin: process.env.ORIGIN_APP,
-    credentials: true
-  })
-);
+// app.use(
+//   cors({
+//     origin: process.env.ORIGIN_APP,
+//     credentials: true
+//   })
+// );
+app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
