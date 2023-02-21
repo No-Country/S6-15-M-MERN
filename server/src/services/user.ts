@@ -17,7 +17,9 @@ const getUserbyId = async (id: string) => {
 };
 
 const getUserbyEmail = async (email: string) => {
-  const result = await UserModel.findOne({ email });
+  const result = await UserModel.findOne({ email }).select(
+    "-password -createdAt -updatedAt -googleid"
+  );
   return result;
 };
 
