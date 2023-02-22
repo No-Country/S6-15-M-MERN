@@ -3,6 +3,9 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
 
 const userSchema = yup.object().shape({
+  name: yup
+  .string()
+  .required("Debes ingresar tu nombre"),
   email: yup
     .string()
     .email("Mail no valido")
@@ -19,16 +22,17 @@ const userSchema = yup.object().shape({
     .oneOf([true], 'Necesitas aceptar los términos y condiciones antes de poder registrarte!'),
 });
 
-function Register() {
+function Register({switchRegistro}) {
   return (
-    <div className=" bg-primary rounded-xl  md:m-auto md:w-1/3 xl:m-auto xl: w-1/4   " >
-      <div className=" mb-4 py-16 text-center flex-col justify-center items-center pr-10  ">
+    
+    <div className=" bg-[#28315C] rounded-xl  flex" >
+      <div className=" mb-4 py-16 text-center flex-col justify-center items-center pr-10 pl-10 ">
         <header className="">
           <h2 className="text-5xl font-bold text-[#ffffff] text-left ml-14 mb-7 font-khula">Regístrate</h2>
           <div className="inline-grid grid-cols-2 gap-3 mr-20
            ">
           <h3 onClick="text-decoration-line: underline;"  className="text-[#ffffff]  text-xl  ml-14 mb-7 mr-1 font-khula underline underline-offset-8 decoration-btnColor decoration-4">Registro</h3>
-          <h3 className="text-[#ffffff]  text-xl ml-10  mb-5 font-khula">Iniciar sesión</h3>
+          <button onClick={switchRegistro} className="text-[#ffffff]  text-xl ml-10  mb-5 font-khula">Iniciar sesión</button>
           </div>
         </header>
         
@@ -43,11 +47,20 @@ function Register() {
         >
           <Form>
             <div>
+            <label className="  font-bold block text-[#ffffff] mt-5 mr-56">Nombre</label>
+              <Field
+                name="name"
+                id="name"
+                type="text"
+                placeholder="Ingresa tu mail"
+                className=" px-3 py-2 focus: outline-none rounded-xl pl-24 text-left"
+              />
+               <ErrorMessage name="name" component="p" className="font-bold  text-[#ffffff]" />
               <label className="  font-bold block text-[#ffffff] mt-5 mr-56" htmlFor="email font-khula">Email</label>
               <Field
                 name="email"
                 id="email"
-                type="text"
+                type="email"
                 placeholder="Ingresa tu mail"
                 className=" px-3 py-2 focus: outline-none rounded-xl pl-24 text-left"
               />

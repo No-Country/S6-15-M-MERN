@@ -19,7 +19,7 @@ function App() {
   
       <BrowserRouter>
        <NavBar changeModal={changeModalStatus} />
-       <Login isOpen={isModalOpen} closeModal={changeModalStatus} />     
+       <Login isOpen={isModalOpen} closeModal={changeModalStatus} /> 
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/servicios" element={<Services />} /> 
