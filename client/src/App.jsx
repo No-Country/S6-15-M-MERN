@@ -29,7 +29,9 @@ function App() {
           <Route path="/sol-servicio" element={<OrderService />} />
           <Route path="/sol-servicio/solicitado" element={<SolicitedService />} />
         </Routes>
+        <div className='footerDiv'>
         <Footer/>
+        </div>
       </BrowserRouter>
   )
 
