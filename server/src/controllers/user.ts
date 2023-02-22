@@ -101,11 +101,11 @@ const UpdateControllerUser = async (
 //   }
 // };
 
-const DeleteControllerUser = async (req: Request, res: Response, next: NextFunction) => {
-  const userId = req.params.id;
+const DeleteControllerUser = async (req: RequestExt, res: Response, next: NextFunction) => {
+  // const userId = req.params.id;
   try {
     // const { id } = params;
-    
+    const userId = req.user?.id;
     const result: IUser | null = await DeleteUser(userId);
     // console.log(result)
     if (result) {

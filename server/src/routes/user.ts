@@ -9,17 +9,17 @@ import {checkJwt} from '../middleware/session'
 
 const router = Router();
 
-router.get('/', checkJwt , getControllerAllUser);
+router.get('/' , getControllerAllUser);
 
 router
     .route('/me')
     .get(checkJwt , getMyUser)
     .put( checkJwt, UpdateControllerUser)
+    .delete(checkJwt, DeleteControllerUser)
 
 router
     .route('/:id')
     .get( checkJwt ,  logMiddleware , getControllerUserbyId)
-    .delete(checkJwt, DeleteControllerUser)
 
 
 export {router}

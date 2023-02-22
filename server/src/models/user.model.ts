@@ -67,7 +67,11 @@ const userSchema = new Schema<IUser>(
     professional: {
       type: Boolean,
       default: false
-    }
+    },
+    // description: {
+    //   type: String,
+    //   default: ""
+    // }
   },
   {
     versionKey: false,
