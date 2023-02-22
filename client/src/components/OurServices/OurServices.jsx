@@ -2,6 +2,8 @@ import React from "react";
 import { useState, useRef, useEffect } from "react";
 import data from "./data.json";
 
+
+
 const OurServices = () => {
   const maxScrollWidth = useRef(0);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -40,6 +42,7 @@ const OurServices = () => {
     if (carousel !== null && carousel.current !== null) {
       carousel.current["scrollLeft"] =
         carousel.current.offsetWidth * currentIndex;
+        console.log( carousel.current.offsetWidth * currentIndex, "el carrousel")
     }
   }, [currentIndex]);
 
@@ -47,6 +50,7 @@ const OurServices = () => {
     maxScrollWidth.current = carousel.current
       ? carousel.current.scrollWidth - carousel.current.offsetWidth
       : 0;
+      console.log(carousel.current.scrollWidth - carousel.current.offsetWidth, "el otro carousel")
   }, []);
 
   return (
@@ -108,18 +112,18 @@ const OurServices = () => {
           </div>
           <div
             ref={carousel}
-            className="carousel-container relative flex gap-2 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0"
+            className="carousel-container relative flex max-sm:gap-16 max-md:gap-4 md:gap-2 lg:gap-3 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0 "
           >
             {data.resources.map((resource, index) => {
               return (
                 <div
                   key={index}
-                  className=" carousel-item text-center relative w-52 h-64 snap-center "
+                  className=" carousel-item text-center relative w-52 h-64 snap-center"
                 >
-                  <div className="carousel-img relative w-52 h-52 ">
+                  <div className="carousel-img relative w-52 h-52">
                       <a
                         href={resource.link}
-                        className="h-full w-full aspect-square rounded-full block bg-origin-padding bg-left-top bg-cover bg-no-repeat z-0"
+                        className="h-full w-full sm:w-full aspect-square rounded-full block bg-origin-padding bg-left-top bg-cover bg-no-repeat z-0"
                         style={{
                           backgroundImage: `url(${resource.imageUrl || ""})`,
                         }}
