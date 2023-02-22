@@ -1,11 +1,10 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
-// import {FcGoogle} from "react-icons/fc"
 import Modal from "./Modal"
 import GoogleLogin from "./GoogleLogin";
 import axios from "axios";
-
+import { Link } from "react-router-dom";
 const loginSchema = yup.object().shape({
   password: yup
     .string()
@@ -40,7 +39,7 @@ function Login({isOpen, closeModal }) {
           <h2 className="text-5xl font-bold text-[#ffffff] text-left ml-14 mb-7 font-khula ">Iniciar Sesión</h2>
           <div className="inline-grid grid-cols-3 gap-9 mr-20
            ">
-          <h3 className="text-[#ffffff]  text-2xl  ml-14 mb-7 mr-1 font-khula ">Registro</h3>
+          <Link><h3 className="text-[#ffffff]  text-2xl  ml-14 mb-7 mr-1 font-khula ">Registro</h3></Link>
           <h3 className="text-[#ffffff]  text-2xl   mb-7 font-khula underline underline-offset-8 decoration-btnColor decoration-4"> Inicia sesión</h3>
           </div>
           
@@ -55,15 +54,7 @@ function Login({isOpen, closeModal }) {
       >
         <Form>
         <div>
-               {/* <FcGoogle className=" w-8 h-8  absolute mt-2  text-left 2xl:ml-96 md:ml-52 " />
-              <Field
-                name="gmail"
-                id="gmail"
-                type="text"
-                placeholder="Ingresa con google"
-                className=" px-3 py-3 focus: outline-none rounded-xl pl-20 text-left"
-              /> */}
-              <ErrorMessage name="gmail" component="p" className="font-bold  text-[#ffffff]" />
+         
                 <span className="   block text-[#ffffff] mt-5 ">  O ingresá con tu correo electrónico </span>
             
               <label className="  font-bold block text-[#ffffff] mt-5 mr-56" htmlFor="email font-khula">Email</label>
