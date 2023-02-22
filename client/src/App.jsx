@@ -19,8 +19,9 @@ function App() {
   
       <BrowserRouter>
        <NavBar changeModal={changeModalStatus} />
-       <Login isOpen={isModalOpen} closeModal={changeModalStatus} />     
-        <Routes>
+       <Login isOpen={isModalOpen} closeModal={changeModalStatus} /> 
+       <section className='center'>
+       <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/servicios" element={<Services />} /> 
           <Route path= "/perfil" element={<Profile/>}/>
@@ -29,6 +30,7 @@ function App() {
           <Route path="/sol-servicio" element={<OrderService />} />
           <Route path="/sol-servicio/solicitado" element={<SolicitedService />} />
         </Routes>
+        </section>    
         <div className='footerDiv'>
         <Footer/>
         </div>
