@@ -30,18 +30,6 @@ export function useApi(initialValue = "https://container-service-1.utth4a3kjn6m0
   }
 
 
-  const serviceJobs = () => {      
-
-    axios.get(`${url}jobs/`).then((resp) => {
-      dispatch(
-        jobsFetched(resp.data.jobs.service)
-      )
-      /* console.log(resp.data) */
-    })
-    .catch(err => console.error(err))
-
-    
-  };
 
 
   return [readJobs, login, serviceJobs];
