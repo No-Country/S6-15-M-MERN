@@ -1,17 +1,34 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom';
 import { CardServices } from '../components/services/CardServices'
 import Dropdown from '../components/services/Dropdown'
-import NavBar from './../components/NavBar';
+import { useSelector } from 'react-redux';
+import { useApi } from '../hooks/useApi';
 
 export const ServicesDetail = ({props}) => {
+
+ const [searchparams] = useSearchParams();
+
+ 
+  const [filteredJob, setFilteredJob] = useState([])
+  const [readJobs] = useApi();
+  const jobSelected = useSelector(state => state.jobs);
+
+
+  useEffect(() => {
+    readJobs()
+    const job  = jobSelected.jobs.filter(item => item.service == searchparams.get('titulo'))
+    setFilteredJob(job)
+    console.log(job, "EL JOB")
+  }, [])
+
 
   return (
     <>
         <div>
         ServicesDetail Header
         </div>
-        <div className='h-screen flex flex-col p-16 justify-evenly'>
+        <div className=' flex flex-col p-10 justify-evenly'>
             <div className='flex-col items-center justify-around flex'>
                 <div>
                     <h5 className='leading-9 text-2xl font-normal text-greyText'>
@@ -32,7 +49,17 @@ export const ServicesDetail = ({props}) => {
                     <Dropdown/>
                     </div>
                 </div>
-                   <CardServices/>
+                <div>
+                {filteredJob.map((item, index) => {
+                    return (
+                        <div key={index} className='flex max-sm:flex-col max-sm:items-center'>
+                            <CardServices image={item.jobImageUrl} title={item.title} description={item.description} service={item.service}/>
+                        </div>
+                    )})
+                }
+                   
+                </div>
+               
             </div>
         </div>
 
