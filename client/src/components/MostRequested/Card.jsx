@@ -1,6 +1,4 @@
 
-import { CardServices } from './../services/CardServices';
-import {ServicesDetail} from '../../screens/ServicesDetail'
 import { createSearchParams, useNavigate } from 'react-router-dom';
 
 const Card = ({imagen, title, description, price})=>{
@@ -13,10 +11,9 @@ const Card = ({imagen, title, description, price})=>{
             }).toString()
         });
     };
-    console.log(title, " el titulo")
     return(
-        <a onClick={openCard}>
-        <div className="card bg-background-card-color w-[277px] h-[302px] rounded-2xl shadow-md">
+        <div className="card bg-background-card-color w-[277px] h-[302px] rounded-2xl shadow-md"
+        onClick={openCard}>
             <div className="top ">
                 <img
                 className="object-cover w-[277px] h-[137px] rounded-t-2xl" 
@@ -26,12 +23,19 @@ const Card = ({imagen, title, description, price})=>{
             <div className="rectangle bg-[#28315C] w-100 h-[5px]"></div>
             <h6 className="mt-6 ml-3.5 text-s font-bold">{title}</h6>
             <p className="description m-3.5 text-xs">{description}</p>
-            <div className="desde flex ml-3.5 ">
+            {
+                price !== undefined &&
+                <div className="desde flex ml-3.5 ">
                 <p className="mt-auto">Desde:</p>
                 <p className="ml-1 mt-auto font-black text-[#7CC298] text-xl">{price}</p>
             </div>
+                
+            }
+
+          
+            
         </div>
-        </a>     
+    
     )
 }
 
