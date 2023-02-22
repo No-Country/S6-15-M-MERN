@@ -4,10 +4,12 @@ import data from "./data.json";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronCircleRight, faCircleChevronLeft } from '@fortawesome/free-solid-svg-icons'
 
-const MostRequested = () => {
+const MostRequested = () => { 
 
   const carousel = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  
 
 
 
