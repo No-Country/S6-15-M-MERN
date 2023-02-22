@@ -82,7 +82,7 @@ const Reviews = () => {
 
   return (
     <>
-      <div ref={containerRef} className='mb-24 min-[550px]:hidden mt-48'>
+      <div ref={containerRef} className='mb-24 min-[550px]:hidden mt-70'>
         <div
           className='snap-y snap-mandatory w-screen flex overflow-x-hidden small-cards-container carousel-slider grow transition-[0.5s] '
           ref={sliderRef}
@@ -482,7 +482,7 @@ const Reviews = () => {
                 </div>
               </div>
             </div>
-            <div className='card-1 m-2 rounded-[100px] border-2 flex w-[300px] h-[420px] hover:scale-105 cursor-pointer gap-2 grow max-[1390px]:h-[380px] max-[1160px]:scale-[0.9] max-[1160px]:w-[380px] max-[1160px]:-m-2'>
+            <div className='card-1 m-2 rounded-[100px] border-2 flex w-[300px] h-[420px] hover:scale-105 cursor-pointer gap-2 grow max-[1390px]:h-[380px] max-[1160px]:scale-[0.9] max-[1160px]:w-[380px] max-[1160px]:-m-2 max-[840px]:hidden'>
               <div className='card-content '>
                 <div className='foto-estrellas'>
                   <img
@@ -535,7 +535,7 @@ const Reviews = () => {
                 </div>
               </div>
             </div>
-            <div className='card-1 m-2 rounded-[100px] border-2 flex w-[300px] h-[420px] hover:scale-105 cursor-pointer gap-2 grow max-[1390px]:h-[380px] max-[1160px]:scale-[0.9] max-[1160px]:w-[380px] max-[1160px]:-m-2'>
+            <div className='card-1 m-2 rounded-[100px] border-2 flex w-[300px] h-[420px] hover:scale-105 cursor-pointer gap-2 grow max-[1390px]:h-[380px] max-[1160px]:scale-[0.9] max-[1160px]:w-[380px] max-[1160px]:-m-2 max-[1050px]:hidden'>
               <div className='card-content '>
                 <div className='foto-estrellas'>
                   <img
