@@ -7,6 +7,7 @@ import { ServicesDetail } from './screens/ServicesDetail';
 import SolicitedService from './screens/SolicitedService';
 import Faq from './components/Faq';
 import {OrderService} from './screens/OrderService';
+import PerfilProfesional from './components/PerfilProfesional/PerfilProfesional';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path='faq' element={<Faq />} />          
           <Route path="/sol-servicio" element={<OrderService />} />
           <Route path="/sol-servicio/solicitado" element={<SolicitedService />} />
+          <Route path='perfilProfesional' element={<PerfilProfesional/>} />
         </Routes>
       </BrowserRouter>
   )
