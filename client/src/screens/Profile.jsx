@@ -1,9 +1,9 @@
 import React from 'react';
-import EditProfile from '../components/Profile/EditProfile';
+import EditProfileProfessional from '../components/Profile/EditProfileProfessional';
 function Profile() {
     return (
         <div>
-         <EditProfile/>   
+         <EditProfileProfessional/>   
         </div>
     );
 }
