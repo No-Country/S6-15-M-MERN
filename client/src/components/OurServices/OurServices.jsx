@@ -2,6 +2,8 @@ import React from "react";
 import { useState, useRef, useEffect } from "react";
 import data from "./data.json";
 
+
+
 const OurServices = () => {
   const maxScrollWidth = useRef(0);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -110,7 +112,7 @@ const OurServices = () => {
           </div>
           <div
             ref={carousel}
-            className="carousel-container relative flex gap-2 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0"
+            className="carousel-container relative flex max-sm:gap-16 max-md:gap-4 md:gap-2 lg:gap-3 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0 "
           >
             {data.resources.map((resource, index) => {
               return (
