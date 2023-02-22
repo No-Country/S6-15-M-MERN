@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom';
 import { CardServices } from '../components/services/CardServices'
 import Dropdown from '../components/services/Dropdown'
-import NavBar from './../components/NavBar';
 import { useSelector } from 'react-redux';
 import { useApi } from '../hooks/useApi';
 
@@ -29,7 +28,7 @@ export const ServicesDetail = ({props}) => {
         <div>
         ServicesDetail Header
         </div>
-        <div className='h-screen flex flex-col p-16 justify-evenly'>
+        <div className=' flex flex-col p-10 justify-evenly'>
             <div className='flex-col items-center justify-around flex'>
                 <div>
                     <h5 className='leading-9 text-2xl font-normal text-greyText'>
@@ -53,7 +52,7 @@ export const ServicesDetail = ({props}) => {
                 <div>
                 {filteredJob.map((item, index) => {
                     return (
-                        <div key={index}>
+                        <div key={index} className='flex max-sm:flex-col max-sm:items-center'>
                             <CardServices image={item.jobImageUrl} title={item.title} description={item.description} service={item.service}/>
                         </div>
                     )})

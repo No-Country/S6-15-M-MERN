@@ -32,6 +32,6 @@ export function useApi(initialValue = "https://container-service-1.utth4a3kjn6m0
 
 
 
-  return [readJobs, login, serviceJobs];
+  return [readJobs, login];
 }
 

@@ -20,10 +20,9 @@ export const CardServices = ({title, image, description, service}) => {
               </div>
                 <div className='divTetx'>
                   <div className='divPrice'>
-                  {description}
+                   <p>{description}</p> 
                    <h5 className='text-buttons-buttonGreen font-black'> $price</h5>
                   </div>
-                  <a className='text-blueLinks'>Conoce mas</a>
                 </div>
             </div>    
       </div>

@@ -59,3 +59,30 @@
 .divPrice h5 {
   margin: 10px;
 }
+
+@media(max-width:480px){
+  .containerCard{
+    height: 200px;
+    width: 250px;
+  }
+  .cardDiv h4{
+    font-weight: 800;
+    font-size: 15px;
+    line-height: 15px;
+}
+.cardDiv{
+  align-items: center;
+}
+.cardDiv p{
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 10px
+}
+.serviceDiv p {
+  display: none;
+}
+.divPrice h5 {
+  font-size: 12px;
+}
+
+}
