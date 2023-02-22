@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSearchParams } from 'react-router-dom'
-import image from '../../assets/image.png'
+import image from '../../assets/Image.png'
 import './CardService.css'
 
 export const CardServices = ({props}) => {
