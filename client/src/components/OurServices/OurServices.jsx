@@ -76,7 +76,7 @@ const OurServices = () => {
   } else if (!isLoaded) {
     console.log("loading");
   } else {
-    // console.log(items.jobs)
+    console.log(items.jobs)
     return (
       <div className="2xl:container 2xl:mx-auto 2xl:px-0 py-3 md:px-10">
         <section className="carousel my-12 mx-auto ">
@@ -138,11 +138,11 @@ const OurServices = () => {
               ref={carousel}
               className="carousel-container relative flex gap-2 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0"
             >
-              {items.jobs.map((resource) => {
+              {items.jobs.map((resource, index) => {
                 // console.log(resource);
                 return (
                   <div
-                    key={resource._id}
+                    key={index}
                     className=" carousel-item text-center relative w-52 h-64 snap-center "
                   >
                     <div className="carousel-img relative w-52 h-52 ">
