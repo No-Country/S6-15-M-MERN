@@ -213,7 +213,7 @@ const Faq = () => {
           <h3 className='text-center mb-8'>¡Comunicate  nostros!</h3>
           <div>
             <Faqform/>
-          </div>
+        </div>
 
 
       </div>
