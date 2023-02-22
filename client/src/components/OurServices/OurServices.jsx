@@ -40,6 +40,7 @@ const OurServices = () => {
     if (carousel !== null && carousel.current !== null) {
       carousel.current["scrollLeft"] =
         carousel.current.offsetWidth * currentIndex;
+        console.log( carousel.current.offsetWidth * currentIndex, "el carrousel")
     }
   }, [currentIndex]);
 
@@ -47,6 +48,7 @@ const OurServices = () => {
     maxScrollWidth.current = carousel.current
       ? carousel.current.scrollWidth - carousel.current.offsetWidth
       : 0;
+      console.log(carousel.current.scrollWidth - carousel.current.offsetWidth, "el otro carousel")
   }, []);
 
   return (
@@ -114,12 +116,12 @@ const OurServices = () => {
               return (
                 <div
                   key={index}
-                  className=" carousel-item text-center relative w-52 h-64 snap-center "
+                  className=" carousel-item text-center relative w-52 h-64 snap-center"
                 >
-                  <div className="carousel-img relative w-52 h-52 ">
+                  <div className="carousel-img relative w-52 h-52">
                       <a
                         href={resource.link}
-                        className="h-full w-full aspect-square rounded-full block bg-origin-padding bg-left-top bg-cover bg-no-repeat z-0"
+                        className="h-full w-full sm:w-full aspect-square rounded-full block bg-origin-padding bg-left-top bg-cover bg-no-repeat z-0"
                         style={{
                           backgroundImage: `url(${resource.imageUrl || ""})`,
                         }}
