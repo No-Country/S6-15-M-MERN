@@ -9,8 +9,6 @@ const MostRequested = () => {
   const carousel = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  
-
 
 
   const scrollLeft = () => {
@@ -38,6 +36,9 @@ const MostRequested = () => {
     carousel.current["scrollLeft"] =
       301 * currentIndex;
   }, [currentIndex]);
+
+
+  
 
   return (
     <div className="2xl:container 2xl:mx-auto 2xl:px-0 py-3 md:px-10 h-500 relative">
