@@ -20,7 +20,7 @@ export const ServicesDetail = ({props}) => {
     const job  = jobSelected.jobs.filter(item => item.service == searchparams.get('titulo'))
     setFilteredJob(job)
     console.log(job, "EL JOB")
-  }, [])
+  }, [filteredJob])
 
 
   return (

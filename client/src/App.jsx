@@ -6,12 +6,12 @@ import Profile from './screens/Profile';
 import { ServicesDetail } from './screens/ServicesDetail';
 import SolicitedService from './screens/SolicitedService';
 import Faq from './components/Faq';
-import {OrderService} from './screens/OrderService';
-import Login from './components/Login'
-import NavBar from './components/NavBar'
-import {BoolHook} from './hooks/BoolHook'
-import Footer from './components/Footer'
-
+import { OrderService } from './screens/OrderService';
+import Login from './components/Login';
+import NavBar from './components/NavBar';
+import { BoolHook } from './hooks/BoolHook';
+import Footer from './components/Footer';
+import Messages from './components/Messages';
 
 function App() {
   const [isModalOpen, changeModalStatus] = BoolHook(false);
