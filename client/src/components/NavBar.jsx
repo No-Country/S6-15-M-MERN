@@ -15,26 +15,21 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline';
 import contrata from '../assets/contrata.png';
+import { Link } from 'react-router-dom';
 import Login from './Login';
 
 const solutions = [
-  {
-    name: 'Como funciona',
-    description:
-      'Get a better understanding of where your traffic is coming from.',
-    href: '#',
-    icon: ChartBarIcon,
-  },
+  
   {
     name: 'Servicios',
     description: 'Speak directly to your customers in a more meaningful way.',
-    href: '#',
+    href: '/servicios',
     icon: CursorArrowRaysIcon,
   },
   {
     name: 'FAQs',
     description: "Connect with third-party tools that you're already using.",
-    href: '#',
+    href: 'faq',
     icon: Squares2X2Icon,
   },
 ];
@@ -92,12 +87,14 @@ export default function NavBar({ changeModal }) {
   return (
     <Popover className='relative bg-backgroundColor '>
       <div className='px-7'>
-        <div className='flex items-center justify-between py-6 md:justify-start xl:justify-center md:space-x-10'>
-          <div className='flex justify-start lg:w-0 lg:flex-1'>
-            <a href='/'>
+        <div className='flex items-center  py-6  md:space-x-10'>
+          <div className='flex justify-start mr-auto '>
+            
+              <Link to="/">
               <span className='sr-only'>Your Company</span>
               <img className='h-9 ml-3 w-auto sm:h-10' src={contrata} alt='' />
-            </a>
+              </Link>
+              
           </div>
           <div className='-my-2 -mr-2 md:hidden'>
             <Popover.Button className='inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500'>
@@ -107,38 +104,28 @@ export default function NavBar({ changeModal }) {
           </div>
           <Popover.Group
             as='nav'
-            className='hidden space-x-10 md:flex justify-center md:flex-1'
+            className='hidden space-x-10 md:flex justify-center '
           >
-            <a
-              href='#'
-              className=' ml-3 text-base font-medium text-gray-500 hover:text-gray-900'
-            >
-              Como funciona
-            </a>
-            <a
-              href='/servicios'
-              className=' ml-3 text-base font-medium text-gray-500 hover:text-gray-900'
-            >
-              Servicios
-            </a>
-            <a
-              href='/faq'
-              className=' ml-3 text-base font-medium text-gray-500 hover:text-gray-900'
-            >
-              FAQ's
-            </a>
+            <Link to={"/servicios"}
+            className="ml-3 text-base font-medium text-gray-500 hover:text-gray-900">
+            Servicios
+            </Link>
+
+            <Link to="/faq"
+            className='ml-3 text-base font-medium text-gray-500 hover:text-gray-900'>
+              FAQ´s</Link>
           </Popover.Group>
-          <div className='hidden items-center justify-end md:flex md:flex-2 lg:w-0'>
+          <div className='hidden items-center justify-end md:flex md:flex-2 '>
             {/* <a href="#" className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
               Sign in
             </a> */}
-            <a
+            <button
               /* href="#" */
               onClick={changeModal}
               className='inline-flex items-center justify-center whitespace-nowrap rounded-md border-transparent bg-buttons-buttonGreen px-4 py-2 text-base font-medium text-textWhite shadow-sm hover:bg-indigo-700'
             >
-              Registarse
-            </a>
+              Registrarse
+            </button>
           </div>
         </div>
       </div>
@@ -175,9 +162,10 @@ export default function NavBar({ changeModal }) {
               <div className='mt-6'>
                 <nav className='grid gap-y-8'>
                   {solutions.map((item) => (
-                    <a
+                    
+                    <Link
                       key={item.name}
-                      href={item.href}
+                      to={item.href}
                       className='-m-3 flex items-center rounded-md p-3 hover:bg-gray-50'
                     >
                       <item.icon
@@ -187,25 +175,22 @@ export default function NavBar({ changeModal }) {
                       <span className='ml-3 text-base font-medium text-gray-900'>
                         {item.name}
                       </span>
-                    </a>
+                    </Link>
+                    
+                    
                   ))}
                 </nav>
               </div>
             </div>
             <div className='space-y-6 py-6 px-5'>
               <div>
-                <a
-                  href='#'
+                <button
+                  onClick={changeModal}
                   className='flex w-full items-center justify-center rounded-md border-transparent bg-indigo-600 px-4 py-2 text-base font-medium  shadow-sm hover:bg-indigo-700'
                 >
                   Registrarse
-                </a>
-                <p className='mt-6 text-center text-base font-medium text-gray-500'>
-                  Tenes cuenta?{' '}
-                  <a href='#' className='text-indigo-600 hover:text-indigo-500'>
-                    Ingresar
-                  </a>
-                </p>
+                </button>
+                
               </div>
             </div>
           </div>

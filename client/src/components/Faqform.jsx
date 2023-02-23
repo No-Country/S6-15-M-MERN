@@ -11,7 +11,7 @@ const userSchema = yup.object().shape({
 
 function Faqform() {
   return (
-    <div className=" bg-primary rounded-xl  md:m-auto md:w-1/3 xl:m-auto xl: w-1/4   " >
+    <div className=" bg-[#f5f5f5] rounded-xl  md:m-auto md:w-1/3 xl:m-auto xl: w-1/4   " >
       <div className=" mb-4 py-16 text-center flex-col justify-center items-center pr-10  ">
         <header className="">
           <h2 className="text-5xl font-bold text-[#ffffff] text-left ml-14 mb-7 font-khula">Regístrate</h2>
