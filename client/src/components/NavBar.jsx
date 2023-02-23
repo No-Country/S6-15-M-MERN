@@ -116,11 +116,8 @@ export default function NavBar({ changeModal }) {
               FAQ´s</Link>
           </Popover.Group>
           <div className='hidden items-center justify-end md:flex md:flex-2 '>
-            {/* <a href="#" className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
-              Sign in
-            </a> */}
+            
             <button
-              /* href="#" */
               onClick={changeModal}
               className='inline-flex items-center justify-center whitespace-nowrap rounded-md border-transparent bg-buttons-buttonGreen px-4 py-2 text-base font-medium text-textWhite shadow-sm hover:bg-indigo-700'
             >
