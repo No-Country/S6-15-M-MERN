@@ -1,6 +1,8 @@
-import React from "react";
+import React,{useState} from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
+import { postUser } from "../features/registerSlice/service"
+
 
 const userSchema = yup.object().shape({
   name: yup
@@ -23,8 +25,30 @@ const userSchema = yup.object().shape({
 });
 
 function Register({switchRegistro}) {
+  const[user, setUser] = useState({})
+  
+  const userProfile = (event) => {
+    setUser({
+        ...user,
+        [event.target.name]: event.target.value,
+        [event.target.password]: event.target.value,
+        [event.target.email]: event.target.value,
+    })  
+}
+console.log(user, " el usuario")
+
+
+const contactDates = async (event) => {
+event.preventDefault()
+ await postUser(user)
+          .then ((response) => {
+            console.log(response, " la respuesta")
+
+  })}
+
+
+
   return (
-    
     <div className=" bg-[#28315C] rounded-xl  flex" >
       <div className=" mb-4 py-16 text-center flex-col justify-center items-center pr-10 pl-10 ">
         <header className="">
@@ -38,42 +62,50 @@ function Register({switchRegistro}) {
         
         <Formik
           initialValues={{
-            email: "",
-            password: "",
+            [user.name]: "",
+            [user.email]: "",
+            [user.password]: "",
             passwordConfirmation: "",
             termsAndConditions: false,
           }}
           validationSchema={userSchema}
         >
-          <Form>
+          <Form  onSubmit={contactDates} >
             <div>
             <label className="  font-bold block text-[#ffffff] mt-5 mr-56">Nombre</label>
               <Field
+              value={user.name}
                 name="name"
                 id="name"
                 type="text"
-                placeholder="Ingresa tu mail"
+                placeholder="Ingresa tu nombre"
                 className=" px-3 py-2 focus: outline-none rounded-xl pl-24 text-left"
+                required
+                onChange={userProfile}
               />
-               <ErrorMessage name="name" component="p" className="font-bold  text-[#ffffff]" />
+               {!user.name? <ErrorMessage name="name" component="p" className="font-bold  text-[#ffffff]" /> : null}
               <label className="  font-bold block text-[#ffffff] mt-5 mr-56" htmlFor="email font-khula">Email</label>
               <Field
+                value={user.email}
                 name="email"
                 id="email"
                 type="email"
                 placeholder="Ingresa tu mail"
                 className=" px-3 py-2 focus: outline-none rounded-xl pl-24 text-left"
+                onChange={userProfile}
               />
-              <ErrorMessage name="email" component="p" className="font-bold  text-[#ffffff]" />
+               {!user.email?<ErrorMessage name="email" component="p" className="font-bold  text-[#ffffff]" />: null}
               <label  className="  font-bold block text-[#ffffff] mt-5 mr-48  " htmlFor="password font-khula">Contraseña</label>
               <Field
+                value={user.password}
                 name="password"
                 id="password"
                 type="password"
                 placeholder="Ingresa una contraseña"
                 className=" px-3 py-2 pl-24 focus: outline-none rounded-xl placeholder:-translate-x-6"
+                onChange={userProfile}
               />
-              <ErrorMessage name="password" component="p"  className="font-bold  text-[#ffffff]"/>
+              {!user.password?<ErrorMessage name="password" component="p"  className="font-bold  text-[#ffffff]"/> : null}
               <label  className=" font-bold block text-[#ffffff] mt-5 mr-24 m " htmlFor="password">Confirmá tu contraseña</label>
               <Field
                 name="passwordConfirmation"
@@ -82,14 +114,14 @@ function Register({switchRegistro}) {
                 placeholder="Confirma tu contraseña"
                 className=" px-3 py-2 focus: outline-none rounded-xl pl-24 text-left placeholder:-translate-x-6  "
               />
-              <ErrorMessage name="passwordConfirmation" component="p"  className="font-bold  text-[#ffffff]" />
+              {!user.password?<ErrorMessage name="passwordConfirmation" component="p"  className="font-bold  text-[#ffffff]" />: null}
               <div>
               <Field 
               name="termsAndConditions"
               default="false"
                type="checkbox" className="mt-5 mb-5" />  
                <span  className=" font-bold  ml-4 text-[#ffffff] mt-5" >Acepto los términos y condiciones</span>
-               <ErrorMessage name="termsAndConditions" component="p"  className="font-bold  text-[#ffffff]"/>
+              {/* <ErrorMessage name="termsAndConditions" component="p"  className="font-bold  text-[#ffffff]"/> */}
                </div>
             </div>
             <button className="bg-[#ffffff] w-48 h-12 mr-5 rounded-full text-xl mb-4  font-bold  active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all  active:hover:bg-[#83e3be]  disabled:cursor-not-allowed  mt-4 hover:shadow-228b active:shadow  ">Cancelar</button>

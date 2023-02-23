@@ -3,11 +3,14 @@ import Card from "./Card";
 import data from "./data.json";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronCircleRight, faCircleChevronLeft } from '@fortawesome/free-solid-svg-icons'
+import { useApi } from "../../hooks/useApi";
 
 const MostRequested = () => { 
 
   const carousel = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  const [readJobs] = useApi();
 
 
 
@@ -30,6 +33,10 @@ const MostRequested = () => {
       setCurrentIndex(currentIndex + 1)
     }
   }
+
+  useEffect(()=>{
+    readJobs();
+  }, [])
 
 
   useEffect(() => {

@@ -25,8 +25,14 @@ export function useApi(initialValue = "https://container-service-1.utth4a3kjn6m0
       
     };
 
-  const login = (user, pass)=>{
-    
+  const login = (name,email,pass)=>{
+    axios.get(`${url}/auth/register`).then((resp) => {
+      dispatch(
+        jobsFetched(resp.data.jobs)
+      )
+      /* console.log(resp.data) */
+    })
+    .catch(err => console.error(err))
   }
 
 
