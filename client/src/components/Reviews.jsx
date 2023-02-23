@@ -92,7 +92,7 @@ const Reviews = () => {
             <div className='small-foto-estrellas'>
               <img
                 className='user-picture h-[50px] w-[50px] rounded-full ml-auto mr-auto mt-10 object-cover '
-                src='https://images.pexels.com/photos/428364/pexels-photo-428364.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+                src='https://images.pexels.com/photos/15104800/pexels-photo-15104800.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
               ></img>
               <div className='small-stars-container flex items-center justify-center mt-4 '>
                 <svg
@@ -139,7 +139,7 @@ const Reviews = () => {
             <div className='small-foto-estrellas'>
               <img
                 className='user-picture h-[50px] w-[50px] rounded-full ml-auto mr-auto mt-10 object-cover '
-                src='https://images.pexels.com/photos/428364/pexels-photo-428364.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+                src='https://img.freepik.com/foto-gratis/reparacion-fontanero-hombre-mediana-edad-atento-experimentado-que-examina-fondo-fregadero-cocina_259150-58266.jpg?w=1060&t=st=1677116433~exp=1677117033~hmac=871f4ea44f3918f27a25d561de7b12b0910190ee46d168265e1788b609ea7156'
               ></img>
               <div className='small-stars-container flex items-center justify-center mt-4 '>
                 <svg
@@ -328,7 +328,7 @@ const Reviews = () => {
                 <div className='foto-estrellas'>
                   <img
                     className='user-picture h-[100px] w-[100px] rounded-full ml-auto mr-auto mt-10 object-cover '
-                    src='https://images.pexels.com/photos/428364/pexels-photo-428364.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+                    src='https://images.pexels.com/photos/15104800/pexels-photo-15104800.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
                   ></img>
                   <div className='stars-container flex items-center justify-center mt-[4%] '>
                     <svg
@@ -365,13 +365,11 @@ const Reviews = () => {
                 </div>
 
                 <p className='card-text text-base text-center ml-4 mr-4 mt-[8%] font-sans font-normal max-[1390px]:text-sm max-[1390px]:-mb-2 '>
-                  “Amet minim mollit non deserunt ullamco est sit aliqua dolor
-                  do amet sint. Velit officia consequat duis enim velit mollit.
-                  Exercitation veniam consequat.”
+                  “Fotógrafo de primera! Totalmente recomendable.”
                 </p>
                 <div className='nombre text-center mt-[8%]'>
                   <p className='user-name text-lg font-bold max-[1390px]:text-base'>
-                    Juan
+                    Alberto
                   </p>
                 </div>
               </div>
@@ -381,7 +379,7 @@ const Reviews = () => {
                 <div className='foto-estrellas'>
                   <img
                     className='user-picture h-[100px] w-[100px] rounded-full ml-auto mr-auto mt-10 object-cover'
-                    src='https://images.pexels.com/photos/428364/pexels-photo-428364.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+                    src='https://images.pexels.com/photos/806835/pexels-photo-806835.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
                   ></img>
                   <div className='stars-container flex items-center justify-center mt-4 '>
                     <svg
@@ -418,13 +416,11 @@ const Reviews = () => {
                 </div>
 
                 <p className='card-text text-base text-center ml-4 mr-4 mt-[8%] font-sans font-normal max-[1390px]:text-sm max-[1390px]:-mb-2'>
-                  “Amet minim mollit non deserunt ullamco est sit aliqua dolor
-                  do amet sint. Velit officia consequat duis enim velit mollit.
-                  Exercitation veniam consequat.”
+                  “Anabella es una gran contadora! Me ayudó muchisimo. Cinthia.”
                 </p>
                 <div className='nombre text-center mt-[8%]'>
                   <p className='user-name text-lg font-bold max-[1390px]:text-base'>
-                    Juan
+                    Anabella
                   </p>
                 </div>
               </div>
@@ -434,7 +430,7 @@ const Reviews = () => {
                 <div className='foto-estrellas'>
                   <img
                     className='user-picture h-[100px] w-[100px] rounded-full ml-auto mr-auto mt-10 object-cover'
-                    src='https://images.pexels.com/photos/428364/pexels-photo-428364.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+                    src='https://www.campustraining.es/wp-content/uploads/2021/09/FONTANERO-SUELDO-715x495.jpg.webp'
                   ></img>
                   <div className='stars-container flex items-center justify-center mt-4 '>
                     <svg
@@ -471,13 +467,12 @@ const Reviews = () => {
                 </div>
 
                 <p className='card-text text-base text-center ml-4 mr-4 mt-[8%] font-sans font-normal max-[1390px]:text-sm max-[1390px]:-mb-2'>
-                  “Amet minim mollit non deserunt ullamco est sit aliqua dolor
-                  do amet sint. Velit officia consequat duis enim velit mollit.
-                  Exercitation veniam consequat.”
+                  “Me resolvió un problema de cañerías durante una urgencia, un
+                  genio. Luis.”
                 </p>
                 <div className='nombre text-center mt-[8%]'>
                   <p className='user-name text-lg font-bold max-[1390px]:text-base'>
-                    Juan
+                    Diego
                   </p>
                 </div>
               </div>
@@ -487,7 +482,7 @@ const Reviews = () => {
                 <div className='foto-estrellas'>
                   <img
                     className='user-picture h-[100px] w-[100px] rounded-full ml-auto mr-auto mt-10 object-cover'
-                    src='https://images.pexels.com/photos/428364/pexels-photo-428364.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+                    src='https://images.pexels.com/photos/3769021/pexels-photo-3769021.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
                   ></img>
                   <div className='stars-container flex items-center justify-center mt-4 '>
                     <svg
@@ -524,13 +519,13 @@ const Reviews = () => {
                 </div>
 
                 <p className='card-text text-base text-center ml-4 mr-4 mt-[8%] font-sans font-normal max-[1390px]:text-sm max-[1390px]:-mb-2'>
-                  “Amet minim mollit non deserunt ullamco est sit aliqua dolor
-                  do amet sint. Velit officia consequat duis enim velit mollit.
-                  Exercitation veniam consequat.”
+                  “Le solicité a María que diseñara una página web que
+                  necesitaba con urgencia para mi emprendimiento y en muy poco
+                  tiempo ya la tenía lista. Luis.”
                 </p>
                 <div className='nombre text-center mt-[8%]'>
                   <p className='user-name text-lg font-bold max-[1390px]:text-base'>
-                    Juan
+                    María
                   </p>
                 </div>
               </div>
@@ -577,13 +572,12 @@ const Reviews = () => {
                 </div>
 
                 <p className='card-text text-base text-center ml-4 mr-4 mt-[8%] font-sans font-normal max-[1390px]:text-sm max-[1390px]:-mb-2'>
-                  “Amet minim mollit non deserunt ullamco est sit aliqua dolor
-                  do amet sint. Velit officia consequat duis enim velit mollit.
-                  Exercitation veniam consequat.”
+                  “Martín ofrece un servicio excelente. Totalmente recomendable.
+                  Anabella.”
                 </p>
                 <div className='nombre text-center mt-[8%]'>
                   <p className='user-name text-lg font-bold max-[1390px]:text-base'>
-                    Juan
+                    Martín
                   </p>
                 </div>
               </div>
@@ -593,7 +587,7 @@ const Reviews = () => {
                 <div className='foto-estrellas'>
                   <img
                     className='user-picture h-[100px] w-[100px] rounded-full ml-auto mr-auto mt-10 object-cover'
-                    src='https://images.pexels.com/photos/428364/pexels-photo-428364.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+                    src='https://images.pexels.com/photos/3806288/pexels-photo-3806288.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
                   ></img>
                   <div className='stars-container flex items-center justify-center mt-4 '>
                     <svg
@@ -630,12 +624,11 @@ const Reviews = () => {
                 </div>
 
                 <p className='card-text text-base text-center ml-4 mr-4 mt-[8%] font-sans font-normal'>
-                  “Amet minim mollit non deserunt ullamco est sit aliqua dolor
-                  do amet sint. Velit officia consequat duis enim velit mollit.
-                  Exercitation veniam consequat.”
+                  “Lo recomiendo totalmente, me arregló el auto muy rápido y
+                  logró conseguir un repuesto que estaba muy dificil. Alberto.”
                 </p>
                 <div className='nombre text-center mt-[8%]'>
-                  <p className='user-name text-lg font-bold'>Juan</p>
+                  <p className='user-name text-lg font-bold'>Luis</p>
                 </div>
               </div>
             </div>
@@ -644,7 +637,7 @@ const Reviews = () => {
                 <div className='foto-estrellas'>
                   <img
                     className='user-picture h-[100px] w-[100px] rounded-full ml-auto mr-auto mt-10 object-cover'
-                    src='https://images.pexels.com/photos/428364/pexels-photo-428364.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+                    src='https://thumbs.dreamstime.com/z/cortando-pasto-157632503.jpg'
                   ></img>
                   <div className='stars-container flex items-center justify-center mt-4 '>
                     <svg
@@ -681,9 +674,8 @@ const Reviews = () => {
                 </div>
 
                 <p className='card-text text-base text-center ml-4 mr-4 mt-[8%] font-sans font-normal'>
-                  “Amet minim mollit non deserunt ullamco est sit aliqua dolor
-                  do amet sint. Velit officia consequat duis enim velit mollit.
-                  Exercitation veniam consequat.”
+                  “Juan ofrece un muy buen servicio. Trabaja rápido y trae todo
+                  su equipo con el. Laura.”
                 </p>
                 <div className='nombre text-center mt-[8%]'>
                   <p className='user-name text-lg font-bold'>Juan</p>
