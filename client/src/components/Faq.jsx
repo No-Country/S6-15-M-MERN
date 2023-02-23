@@ -209,15 +209,12 @@ const Faq = () => {
       </div>
 
       <div>
-          <h3 className='text-center mt-11 mb-8'>¿Te quedaste con dudas?</h3>
-          <h3 className='text-center mb-8'>¡Comunicate  nostros!</h3>
-          <div>
-            <Faqform/>
+        <h3 className='text-center mt-11 mb-8'>¿Te quedaste con dudas?</h3>
+        <h3 className='text-center mb-8'>¡Comunicate nostros!</h3>
+        <div>
+          <Faqform />
         </div>
-
-
       </div>
-
     </div>
   );
 };
