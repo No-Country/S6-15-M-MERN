@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useRef, useEffect } from "react";
-import data from "./data.json";
+// import data from "./data.json";
 
 
 
@@ -8,6 +8,12 @@ const OurServices = () => {
   const maxScrollWidth = useRef(0);
   const [currentIndex, setCurrentIndex] = useState(0);
   const carousel = useRef(null);
+
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [items, setItems] = useState([]);
+
+
 
   const movePrev = () => {
     if (currentIndex > 0) {
@@ -39,6 +45,25 @@ const OurServices = () => {
   };
 
   useEffect(() => {
+    fetch("https://container-service-1.utth4a3kjn6m0.us-west-2.cs.amazonlightsail.com/jobs")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setItems(result);
+          console.log(items)
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
+  }, [])
+
+  useEffect(() => {
     if (carousel !== null && carousel.current !== null) {
       carousel.current["scrollLeft"] =
         carousel.current.offsetWidth * currentIndex;
@@ -50,110 +75,119 @@ const OurServices = () => {
     maxScrollWidth.current = carousel.current
       ? carousel.current.scrollWidth - carousel.current.offsetWidth
       : 0;
-      console.log(carousel.current.scrollWidth - carousel.current.offsetWidth, "el otro carousel")
-  }, []);
+      // console.log(carousel.current.scrollWidth - carousel.current.offsetWidth, "el otro carousel")
+  }, [items]);
 
-  return (
-    <div className="2xl:container 2xl:mx-auto 2xl:px-0 py-3 md:px-10">
-      <section className="carousel my-12 mx-auto ">
-        <div className="py-8 text-center">
-          <h2 className="text-gray-600 font-extrabold text-3xl">
-            Nuestros Servicios
-          </h2>
-          <p className=" text-gray-500">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Totam,
-            voluptates!
-          </p>
-        </div>
-        <div className="relative overflow-hidden">
-          <div className="flex justify-between absolute top left w-full h-full">
-            <button
-              onClick={movePrev}
-              className="hover:bg-emerald-600/75 bg text-white w-10 h-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-10 p-0 m-0 transition-all ease-in-out duration-300"
-              disabled={isDisabled("prev")}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-12 w-20 -ml-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M15 19l-7-7 7-7"
-                />
-              </svg>
-              <span className="sr-only">Prev</span>
-            </button>
-            <button
-              onClick={moveNext}
-              className="hover:bg-emerald-600/75 text-white w-10 h-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-10 p-0 m-0 transition-all ease-in-out duration-300"
-              disabled={isDisabled("next")}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-12 w-20 -ml-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
-              <span className="sr-only">Next</span>
-            </button>
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  } else if (!isLoaded) {
+    return <div>Loading...</div>;
+  } else {
+    console.log(items)
+    return (
+      <div className="2xl:container 2xl:mx-auto 2xl:px-0 py-3 md:px-10">
+        <section className="carousel my-12 mx-auto ">
+          <div className="py-8 text-center">
+            <h2 className="text-gray-600 font-extrabold text-3xl">
+              Nuestros Servicios
+            </h2>
+            <p className=" text-gray-500">
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Totam,
+              voluptates!
+            </p>
           </div>
-          <div
-            ref={carousel}
-            className="carousel-container relative flex max-sm:gap-16 max-md:gap-4 md:gap-2 lg:gap-3 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0 "
-          >
-            {data.resources.map((resource, index) => {
-              return (
-                <div
-                  key={index}
-                  className=" carousel-item text-center relative w-52 h-64 snap-center"
+          <div className="relative overflow-hidden">
+            <div className="flex justify-between absolute top left w-full h-full">
+              <button
+                onClick={movePrev}
+                className="hover:bg-emerald-600/75 bg text-white w-10 h-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-10 p-0 m-0 transition-all ease-in-out duration-300"
+                disabled={isDisabled("prev")}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-12 w-20 -ml-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
                 >
-                  <div className="carousel-img relative w-52 h-52">
-                      <a
-                        href={resource.link}
-                        className="h-full w-full sm:w-full aspect-square rounded-full block bg-origin-padding bg-left-top bg-cover bg-no-repeat z-0"
-                        style={{
-                          backgroundImage: `url(${resource.imageUrl || ""})`,
-                        }}
-                      >
-                        <img
-                          src={resource.imageUrl || ""}
-                          alt={resource.title}
-                          className="w-full aspect-square hidden "
-                        />
-                      </a>
-                      <a
-                        href={resource.link}
-                        className="h-full w-full aspect-square rounded-full block absolute top-0 left-0 transition-opacity duration-300 opacity-0 hover:opacity-100 bg-emerald-600/75 z-10"
-                      >
-                        <h3 className="text-white py-6 px-3 mx-auto text-base absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                          {resource.title}
-                        </h3>
-                      </a>
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M15 19l-7-7 7-7"
+                  />
+                </svg>
+                <span className="sr-only">Prev</span>
+              </button>
+              <button
+                onClick={moveNext}
+                className="hover:bg-emerald-600/75 text-white w-10 h-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-10 p-0 m-0 transition-all ease-in-out duration-300"
+                disabled={isDisabled("next")}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-12 w-20 -ml-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+                <span className="sr-only">Next</span>
+              </button>
+            </div>
+            <div
+              ref={carousel}
+              className="carousel-container relative flex max-sm:gap-16 max-md:gap-4 md:gap-2 lg:gap-3 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0 "
+            >
+              {items.jobs.map((resource, index) => {
+                return (
+                  <div
+                    key={index}
+                    className=" carousel-item text-center relative w-52 h-64 snap-center"
+                  >
+                    <div className="carousel-img relative w-52 h-52">
+                        <a
+                          href={resource.jobImageUrl}
+                          className="h-full w-full sm:w-full aspect-square rounded-full block bg-origin-padding bg-left-top bg-cover bg-no-repeat z-0"
+                          style={{
+                            backgroundImage: `url(${resource.jobImageUrl || ""})`,
+                          }}
+                        >
+                          <img
+                            src={resource.jobImageUrl || ""}
+                            alt={resource.description}
+                            className="w-full aspect-square hidden "
+                          />
+                        </a>
+                        <a
+                          href={resource.jobImageUrl}
+                          className="h-full w-full aspect-square rounded-full block absolute top-0 left-0 transition-opacity duration-300 opacity-0 hover:opacity-100 bg-emerald-600/75 z-10"
+                        >
+                          <h3 className="text-white py-6 px-3 mx-auto text-base absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                            {resource.title}
+                          </h3>
+                        </a>
+                    </div>
+                    <h1 className="text-gray-600 font-extrabold text-xl">{resource.service}</h1>
+                    <p className="text-gray-500">{resource.description}</p>
+            
                   </div>
-                  <h1 className="text-gray-600 font-extrabold text-xl">{resource.profession}</h1>
-                  <p className="text-gray-500">{resource.description}</p>
-          
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
-        </div>
-      </section>
-    </div>
-  );
+        </section>
+      </div>
+    );
+  }
+
+
 };
 
 export default OurServices;
