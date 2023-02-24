@@ -1,4 +1,5 @@
 /*Modelo de usuario */
+import { boolean } from "joi";
 import { Schema, model } from "mongoose";
 import { IUser } from "../interfaces/user.interface";
 
@@ -16,56 +17,62 @@ const userSchema = new Schema<IUser>(
     },
     password: {
       type: String,
-      required: [true, "Please enter your password"],
+      required: [true, "Please enter your password"]
     },
 
     birthdate: {
-      type: String,
+      type: String
     },
 
     phone: {
-      type: Number,
+      type: Number
     },
 
     country: {
-      type: String,
+      type: String
     },
 
     city: {
-      type: String,
+      type: String
     },
 
     terms: {
-      type: String,
+      type: String
     },
 
     idgoogle: {
       type: String,
     },
 
-    proveedor: {
-      type: String,
-    },
-
     avatarURL: {
       type: String,
+      default: "",
       // required: [true, "Please provide an img url"]
     },
 
     job: {
       type: Schema.Types.ObjectId,
-      ref: "Jobs",
+      ref: "Jobs"
     },
 
     postalCode: {
-      type: Number,
+      type: Number
     },
 
     /*cantindad minima precio*/
     minimumquantityprice: {
       type: Number,
-      min: 0
-    }
+      min: 0,
+    },
+    professional: {
+      type: Boolean,
+      default: false,
+    },
+    // description: {
+    //   type: String,
+    //   default: ""
+    // }
+
   },
   {
     versionKey: false,
