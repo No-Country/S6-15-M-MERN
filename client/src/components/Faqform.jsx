@@ -6,12 +6,22 @@ const userSchema = yup.object().shape({
   email: yup
     .string()
     .email("Mail no valido")
-    .required("Debes ingresar un mail")
+    .required("Debes ingresar un mail"),
+    nombre: yup
+      .string()
+      .min(3, "Nombre muy corto!")
+      .max(15, "Nombre demasiado largo!")
+      .required("No puedes dejar este espacio en blanco!")
+      .matches(/^[A-Z _]+$/i, "El nombre solo puede contener letras"),
+      consulta: yup
+      .string()
+      .max(20, "Has excedido el límite de caracteres permitidos!")
+      .required("No puedes dejar este espacio en blanco!")
 });
 
 function Faqform() {
   return (
-    <div className=" bg-primary rounded-xl  md:m-auto md:w-1/3 xl:m-auto xl: w-1/4   " >
+    <div >
       <div className=" mb-4 py-16 text-center flex-col justify-center items-center pr-10  ">
         <header className="">
           <h2 className="text-5xl font-bold text-[#ffffff] text-left ml-14 mb-7 font-khula">Regístrate</h2>
@@ -26,41 +36,42 @@ function Faqform() {
           initialValues={{
             nombre: "",
             email: "",
+            consulta: ""
           }}
           validationSchema={userSchema}
         >
           <Form>
             <div>
 
-              <label className="  font-bold block text-[#313D69] mt-5 mr-56" htmlFor="email font-khula">Nombre</label>
+              <label className="  font-bold block text-[#313D69] mt-5 mr-56" >Nombre</label>
               <Field
                 name="nombre"
                 id="nombre"
                 type="text"
                 placeholder="Nombre"
-                className=" px-3 py-2 focus: outline-none rounded-xl pl-24 text-left"
+                className=" px-3 py-2 focus: outline-focusColor rounded-xl pl-24   border-labelGrayColor border-2"
               />
-              <ErrorMessage name="email" component="p" className="font-bold  text-[#ffffff]" />
+              <ErrorMessage name="nombre" component="p" className="font-bold  text-[#000000]" />
 
-              <label className="  font-bold block text-[#313D69] mt-5 mr-56" htmlFor="email font-khula">Email</label>
+              <label className="  font-bold block text-[#313D69] mt-5 mr-56">Email</label>
               <Field
                 name="email"
                 id="email"
                 type="email"
                 placeholder="Ingresa tu mail"
-                className=" px-3 py-2 focus: outline-none rounded-xl pl-24 text-left"
+                className=" px-3 py-2 focus: outline-focusColor rounded-xl pl-24   border-labelGrayColor border-2"
               />
-              <ErrorMessage name="email" component="p" className="font-bold  text-[#ffffff]" />
+              <ErrorMessage name="email" component="p" className="font-bold  text-[#000000]" />
 
-              <label  className="  font-bold block text-[#313D69] mt-5 mr-48  " htmlFor="password font-khula">Tu consulta</label>
+              <label  className="  font-bold block text-[#313D69] mt-5 mr-48  ">Tu consulta</label>
               <Field
                 name="consulta"
                 id="consulta"
                 type="text"
                 placeholder="Escribe tu duda o consulta aquí"
-                className=" px-3 py-2 pl-24 focus: outline-none rounded-xl placeholder:-translate-x-6"
+                className=" px-3 py-2 focus: outline-focusColor rounded-xl pl-24   border-labelGrayColor border-2"
               />
-              <ErrorMessage name="password" component="p"  className="font-bold  text-[#ffffff]"/>
+              <ErrorMessage name="consulta" component="p"  className="font-bold  text-[#000000]"/>
 
               
               
