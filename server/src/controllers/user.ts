@@ -7,6 +7,7 @@ import {
   getUserbyId,
   UpdateUser,
   DeleteUser,
+  getAllProfessionalsService,
 } from "../services/user";
 
 import { deleteFilefromFS, getNewUrl } from '../utils/fs.handle';
@@ -15,6 +16,7 @@ import {RequestExt} from '../interfaces/req-ext';
 import {IUser} from '../interfaces/user.interface';
 import {AppError} from '../utils/errorObjectExtended';
 import { encrypt } from "../utils/bcrypt.handle";
+import { preferences } from "joi";
 
 
 const getControllerUserbyId = async (req: Request, res: Response, next: NextFunction) => {
@@ -43,9 +45,13 @@ const getControllerUserbyId = async (req: Request, res: Response, next: NextFunc
 
 const getControllerAllUser = async (req: Request, res: Response , next: NextFunction) => {
   try {
-    const responseGetUser = await getAlluser();
+    let filter: any = {};
+    if(req.query.professional) filter.professional = req.query.professional;
+    if(req.query.city) filter.city = req.query.city;
+    if(req.query.job) filter.job = req.query.job;
+    const responseGetUser = await getAlluser(filter);
     if(responseGetUser.length > 0) {
-      return res.status(201).json({
+      return res.status(200).json({
         status: 'success',
         responseGetUser,
       }); 
@@ -145,6 +151,25 @@ const getMyUser = async ( req: RequestExt, res: Response, next: NextFunction) =>
     handleHttp(res, "ERROR_GET_USER");
   }
 };
+const getAllProfessionals = async (req: Request, res: Response , next: NextFunction) => {
+  try {
+    const professional = true;
+    const city = req.query.city ?? null;
+    const job = req.query.job ?? null;
+    console.log({professional, city, job})
+    const responseGetUser = await getAllProfessionalsService(professional, city, job);
+    if(responseGetUser.length > 0) {
+      return res.status(200).json({
+        status: 'success',
+        responseGetUser,
+      }); 
+    } else {
+      next(new AppError(404, "No hay usuarios para mostrar"));
+    }
+  } catch (error:any) {
+    next(new AppError(500, error.message));
+  };
+};
 
 export {
   getControllerUserbyId,
@@ -153,4 +178,5 @@ export {
   // postControllerUser,
   DeleteControllerUser,
   getMyUser,
+  getAllProfessionals
 };

@@ -7,6 +7,9 @@ import bodyParser from "body-parser";
 
 import errorHandler from "./middleware/errorHandler.middleware";
 
+import swaggerUi from "swagger-ui-express";
+import swaggerSetup from "./doc/swagger"
+
 const PORT = process.env.PORT || 3001;
 const app = express();
 
@@ -22,6 +25,7 @@ app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use(router);
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSetup));
 
 db().then(() => console.log("Conexion Ready"));
 
