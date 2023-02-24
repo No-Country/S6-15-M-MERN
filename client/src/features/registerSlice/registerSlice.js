@@ -1,18 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-
+const initialState = {}
 
 export const registerSlice = createSlice({
   name: 'register',
-  initialState: {
-    registeredUser: [],
-  },
-  reducers: {
-    userFetched: (state, action) => {
-      state.user = action.payload;
-      console.log(state.user, "EL ESTADO")
+  initialState,
+    reducers: {
+      userFetched(state, action) {
+        state.user = action.payload;
+        console.log(state.user, "EL ESTADO")
+      },
     },
-  },
 });
 
 

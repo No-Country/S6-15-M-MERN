@@ -3,6 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { useApi } from '../hooks/useApi'
+import { useSelector } from 'react-redux';
 
 
 const userSchema = yup.object().shape({
@@ -27,7 +28,9 @@ const userSchema = yup.object().shape({
 });
 
 function Register({ switchRegistro, closeModal }) {
-  
+
+
+
   const [,postUser] = useApi();
   const [user, setUser] = useState({});
   const navigate = useNavigate();
