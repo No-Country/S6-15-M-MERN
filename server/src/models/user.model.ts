@@ -23,7 +23,7 @@ const userSchema = new Schema<IUser>(
       type: String,
     },
 
-    phonecontact: {
+    phone: {
       type: Number,
     },
 
