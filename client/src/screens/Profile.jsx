@@ -1,11 +1,25 @@
 import React from 'react';
+import { useEffect } from 'react';
 import EditProfileProfessional from '../components/Profile/EditProfileProfessional';
-import { getUser } from '../features/registerSlice/service';
+import { useApi } from '../hooks/useApi';
+
+
+
 function Profile() {
-  async function getUserById() {
-    await getUser().then((response) => {});
+
+  const [,,userLogin] = useApi();
+
+const getUserById = async () => {
+    await userLogin()
+    .then((response) => {
+      console.log(response, 'EL ESTADO DEL REGISTRO')
+    });
   }
-  getUserById();
+
+  useEffect(() => {
+    getUserById();
+  })
+ 
 
   return (
     <div>

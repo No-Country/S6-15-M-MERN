@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
-import { postUser } from '../features/registerSlice/service';
 import { useNavigate } from 'react-router-dom';
+import { useApi } from '../hooks/useApi'
+
 
 const userSchema = yup.object().shape({
   name: yup.string().required('Debes ingresar tu nombre'),
@@ -26,10 +27,13 @@ const userSchema = yup.object().shape({
 });
 
 function Register({ switchRegistro, closeModal }) {
+  
+  const [,postUser] = useApi();
   const [user, setUser] = useState({});
   const navigate = useNavigate();
 
   const userProfile = (event) => {
+    console.log(event, 'EVENTO')
     setUser({
       ...user,
       [event.target.name]: event.target.value,
@@ -37,14 +41,14 @@ function Register({ switchRegistro, closeModal }) {
       [event.target.email]: event.target.value,
     });
   };
-  /*  console.log(user, ' el usuario'); */
 
-  const handleOnSubmit = async (e) => {
-    e.preventDefault();
-    await postUser(user).then((response) => {
+  const handleOnSubmit = async (event) => {
+    console.log(user, 'el usuario222')
+    event.preventDefault();
+    await postUser(user)
+      .then((response) => {
       console.log(response, ' la respuesta');
     });
-    e.preventDefault();
     closeModal();
     navigate('/perfil');
   };
@@ -100,13 +104,13 @@ function Register({ switchRegistro, closeModal }) {
                 required
                 onChange={userProfile}
               />
-              {!user.name ? (
+              {/* {!user.name ? (
                 <ErrorMessage
                   name='name'
                   component='p'
                   className='font-bold  text-[#ffffff]'
                 />
-              ) : null}
+              ) : null} */}
               <label
                 className='  font-bold block text-[#ffffff] mt-5 mr-56'
                 htmlFor='email font-khula'
@@ -122,13 +126,13 @@ function Register({ switchRegistro, closeModal }) {
                 className=' px-3 py-2 focus: outline-none rounded-xl pl-24 text-left'
                 onChange={userProfile}
               />
-              {!user.email ? (
+              {/* {!user.email ? (
                 <ErrorMessage
                   name='email'
                   component='p'
                   className='font-bold  text-[#ffffff]'
                 />
-              ) : null}
+              ) : null} */}
               <label
                 className='  font-bold block text-[#ffffff] mt-5 mr-48  '
                 htmlFor='password font-khula'
@@ -144,13 +148,13 @@ function Register({ switchRegistro, closeModal }) {
                 className=' px-3 py-2 pl-24 focus: outline-none rounded-xl placeholder:-translate-x-6'
                 onChange={userProfile}
               />
-              {!user.password ? (
+              {/* {!user.password ? (
                 <ErrorMessage
                   name='password'
                   component='p'
                   className='font-bold  text-[#ffffff]'
                 />
-              ) : null}
+              ) : null} */}
               <label
                 className=' font-bold block text-[#ffffff] mt-5 mr-24 m '
                 htmlFor='password'
@@ -164,17 +168,17 @@ function Register({ switchRegistro, closeModal }) {
                 placeholder='Confirma tu contraseña'
                 className=' px-3 py-2 focus: outline-none rounded-xl pl-24 text-left placeholder:-translate-x-6  '
               />
-              {!user.password ? (
+              {/* {!user.password ? (
                 <ErrorMessage
                   name='passwordConfirmation'
                   component='p'
                   className='font-bold  text-[#ffffff]'
                 />
-              ) : null}
+              ) : null} */}
               <div>
                 <Field
                   name='termsAndConditions'
-                  default='false'
+                  default={false}
                   type='checkbox'
                   className='mt-5 mb-5'
                 />

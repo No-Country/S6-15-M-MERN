@@ -3,16 +3,14 @@ import { useDispatch } from 'react-redux';
 import { jobsFetched } from '../features/jobs/jobsSlice';
 import axios from 'axios';
 
-export function useApi(
-  initialValue = 'https://container-service-1.utth4a3kjn6m0.us-west-2.cs.amazonlightsail.com/'
-) {
+export function useApi( initialValue = 'https://container-service-1.utth4a3kjn6m0.us-west-2.cs.amazonlightsail.com/' )  {
   const dispatch = useDispatch();
 
   const url = initialValue;
 
-    const readJobs = async () => {      
-
-      axios.get(`${url}jobs`).then((resp) => {
+  const readJobs = async () => {      
+      axios.get(`${url}jobs`)
+      .then((resp) => {
         dispatch(
           jobsFetched(resp.data.jobs)
         )
@@ -21,22 +19,34 @@ export function useApi(
       .catch((err) => console.error(err));
   };
 
-  /*   const login = (name,email,pass)=>{
-    axios.get(`${url}/auth/register`).then((resp) => {
-      dispatch(
-        jobsFetched(resp.data.jobs)
+
+  const postUser = (data) => {
+    console.log(data, 'DATA')
+    return new Promise((resolve, reject) =>
+      fetch(
+        'https://container-service-1.utth4a3kjn6m0.us-west-2.cs.amazonlightsail.com/auth/register',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Connection: 'keep-alive',
+          },
+          body: JSON.stringify(data),
+        }
       )
-  
-    })
-    .catch(err => console.error(err))
-  }
- */
-
-
-  const registrerUser = (name,email,pass)=>{
-    axios.get(`${url}/auth/register`).then((resp) => {
+        .then((res) => res.json())
+        .then((result) => resolve(result))
+        .catch((error) => reject(error))
+    );
+  };
+   
+  const userLogin = (data)=>{
+    axios.post(`${url}/auth/login`)
+    .then((resp) => {
+      console.log(resp, "RESPUESTALOGIN")
       dispatch(
-        registerFetched(resp.data.user)
+        userFetched(resp.status)
+
       )
       /* console.log(resp.data) */
     })
@@ -44,5 +54,5 @@ export function useApi(
   }
 
 
-  return [readJobs, login, registrerUser];
+  return [readJobs, postUser, userLogin];
 }
