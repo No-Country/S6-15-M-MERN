@@ -3,11 +3,14 @@ import Card from "./Card";
 import data from "./data.json";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronCircleRight, faCircleChevronLeft } from '@fortawesome/free-solid-svg-icons'
+import { useApi } from "../../hooks/useApi";
 
-const MostRequested = () => {
+const MostRequested = () => { 
 
   const carousel = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  const [readJobs] = useApi();
 
 
 
@@ -31,11 +34,18 @@ const MostRequested = () => {
     }
   }
 
+  useEffect(()=>{
+    readJobs();
+  }, [])
+
 
   useEffect(() => {
     carousel.current["scrollLeft"] =
       301 * currentIndex;
   }, [currentIndex]);
+
+
+  
 
   return (
     <div className="2xl:container 2xl:mx-auto 2xl:px-0 py-3 md:px-10 h-500 relative">

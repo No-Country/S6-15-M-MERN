@@ -1,26 +1,27 @@
 import { useState, useEffect } from "react";
 import Card from "./MostRequested/Card";
-import data from "./MostRequested/data.json"
 import { useApi } from '../hooks/useApi';
+import { useSelector } from "react-redux";
 
 function ServicesCards() {
 
-    const [servicios, setServicios] = useApi();
+    const jobs = useSelector(state => state.jobs);
+    console.log(jobs)
+
+    const [readJobs] = useApi();
     const [busqueda, setBusqueda] = useState("Todos");
 
     useEffect(() => {
-        setServicios()
+        readJobs()
     }, [])
     
 
-    const handleOption = (event)=>{
-        const election = event.target.value;
-        setBusqueda(election);
+    const handleOption = (e)=>setBusqueda(e.target.value);
 
-    }
     return (
         <>
             <div className="flex flex-col justify-center">
+                <button className='bg-orange-500' ></button>
                 <h2 className='text-[#28315C] align-middle font-extrabold text-5xl mt-28 text-center'>
                     Contrata profesionales de confianza
                 </h2>
@@ -35,8 +36,8 @@ function ServicesCards() {
             <option onClick={handleOption}>Todos</option>
 
             {
-                servicios !== null &&
-                servicios.jobs.map((requested) => {
+                jobs !== null &&
+                jobs.jobs.map((requested) => {
                     return (
                         <option key={requested._id} onClick={handleOption}>{requested.service}</option>
 
@@ -48,10 +49,10 @@ function ServicesCards() {
             <div className="flex justify-center flex-wrap gap-5 max-w-[1300px] mt-5 mx-auto pt-10">
                 
                 {
-                    servicios === null ?
+                    jobs === null ?
                      <h2 className="text-[#28315C] animate-bounce text-xl" >Loading</h2> :
                      ((busqueda === "Todos") &&
-                    servicios.jobs.map((requested, index) => {
+                    jobs.jobs.map((requested, index) => {
                         return (
                             <div className="my-4" key={requested._id}>
                                 <Card imagen={requested.jobImageUrl} title={requested.service} description={requested.description}  />
@@ -68,7 +69,7 @@ function ServicesCards() {
                 
                 }
                 {(busqueda !== "Todos") &&
-                servicios.jobs.map((requested) => {
+                jobs.jobs.map((requested) => {
                     if(requested.service === busqueda){
                         return (
                             <div className="my-4" key={requested._id}>

@@ -1,19 +1,24 @@
 
 import clipper from "../assets/clipper.svg";
-import { useState } from "react";
+import { useRef } from "react";
+import emailjs from "@emailjs/browser"
 
 export const OrderService = () => {
-  const [inputs, setInputs] = useState({});
 
-  const handleChange = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
-    setInputs((values) => ({ ...values, [name]: value }));
-  };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(inputs);
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm('service_60byldi', 'template_uj2wx57', form.current, 'd_XVSuMm0pNrQoWNm')
+      .then((result) => {
+          console.log(result.text);
+          console.log("message sent");
+
+      }, (error) => {
+          console.log(error.text);
+      });
   };
 
   return (
@@ -34,7 +39,7 @@ export const OrderService = () => {
         <div className="flex justify-center">
           <form
             className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full md:w-3/4 flex flex-wrap"
-            onSubmit={handleSubmit}
+            ref={form} onSubmit={sendEmail}
           >
             <div className="mb-4 w-full md:w-1/2 p-2">
               <label
@@ -47,10 +52,10 @@ export const OrderService = () => {
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="username"
                 type="text"
-                name="username"
-                value={inputs.username || ""}
+                name="from_name"
+                // value={inputs.username || ""}
                 placeholder="Nombre Completo"
-                onChange={handleChange}
+                // onChange={handleChange}
               />
             </div>
 
@@ -65,10 +70,10 @@ export const OrderService = () => {
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="email"
                 type="email "
-                name="email"
-                value={inputs.email || ""}
+                name="user_email"
+                // value={inputs.email || ""}
                 placeholder="email"
-                onChange={handleChange}
+                // onChange={handleChange}
               />
             </div>
 
@@ -82,9 +87,9 @@ export const OrderService = () => {
               <select
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="location"
-                name="location"
-                value={inputs.location}
-                onChange={handleChange}
+                name="to_name"
+                // value={inputs.location}
+                // onChange={handleChange}
               >
                 <option value="grapefruit">Grapefruit</option>
                 <option value="lime">Lime</option>
@@ -105,10 +110,10 @@ export const OrderService = () => {
                 id="ask"
                 type="number"
                 rows="4"
-                name="ask"
-                value={inputs.ask || ""}
+                name="message"
+                // value={inputs.ask || ""}
                 placeholder="Describe detalladamente tu problema"
-                onChange={handleChange}
+                // onChange={handleChange}
               />
             </div>
 

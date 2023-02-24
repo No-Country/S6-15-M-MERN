@@ -6,12 +6,13 @@ import Profile from './screens/Profile';
 import { ServicesDetail } from './screens/ServicesDetail';
 import SolicitedService from './screens/SolicitedService';
 import Faq from './components/Faq';
-import {OrderService} from './screens/OrderService';
-import Login from './components/Login'
-import NavBar from './components/NavBar'
-import {BoolHook} from './hooks/BoolHook'
-import Footer from './components/Footer'
-
+import { OrderService } from './screens/OrderService';
+import Login from './components/Login';
+import NavBar from './components/NavBar';
+import { BoolHook } from './hooks/BoolHook';
+import Footer from './components/Footer';
+import Messages from './components/Messages';
+import PerfilProfesional from './components/PerfilProfesional/PerfilProfesional';
 
 function App() {
   const [isModalOpen, changeModalStatus] = BoolHook(false);
@@ -19,8 +20,9 @@ function App() {
   
       <BrowserRouter>
        <NavBar changeModal={changeModalStatus} />
-       <Login isOpen={isModalOpen} closeModal={changeModalStatus} />     
-        <Routes>
+       <Login isOpen={isModalOpen} closeModal={changeModalStatus} /> 
+       <section className='center'>
+       <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/servicios" element={<Services />} /> 
           <Route path= "/perfil" element={<Profile/>}/>
@@ -28,8 +30,12 @@ function App() {
           <Route path='faq' element={<Faq />} />          
           <Route path="/sol-servicio" element={<OrderService />} />
           <Route path="/sol-servicio/solicitado" element={<SolicitedService />} />
+          <Route path='perfilProfesional' element={<PerfilProfesional/>} />
         </Routes>
+        </section>    
+        <div className='footerDiv'>
         <Footer/>
+        </div>
       </BrowserRouter>
   )
 

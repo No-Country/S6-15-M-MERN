@@ -1,5 +1,5 @@
 
-import { createSearchParams, useNavigate, Link } from 'react-router-dom';
+import { createSearchParams, useNavigate } from 'react-router-dom';
 
 const Card = ({imagen, title, description, price})=>{
     const navigate = useNavigate();
