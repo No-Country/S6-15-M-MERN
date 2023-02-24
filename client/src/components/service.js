@@ -1,4 +1,4 @@
-export const postUser = (data) => {
+/* export const postUser = (data) => {
     return new Promise((resolve, reject) =>
       fetch("https://container-service-1.utth4a3kjn6m0.us-west-2.cs.amazonlightsail.com/auth/register", {
         method: "POST",
@@ -8,4 +8,4 @@ export const postUser = (data) => {
       .then((result) => resolve(result))
       .catch((error) => reject (error))
     )
-  };
+  }; */
