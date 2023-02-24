@@ -18,7 +18,6 @@ export function useApi(initialValue = "https://container-service-1.utth4a3kjn6m0
         dispatch(
           jobsFetched(resp.data.jobs)
         )
-        /* console.log(resp.data) */
       })
       .catch(err => console.error(err))
 
@@ -30,7 +29,6 @@ export function useApi(initialValue = "https://container-service-1.utth4a3kjn6m0
       dispatch(
         jobsFetched(resp.data.jobs)
       )
-      /* console.log(resp.data) */
     })
     .catch(err => console.error(err))
   }

@@ -5,7 +5,6 @@ import Reviews from './../components/Reviews';
 import MostRequested from './../components/MostRequested/MostRequested';
 
 export const Home = () => {
-  // const [isModalOpen, changeModalStatus] = BoolHook(false);
 
   return (
     <>
