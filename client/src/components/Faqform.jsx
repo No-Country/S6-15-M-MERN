@@ -4,13 +4,21 @@ import * as yup from "yup";
 import image from "../assets/faqform.png"
 
 const userSchema = yup.object().shape({
+  name: yup
+  .string()
+  .required("Debes ingresar tu nombre"),
   email: yup
     .string()
     .email("Mail no valido")
     .required("Debes ingresar un mail")
+
 });
 
 function Faqform() {
+  const handleClick = ()=>{
+    console.log("entro")
+
+  }
   return (
     <div className="flex max-w-7xl mx-auto mb-28" >  {/* bg-[#f5f5f5] rounded-xl  md:m-auto md:w-1/3 xl:m-auto xl: w-1/4 */}
       <div className="flex w-1/3 items-center justify-center ">
@@ -30,13 +38,13 @@ function Faqform() {
                 <div className="p-3 w-1/2">
                   <label className="  font-bold block text-[#313D69] mt-5 mr-56" htmlFor="email font-khula">Nombre</label>
                   <Field
-                    name="nombre"
-                    id="nombre"
+                    name="name"
+                    id="name"
                     type="text"
                     placeholder="Nombre completo"
                     className=" px-3 py-2 focus: outline-none rounded-xl text-left w-full"
                   />
-                  <ErrorMessage name="email" component="p" className="font-bold text-red-600" />
+                  <ErrorMessage name="name" component="p" className="font-bold text-red-600" />
                 </div>
                 <div className="p-3 w-1/2">
                 <label className="  font-bold block text-[#313D69] mt-5 mr-56" htmlFor="email font-khula">Email</label>
@@ -96,7 +104,7 @@ function Faqform() {
 
             </div>
             <div className="mx-auto flex w-full items-center justify-center">
-            <button type="submit" className="bg-btnColor w-48 h-12 rounded-full text-xl text-[#ffffff] font-bold  active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all  active:hover:bg-[#83e3be]  disabled:cursor-not-allowed  mt-4 hover:shadow-228b active:shadow " >Enviar</button>
+            <button onClick={handleClick} type="submit" className="bg-btnColor w-48 h-12 rounded-full text-xl text-[#ffffff] font-bold  active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all  active:hover:bg-[#83e3be]  disabled:cursor-not-allowed  mt-4 hover:shadow-228b active:shadow " >Enviar</button>
 
             </div>
 
