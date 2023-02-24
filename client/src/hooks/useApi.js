@@ -12,7 +12,7 @@ export function useApi(initialValue = "https://container-service-1.utth4a3kjn6m0
 
   const url = initialValue;
 
-    const readJobs = () => {      
+    const readJobs = async () => {      
 
       axios.get(`${url}jobs`).then((resp) => {
         dispatch(
@@ -36,8 +36,17 @@ export function useApi(initialValue = "https://container-service-1.utth4a3kjn6m0
   }
 
 
+  const registrerUser = (name,email,pass)=>{
+    axios.get(`${url}/auth/register`).then((resp) => {
+      dispatch(
+        registerFetched(resp.data.user)
+      )
+      /* console.log(resp.data) */
+    })
+    .catch(err => console.error(err))
+  }
 
 
-  return [readJobs, login];
+  return [readJobs, login, registrerUser];
 }
 

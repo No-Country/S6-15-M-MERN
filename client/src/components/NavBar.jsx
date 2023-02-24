@@ -16,6 +16,7 @@ import {
 } from '@heroicons/react/24/outline';
 import contrata from '../assets/contrata.png';
 import Login from './Login';
+import { Link } from 'react-router-dom';
 
 const solutions = [
   {
@@ -94,10 +95,10 @@ export default function NavBar({ changeModal }) {
       <div className='px-7'>
         <div className='flex items-center justify-between py-6 md:justify-start xl:justify-center md:space-x-10'>
           <div className='flex justify-start lg:w-0 lg:flex-1'>
-            <a href='/'>
+            <Link href='/'>
               <span className='sr-only'>Your Company</span>
               <img className='h-9 ml-3 w-auto sm:h-10' src={contrata} alt='' />
-            </a>
+            </Link>
           </div>
           <div className='-my-2 -mr-2 md:hidden'>
             <Popover.Button className='inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500'>

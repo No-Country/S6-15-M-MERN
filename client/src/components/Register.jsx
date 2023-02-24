@@ -25,6 +25,7 @@ const userSchema = yup.object().shape({
 });
 
 function Register({switchRegistro}) {
+  
   const[user, setUser] = useState({})
   
   const userProfile = (event) => {
