@@ -50,7 +50,7 @@ const MostRequested = () => {
   return (
     <div className="2xl:container 2xl:mx-auto 2xl:px-0 py-3 md:px-10 h-500 relative   min-[712px]:bg-red-500 ">
 
-      <section className="carousel my-20 mx-auto font-poppins min-w  max-w-[1308px] h-[415px] ">
+      <section className="carousel my-20 mx-auto font-poppins min-w bg-white w-[385px] min-[800px]:w-[700px] min-[1130px]:w-[1010px]  min-[1393px]:w-[1308px] h-[415px] "> {/* w-[390px] */} {/* w-[700px] */} {/* w-[1010px] */}
         <div className="ml-16 mb-4 text-left">
           <h3 className="text-[#28315C] font-extrabold text-3l ">
             Servicios más solicitados
@@ -59,7 +59,7 @@ const MostRequested = () => {
         <div className="prueba flex">
           <button onClick={scrollLeft} className=" rounded-full  text-3xl text-[#28315C] font-bold my-auto m-2 sm:ml-2 sm:mr-[14px] flex items-center hover:scale-110 "> <FontAwesomeIcon icon={faCircleChevronLeft} /> </button>
 
-          <div id="carousel" className="carousel my-4 py-3 p-0 sm:px-3 flex flex-grow items-center justify-start overflow-x-hidden scroll-smooth  touch-pan-x z-0 gap-6 "
+          <div id="carousel" className="carousel my-4 py-3 p-0 sm:px-3 flex flex-grow items-center justify-start overflow-x-hidden scroll-smooth  touch-pan-x z-0 gap-6"
             ref={carousel}>
 
             {data.resources.map((requested, index) => {
