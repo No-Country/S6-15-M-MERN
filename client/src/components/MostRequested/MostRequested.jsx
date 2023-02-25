@@ -48,7 +48,7 @@ const MostRequested = () => {
   
 
   return (
-    <div className="2xl:container 2xl:mx-auto 2xl:px-0 py-3 md:px-10 h-500 relative">
+    <div className="2xl:container 2xl:mx-auto 2xl:px-0 py-3 md:px-10 h-500 relative   min-[712px]:bg-red-500 ">
 
       <section className="carousel my-20 mx-auto font-poppins min-w  max-w-[1308px] h-[415px] ">
         <div className="ml-16 mb-4 text-left">
