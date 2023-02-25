@@ -11,8 +11,10 @@ const Card = ({imagen, title, description, price})=>{
             }).toString()
         });
     };
+    /* w-[277px] */
+    /* w-[265px] */
     return(
-        <div className="card bg-background-card-color w-[277px] h-[302px] rounded-2xl shadow-md"
+        <div className="card bg-background-card-color w-[277px] h-[302px] rounded-2xl shadow-md" 
         onClick={openCard}>
             <div className="top ">
                 <img

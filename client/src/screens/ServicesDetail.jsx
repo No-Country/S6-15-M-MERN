@@ -14,7 +14,6 @@ export const ServicesDetail = ({props}) => {
   const [readJobs] = useApi();
   const jobSelected = useSelector(state => state.jobs);
 
-
   useEffect(() => {
     readJobs()
     const job  = jobSelected.jobs.filter(item => item.service == searchparams.get('titulo'))
