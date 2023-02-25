@@ -31,7 +31,6 @@ function Login({ isOpen, closeModal }) {
 
   
   const userStatus = useSelector(state => state.user);
-  console.log(userStatus);
 
   const [,, userLogin] = useApi();
 
@@ -40,8 +39,6 @@ function Login({ isOpen, closeModal }) {
     email: "felipe@felipe.com"
     
   });
-
-  console.log(user);
 
 
   const [activeLogin, switchLogin] = BoolHook();
@@ -54,7 +51,7 @@ function Login({ isOpen, closeModal }) {
         `${import.meta.env.VITE_API_URL}/auth/google`,
         credentials
       );
-      console.log(data);
+      /* console.log(data); */
       // En data recibiran el token y el user para agregarlo a redux y a la local storage.
     } catch (error) {
       console.log('error', error.message);
@@ -67,7 +64,6 @@ function Login({ isOpen, closeModal }) {
       ...user,
       [e.target.name]:e.target.value
     })
-    console.log(user);
   }
 
   const navigate = useNavigate();
