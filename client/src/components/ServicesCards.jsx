@@ -6,7 +6,9 @@ import { useSelector } from "react-redux";
 function ServicesCards() {
 
     const jobs = useSelector(state => state.jobs);
-   
+    /* const user = useSelector(state => state.user);
+    console.log(user)
+    */
     
 
     const [readJobs] = useApi();
