@@ -36,7 +36,21 @@ export function useApi( initialValue = 'https://container-service-1.utth4a3kjn6m
         }
       )
         .then((res) => res.json())
-        .then((result) => resolve(result))
+        .then((result) => {
+          const verifiedUser ={
+            token: result.user.token,
+            id: result.user.user._id,
+            professional: result.user.user.professional
+          }
+          
+          dispatch(
+            userStatus(verifiedUser)        
+          )
+
+          localStorage.setItem('user', JSON.stringify(verifiedUser));
+
+
+          resolve(result)})
         .catch((error) => reject(error))
     );
   };
@@ -50,13 +64,13 @@ export function useApi( initialValue = 'https://container-service-1.utth4a3kjn6m
         professional: response.data.responseUser.user.professional
       }
 
-      console.log(response.data.responseUser.user);
+
       dispatch(
         userStatus(verifiedUser)        
       )
 
-      localStorage.setItem('user', response.data.responseUser.user._id);
-      localStorage.setItem('token', response.data.responseUser.token);
+      localStorage.setItem('user', JSON.stringify(verifiedUser));
+
       
     })
     .catch(function (error) {
