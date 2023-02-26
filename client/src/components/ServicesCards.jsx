@@ -56,7 +56,7 @@ function ServicesCards() {
                     jobs.jobs.map((requested, index) => {
                         return (
                             <div className="my-4" key={requested._id}>
-                                <Card imagen={requested.jobImageUrl} title={requested.service} description={requested.description}  />
+                                <Card id={requested._id} imagen={requested.jobImageUrl} title={requested.service} description={requested.description}  />
                             </div>
     
                         )
