@@ -1,7 +1,12 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { jobsFetched } from '../features/jobs/jobsSlice';
+<<<<<<< HEAD
 import { userStatus } from '../features/user/userSlice';
+=======
+import { userStatus } from "../features/user/userSlice";
+import { professionalsFetched } from "../features/professionalsSlice/professionalsSlice"
+>>>>>>> 1749856c14e021a09ec5db5434930aac6ca37577
 import axios from 'axios';
 import { professionalsFetched } from '../features/professionalsSlice/professionalsSlice';
 
@@ -63,6 +68,7 @@ export function useApi(
         console.log(response.data.responseUser.user);
         dispatch(userStatus(verifiedUser));
 
+<<<<<<< HEAD
         localStorage.setItem('user', response.data.responseUser.user._id);
         localStorage.setItem('token', response.data.responseUser.token);
       })
@@ -71,5 +77,24 @@ export function useApi(
       });
   };
 
+=======
+  const professionalsList = (id, city) => {
+    let searchCity = "";
+
+   (city != undefined) && (searchCity = "&city="+city);
+  
+
+    axios
+      .get(`${url}user?job=${id}${searchCity}`)
+      .then((resp) => {
+        dispatch(professionalsFetched(resp.data.responseGetUser));
+      })
+      .catch((err) => console.log(err));
+  };
+
+ 
+
+
+>>>>>>> 1749856c14e021a09ec5db5434930aac6ca37577
   return [readJobs, postUser, userLogin, professionalsList];
 }

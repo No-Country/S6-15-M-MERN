@@ -50,10 +50,10 @@ function ServicesCards() {
             return (
               <div className='my-4' key={requested._id}>
                 <Card
+                  id={requested._id}
                   imagen={requested.jobImageUrl}
                   title={requested.service}
                   description={requested.description}
-                  id={requested._id}
                 />
               </div>
             );
@@ -65,7 +65,6 @@ function ServicesCards() {
               return (
                 <div className='my-4' key={requested._id}>
                   <Card
-                    id={requested._id}
                     imagen={requested.jobImageUrl}
                     title={requested.service}
                     description={requested.description}

@@ -15,6 +15,7 @@ const initialState = {
   ],
 };
 
+<<<<<<< HEAD
 export const professionalsSlice = createSlice({
   name: 'professionals',
   initialState,
@@ -28,3 +29,22 @@ export const professionalsSlice = createSlice({
 
 export default professionalsSlice.reducer;
 export const { professionalsFetched } = professionalsSlice.actions;
+=======
+const professionalsSlice = createSlice({
+  name: "professionals",
+  initialState,
+  reducers: {
+    professionalsFetched(state, action){
+      return{
+        ...state,
+        professionals: action.payload
+      }
+    }
+  }
+})
+
+export const { professionalsFetched} = professionalsSlice.actions;
+
+export default professionalsSlice.reducer;
+
+>>>>>>> 1749856c14e021a09ec5db5434930aac6ca37577

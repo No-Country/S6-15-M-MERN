@@ -1,12 +1,12 @@
 import { createSearchParams, useNavigate } from 'react-router-dom';
 
-const Card = ({ imagen, title, description, price }) => {
+const Card = ({ imagen, title, description, price, id }) => {
   const navigate = useNavigate();
   const openCard = (titulo) => {
     navigate({
       pathname: '/servicesDetail',
       search: createSearchParams({
-        titulo: title,
+        id: id,
       }).toString(),
     });
   };
