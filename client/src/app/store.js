@@ -1,13 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import jobsReducer from '../features/jobs/jobsSlice';
-import registrerReducer from '../features/registerSlice/registerSlice';
+import userReducer from '../features/user/userSlice';
 import professionalsReducer from '../features/professionalsSlice/professionalsSlice';
 
 export default configureStore({
   reducer: {
     jobs: jobsReducer,
-    register: registrerReducer,
+    user: userReducer,
     professionals: professionalsReducer,
   },
 });

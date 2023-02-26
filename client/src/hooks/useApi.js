@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { jobsFetched } from '../features/jobs/jobsSlice';
+import { userStatus } from '../features/user/userSlice';
 import axios from 'axios';
 import { professionalsFetched } from '../features/professionalsSlice/professionalsSlice';
 
@@ -40,16 +41,6 @@ export function useApi(
     );
   };
 
-  const userLogin = (data) => {
-    axios
-      .post(`${url}/auth/login`)
-      .then((resp) => {
-        console.log(resp, 'RESPUESTALOGIN');
-        dispatch(userFetched(resp.status));
-      })
-      .catch((err) => console.error(err));
-  };
-
   const professionalsList = (data) => {
     axios
       .get(`${url}user?professional=true&job=${data.id}`)
@@ -57,6 +48,27 @@ export function useApi(
         dispatch(professionalsFetched(resp.data.responseGetUser));
       })
       .catch((err) => console.log(err));
+  };
+
+  const userLogin = (data) => {
+    axios
+      .post(`${url}auth/login`, data)
+      .then(function (response) {
+        const verifiedUser = {
+          token: response.data.responseUser.token,
+          id: response.data.responseUser.user._id,
+          professional: response.data.responseUser.user.professional,
+        };
+
+        console.log(response.data.responseUser.user);
+        dispatch(userStatus(verifiedUser));
+
+        localStorage.setItem('user', response.data.responseUser.user._id);
+        localStorage.setItem('token', response.data.responseUser.token);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   return [readJobs, postUser, userLogin, professionalsList];

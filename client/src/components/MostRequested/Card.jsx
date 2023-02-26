@@ -1,15 +1,17 @@
 import { createSearchParams, useNavigate } from 'react-router-dom';
 
-const Card = ({ imagen, title, description, price, id }) => {
+const Card = ({ imagen, title, description, price }) => {
   const navigate = useNavigate();
   const openCard = (titulo) => {
     navigate({
       pathname: '/servicesDetail',
       search: createSearchParams({
-        id: id,
+        titulo: title,
       }).toString(),
     });
   };
+  /* w-[277px] */
+  /* w-[265px] */
   return (
     <div
       className='card bg-background-card-color w-[277px] h-[302px] rounded-2xl shadow-md'

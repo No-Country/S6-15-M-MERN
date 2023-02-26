@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import Modal from './Modal';
 import GoogleLogin from './GoogleLogin';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import Register from './Register';
 import { BoolHook } from '../hooks/BoolHook';
+import { useApi } from '../hooks/useApi';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
+
 const loginSchema = yup.object().shape({
   password: yup
     .string()
@@ -22,8 +26,23 @@ const loginSchema = yup.object().shape({
       'Debes ingresar un gmail válido'
     ),
 });
+
 function Login({ isOpen, closeModal }) {
+
+  
+  const userStatus = useSelector(state => state.user);
+
+  const [,, userLogin] = useApi();
+
+  const [user, setUser] = useState({
+    password: "felipe",
+    email: "felipe@felipe.com"
+    
+  });
+
+
   const [activeLogin, switchLogin] = BoolHook();
+
   const googleLoginHandler = async (credentials) => {
     // No gestionar esto asi. Hacerlo con redux toolkit o al menos un custom hook de servicios
     // O un archivo donde reunan todas las llamadas a la api en constantes para usarlas todos.
@@ -32,13 +51,31 @@ function Login({ isOpen, closeModal }) {
         `${import.meta.env.VITE_API_URL}/auth/google`,
         credentials
       );
-      console.log(data);
+      /* console.log(data); */
       // En data recibiran el token y el user para agregarlo a redux y a la local storage.
     } catch (error) {
       console.log('error', error.message);
       // No se que quieren hacer en caso de error, en front.
     }
   };
+
+  const handleChange = (e)=>{
+    setUser({
+      ...user,
+      [e.target.name]:e.target.value
+    })
+  }
+
+  const navigate = useNavigate();
+
+  const handleSubmit = (e)=>{
+    e.preventDefault();
+    userLogin(user);
+    closeModal()
+    userStatus.user.professional ?
+    navigate("/perfilProfesional") :
+    navigate("/servicios")
+  }
 
   return (
     <Modal isOpen={isOpen} closeModal={closeModal}>
@@ -75,7 +112,7 @@ function Login({ isOpen, closeModal }) {
               initialValues={{ email: '', password: '' }}
               validationSchema={loginSchema}
             >
-              <Form>
+              <Form onSubmit={handleSubmit}>
                 <div>
                   <span className='   block text-[#ffffff] mt-5 '>
                     {' '}
@@ -89,6 +126,8 @@ function Login({ isOpen, closeModal }) {
                     Email
                   </label>
                   <Field
+                  value={user.email}
+                  onChange={handleChange}
                     name='email'
                     id='email'
                     type='text'
@@ -107,6 +146,8 @@ function Login({ isOpen, closeModal }) {
                     Contraseña
                   </label>
                   <Field
+                  value={user.password}
+                  onChange={handleChange}
                     name='password'
                     id='password'
                     type='password'
@@ -128,7 +169,7 @@ function Login({ isOpen, closeModal }) {
                 </button>
                 <button
                   type='submit'
-                  onClick={closeModal}
+                  /* onClick={()=>handleLogin()} */
                   className='bg-btnColor w-48 h-12 rounded-full text-xl mb-4 text-[#ffffff] font-bold  active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all  active:hover:bg-[#83e3be]  disabled:cursor-not-allowed  mt-4 hover:shadow-228b active:shadow '
                 >
                   Ingresar

@@ -16,7 +16,6 @@ import {
 } from '@heroicons/react/24/outline';
 import contrata from '../assets/contrata.png';
 import { Link } from 'react-router-dom';
-import Login from './Login';
 
 const solutions = [
   {
