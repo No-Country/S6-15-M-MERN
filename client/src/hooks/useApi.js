@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { jobsFetched } from '../features/jobs/jobsSlice';
 import { userStatus } from "../features/user/userSlice";
+import { professionalsFetched } from "../features/professionalsSlice/professionalsSlice"
 import axios from 'axios';
 
 export function useApi( initialValue = 'https://container-service-1.utth4a3kjn6m0.us-west-2.cs.amazonlightsail.com/' )  {
@@ -65,8 +66,22 @@ export function useApi( initialValue = 'https://container-service-1.utth4a3kjn6m
     
   }
 
+  const professionalsList = (id, city) => {
+    let searchCity = "";
+
+   (city != undefined) && (searchCity = "&city="+city);
+  
+
+    axios
+      .get(`${url}user?job=${id}${searchCity}`)
+      .then((resp) => {
+        dispatch(professionalsFetched(resp.data.responseGetUser));
+      })
+      .catch((err) => console.log(err));
+  };
+
  
 
 
-  return [readJobs, postUser, userLogin];
+  return [readJobs, postUser, userLogin, professionalsList];
 }
