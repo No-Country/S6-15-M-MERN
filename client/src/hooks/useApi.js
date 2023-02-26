@@ -20,6 +20,7 @@ export function useApi( initialValue = 'https://container-service-1.utth4a3kjn6m
   };
 
 
+
   const postUser = (data) => {
     console.log(data, 'DATA')
     return new Promise((resolve, reject) =>
@@ -62,11 +63,19 @@ export function useApi( initialValue = 'https://container-service-1.utth4a3kjn6m
       console.log(error);
     });
 
-    
+   
   }
 
- 
+  const readUser = async () => {      
+    axios.get(`${url}user`)
+    .then((resp) => {
+      dispatch(
+        jobsFetched(resp.data.users)
+      )
+    })
+    .catch((err) => console.error(err));
+};
 
 
-  return [readJobs, postUser, userLogin];
+  return [readJobs, postUser, userLogin, readUser ] ;
 }

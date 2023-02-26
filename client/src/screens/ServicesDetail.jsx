@@ -11,12 +11,12 @@ export const ServicesDetail = ({props}) => {
 
  
   const [filteredJob, setFilteredJob] = useState([])
-  const [readJobs] = useApi();
-  const jobSelected = useSelector(state => state.jobs);
+  const [,,, readUser] = useApi();
+  const jobSelected = useSelector(state => state.users);
 
   useEffect(() => {
-    readJobs()
-    const job  = jobSelected.jobs.filter(item => item.service == searchparams.get('titulo'))
+    readUser()
+    const job  = jobSelected.users.filter(item => item.job == searchparams.get('titulo'))
     setFilteredJob(job)
     console.log(job, "EL JOB")
   }, [])

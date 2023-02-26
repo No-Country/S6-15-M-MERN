@@ -32,7 +32,7 @@ function Login({ isOpen, closeModal }) {
   
   const userStatus = useSelector(state => state.user);
 
-  const [,, userLogin] = useApi();
+  const [,,userLogin] = useApi();
 
   const [user, setUser] = useState({
     password: "felipe",

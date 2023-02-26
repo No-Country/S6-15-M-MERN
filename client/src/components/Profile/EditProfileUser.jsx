@@ -30,7 +30,7 @@ function EditProfileProfessional() {
       .string()
       .email("Mail no valido")
       .required("Debes ingresar un mail"),
-  });
+  })};
 function EditProfileUser() {
     return (
         <div>
