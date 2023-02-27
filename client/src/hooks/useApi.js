@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { jobsFetched } from '../features/jobs/jobsSlice';
 import { userStatus } from "../features/user/userSlice";
+import { professionalsFetched } from "../features/professionalsSlice/professionalsSlice"
 import axios from 'axios';
 
 export function useApi( initialValue = 'https://container-service-1.utth4a3kjn6m0.us-west-2.cs.amazonlightsail.com/' )  {
@@ -36,7 +37,21 @@ export function useApi( initialValue = 'https://container-service-1.utth4a3kjn6m
         }
       )
         .then((res) => res.json())
-        .then((result) => resolve(result))
+        .then((result) => {
+          const verifiedUser ={
+            token: result.user.token,
+            id: result.user.user._id,
+            professional: result.user.user.professional
+          }
+          
+          dispatch(
+            userStatus(verifiedUser)        
+          )
+
+          localStorage.setItem('user', JSON.stringify(verifiedUser));
+
+
+          resolve(result)})
         .catch((error) => reject(error))
     );
   };
@@ -50,13 +65,13 @@ export function useApi( initialValue = 'https://container-service-1.utth4a3kjn6m
         professional: response.data.responseUser.user.professional
       }
 
-      console.log(response.data.responseUser.user);
+
       dispatch(
         userStatus(verifiedUser)        
       )
 
-      localStorage.setItem('user', response.data.responseUser.user._id);
-      localStorage.setItem('token', response.data.responseUser.token);
+      localStorage.setItem('user', JSON.stringify(verifiedUser));
+
       
     })
     .catch(function (error) {
@@ -66,16 +81,22 @@ export function useApi( initialValue = 'https://container-service-1.utth4a3kjn6m
    
   }
 
-  const readUser = async () => {      
-    axios.get(`${url}user`)
-    .then((resp) => {
-      dispatch(
-        jobsFetched(resp.data.users)
-      )
-    })
-    .catch((err) => console.error(err));
-};
+  const professionalsList = (id, city) => {
+    let searchCity = "";
+
+   (city != undefined) && (searchCity = "&city="+city);
+  
+
+    axios
+      .get(`${url}user?job=${id}${searchCity}`)
+      .then((resp) => {
+        dispatch(professionalsFetched(resp.data.responseGetUser));
+      })
+      .catch((err) => console.log(err));
+  };
+
+ 
 
 
-  return [readJobs, postUser, userLogin, readUser ] ;
+  return [readJobs, postUser, userLogin, professionalsList];
 }

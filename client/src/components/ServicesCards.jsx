@@ -6,7 +6,9 @@ import { useSelector } from "react-redux";
 function ServicesCards() {
 
     const jobs = useSelector(state => state.jobs);
-   
+    /* const user = useSelector(state => state.user);
+    console.log(user)
+    */
     
 
     const [readJobs] = useApi();
@@ -58,7 +60,7 @@ function ServicesCards() {
                     jobs.jobs.map((requested, index) => {
                         return (
                             <div className="my-4" key={requested._id}>
-                                <Card imagen={requested.jobImageUrl} title={requested.service} description={requested.description}  />
+                                <Card id={requested._id} imagen={requested.jobImageUrl} title={requested.service} description={requested.description}  />
                             </div>
     
                         )

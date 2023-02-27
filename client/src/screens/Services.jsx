@@ -1,5 +1,6 @@
 import React from 'react'
 import ServicesCards from '../components/ServicesCards';
+import { useSelector } from 'react-redux';
 
 
 
@@ -9,7 +10,9 @@ import ServicesCards from '../components/ServicesCards';
 
 export const Services = () => {
 
-    
+    const user = useSelector(state => state.user);
+
+    console.log(user)
 
 
     return (
