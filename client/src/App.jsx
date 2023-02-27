@@ -30,7 +30,7 @@ function App() {
           <Route path='faq' element={<Faq />} />          
           <Route path="/sol-servicio" element={<OrderService />} />
           <Route path="/sol-servicio/solicitado" element={<SolicitedService />} />
-          <Route path='perfilProfesional' element={<PerfilProfesional/>} />
+          <Route path='perfilProfesional/:result' element={<PerfilProfesional/>} />
         </Routes>
         </section>    
         <div className='footerDiv'>

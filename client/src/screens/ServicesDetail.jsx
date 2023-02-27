@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import { CardServices } from '../components/services/CardServices';
 import Dropdown from '../components/services/Dropdown';
 import { useSelector } from 'react-redux';
 import { useApi } from '../hooks/useApi';
-import image from "../assets/Frame.png"
+/* import image from "../assets/Frame.png" */
 
 export const ServicesDetail = ({ props }) => {
   const [searchparams] = useSearchParams();
   const [, , , professionalsList] = useApi();
-  const [professional, setProfessional] = useState([]);
+  const [professional, setProfessional] = useState(null);
   const [ciudad, setCiudad] = useState("")
 
   const handleOption = (e)=>{
@@ -19,21 +19,27 @@ export const ServicesDetail = ({ props }) => {
 
   }
 
+ 
 
-  
 
   
 
   const professionals = useSelector((state) => state.professionals);
-  /* console.log(professionals.professionals); */
+  const jobs = useSelector((state) => state.jobs);
 
-  const [busqueda, setBusqueda] = useState('Todos');
+
+  const [busqueda, setBusqueda] = useState('Todos'); 
+
+
+
+
+
 
   useEffect(() => {
-    console.log(searchparams.get("id"));
     setProfessional({ id: searchparams.get('id') });
     professionalsList(searchparams.get("id"), ciudad);
   }, [ciudad]);
+
 
   return (
     <>
@@ -62,10 +68,10 @@ export const ServicesDetail = ({ props }) => {
             <div className='mb-4'>
               {/* agrego esta porcion de código solo para probarlo rápido */}
 
-              <select className='text-base mx-auto mt-16 font-normal rounded-full border-2 bg-green-100 text-gray-600 h-12 w-[429px] pl-5 pr-10  hover:border-gray-400 focus:outline-none appearance-none'>
-          <option onClick={handleOption}>Todos</option>
+              <select onClick={handleOption} className='text-base mx-auto mt-16 font-normal rounded-full border-2 bg-green-100 text-gray-600 h-12 w-[429px] pl-5 pr-10  hover:border-gray-400 focus:outline-none appearance-none'>
+          <option >Todos</option>
 
-          <option  onClick={handleOption}>
+          <option  >
           Cucuta
                 </option>
         </select>
@@ -91,16 +97,20 @@ export const ServicesDetail = ({ props }) => {
           <div className=' p-2 flex flex-wrap gap-5 items-center justify-center '>
             {
             professionals.professionals.map((item, index) => {
+              
               return (
                 <div
                   key={index}
                   className='flex max-sm:flex-col max-sm:items-center'
                 >
                   <CardServices                  
-                    image={image}
+                    image={professional !== null &&
+                      jobs.jobs.filter(job =>job._id === professional.id)[0].jobBannerUrl
+                    }
                     
                     description={item.description}
                     service={item.name}
+                    id={item._id}
                   />
                 </div>
               );

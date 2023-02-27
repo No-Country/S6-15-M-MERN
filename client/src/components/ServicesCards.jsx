@@ -5,11 +5,7 @@ import { useSelector } from "react-redux";
 
 function ServicesCards() {
 
-    const jobs = useSelector(state => state.jobs);
-    /* const user = useSelector(state => state.user);
-    console.log(user)
-    */
-    
+    const jobs = useSelector(state => state.jobs);    
 
     const [readJobs] = useApi();
     const [busqueda, setBusqueda] = useState("Todos");
@@ -33,10 +29,10 @@ function ServicesCards() {
                     No compartiremos tus datos
                 </p>
 
-                <select className="text-base mx-auto mt-16 font-normal rounded-full border-2 bg-green-100 text-gray-600 h-12 w-[429px] pl-5 pr-10  hover:border-gray-400 focus:outline-none appearance-none">
+                <select onClick={handleOption} className="text-base mx-auto mt-16 font-normal rounded-full border-2 bg-green-100 text-gray-600 h-12 w-[429px] pl-5 pr-10  hover:border-gray-400 focus:outline-none appearance-none">
             
             
-            <option onClick={handleOption}>Todos</option>
+            <option >Todos</option>
 
             {
                 jobs !== null &&
@@ -76,7 +72,7 @@ function ServicesCards() {
                     if(requested.service === busqueda){
                         return (
                             <div className="my-4" key={requested._id}>
-                                <Card imagen={requested.jobImageUrl} title={requested.service} description={requested.description}  />
+                                <Card id={requested._id} imagen={requested.jobImageUrl} title={requested.service} description={requested.description}  />
                             </div>
     
                         )
