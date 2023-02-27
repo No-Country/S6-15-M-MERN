@@ -1,21 +1,12 @@
 import { Fragment } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
-import { Link } from 'react-router-dom';
-import React, { useRef } from 'react';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
 export default function Dropdown() {
-  const buenosAiresRef = useRef(null);
-
-  function handleSelect() {
-    if (buenosAiresRef.classList.contains(buenos - aires)) {
-    }
-  }
-
   return (
     <Menu as='div' className='relative inline-block text-right'>
       <div>
@@ -38,42 +29,41 @@ export default function Dropdown() {
           <div className='py-1'>
             <Menu.Item>
               {({ active }) => (
-                <button
-                  ref={buenosAiresRef}
-                  onClick={handleSelect}
-                  className={classNames(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                    'block px-4 py-2 text-sm buenos-aires'
-                  )}
-                >
-                  Buenos Aires
-                </button>
-              )}
-            </Menu.Item>
-            <Menu.Item>
-              {({ active }) => (
-                <Link
-                  to='#'
+                <a
+                  href='#'
                   className={classNames(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                     'block px-4 py-2 text-sm'
                   )}
                 >
-                  Rosario
-                </Link>
+                  ********
+                </a>
               )}
             </Menu.Item>
             <Menu.Item>
               {({ active }) => (
-                <Link
-                  to='#'
+                <a
+                  href='#'
                   className={classNames(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                     'block px-4 py-2 text-sm'
                   )}
                 >
-                  Ciudad 3
-                </Link>
+                  ******
+                </a>
+              )}
+            </Menu.Item>
+            <Menu.Item>
+              {({ active }) => (
+                <a
+                  href='#'
+                  className={classNames(
+                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                    'block px-4 py-2 text-sm'
+                  )}
+                >
+                  *******
+                </a>
               )}
             </Menu.Item>
             <form method='POST' action='#'>
@@ -86,7 +76,7 @@ export default function Dropdown() {
                       'block w-full px-4 py-2 text-right text-sm'
                     )}
                   >
-                    Ciudad 4
+                    *****
                   </button>
                 )}
               </Menu.Item>

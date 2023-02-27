@@ -5,6 +5,7 @@ import Dropdown from '../components/services/Dropdown';
 import { useSelector } from 'react-redux';
 import { useApi } from '../hooks/useApi';
 import image from '../assets/Frame.png';
+import { useNavigate } from 'react-router-dom';
 
 export const ServicesDetail = ({ props }) => {
   const [searchparams] = useSearchParams();
@@ -12,6 +13,7 @@ export const ServicesDetail = ({ props }) => {
   const [professional, setProfessional] = useState([]);
   const [ciudad, setCiudad] = useState('');
 
+  const navigate = useNavigate();
   const handleOption = (e) => {
     e.target.value === 'Todos' ? setCiudad('') : setCiudad(e.target.value);
   };
@@ -26,6 +28,11 @@ export const ServicesDetail = ({ props }) => {
     setProfessional({ id: searchparams.get('id') });
     professionalsList(searchparams.get('id'), ciudad);
   }, [ciudad]);
+
+  function handleOnClick(item) {
+    navigate(`/perfilProfesional/${item._id}`);
+    console.log(item._id);
+  }
 
   return (
     <>
@@ -69,8 +76,9 @@ export const ServicesDetail = ({ props }) => {
             {professionals.professionals.map((item, index) => {
               return (
                 <div
-                  key={index}
+                  key={item._id}
                   className='flex max-sm:flex-col max-sm:items-center'
+                  onClick={() => handleOnClick(item)}
                 >
                   <CardServices
                     image={image}

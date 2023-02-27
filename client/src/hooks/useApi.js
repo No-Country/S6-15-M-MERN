@@ -1,14 +1,9 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { jobsFetched } from '../features/jobs/jobsSlice';
-<<<<<<< HEAD
 import { userStatus } from '../features/user/userSlice';
-=======
-import { userStatus } from "../features/user/userSlice";
-import { professionalsFetched } from "../features/professionalsSlice/professionalsSlice"
->>>>>>> 1749856c14e021a09ec5db5434930aac6ca37577
-import axios from 'axios';
 import { professionalsFetched } from '../features/professionalsSlice/professionalsSlice';
+import axios from 'axios';
 
 export function useApi(
   initialValue = 'https://container-service-1.utth4a3kjn6m0.us-west-2.cs.amazonlightsail.com/'
@@ -46,15 +41,6 @@ export function useApi(
     );
   };
 
-  const professionalsList = (data) => {
-    axios
-      .get(`${url}user?professional=true&job=${data.id}`)
-      .then((resp) => {
-        dispatch(professionalsFetched(resp.data.responseGetUser));
-      })
-      .catch((err) => console.log(err));
-  };
-
   const userLogin = (data) => {
     axios
       .post(`${url}auth/login`, data)
@@ -68,7 +54,6 @@ export function useApi(
         console.log(response.data.responseUser.user);
         dispatch(userStatus(verifiedUser));
 
-<<<<<<< HEAD
         localStorage.setItem('user', response.data.responseUser.user._id);
         localStorage.setItem('token', response.data.responseUser.token);
       })
@@ -77,12 +62,10 @@ export function useApi(
       });
   };
 
-=======
   const professionalsList = (id, city) => {
-    let searchCity = "";
+    let searchCity = '';
 
-   (city != undefined) && (searchCity = "&city="+city);
-  
+    city != undefined && (searchCity = '&city=' + city);
 
     axios
       .get(`${url}user?job=${id}${searchCity}`)
@@ -92,9 +75,5 @@ export function useApi(
       .catch((err) => console.log(err));
   };
 
- 
-
-
->>>>>>> 1749856c14e021a09ec5db5434930aac6ca37577
   return [readJobs, postUser, userLogin, professionalsList];
 }

@@ -15,36 +15,19 @@ const initialState = {
   ],
 };
 
-<<<<<<< HEAD
-export const professionalsSlice = createSlice({
+const professionalsSlice = createSlice({
   name: 'professionals',
   initialState,
   reducers: {
     professionalsFetched(state, action) {
-      state.professional = action.payload;
-      console.log(state.professional, 'EL ESTADO DE LOS PROFESIONALES');
+      return {
+        ...state,
+        professionals: action.payload,
+      };
     },
   },
 });
 
-export default professionalsSlice.reducer;
 export const { professionalsFetched } = professionalsSlice.actions;
-=======
-const professionalsSlice = createSlice({
-  name: "professionals",
-  initialState,
-  reducers: {
-    professionalsFetched(state, action){
-      return{
-        ...state,
-        professionals: action.payload
-      }
-    }
-  }
-})
-
-export const { professionalsFetched} = professionalsSlice.actions;
 
 export default professionalsSlice.reducer;
-
->>>>>>> 1749856c14e021a09ec5db5434930aac6ca37577

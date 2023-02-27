@@ -16,7 +16,7 @@ export default function PerfilProfesional() {
       <span className="w-[284px] ml-[10px]  top-[-4] font-['Nunito Sans'] not-italic font-bold leading-[33px] flex items-center text-[#083A50] mb-3">
         Configuración de tu perfil
       </span>
-      {/* avatarURL */}
+
       <img
         className='opacity-[0.6] w-[1503px] height-[146px] flex-none order-1 self-stretch grow-0'
         src={Frame}
@@ -25,11 +25,10 @@ export default function PerfilProfesional() {
         className='relative width-[100px] height-[100px] left-[15px] top-[-55px]'
         src={Foto}
       />
-      {/* name */}
+
       <h1 className="relative font-['Inter'] not-italic font-bold text-[39px] leading-[120%] flex items-center left-[260px] top-[-165px] ml-[100px] text-[#083A50]">
         Mariana Sepúlveda
       </h1>
-      {/* job (id de servicio) */}
       <p className="relative font-['Inter'] not-italic font-semibold text-[18px] leading-[24px] top-[-158px] left-[260px] ml-[100px] text-[#083A50]">
         Gasista
       </p>
@@ -38,11 +37,10 @@ export default function PerfilProfesional() {
         className='relative left-[260px] right-[16.67%] top-[-148px] bottom-[7.03%] ml-[100px]'
         src={Icon}
       />
-      {/* city */}
       <p className="relative font-['Inter'] not-italic font-normal text-[13px] leading-[120%] top-[-166px] left-[298px] ml-[100px] flex items-center text-[#083A50]">
         CABA-Argentina
       </p>
-      {/* Facebook no esta en el back */}
+
       <img
         className='relative left-[458px] right-[16.67%] top-[-189px] ml-[100px]'
         src={Facebook}
@@ -52,7 +50,6 @@ export default function PerfilProfesional() {
       </p>
 
       <div>
-        {/* description */}
         <p className="relative font-['Inter'] not-italic font-normal text-[18px] leading-[24px] top-[-120px] left-[285px] flex items-center w-[832px] h-[119px] ml-[100px] text-[#28315C] bg-backgroundColor">
           Hola, soy Mariana, una experta gasista. Lorem ipsum dolor sit amet,
           consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
@@ -64,7 +61,7 @@ export default function PerfilProfesional() {
           laborum.
         </p>
       </div>
-      {/* Telefono no esta en el back */}
+
       <img
         className='relative left-[15px] right-[12.5%] top-[-250px] bottom-[12.5%]'
         src={Telefono}
@@ -80,7 +77,6 @@ export default function PerfilProfesional() {
         className='relative left-[15px] right-[12.5%] top-[-226px] bottom-[20.83%]'
         src={Correo}
       />
-      {/* email */}
       <p className="relative font-['Poppins'] not-italic font-light text-[16px] leading-[150%] top-[-245px] left-[45px] flex items-center text-[#4285F4]">
         mariana.gasista@gmail.com
       </p>
@@ -90,13 +86,13 @@ export default function PerfilProfesional() {
         src={Enviame}
       />
 
-      {/*       <div className='ml-[340px] mt-[-190px] w-[920px] h-[119px]'>
+      <div className='ml-[340px] mt-[-190px] w-[920px] h-[119px]'>
         <OurServices />
-      </div> */}
+      </div>
 
-      {/*       <div className='relative ml-[340px] bottom-[-300px]  w-[920px] h-[119px]'>
+      <div className='relative ml-[340px] bottom-[-300px]  w-[920px] h-[119px]'>
         <Reviews className='absolute' />
-      </div> */}
+      </div>
 
       <div className='relative bottom-[-900px]'></div>
     </div>
