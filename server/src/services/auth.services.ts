@@ -26,7 +26,7 @@ const LoginUser = async ({ email, password }: Auth) => {
 
   const passwordHash = LoginUsercheck.password;
   const isCorrect = await verified(password, passwordHash);
-
+  
   if (!isCorrect) return "PASSWORD_INCORRECT";
 
   //change email for id

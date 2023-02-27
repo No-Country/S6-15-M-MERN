@@ -68,11 +68,10 @@ const userSchema = new Schema<IUser>(
       type: Boolean,
       default: false,
     },
-    // description: {
-    //   type: String,
-    //   default: ""
-    // }
-
+    description: {
+       type: String,
+       default: ""
+    }
   },
   {
     versionKey: false,

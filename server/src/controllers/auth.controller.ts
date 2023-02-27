@@ -1,14 +1,28 @@
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 import { NewregisterUser, LoginUser } from "../services/auth.services";
+import { AppError } from "../utils/errorObjectExtended";
 
 /* registro de usuario */
-const registerCtrl = async ({ body }: Request, res: Response ) => {
-  const responseUser = await NewregisterUser(body);
-  // res.send(responseUser); // TODO: Aquí no mandas el status no? send en vez de json?
-  res.status(201).json({
-    status: 'Correct Register',
-    responseUser,
-  });
+const registerCtrl = async ({ body }: Request, res: Response,  next: NextFunction ) => {
+  try {
+    const responseUser = await NewregisterUser(body);
+    if(responseUser == "El_Usuario_ya_Existe") {
+      res.status(400).json(responseUser);
+    }
+    else if(responseUser){
+      const { email } = responseUser;
+      const { password } = body;
+      const newUser = await LoginUser({ email,  password})
+      res.status(201).json({
+          status: 'Correct Register',
+          user: newUser
+        });
+    }
+    
+    }
+    catch (error: any) {
+      next(new AppError(500, error.message));
+    }
 };
 
 /* Login de usuario */

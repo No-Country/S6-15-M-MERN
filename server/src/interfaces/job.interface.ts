@@ -5,6 +5,7 @@ export interface IJob {
   title: String;
   description: String;
   jobImageUrl: string;
+  jobBannerUrl: string;
 }
 
 // Extends document for others champs _id, etc

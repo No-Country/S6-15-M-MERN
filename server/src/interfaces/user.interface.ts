@@ -27,6 +27,7 @@ export interface IUser extends Auth {
   postalCode: Number;
   minimumquantityprice: Number;
   professional: Boolean;
+  description: String;
 }
 
 export interface UserModel extends IUser, Document {}

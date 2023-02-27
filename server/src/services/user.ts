@@ -6,11 +6,14 @@ import UserModel from "../models/user.model";
 // return InserCreateUser;
 // };
 
-const getAlluser = async () => {
-  const getUser = await UserModel.find({});
+const getAlluser = async (filter: Object) => {
+  const getUser = await UserModel.find(filter);
   return getUser;
 };
-
+const getAllProfessionalsService = async (professional:any, city:any, job:any) => {
+  const getUser = await UserModel.find({professional, city, job});
+  return getUser;
+};
 const getUserbyId = async (id: string) => {
   const UserbyId = await UserModel.findOne({ _id: id });
   return UserbyId;
@@ -48,6 +51,12 @@ const DeleteUser = async (id: string) => {
   return DeleteUserbyId;
 };
 
-export { getAlluser, getUserbyId, UpdateUser, DeleteUser, getUserbyEmail };
+export { 
+  getAlluser, 
+  getUserbyId, 
+  UpdateUser, 
+  DeleteUser, 
+  getUserbyEmail, 
+  getAllProfessionalsService };
 
 // CreateUser
