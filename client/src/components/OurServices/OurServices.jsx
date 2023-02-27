@@ -153,7 +153,7 @@ const OurServices = () => {
                   >
                     <div className="carousel-img relative w-52 h-52">
                         <a
-                          href={resource.jobImageUrl}
+                          href="/servicios"
                           className="h-full w-full sm:w-full aspect-square rounded-full block bg-origin-padding bg-left-top bg-cover bg-no-repeat z-0"
                           style={{
                             backgroundImage: `url(${resource.jobImageUrl || ""})`,
@@ -166,7 +166,7 @@ const OurServices = () => {
                           />
                         </a>
                         <a
-                          href={resource.jobImageUrl}
+                          href="/servicios"
                           className="h-full w-full aspect-square rounded-full block absolute top-0 left-0 transition-opacity duration-300 opacity-0 hover:opacity-100 bg-emerald-600/75 z-10"
                         >
                           <h3 className="text-white py-6 px-3 mx-auto text-base absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
