@@ -9,6 +9,9 @@ function ServicesCards() {
     console.log(user)
     */
 
+  const [readJobs] = useApi();
+  const [busqueda, setBusqueda] = useState('Todos');
+
   useEffect(() => {
     readJobs();
   }, []);

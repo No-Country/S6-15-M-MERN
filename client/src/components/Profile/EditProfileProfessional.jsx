@@ -1,25 +1,78 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 function EditProfileProfessional() {
   const navigate = useNavigate();
-  const [selectUsuario, setSelectUsuario] = useState('Cliente');
+  const [selectUsuario, setSelectUsuario] = useState('false');
 
-  const handleSelectUsuario = (event) => {
+  /*   const handleSelectUsuario = (event) => {
     setSelectUsuario(event.target.value);
-  };
+  }; */
 
+  const userStatus = useSelector((state) => state.user);
+  console.log(userStatus);
   const location = useLocation();
   const user = location.state;
   console.log(user);
 
+  const [formData, setFormData] = useState({
+    professional: 'false',
+    name: user.name,
+    lastName: '',
+    email: user.email,
+    telefono: '',
+    pais: '',
+    ciudad: '',
+    zipCode: '',
+    dateOfBirty: '',
+    oficios: '',
+  });
+
+  const postEditUser = (data) => {
+    return new Promise((resolve, reject) =>
+      fetch(
+        'https://container-service-1.utth4a3kjn6m0.us-west-2.cs.amazonlightsail.com/user/me',
+        {
+          method: 'PUT',
+          body: JSON.stringify(data),
+          headers: {
+            'Content-Type': 'application/json',
+            Connection: 'keep-alive',
+            Authorization: `Bearer ${userStatus.user.token}`,
+          },
+        }
+      )
+        .then((res) => res.json(data))
+        .then((result) => {
+          resolve(result);
+          console.log(result);
+        })
+        .catch((error) => reject(error))
+    );
+  };
+
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    /*     navigate(`/perfilProfesional/${user._id}`); */
-    console.log(user._id);
+    if (userStatus.user.token) {
+      postEditUser(formData);
+      console.log();
+      navigate(`/perfilProfesional/${userStatus.user.id}`);
+    } else {
+      navigate('/login');
+    }
   };
+
+  function handleOnChange(e) {
+    const value = e.target.value;
+
+    setFormData({ ...formData, [e.target.name]: value });
+  }
+
+  console.log(formData);
 
   const userSchema = yup.object().shape({
     name: yup
@@ -61,11 +114,13 @@ function EditProfileProfessional() {
         </h3>
         <Formik
           initialValues={{
+            professional: 'false',
             name: user.name,
             lastname: '',
             dateOfBirty: '',
             zipCode: '',
             email: user.email,
+            oficios: '',
           }}
           validationSchema={userSchema}
         >
@@ -80,18 +135,18 @@ function EditProfileProfessional() {
                 </label>
                 <Field
                   as='select'
-                  name='oficios'
-                  id='oficios'
+                  name='professional'
+                  id='rol'
                   type='password'
                   className='py-2  focus: outline-focusColor rounded-xl border-labelGrayColor border-2 pl-0 text-center'
-                  value={selectUsuario}
-                  onChange={handleSelectUsuario}
+                  value={formData.professional}
+                  onChange={handleOnChange}
                 >
                   <option hidden selected>
                     Selecciona una opción
                   </option>
-                  <option value='cliente'>Cliente</option>
-                  <option value='profesional'>Profesional</option>
+                  <option value='false'>Cliente</option>
+                  <option value='true'>Profesional</option>
                 </Field>
 
                 <ErrorMessage
@@ -111,6 +166,8 @@ function EditProfileProfessional() {
                       id='name'
                       type='text'
                       className=' px-2 py-2 focus: outline-focusColor rounded-xl border-labelGrayColor border-2'
+                      onChange={handleOnChange}
+                      value={formData.name}
                     />
                     <ErrorMessage
                       name='name'
@@ -126,13 +183,15 @@ function EditProfileProfessional() {
                       Apellido
                     </label>
                     <Field
-                      name='lastname'
-                      id='lastname'
+                      name='lastName'
+                      id='lastName'
                       type='text'
                       className='  px-2 py-2 focus: outline-focusColor  rounded-xl border-labelGrayColor border-2 placeholder:-translate-x-6'
+                      onChange={handleOnChange}
+                      value={formData.lastName}
                     />
                     <ErrorMessage
-                      name='lastname'
+                      name='lastName'
                       component='p'
                       className='text-labelColor whitespace-nowrap'
                     />
@@ -149,6 +208,8 @@ function EditProfileProfessional() {
                       id='email'
                       type='email'
                       className=' px-2 py-2 focus: outline-focusColor rounded-xl   border-labelGrayColor border-2 placeholder:-translate-x-6 '
+                      onChange={handleOnChange}
+                      value={formData.email}
                     />
                     <ErrorMessage
                       name='passwordConfirmation'
@@ -176,6 +237,8 @@ function EditProfileProfessional() {
                       id='name'
                       type='text'
                       className=' px-2 py-2 focus: outline-focusColor rounded-xl border-labelGrayColor border-2'
+                      onChange={handleOnChange}
+                      value={formData.name}
                     />
                     <ErrorMessage
                       name='name'
@@ -191,10 +254,12 @@ function EditProfileProfessional() {
                       Apellido
                     </label>
                     <Field
-                      name='lastname'
-                      id='lastname'
+                      name='lastName'
+                      id='lastName'
                       type='text'
                       className='  px-2 py-2 focus: outline-focusColor  rounded-xl border-labelGrayColor border-2 placeholder:-translate-x-6'
+                      onChange={handleOnChange}
+                      value={formData.lastName}
                     />
                     <ErrorMessage
                       name='lastname'
@@ -214,6 +279,8 @@ function EditProfileProfessional() {
                       id='email'
                       type='email'
                       className=' px-2 py-2 focus: outline-focusColor rounded-xl   border-labelGrayColor border-2 placeholder:-translate-x-6 '
+                      onChange={handleOnChange}
+                      value={formData.email}
                     />
                     <ErrorMessage
                       name='passwordConfirmation'
@@ -234,6 +301,8 @@ function EditProfileProfessional() {
                       id='telefono'
                       type='number'
                       className=' px-2 py-2 focus: outline-focusColor  rounded-xl   border-labelGrayColor border-2 placeholder:-translate-x-6 '
+                      onChange={handleOnChange}
+                      value={formData.telefono}
                     />
                     <ErrorMessage
                       name='telefono'
@@ -254,6 +323,8 @@ function EditProfileProfessional() {
                       id='pais'
                       type='text'
                       className='px-2 py-2.5 focus: outline-focusColor rounded-xl  border-labelGrayColor border-2 placeholder:-translate-x-6  '
+                      onChange={handleOnChange}
+                      value={formData.pais}
                     >
                       <option hidden selected>
                         Selecciona una opción
@@ -281,6 +352,8 @@ function EditProfileProfessional() {
                       id='ciudad'
                       type='text'
                       className=' px-2 py-2 focus: outline-focusColor rounded-xl  border-labelGrayColor border-2 placeholder:-translate-x-6  '
+                      onChange={handleOnChange}
+                      value={formData.ciudad}
                     />
                     <ErrorMessage
                       name='ciudad'
@@ -300,6 +373,8 @@ function EditProfileProfessional() {
                       id='zipCode'
                       type='number'
                       className='  px-2 py-2 focus: outline-focusColor rounded-xl  border-labelGrayColor border-2 placeholder:-translate-x-6  '
+                      onChange={handleOnChange}
+                      value={formData.zipCode}
                     />
                     <ErrorMessage
                       name='zipCode'
@@ -319,6 +394,8 @@ function EditProfileProfessional() {
                       id='dateOfBirty'
                       type='date'
                       className=' px-2 py-2 focus: outline-focusColor rounded-xl  border-labelGrayColor border-2 placeholder:-translate-x-6  '
+                      onChange={handleOnChange}
+                      value={formData.dateOfBirty}
                     />
                     <ErrorMessage
                       name='dateOfBirty'
@@ -339,14 +416,20 @@ function EditProfileProfessional() {
                       id='oficios'
                       type='password'
                       className=' px-2 py-2 focus: outline-focusColor rounded-xl border-labelGrayColor border-2 placeholder:-translate-x-6  '
+                      onChange={handleOnChange}
+                      value={formData.oficios}
                     >
                       <option hidden selected>
                         Selecciona una opción
                       </option>
-                      <option value='gasista'>Gasista</option>
                       <option value='electricista'>Electricista</option>
-                      <option value='jardinero'>Jardinero</option>
-                      <option value='cerrajero'>Cerrajero</option>
+                      <option value='soldador'>Soldador</option>
+                      <option value='electronico'>Electrónico</option>
+                      <option value='medico'>Médico</option>
+                      <option value='constructor'>Constructor</option>
+                      <option value='veterinario'>Veterinario</option>
+                      <option value='enfermero'>Enfermero</option>
+                      <option value='fotógrafo'>Fotógrafo</option>
                     </Field>
 
                     <ErrorMessage
