@@ -61,7 +61,7 @@ function EditProfileProfessional() {
                   name="name"
                   id="name"
                   type="text"
-                  className=" px-3 py-2 focus: outline-focusColor rounded-xl w-full    border-labelGrayColor border-2"
+                  className=" px-3 py-2 focus: outline-focusColor rounded-xl w-full border-labelGrayColor border-2"
                 />
                 <ErrorMessage
                   name="name"
