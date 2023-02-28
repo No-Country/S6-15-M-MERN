@@ -11,35 +11,43 @@ import Login from './components/Login';
 import NavBar from './components/NavBar';
 import { BoolHook } from './hooks/BoolHook';
 import Footer from './components/Footer';
-import Messages from './components/Messages';
 import PerfilProfesional from './components/PerfilProfesional/PerfilProfesional';
+import Team from './screens/Team';
 
 function App() {
   const [isModalOpen, changeModalStatus] = BoolHook(false);
   return (
-  
-      <BrowserRouter>
-       <NavBar changeModal={changeModalStatus} />
-       <Login isOpen={isModalOpen} closeModal={changeModalStatus} /> 
-       <section className='center'>
-       <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/servicios" element={<Services />} /> 
-          <Route path= "/perfil" element={<Profile/>}/>
-          <Route path='/servicesDetail' element={<ServicesDetail/>}/>
-          <Route path='faq' element={<Faq />} />          
-          <Route path="/sol-servicio" element={<OrderService />} />
-          <Route path="/sol-servicio/solicitado" element={<SolicitedService />} />
-          <Route path='perfilProfesional' element={<PerfilProfesional/>} />
+    <BrowserRouter>
+      <NavBar changeModal={changeModalStatus} />
+      <Login isOpen={isModalOpen} closeModal={changeModalStatus} />
+      <section className='center'>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/servicios' element={<Services />} />
+          <Route path='/perfil' element={<Profile />} />
+          <Route path='/servicesDetail' element={<ServicesDetail />} />
+          <Route path='faq' element={<Faq />} />
+          <Route path='/sol-servicio' element={<OrderService />} />
+          <Route
+            path='/sol-servicio/solicitado'
+            element={<SolicitedService />}
+          />
+          <Route
+            path='/perfilProfesional'
+            element={<PerfilProfesional />}
+          />
+          <Route
+            path='/team'
+            element={<Team />}
+          />
+          
         </Routes>
-        </section>    
-        <div className='footerDiv'>
-        <Footer/>
-        </div>
-      </BrowserRouter>
-  )
-
-  
+      </section>
+      <div className='footerDiv'>
+        <Footer />
+      </div>
+    </BrowserRouter>
+  );
 }
 
 export default App;
