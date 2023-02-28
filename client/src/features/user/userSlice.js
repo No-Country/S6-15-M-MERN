@@ -11,11 +11,10 @@ const userSlice = createSlice({
     reducers: {
         userStatus(state,action) {
             const payload = !action.payload.avatarURL? {...action.payload, ...action.payload.avatarURL = avatarURL} : action.payload
-          
             console.log( action.payload , 'EL ESATDO')
             return {
                 ...state,
-                user: action.payload
+                user: action.payload,
                 
             }
         }

@@ -80,12 +80,13 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-export default function NavBar({ changeModal }) {
+export default function NavBar({ changeModal, isUserLogged}) {
+  
   const userStatus = useSelector(state => state.user);
   const navigate = useNavigate();
 
 
-  console.log(userStatus, "el usuario")
+  
   const handleClick = () => {
     console.log(changeStatus());
   };

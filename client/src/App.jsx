@@ -13,22 +13,28 @@ import { BoolHook } from './hooks/BoolHook';
 import Footer from './components/Footer';
 import PerfilProfesional from './components/PerfilProfesional/PerfilProfesional';
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
+import { userStatus } from './features/user/userSlice';
 
-function App() {
+const App = () => {
   const [isModalOpen, changeModalStatus] = BoolHook(false);
-  const userStatus = useSelector(state => state.user);
 
-    useEffect(() => {
-     JSON.parse(localStorage.getItem('user'));
- 
-    },[])
- 
+ const stateDispatch = useDispatch()
+
+  useEffect(() => {
+    if(localStorage.getItem('user')){
+      JSON.parse(localStorage.getItem('user'))
+      stateDispatch(
+        userStatus(JSON.parse(localStorage.getItem('user'))))
+    }
+   
+  }, [])
+
   return (
   
       <BrowserRouter>
-       <NavBar changeModal={changeModalStatus} />
+       <NavBar changeModal={changeModalStatus}/>
        <Login isOpen={isModalOpen} closeModal={changeModalStatus} /> 
        <section className='center'>
        <Routes>
@@ -36,7 +42,7 @@ function App() {
           <Route path="/servicios" element={<Services />} /> 
           <Route path= "/perfil" element={<Profile/>}/>
           <Route path='/servicesDetail' element={<ServicesDetail/>}/>
-          <Route path='faq' element={<Faq />} />          
+          <Route path='faq' element={<Faq/>} />          
           <Route path="/sol-servicio" element={<OrderService />} />
           <Route path="/sol-servicio/solicitado" element={<SolicitedService />} />
           <Route path='perfilProfesional' element={<PerfilProfesional/>} />
