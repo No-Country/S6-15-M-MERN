@@ -91,8 +91,6 @@ export function useApi(
   };
 
   const getProfessional = (id) => {
-    
-
     const token = JSON.parse(localStorage.getItem('user')).token;
     axios
       .get(

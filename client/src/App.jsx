@@ -36,7 +36,7 @@ function App() {
           />
           <Route path='/perfilProfesional/:id' element={<PerfilProfesional />}
           />
-            <Route path='/editPerfil' element={<EditProfileProfessional2 />}
+            <Route path='/editPerfil' element={<EditProfileProfessional />}
           />
         </Routes>
       </section>

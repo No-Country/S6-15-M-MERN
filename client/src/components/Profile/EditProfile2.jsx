@@ -189,6 +189,7 @@ function EditProfileProfessional2() {
                   className='py-2  focus: outline-focusColor rounded-xl border-labelGrayColor border-2 pl-0 text-center'
                   value={selectUsuario}
                   onChange={handleSelectUsuario}
+                  defaultValue={newFormData.name}
                 >
                   <option hidden selected>
                     Selecciona una opción
