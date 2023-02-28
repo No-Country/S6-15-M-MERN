@@ -5,7 +5,6 @@ import {Document} from 'mongoose';
 export interface IUser extends Auth {
   name: string,
   lastname: string,
-  description:string,
   birthdate: String,
   phone: Number,
   country: String,
@@ -19,7 +18,7 @@ export interface IUser extends Auth {
   pictures:String,
   idgoogle: String,
   proveedor: String,
-  avatarURL: string,
+  avatarURL: {name: String, path: String}
   job: {
     type: Schema.Types.ObjectId;
     ref: "Jobs";

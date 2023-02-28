@@ -23,42 +23,32 @@ const userSchema = new Schema<IUser>(
     birthdate: {
       type: String
     },
-
     phone: {
       type: Number
     },
-
     country: {
       type: String
     },
-
     city: {
       type: String
     },
-
     terms: {
       type: String
     },
-
     idgoogle: {
       type: String,
     },
-
     avatarURL: {
-      type: String,
-      default: "",
-      // required: [true, "Please provide an img url"]
+      name: {type: String},
+      path: {type: String},
     },
-
     job: {
       type: Schema.Types.ObjectId,
       ref: "Jobs"
     },
-
     postalCode: {
       type: Number
     },
-
     /*cantindad minima precio*/
     minimumquantityprice: {
       type: Number,
