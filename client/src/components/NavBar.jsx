@@ -15,7 +15,8 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline';
 import contrata from '../assets/contrata.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const solutions = [
   {
@@ -78,11 +79,22 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-export default function NavBar({ changeModal }) {
+export default function NavBar({ changeModal, isUserLogged}) {
+  
+  const userStatus = useSelector(state => state.user);
+  const navigate = useNavigate();
+
+
+  
   const handleClick = () => {
     console.log(changeStatus());
   };
+
+  const navigateProfile = () => {
+    navigate('/perfil');
+  }
   return (
+    
     <Popover className='relative bg-backgroundColor '>
       <div className='px-7'>
         <div className='flex items-center  py-6  md:space-x-10'>
@@ -116,14 +128,20 @@ export default function NavBar({ changeModal }) {
               FAQ´s
             </Link>
           </Popover.Group>
+          {!userStatus.user.token ? 
           <div className='hidden items-center justify-end md:flex md:flex-2 '>
             <button
               onClick={changeModal}
-              className='inline-flex items-center justify-center whitespace-nowrap rounded-md border-transparent bg-buttons-buttonGreen px-4 py-2 text-base font-medium text-textWhite shadow-sm hover:bg-indigo-700'
+              className='inline-flex items-center justify-center whitespace-nowrap rounded-md border-transparent bg-buttons-buttonGreen px-4 py-2 text-base font-medium text-textWhite shadow-sm hover:bg-blueGeneral'
             >
               Registrarse
             </button>
-          </div>
+          </div> : 
+          <div> 
+          <img onClick={navigateProfile}
+              className=' max-sm:hidden max-md:hidden cursor-pointer inline-flex items-center justify-center whitespace-nowrap rounded-full w-11 h-11 border-[#28315C] border-solid '  
+               src= {userStatus.user.avatarURL} />  
+          </div> }
         </div>
       </div>
       <Transition
@@ -176,16 +194,29 @@ export default function NavBar({ changeModal }) {
                 </nav>
               </div>
             </div>
+            {!userStatus.user.token ? 
             <div className='space-y-6 py-6 px-5'>
               <div>
                 <button
                   onClick={changeModal}
-                  className='flex w-full items-center justify-center rounded-md border-transparent bg-indigo-600 px-4 py-2 text-base font-medium  shadow-sm hover:bg-indigo-700'
+                  className='flex w-full items-center justify-center rounded-md border-transparent bg-buttons-buttonGreen px-4 py-2 text-base font-medium  shadow-sm hover:bg-blueGeneral'
                 >
                   Registrarse
                 </button>
               </div>
+            </div> :
+            <div className='space-y-6 py-6 px-5'>
+            <div>
+              <button
+                onClick={navigateProfile}
+                className=' flex w-full items-center justify-center rounded-md border-transparent bg-buttons-buttonGreen  px-4 py-2 text-base font-medium  shadow-sm hover:bg-blueGeneral '
+              >
+                Perfil
+              </button>
+              
             </div>
+          </div> 
+            }
           </div>
         </Popover.Panel>
       </Transition>

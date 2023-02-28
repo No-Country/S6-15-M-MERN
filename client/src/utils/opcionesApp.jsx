@@ -3,6 +3,65 @@ import gabriel from "../assets/Team/gabriel.jpeg"
 
 
 export function opcionesApp() {
+
+  const returnBanners = (job)=>{
+
+    switch (job) {
+      case "63f4c87e3174deb8a1c4724d":
+        return "https://firebasestorage.googleapis.com/v0/b/db-demo-e7d23.appspot.com/o/banners%2Ffotografo.png?alt=media&token=be9addf8-14a8-4db2-981e-f915c3df9977";
+      case "63f4c2d13174deb8a1c47222":
+        return "https://firebasestorage.googleapis.com/v0/b/db-demo-e7d23.appspot.com/o/banners%2Felectricista.png?alt=media&token=41be896c-0152-4d4c-a6c4-79f14258b954";
+      case "63f4c2fc3174deb8a1c47227":
+        return "https://firebasestorage.googleapis.com/v0/b/db-demo-e7d23.appspot.com/o/banners%2Fsoldador.png?alt=media&token=d74c3e32-bcb0-41fd-8465-5ec5b29bd24d";
+      case "63f4c3423174deb8a1c4722a":
+        return "https://firebasestorage.googleapis.com/v0/b/db-demo-e7d23.appspot.com/o/banners%2Felectronico.png?alt=media&token=3ad7b050-78b7-413d-af64-ecdd9ff2eb14";
+      case "63f4c4583174deb8a1c47231":
+        return "https://firebasestorage.googleapis.com/v0/b/db-demo-e7d23.appspot.com/o/banners%2Fmedico.png?alt=media&token=08b38990-6347-4efd-ab3e-24a706866176";
+      case "63f4c62a3174deb8a1c47242":
+        return "https://firebasestorage.googleapis.com/v0/b/db-demo-e7d23.appspot.com/o/banners%2Fconstructor.png?alt=media&token=edcd4cb8-b193-4b27-8341-8852abe2632b";
+      case "63f4c6683174deb8a1c47244":
+        return "https://firebasestorage.googleapis.com/v0/b/db-demo-e7d23.appspot.com/o/banners%2Fveterinario.png?alt=media&token=4bbec7b6-7c40-4c0a-aec4-6ff147e16c1a";
+      case "63f4c6a33174deb8a1c47246":
+        return "https://firebasestorage.googleapis.com/v0/b/db-demo-e7d23.appspot.com/o/banners%2Fenfermero.png?alt=media&token=fbb1c85d-111e-493b-b3e7-59d6b026949f";
+
+        break;
+
+      default:
+        break;
+    }
+
+  }
+
+  const returnJob = (job)=>{
+
+   
+      switch (job) {
+        case "63f4c87e3174deb8a1c4724d":
+          return "Fotografo";
+        case "63f4c2d13174deb8a1c47222":
+          return "Electricista";
+        case "63f4c2fc3174deb8a1c47227":
+          return "Soldador";
+        case "63f4c3423174deb8a1c4722a":
+          return "Electrónico";
+        case "63f4c4583174deb8a1c47231":
+          return "Médico";
+        case "63f4c62a3174deb8a1c47242":
+          return "Constructor";
+        case "63f4c6683174deb8a1c47244":
+          return "Veterinario";
+        case "63f4c6a33174deb8a1c47246":
+          return "Enfermero";
+  
+          break;
+  
+        default:
+          break;
+      }
+  
+    
+
+  }
  
 
   const integrantes = [
@@ -103,5 +162,5 @@ export function opcionesApp() {
     }
   ];
 
-  return { integrantes };
+  return { integrantes, returnBanners, returnJob };
 }

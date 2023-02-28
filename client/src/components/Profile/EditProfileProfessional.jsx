@@ -17,13 +17,13 @@ function EditProfileProfessional() {
   console.log(userStatus);
   const location = useLocation();
   const user = location.state;
-  console.log(user);
+  "console.log(user);"
 
   const [formData, setFormData] = useState({
     professional: 'false',
-    name: user.name,
+    name: "",
     lastName: '',
-    email: user.email,
+    email: "",
     telefono: '',
     pais: '',
     ciudad: '',
@@ -115,11 +115,11 @@ function EditProfileProfessional() {
         <Formik
           initialValues={{
             professional: 'false',
-            name: user.name,
+            name: "",
             lastname: '',
             dateOfBirty: '',
             zipCode: '',
-            email: user.email,
+            email: "",
             oficios: '',
           }}
           validationSchema={userSchema}

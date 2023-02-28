@@ -5,7 +5,7 @@ import userReducer from '../features/user/userSlice';
 import professionalsReducer from '../features/professionalsSlice/professionalsSlice';
 import profileReducer from "../features/profile/ProfileSlice";
 
-import register from '../features/registerSlice/registerSlice';
+/* import register from '../features/registerSlice/registerSlice'; */
 
 export default configureStore({
   reducer: {
