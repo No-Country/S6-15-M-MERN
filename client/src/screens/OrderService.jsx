@@ -1,4 +1,3 @@
-import clipper from "../assets/clipper.svg";
 import { useRef } from "react";
 import emailjs from "@emailjs/browser";
 // viene de cardServices
@@ -94,18 +93,16 @@ export const OrderService = () => {
               >
                 Barrio/Localidad
               </label>
-              <select
+              <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 max-sm:text-xs  leading-tight focus:outline-none focus:shadow-outline"
                 id="location"
-                name="to_name"
+                name="location"
                 // value={inputs.location}
                 // onChange={handleChange}
+                placeholder="Escriba su ubicación/localidad"
               >
-                <option value="grapefruit">Grapefruit</option>
-                <option value="lime">Lime</option>
-                <option value="coconut">Coconut</option>
-                <option value="mango">Mango</option>
-              </select>
+               
+              </input>
             </div>
             <div className="mb-4 w-full md:w-1/2 p-2">
               <label
@@ -117,7 +114,7 @@ export const OrderService = () => {
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 max-sm:text-xs  leading-tight focus:outline-none focus:shadow-outline"
                 id="location"
-                name="to_name"
+                name="to_email"
                 value={email}
                 disabled={true}
                 // value={inputs.location}
@@ -144,17 +141,6 @@ export const OrderService = () => {
                 placeholder="Describe detalladamente tu problema"
                 // onChange={handleChange}
               />
-            </div>
-
-            <div className="shadow appearance-none border rounded w-full p-2 m-2  text-gray-700 focus:outline-none flex flex-col  justify-center items-center ">
-              <div className="">
-                <img src={clipper} alt="" />
-              </div>
-              <div className="">
-                <span className="text-gray-400 max-sm:text-xs text-center">
-                  Adjunta las fotos o archivos necesarios
-                </span>
-              </div>
             </div>
 
             <div className="flex items-center justify-center w-full p-2">
