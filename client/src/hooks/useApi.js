@@ -56,16 +56,16 @@ export function useApi(
         .catch((error) => reject(error))
     );
   };
-
-  const userLogin = (data) => {
-    axios
-      .post(`${url}auth/login`, data)
-      .then(function (response) {
-        const verifiedUser = {
-          token: response.data.responseUser.token,
-          id: response.data.responseUser.user._id,
-          professional: response.data.responseUser.user.professional,
-        };
+   
+  const userLogin = (data)=>{
+    axios.post(`${url}auth/login`, data)
+    .then(function (response) {
+      const verifiedUser ={
+        token: response.data.responseUser.token,
+        id: response.data.responseUser.user._id,
+        professional: response.data.responseUser.user.professional,
+        avatarURL: response.data.responseUser.user.avatarURL
+      }
 
         dispatch(userStatus(verifiedUser));
 

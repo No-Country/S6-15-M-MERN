@@ -7,6 +7,8 @@ import { useLocation } from "react-router-dom";
 export const OrderService = () => {
   const { state } = useLocation();
   const { email } = state || {};
+
+  console.log(state);
   const form = useRef();
   console.log(email);
 

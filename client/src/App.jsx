@@ -12,10 +12,26 @@ import NavBar from './components/NavBar';
 import { BoolHook } from './hooks/BoolHook';
 import Footer from './components/Footer';
 import PerfilProfesional from './components/PerfilProfesional/PerfilProfesional';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
+import { userStatus } from './features/user/userSlice';
 import Team from './screens/Team';
 
-function App() {
+const App = () => {
   const [isModalOpen, changeModalStatus] = BoolHook(false);
+
+ const stateDispatch = useDispatch()
+
+  useEffect(() => {
+    if(localStorage.getItem('user')){
+      JSON.parse(localStorage.getItem('user'))
+      stateDispatch(
+        userStatus(JSON.parse(localStorage.getItem('user'))))
+    }
+   
+  }, [])
+
   return (
     <BrowserRouter>
       <NavBar changeModal={changeModalStatus} />

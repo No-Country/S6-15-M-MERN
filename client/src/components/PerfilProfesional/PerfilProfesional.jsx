@@ -3,6 +3,7 @@ import Icon from '../../assets/Icon.png';
 import Telefono from '../../assets/Telefono.png';
 import Correo from '../../assets/Correo.png';
 import envelope from "../../assets/envelope.png"
+import { opcionesApp } from '../../utils/opcionesApp';
 
 import { useSearchParams, useParams, useNavigate } from 'react-router-dom';
 import { useApi } from '../../hooks/useApi';
@@ -17,6 +18,8 @@ export default function PerfilProfesional() {
 
   const profile = useSelector(state => state.profile)
   const jobs = useSelector(state => state.jobs)
+
+  const {returnJob, returnBanners} = opcionesApp();
 
 
   const [imagen, setImagen] = useState("https://firebasestorage.googleapis.com/v0/b/db-demo-e7d23.appspot.com/o/banners%2Felectricista.png?alt=media&token=41be896c-0152-4d4c-a6c4-79f14258b954")
@@ -92,7 +95,10 @@ export default function PerfilProfesional() {
   const navigate = useNavigate();
 
   const sendMessage = ()=>{
-    navigate("/sol-servicio", {state: profile.profile.user.email})
+    
+    const email = profile.profile.user.email;
+    console.log(email);
+    navigate("/sol-servicio", {state: { email }})
 
   }
 
@@ -109,7 +115,7 @@ export default function PerfilProfesional() {
 
       <img
         className='w-full height-[146px] flex-none order-1 self-stretch grow-0'
-        src={imagen}
+        src={returnBanners(profile.profile.user.job)}
       />
       <div className="container mx-auto  ">
         <div className='flex w-full'>
@@ -168,6 +174,8 @@ export default function PerfilProfesional() {
             {/* ES ACA EL BOTON */}
 
 
+
+
             <div className='w-full flex justify-center'>
               <button onClick={sendMessage} className=' bg-[#43936c] text-white py-3 px-8 rounded-lg w-full m-2 flex'  > <img src={envelope} alt="envelope" /> <p className=' ml-5'>Enviame un mensaje</p> </button>
 
@@ -180,7 +188,7 @@ export default function PerfilProfesional() {
               {profile.profile.user.name}
             </h1>
             <p className="font-['Inter'] not-italic font-semibold text-[18px] leading-[24px] top-[-158px] ml-[100px] mt-2 text-[#083A50]">
-              {switchParam(profile.profile.user.job)}
+              {returnJob(profile.profile.user.job)}
             </p>
 
 

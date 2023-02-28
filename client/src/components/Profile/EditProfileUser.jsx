@@ -28,10 +28,10 @@ function EditProfileProfessional() {
       .required('Obligatorio'),
     newEmail: yup
       .string()
-      .email('Mail no valido')
-      .required('Debes ingresar un mail'),
-  });
-  function EditProfileUser() {
+      .email("Mail no valido")
+      .required("Debes ingresar un mail"),
+  })};
+function EditProfileUser() {
     return (
       <div>
         <div className=' ml-40 mr-40'>
