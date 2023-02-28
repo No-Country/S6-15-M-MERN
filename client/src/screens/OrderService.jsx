@@ -14,22 +14,22 @@ export const OrderService = () => {
   const sendEmail = (e) => {
     e.preventDefault();
     console.log(form.current);
-    // emailjs
-    //   .sendForm(
-    //     "service_60byldi",
-    //     "template_uj2wx57",
-    //     form.current,
-    //     "d_XVSuMm0pNrQoWNm"
-    //   )
-    //   .then(
-    //     (result) => {
-    //       console.log(result.text);
-    //       console.log("message sent");
-    //     },
-    //     (error) => {
-    //       console.log(error.text);
-    //     }
-    //   );
+    emailjs
+      .sendForm(
+        "service_60byldi",
+        "template_uj2wx57",
+        form.current,
+        "d_XVSuMm0pNrQoWNm"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+          console.log("message sent");
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
   };
 
   return (
@@ -59,12 +59,10 @@ export const OrderService = () => {
               </label>
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 max-sm:text-xs   leading-tight focus:outline-none focus:shadow-outline"
-                id="username"
+                id="fromName"
                 type="text"
                 name="from_name"
-                // value={inputs.username || ""}
                 placeholder="Nombre Completo"
-                // onChange={handleChange}
               />
             </div>
 
@@ -77,12 +75,10 @@ export const OrderService = () => {
               </label>
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 max-sm:text-xs  leading-tight focus:outline-none focus:shadow-outline"
-                id="email"
+                id="userEmail"
                 type="email "
                 name="user_email"
-                // value={inputs.email || ""}
                 placeholder="email"
-                // onChange={handleChange}
               />
             </div>
 
@@ -96,14 +92,14 @@ export const OrderService = () => {
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 max-sm:text-xs  leading-tight focus:outline-none focus:shadow-outline"
                 id="location"
+                type="text"
                 name="location"
-                // value={inputs.location}
-                // onChange={handleChange}
                 placeholder="Escriba su ubicación/localidad"
               >
                
               </input>
             </div>
+
             <div className="mb-4 w-full md:w-1/2 p-2">
               <label
                 className="block text-gray-700 text-sm max-sm:text-xs font-bold mb-2"
@@ -117,8 +113,6 @@ export const OrderService = () => {
                 name="to_email"
                 value={email}
                 disabled={true}
-                // value={inputs.location}
-                // onChange={handleChange}
               >
                 
               </input>
@@ -137,9 +131,7 @@ export const OrderService = () => {
                 type="number"
                 rows="4"
                 name="message"
-                // value={inputs.ask || ""}
                 placeholder="Describe detalladamente tu problema"
-                // onChange={handleChange}
               />
             </div>
 
