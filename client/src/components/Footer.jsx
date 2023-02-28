@@ -1,10 +1,7 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faFacebook,
-  faInstagram,
-  faTwitter,
-} from "@fortawesome/fontawesome-free-brands";
 import contrata from "../assets/contrata.png";
+import Facebook1 from "../assets/Facebook1.png"
+import Instagram from "../assets/Instagram.png"
+import Twitter from "../assets/Twitter.png"
 
 
 
@@ -17,9 +14,9 @@ export default function Footer(){
               <img className="flex flex-col p-0 gap[50px] h-[61.28px] left-0 top-0 rounded-none" src={contrata}/>
 
             <ul className="flex flex-row gap-[20px] ">
-              <li><FontAwesomeIcon icon={faFacebook} className="w-[50px] h-[51px]"></FontAwesomeIcon></li>
-              <li><FontAwesomeIcon icon={faInstagram} className="w-[50.4px] h-[50.4px]"></FontAwesomeIcon></li>
-              <li><FontAwesomeIcon icon={faTwitter} className="w-[49px] h-[42px]"></FontAwesomeIcon></li>
+            <img src={Facebook1}/>
+            <img src={Instagram}/>
+            <img src={Twitter}/>
             </ul>
           </div>
 

@@ -4,6 +4,7 @@ import { CardServices } from '../components/services/CardServices'
 import Dropdown from '../components/services/Dropdown'
 import { useSelector } from 'react-redux';
 import { useApi } from '../hooks/useApi';
+import HeaderServicios from '../components/HeaderServicios';
 
 export const ServicesDetail = ({props}) => {
 
@@ -26,7 +27,7 @@ export const ServicesDetail = ({props}) => {
   return (
     <>
         <div>
-        ServicesDetail Header
+        <HeaderServicios/>
         </div>
         <div className=' flex flex-col p-10 justify-evenly'>
             <div className='flex-col items-center justify-around flex'>
