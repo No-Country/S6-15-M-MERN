@@ -145,28 +145,28 @@ const OurServices = () => {
                     key={index}
                     className=' carousel-item text-center relative w-52 h-64 snap-center'
                   >
-                    <div className='carousel-img relative w-52 h-52'>
-                      <a
-                        href={resource.jobImageUrl}
-                        className='h-full w-full sm:w-full aspect-square rounded-full block bg-origin-padding bg-left-top bg-cover bg-no-repeat z-0'
-                        style={{
-                          backgroundImage: `url(${resource.jobImageUrl || ''})`,
-                        }}
-                      >
-                        <img
-                          src={resource.jobImageUrl || ''}
-                          alt={resource.description}
-                          className='w-full aspect-square hidden '
-                        />
-                      </a>
-                      <a
-                        href={resource.jobImageUrl}
-                        className='h-full w-full aspect-square rounded-full block absolute top-0 left-0 transition-opacity duration-300 opacity-0 hover:opacity-100 bg-emerald-600/75 z-10'
-                      >
-                        <h3 className='text-white py-6 px-3 mx-auto text-base absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
-                          {resource.title}
-                        </h3>
-                      </a>
+                    <div className="carousel-img relative w-52 h-52">
+                        <a
+                          href="/servicios"
+                          className="h-full w-full sm:w-full aspect-square rounded-full block bg-origin-padding bg-left-top bg-cover bg-no-repeat z-0"
+                          style={{
+                            backgroundImage: `url(${resource.jobImageUrl || ""})`,
+                          }}
+                        >
+                          <img
+                            src={resource.jobImageUrl || ""}
+                            alt={resource.description}
+                            className="w-full aspect-square hidden "
+                          />
+                        </a>
+                        <a
+                          href="/servicios"
+                          className="h-full w-full aspect-square rounded-full block absolute top-0 left-0 transition-opacity duration-300 opacity-0 hover:opacity-100 bg-emerald-600/75 z-10"
+                        >
+                          <h3 className="text-white py-6 px-3 mx-auto text-base absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                            {resource.title}
+                          </h3>
+                        </a>
                     </div>
                     <h1 className='text-gray-600 font-extrabold text-xl'>
                       {resource.service}

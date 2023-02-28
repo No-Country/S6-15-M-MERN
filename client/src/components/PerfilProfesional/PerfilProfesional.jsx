@@ -95,8 +95,10 @@ export default function PerfilProfesional() {
   const navigate = useNavigate();
 
   const sendMessage = ()=>{
-    console.log(profile.profile.user.email);
-    navigate("/sol-servicio", {state: profile.profile.user.email})
+    
+    const email = profile.profile.user.email;
+    console.log(email);
+    navigate("/sol-servicio", {state: { email }})
 
   }
 
