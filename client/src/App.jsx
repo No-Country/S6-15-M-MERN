@@ -14,6 +14,7 @@ import Footer from './components/Footer';
 import Messages from './components/Messages';
 import PerfilProfesional from './components/PerfilProfesional/PerfilProfesional';
 import EditProfileProfessional from './components/Profile/EditProfileProfessional';
+import EditProfileProfessional2 from './components/Profile/EditProfile2';
 
 function App() {
   const [isModalOpen, changeModalStatus] = BoolHook(false);
@@ -33,9 +34,9 @@ function App() {
             path='/sol-servicio/solicitado'
             element={<SolicitedService />}
           />
-          <Route
-            path='/perfilProfesional/:id'
-            element={<PerfilProfesional />}
+          <Route path='/perfilProfesional/:id' element={<PerfilProfesional />}
+          />
+            <Route path='/editPerfil' element={<EditProfileProfessional2 />}
           />
         </Routes>
       </section>

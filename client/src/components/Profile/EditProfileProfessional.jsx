@@ -30,11 +30,7 @@ function EditProfileProfessional() {
 
   //ESTE ES EL ESTADO INICIAL DE LOS INPUTS
   const [formData, setFormData] = useState({
-<<<<<<< HEAD
     professional: user.professional,
-=======
-    professional: selectUsuario,
->>>>>>> 627345247135dff3e513e0e5490abc3986ad7fd2
     name: user.name,
     lastName: '',
     email: user.email,
@@ -167,11 +163,7 @@ function EditProfileProfessional() {
         </h3>
         <Formik
           initialValues={{
-<<<<<<< HEAD
             professional:user.professional,
-=======
-            professional: 'false',
->>>>>>> 627345247135dff3e513e0e5490abc3986ad7fd2
             name: user.name,
             lastname: '',
             country: '',
@@ -199,13 +191,8 @@ function EditProfileProfessional() {
                   id='professional'
                   type='text'
                   className='py-2  focus: outline-focusColor rounded-xl border-labelGrayColor border-2 pl-0 text-center'
-<<<<<<< HEAD
-                  value={formData.true}
-                  onChange={handleOnChange}
-=======
                   value={selectUsuario}
                   onChange={handleSelectUsuario}
->>>>>>> 627345247135dff3e513e0e5490abc3986ad7fd2
                 >
                   <option hidden selected>
                     Selecciona una opción
@@ -220,301 +207,6 @@ function EditProfileProfessional() {
                   className='font-bold  text-[#ffffff]'
                 />
               </div>
-<<<<<<< HEAD
-
-              {!formData.professional ? 
-                <>
-                <div className=' w-full col-span-1 row-start-2 row-end-3 -mr-6 flex-shrink-0 mt-5'>
-                  <label className='font-bold block text-labelColor  '>
-                    Nombre
-                  </label>
-                  <Field
-                    name='name'
-                    id='name'
-                    type='text'
-                    className=' px-2 py-2 focus: outline-focusColor rounded-xl border-labelGrayColor border-2'
-                    onChange={handleOnChange}
-                    value={formData.name}
-                  />
-                  <ErrorMessage
-                    name='name'
-                    component='p'
-                    className='text-labelColor whitespace-nowrap'
-                  />
-                </div>
-                <div className=' w-full col-start-2 col-end-3 row-start-2 row-end-3 -mr-6 flex-shrink-0 mt-5'>
-                  <label
-                    className='  font-bold block text-labelColor  '
-                    htmlFor='password '
-                  >
-                    Apellido
-                  </label>
-                  <Field
-                    name='lastName'
-                    id='lastName'
-                    type='text'
-                    className='  px-2 py-2 focus: outline-focusColor  rounded-xl border-labelGrayColor border-2 placeholder:-translate-x-6'
-                    onChange={handleOnChange}
-                    value={formData.lastName}
-                  />
-                  <ErrorMessage
-                    name='lastName'
-                    component='p'
-                    className='text-labelColor whitespace-nowrap'
-                  />
-                </div>
-                <div className='w-full col-start-3 col-end-4 row-start-2 row-end-3 -mr-6 flex-shrink-0 mt-5'>
-                  <label
-                    className=' font-bold block text-labelColor whitespace-nowrap '
-                    htmlFor='email'
-                  >
-                    Nuevo Email
-                  </label>
-                  <Field
-                    name='email'
-                    id='email'
-                    type='email'
-                    className=' px-2 py-2 focus: outline-focusColor rounded-xl   border-labelGrayColor border-2 placeholder:-translate-x-6 '
-                    onChange={handleOnChange}
-                    value={formData.email}
-                  />
-                  <ErrorMessage
-                    name='passwordConfirmation'
-                    component='p'
-                    className='text-labelColor whitespace-nowrap'
-                  />
-                </div>
-                <div className='col-start-1 col-end-2 item '>
-                  <button
-                    type='submit'
-                    className='bg-btnColor w-48 h-12  rounded-xl text-xl  text-[#ffffff] font-bold  active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all  active:hover:bg-[#83e3be]  disabled:cursor-not-allowed  mt-8  hover:shadow-228b active:shadow'
-                  >
-                    Guardar
-                  </button>
-                </div>
-                </>
-               :                 <>
-               <div className=' w-full col-span-1 row-start-2 row-end-3 -mr-6 flex-shrink-0 -mt-12'>
-                 <label className='font-bold block text-labelColor  '>
-                   Nombre
-                 </label>
-                 <Field
-                   name='name'
-                   id='name'
-                   type='text'
-                   className=' px-2 py-2 focus: outline-focusColor rounded-xl border-labelGrayColor border-2'
-                   onChange={handleOnChange}
-                   value={formData.name}
-                 />
-                 <ErrorMessage
-                   name='name'
-                   component='p'
-                   className=' text-labelColor whitespace-nowrap'
-                 />
-               </div>
-               <div className=' w-full col-start-2 col-end-3 row-start-2 row-end-3 -mr-6 flex-shrink-0 -mt-12'>
-                 <label
-                   className='  font-bold block text-labelColor  '
-                   htmlFor='password '
-                 >
-                   Apellido
-                 </label>
-                 <Field
-                   name='lastName'
-                   id='lastName'
-                   type='text'
-                   className='  px-2 py-2 focus: outline-focusColor  rounded-xl border-labelGrayColor border-2 placeholder:-translate-x-6'
-                   onChange={handleOnChange}
-                   value={formData.lastName}
-                 />
-                 <ErrorMessage
-                   name='lastname'
-                   component='p'
-                   className=' text-labelColor whitespace-nowrap'
-                 />
-               </div>
-               <div className='w-full col-start-3 col-end-4 row-start-2 row-end-3 -mr-6 flex-shrink-0 -mt-12'>
-                 <label
-                   className=' font-bold block text-labelColor whitespace-nowrap '
-                   htmlFor='email'
-                 >
-                   Nuevo Email
-                 </label>
-                 <Field
-                   name='email'
-                   id='email'
-                   type='email'
-                   className=' px-2 py-2 focus: outline-focusColor rounded-xl   border-labelGrayColor border-2 placeholder:-translate-x-6 '
-                   onChange={handleOnChange}
-                   value={formData.email}
-                 />
-                 <ErrorMessage
-                   name='passwordConfirmation'
-                   component='p'
-                   className=' text-labelColor whitespace-nowrap'
-                 />
-               </div>
-               <div className=' w-full row-start-2 row-end-3 col-start-4 col-end-5 -mr-6 flex-shrink-0 -mt-12'>
-                 <label
-                   className=' font-bold block text-labelColor whitespace-nowrap '
-                   htmlFor='telefono'
-                 >
-                   Teléfono de contacto
-                 </label>
-                 <Field
-                   name='telefono'
-                   id='telefono'
-                   type='number'
-                   className=' px-2 py-2 focus: outline-focusColor  rounded-xl   border-labelGrayColor border-2 placeholder:-translate-x-6 '
-                   onChange={handleOnChange}
-                   value={formData.telefono}
-                 />
-                 <ErrorMessage
-                   name='telefono'
-                   component='p'
-                   className='whitespace-nowrap text-labelColor'
-                 />
-               </div>
-               <div className='row-start-3 row-end-4 col-start-1 col-end-2 -mr-6 flex-shrink-0 -mt-24'>
-                 <label
-                   className=' font-bold block text-labelColor mt-5 '
-                   htmlFor='pais'
-                 >
-                   Pais
-                 </label>
-                 <Field
-                   as='select'
-                   name='pais'
-                   id='pais'
-                   type='text'
-                   className='px-2 py-2.5 focus: outline-focusColor rounded-xl  border-labelGrayColor border-2 placeholder:-translate-x-6  '
-                   onChange={handleOnChange}
-                   value={formData.pais}
-                 >
-                   <option hidden selected>
-                     Selecciona una opción
-                   </option>
-                   <option value='argentina'>Argentina</option>
-                   <option value='chile'>Chile</option>
-                   <option value='colombia'>Colombia</option>
-                   <option value='ecuador'>Ecuador</option>
-                 </Field>
-                 <ErrorMessage
-                   name='pais'
-                   component='p'
-                   className='whitespace-nowrap text-labelColor'
-                 />
-               </div>
-               <div className='col-start-2 col-end-3 row-start-3 row-end-4 -mr-6 flex-shrink-0 -mt-24'>
-                 <label
-                   className=' font-bold block text-labelColor mt-5 '
-                   htmlFor='ciudad'
-                 >
-                   Ciudad/Provincia
-                 </label>
-                 <Field
-                   name='ciudad'
-                   id='ciudad'
-                   type='text'
-                   className=' px-2 py-2 focus: outline-focusColor rounded-xl  border-labelGrayColor border-2 placeholder:-translate-x-6  '
-                   onChange={handleOnChange}
-                   value={formData.ciudad}
-                 />
-                 <ErrorMessage
-                   name='ciudad'
-                   component='p'
-                   className='whitespace-nowrap text-labelColor'
-                 />
-               </div>
-               <div className='col-start-3 col-end-4 row-start-3 row-end-4 -mr-6 flex-shrink-0 -mt-24'>
-                 <label
-                   className=' font-bold block whitespace-nowrap text-labelColor mt-5 '
-                   htmlFor='zipCode'
-                 >
-                   Código Postal
-                 </label>
-                 <Field
-                   name='zipCode'
-                   id='zipCode'
-                   type='number'
-                   className='  px-2 py-2 focus: outline-focusColor rounded-xl  border-labelGrayColor border-2 placeholder:-translate-x-6  '
-                   onChange={handleOnChange}
-                   value={formData.zipCode}
-                 />
-                 <ErrorMessage
-                   name='zipCode'
-                   component='p'
-                   className='whitespace-nowrap text-labelColor'
-                 />
-               </div>
-               <div className='col-start-4 col-end-5 row-start-3 row-end-4 -mr-6 flex-shrink-0 -mt-24'>
-                 <label
-                   className=' font-bold block text-labelColor mt-5 whitespace-nowrap'
-                   htmlFor='password'
-                 >
-                   Fecha de nacimiento
-                 </label>
-                 <Field
-                   name='dateOfBirty'
-                   id='dateOfBirty'
-                   type='date'
-                   className=' px-2 py-2 focus: outline-focusColor rounded-xl  border-labelGrayColor border-2 placeholder:-translate-x-6  '
-                   onChange={handleOnChange}
-                   value={formData.dateOfBirty}
-                 />
-                 <ErrorMessage
-                   name='dateOfBirty'
-                   component='p'
-                   className='whitespace-nowrap text-labelColor'
-                 />
-               </div>
-               <div className='col-start-1 col-end-2 -mr-6 flex-shrink-0 -mt-24'>
-                 <label
-                   className=' font-bold block text-labelColor mt-5 '
-                   htmlFor='password'
-                 >
-                   Oficio
-                 </label>
-                 <Field
-                   as='select'
-                   name='oficios'
-                   id='oficios'
-                   type='password'
-                   className=' px-2 py-2 focus: outline-focusColor rounded-xl border-labelGrayColor border-2 placeholder:-translate-x-6  '
-                   onChange={handleOnChange}
-                   value={formData.oficios}
-                 >
-                   <option hidden selected>
-                     Selecciona una opción
-                   </option>
-                   <option value='electricista'>Electricista</option>
-                   <option value='soldador'>Soldador</option>
-                   <option value='electronico'>Electrónico</option>
-                   <option value='medico'>Médico</option>
-                   <option value='constructor'>Constructor</option>
-                   <option value='veterinario'>Veterinario</option>
-                   <option value='enfermero'>Enfermero</option>
-                   <option value='fotógrafo'>Fotógrafo</option>
-                 </Field>
-
-                 <ErrorMessage
-                   name='oficios'
-                   component='p'
-                   className='font-bold  text-[#ffffff]'
-                 />
-               </div>
-               <div className='col-start-1 col-end-2 item '>
-                 <button
-                   type='submit'
-                   className='bg-btnColor w-48 h-12  rounded-xl text-xl  text-[#ffffff] font-bold  active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all  active:hover:bg-[#83e3be]  disabled:cursor-not-allowed  mt-28  hover:shadow-228b active:shadow'
-                 >
-                   Guardar
-                 </button>
-               </div>
-             </>
-               
-              }
-=======
               {selectUsuario === 'false' ? (
                 <>
                   <div className=' w-full col-span-1 row-start-2 row-end-3 -mr-6 flex-shrink-0 mt-5'>
@@ -841,7 +533,6 @@ function EditProfileProfessional() {
                   </div>
                 </>
               )}
->>>>>>> 627345247135dff3e513e0e5490abc3986ad7fd2
             </div>
           </Form>
         </Formik>

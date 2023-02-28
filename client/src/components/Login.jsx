@@ -67,9 +67,7 @@ function Login({ isOpen, closeModal }) {
     e.preventDefault();
     userLogin(user);
     closeModal();
-    userStatus.user.professional
-      ? navigate('/perfilProfesional')
-      : navigate('/servicios');
+    userStatus.user.professional ? navigate('/editPerfil') : navigate('/servicios');
   };
 
   return (

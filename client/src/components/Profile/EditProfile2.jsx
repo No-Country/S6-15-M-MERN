@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 
 import { useApi } from '../../hooks/useApi';
 
-function EditProfileProfessional() {
+function EditProfileProfessional2() {
   const [userUpdatedStatus, setUserUpdatedStatus] = useState({});
   const [, , , , getProfessional] = useApi();
   const userStatus = useSelector((state) => state.user);
@@ -537,4 +537,4 @@ function EditProfileProfessional() {
   );
 }
 
-export default EditProfileProfessional;
+export default EditProfileProfessional2;
