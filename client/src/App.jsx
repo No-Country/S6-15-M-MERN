@@ -11,9 +11,8 @@ import Login from './components/Login';
 import NavBar from './components/NavBar';
 import { BoolHook } from './hooks/BoolHook';
 import Footer from './components/Footer';
-import Messages from './components/Messages';
 import PerfilProfesional from './components/PerfilProfesional/PerfilProfesional';
-import EditProfileProfessional from './components/Profile/EditProfileProfessional';
+import Team from './screens/Team';
 
 function App() {
   const [isModalOpen, changeModalStatus] = BoolHook(false);
@@ -37,6 +36,11 @@ function App() {
             path='/perfilProfesional'
             element={<PerfilProfesional />}
           />
+          <Route
+            path='/team'
+            element={<Team />}
+          />
+          
         </Routes>
       </section>
       <div className='footerDiv'>
