@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { CardServices } from '../components/services/CardServices';
-import Dropdown from '../components/services/Dropdown';
+import Dropdown from '../components/services/Dropdown'
 import { useSelector } from 'react-redux';
 import { useApi } from '../hooks/useApi';
-import image from '../assets/Frame.png';
+
 import { useNavigate } from 'react-router-dom';
 
 export const ServicesDetail = ({ props }) => {
