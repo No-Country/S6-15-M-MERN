@@ -35,35 +35,10 @@ export default function PerfilProfesional() {
 
 
   const profesionalId = (searchparams.get('id'));
-  console.log(profesionalId);
+ /*  console.log(profesionalId);
   console.log(JSON.parse(localStorage.getItem("user")).id);
-
-  const switchParam = (job) => {
-    switch (job) {
-      case "63f4c87e3174deb8a1c4724d":
-        return "Fotografo";
-      case "63f4c2d13174deb8a1c47222":
-        return "Electricista";
-      case "63f4c2fc3174deb8a1c47227":
-        return "Soldador";
-      case "63f4c3423174deb8a1c4722a":
-        return "Electrónico";
-      case "63f4c4583174deb8a1c47231":
-        return "Médico";
-      case "63f4c62a3174deb8a1c47242":
-        return "Constructor";
-      case "63f4c6683174deb8a1c47244":
-        return "Veterinario";
-      case "63f4c6a33174deb8a1c47246":
-        return "Enfermero";
-
-        break;
-
-      default:
-        break;
-    }
-
-  }
+ */
+  
 
 
   useEffect(() => {
@@ -95,9 +70,7 @@ export default function PerfilProfesional() {
   const navigate = useNavigate();
 
   const sendMessage = ()=>{
-    
     const email = profile.profile.user.email;
-    console.log(email);
     navigate("/sol-servicio", {state: { email }})
 
   }
@@ -130,9 +103,7 @@ export default function PerfilProfesional() {
               {profesionalId === JSON.parse(localStorage.getItem("user")).id &&
                 <button className='bg-[#43936c] w-9 h-9 rounded-full text-white relative left-[116px] top-[-25px]'>
                   <FontAwesomeIcon icon={faUpload} />
-
                 </button>
-
               }
 
 

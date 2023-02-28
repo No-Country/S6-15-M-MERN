@@ -4,12 +4,16 @@ import { jobsFetched } from '../features/jobs/jobsSlice';
 import { userStatus } from '../features/user/userSlice';
 import { profileFetched } from '../features/profile/ProfileSlice';
 import { professionalsFetched } from '../features/professionalsSlice/professionalsSlice';
+import { loginReducer } from '../features//booleans/booleanSlice';
+import { useSelector } from 'react-redux';
 import axios from 'axios';
 
 export function useApi(
   initialValue = 'https://container-service-1.utth4a3kjn6m0.us-west-2.cs.amazonlightsail.com/'
 ) {
   const dispatch = useDispatch();
+
+  const loginStatus = useSelector(state=>state.modales)
 
   const url = initialValue;
 
@@ -72,7 +76,9 @@ export function useApi(
         localStorage.setItem('user', JSON.stringify(verifiedUser));
       })
       .catch(function (error) {
-        console.log(error);
+        dispatch(
+          loginReducer(!loginStatus.invalidLogin)
+        )
       });
   };
 
