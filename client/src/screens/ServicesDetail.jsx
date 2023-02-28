@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { useApi } from '../hooks/useApi';
 import image from '../assets/Frame.png';
 import { useNavigate } from 'react-router-dom';
+import HeaderServicios from '../components/HeaderServicios';
 
 export const ServicesDetail = ({ props }) => {
   const [searchparams] = useSearchParams();
@@ -36,7 +37,7 @@ export const ServicesDetail = ({ props }) => {
 
   return (
     <>
-      <div>ServicesDetail Header</div>
+      <div><HeaderServicios/></div>
       <div className=' flex flex-col p-10 justify-evenly'>
         <div className='flex-col items-center justify-around flex'>
           <div>

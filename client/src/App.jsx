@@ -16,6 +16,7 @@ import EditProfileProfessional from './components/Profile/EditProfileProfessiona
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { userStatus } from './features/user/userSlice';
+import Team from './screens/Team';
 
 const App = () => {
   const [isModalOpen, changeModalStatus] = BoolHook(false);
