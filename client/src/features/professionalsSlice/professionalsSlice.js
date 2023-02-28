@@ -16,19 +16,18 @@ const initialState = {
 };
 
 const professionalsSlice = createSlice({
-  name: "professionals",
+  name: 'professionals',
   initialState,
   reducers: {
-    professionalsFetched(state, action){
-      return{
+    professionalsFetched(state, action) {
+      return {
         ...state,
-        professionals: action.payload
-      }
-    }
-  }
-})
+        professionals: action.payload,
+      };
+    },
+  },
+});
 
-export const { professionalsFetched} = professionalsSlice.actions;
+export const { professionalsFetched } = professionalsSlice.actions;
 
 export default professionalsSlice.reducer;
-
