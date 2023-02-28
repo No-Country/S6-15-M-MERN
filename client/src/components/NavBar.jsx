@@ -16,6 +16,7 @@ import {
 } from '@heroicons/react/24/outline';
 import contrata from '../assets/contrata.png';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const solutions = [
   
@@ -80,10 +81,15 @@ function classNames(...classes) {
 }
 
 export default function NavBar({ changeModal }) {
+  const userStatus = useSelector(state => state.user);
+
+  console.log(userStatus, "el usuario")
   const handleClick = () => {
     console.log(changeStatus());
   };
+
   return (
+    
     <Popover className='relative bg-backgroundColor '>
       <div className='px-7'>
         <div className='flex items-center  py-6  md:space-x-10'>
@@ -114,15 +120,20 @@ export default function NavBar({ changeModal }) {
             className='ml-3 text-base font-medium text-gray-500 hover:text-gray-900'>
               FAQ´s</Link>
           </Popover.Group>
+          {!userStatus.user.token ? 
           <div className='hidden items-center justify-end md:flex md:flex-2 '>
-            
             <button
               onClick={changeModal}
               className='inline-flex items-center justify-center whitespace-nowrap rounded-md border-transparent bg-buttons-buttonGreen px-4 py-2 text-base font-medium text-textWhite shadow-sm hover:bg-indigo-700'
             >
               Registrarse
             </button>
-          </div>
+          </div> : 
+          <div> 
+          <img onClick={changeModal}
+              className=' inline-flex items-center justify-center whitespace-nowrap rounded-full w-20 max-h-20 border-[#28315C] border-solid border-2 '  
+               src= {userStatus.user.avatarURL} />  
+          </div> }
         </div>
       </div>
       <Transition
