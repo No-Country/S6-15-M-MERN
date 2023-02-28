@@ -58,8 +58,6 @@ export function useApi(
   };
    
 
-        dispatch(userStatus(verifiedUser));
-
   const userLogin = (data) => {
     axios
       .post(`${url}auth/login`, data)

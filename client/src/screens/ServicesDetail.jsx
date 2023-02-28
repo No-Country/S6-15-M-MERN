@@ -8,8 +8,6 @@ import image from '../assets/Frame.png';
 import { useNavigate } from 'react-router-dom';
 import HeaderServicios from '../components/HeaderServicios';
 
-import { useNavigate } from 'react-router-dom';
-
 export const ServicesDetail = ({ props }) => {
   const [searchparams] = useSearchParams(); 
   const [, , , professionalsList] = useApi();
