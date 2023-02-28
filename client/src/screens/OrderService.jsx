@@ -1,42 +1,33 @@
-import NavBar from "../components/NavBar";
-import Footer from "../components/Footer";
-import logo from "../assets/logo.svg";
+
 import clipper from "../assets/clipper.svg";
-import { useState } from "react";
+import { useRef } from "react";
+import emailjs from "@emailjs/browser"
 
 export const OrderService = () => {
-  const [inputs, setInputs] = useState({});
 
-  const handleChange = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
-    setInputs((values) => ({ ...values, [name]: value }));
-  };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(inputs);
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm('service_60byldi', 'template_uj2wx57', form.current, 'd_XVSuMm0pNrQoWNm')
+      .then((result) => {
+          console.log(result.text);
+          console.log("message sent");
+
+      }, (error) => {
+          console.log(error.text);
+      });
   };
 
   return (
     <div>
-      <NavBar />
-      <div className=" bg-[url('https://firebasestorage.googleapis.com/v0/b/db-demo-e7d23.appspot.com/o/OrderService%2F6VIA5VvDooRq5SuCn9YQ5lMZ7Ct9VGjJknQuwWkG.webp.png?alt=media&token=1de80ed5-b1a6-420f-b7ce-6edd9adb2852')] h-72 w-full ">
-        <div
-          className="w-full h-full flex flex-col  justify-center items-center  
-             bg-blue-800/30 backdrop-brightness-75"
-        >
-          <div className="">
-            <img src={logo} alt="" />
-          </div>
-          <div className="">
-            <span className="text-white text-4xl w-1/2 ">
-              Solicitar electricista
-            </span>
-          </div>
-        </div>
+      <div
+      className=" max-md:h-44 max-lg:h-56 max-xl:h-96 max-2xl:h-96 max-sm:h-24 w-full bg-no-repeat bg-cover bg-[url('https://firebasestorage.googleapis.com/v0/b/db-demo-e7d23.appspot.com/o/OrderService%2F6VIA5VvDooRq5SuCn9YQ5lMZ7Ct9VGjJknQuwWkG.webp.png?alt=media&token=1de80ed5-b1a6-420f-b7ce-6edd9adb2852')]"
+      >
       </div>
-      <div className="p-10 text-gray-400 font-normal text-xl">
+      <div className="p-10 text-gray-400 text-xl">
         <p>
           Contanos que problema necesitas solucionar y nosotros te enviaremos
           SIN CARGO un presupuesto.
@@ -48,7 +39,7 @@ export const OrderService = () => {
         <div className="flex justify-center">
           <form
             className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full md:w-3/4 flex flex-wrap"
-            onSubmit={handleSubmit}
+            ref={form} onSubmit={sendEmail}
           >
             <div className="mb-4 w-full md:w-1/2 p-2">
               <label
@@ -58,47 +49,47 @@ export const OrderService = () => {
                 Nombre
               </label>
               <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 max-sm:text-xs   leading-tight focus:outline-none focus:shadow-outline"
                 id="username"
                 type="text"
-                name="username"
-                value={inputs.username || ""}
+                name="from_name"
+                // value={inputs.username || ""}
                 placeholder="Nombre Completo"
-                onChange={handleChange}
+                // onChange={handleChange}
               />
             </div>
 
             <div className="mb-4 w-full md:w-1/2 p-2">
               <label
-                className="block text-gray-700 text-sm font-bold mb-2"
+                className="block text-gray-700 text-sm max-sm:text-xs  font-bold mb-2"
                 htmlFor="email"
               >
                 Email
               </label>
               <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 max-sm:text-xs  leading-tight focus:outline-none focus:shadow-outline"
                 id="email"
                 type="email "
-                name="email"
-                value={inputs.email || ""}
+                name="user_email"
+                // value={inputs.email || ""}
                 placeholder="email"
-                onChange={handleChange}
+                // onChange={handleChange}
               />
             </div>
 
             <div className="mb-4 w-full md:w-1/2 p-2">
               <label
-                className="block text-gray-700 text-sm font-bold mb-2"
+                className="block text-gray-700 text-sm max-sm:text-xs font-bold mb-2"
                 htmlFor="location"
               >
                 Barrio/Localidad
               </label>
               <select
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 max-sm:text-xs  leading-tight focus:outline-none focus:shadow-outline"
                 id="location"
-                name="location"
-                value={inputs.location}
-                onChange={handleChange}
+                name="to_name"
+                // value={inputs.location}
+                // onChange={handleChange}
               >
                 <option value="grapefruit">Grapefruit</option>
                 <option value="lime">Lime</option>
@@ -109,20 +100,20 @@ export const OrderService = () => {
 
             <div className="mb-4 w-full p-2">
               <label
-                className="block text-gray-700 text-sm font-bold mb-2"
+                className="block text-gray-700 text-sm font-bold mb-2 max-sm:text-xs "
                 htmlFor="ask"
               >
                 Tu consulta
               </label>
               <textarea
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline max-sm:text-xs "
                 id="ask"
                 type="number"
                 rows="4"
-                name="ask"
-                value={inputs.ask || ""}
+                name="message"
+                // value={inputs.ask || ""}
                 placeholder="Describe detalladamente tu problema"
-                onChange={handleChange}
+                // onChange={handleChange}
               />
             </div>
 
@@ -131,7 +122,7 @@ export const OrderService = () => {
                 <img src={clipper} alt="" />
               </div>
               <div className="">
-                <span className="text-gray-400">
+                <span className="text-gray-400 max-sm:text-xs text-center">
                   Adjunta las fotos o archivos necesarios
                 </span>
               </div>
@@ -139,7 +130,7 @@ export const OrderService = () => {
 
             <div className="flex items-center justify-center w-full p-2">
               <input
-                className="bg-buttons-saveButtonGreen hover:bg-buttons-hoverButtonGreen text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-1/4"
+                className="bg-buttons-saveButtonGreen hover:bg-buttons-hoverButtonGreen text-white text-center font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 type="submit"
                 value="Enviar"
               />
@@ -147,7 +138,6 @@ export const OrderService = () => {
           </form>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

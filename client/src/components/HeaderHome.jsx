@@ -15,7 +15,7 @@ export const HeaderHome = () => {
             </button>
         </div>
         <div className='w-5/12 justify-center'>
-            <img className='object-fill'
+            <img className='object-fill w-[595px]'
             src={homeimg}
             />
         </div>

@@ -1,16 +1,22 @@
 import React from 'react'
-import NavBar from '../components/NavBar';
 import ServicesCards from '../components/ServicesCards';
+import { useSelector } from 'react-redux';
+
+
 
 
 
 
 
 export const Services = () => {
+
+    const user = useSelector(state => state.user);
+
+
+
     return (
-        <>
-            <NavBar />
+        <div className='mb-20'>
             <ServicesCards />
-        </>
+        </div>
     )
 }
