@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { jobsFetched } from '../features/jobs/jobsSlice';
 import { userStatus } from '../features/user/userSlice';
 import { professionalsFetched } from '../features/professionalsSlice/professionalsSlice';
+import  { profileFetched } from "../features/profile/ProfileSlice"
 
 import axios from 'axios';
 
@@ -90,6 +91,8 @@ export function useApi(
   };
 
   const getProfessional = (id) => {
+    
+
     const token = JSON.parse(localStorage.getItem('user')).token;
     axios
       .get(
@@ -101,6 +104,8 @@ export function useApi(
         }
       )
       .then((res) => {
+        console.log(res, "RESPUESTA");
+
         dispatch(profileFetched(res.data));
       })
       .catch((error) => {

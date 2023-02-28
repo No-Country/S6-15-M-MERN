@@ -15,9 +15,12 @@ function EditProfileProfessional() {
   const navigate = useNavigate();
   const [selectUsuario, setSelectUsuario] = useState('false');
   const profile = useSelector((state) => state.profile);
+
+
   console.log(profile, 'EL USER STATUS');
   console.log(userStatus);
   useEffect(() => {
+    console.log(userStatus.user.id);
     getProfessional(userStatus.user.id);
   }, []);
 
