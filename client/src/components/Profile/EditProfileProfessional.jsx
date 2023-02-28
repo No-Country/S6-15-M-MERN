@@ -1,32 +1,34 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
-import { useLocation } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-
 import { useApi } from '../../hooks/useApi';
 
 function EditProfileProfessional() {
-  const [, , , , getProfessional] = useApi();
+  const navigate = useNavigate();
+
+  //ESTE ES PARA EL CAMBIO DEL SELECT
+  const [selectUsuario, setSelectUsuario] = useState('false');
+
+  //ESTE ES EL USUARIO VALIDADO. SOLO: ID, TOKEN y PROFESSIONAL
   const userStatus = useSelector((state) => state.user);
 
-  const navigate = useNavigate();
-  const [selectUsuario, setSelectUsuario] = useState('false');
-  const profile = useSelector((state) => state.profile);
-
-
-  console.log(profile, 'EL USER STATUS');
-  console.log(userStatus);
-  useEffect(() => {
-    console.log(userStatus.user.id);
-    getProfessional(userStatus.user.id);
-  }, []);
-
+  //ESTE ES PARA TRAER NOMBRE y EMAIL DESDE EL REGISTRO
   const location = useLocation();
   const user = location.state;
 
+  //ACA TRAIGO TODO DEL ESTADO GLOBAL DEL USUARIO:
+  const [, , , , getProfessional] = useApi();
+  const profile = useSelector((state) => state.profile);
+
+  //USUARIO CON TODA LA DATA DEL BACKEND
+  const updatedUser = profile.profile.user;
+  useEffect(() => {
+    getProfessional(userStatus.user.id);
+  }, []);
+
+  //ESTE ES EL ESTADO INICIAL DE LOS INPUTS
   const [formData, setFormData] = useState({
     professional: selectUsuario,
     name: user.name,
@@ -41,20 +43,23 @@ function EditProfileProfessional() {
     description: '',
   });
 
+  //ESTE ES EL ESTADO QUE DEBERIA CARGARSE CON LOS DATOS ACTUALIZADOS
+  //Y ES EL QUE SE ENVIA AL BACKEND
   const [newFormData, setNewFormData] = useState({
-    professional: '',
+    professional: formData.professional,
     name: formData.name,
     lastName: formData.lastName,
     email: formData.email,
-    telefono: '',
-    pais: '',
+    telefono: formData.telefono,
+    country: formData.country,
     city: formData.city,
-    zipCode: '',
-    dateOfBirty: '',
-    job: '',
-    description: '',
+    zipCode: formData.zipCode,
+    dateOfBirty: formData.dateOfBirty,
+    job: formData.job,
+    description: formData.description,
   });
 
+  //ACA LLAMADA AL ENDPOINT PARA EDITAR USUARIO
   const postEditUser = (data) => {
     return new Promise((resolve, reject) =>
       fetch(
@@ -72,26 +77,28 @@ function EditProfileProfessional() {
         .then((res) => res.json(data))
         .then((result) => {
           resolve(result);
-          console.log(result);
         })
         .catch((error) => reject(error))
     );
   };
 
+  //ACA AL HACER CLICK EN EL BOTON, SI EL USUARIO TIENE TOKEN
+  //ENVIA TODO AL BACKEND
+
   const handleOnSubmit = (e) => {
     e.preventDefault();
     if (userStatus.user.token) {
       postEditUser(newFormData);
-      localStorage.setItem('newFormData', JSON.stringify(newFormData));
-      navigate(`/perfilProfesional/${userStatus.user.id}`);
-      const getDataFromStorage = JSON.parse(
-        localStorage.getItem('newFormData')
-      );
+
+      /*       localStorage.setItem('newFormData', JSON.stringify(newFormData)); */
+      /*  navigate(`/perfilProfesional/${userStatus.user.id}`); */
     } else {
       navigate('/login');
     }
   };
 
+  //ACA CUANDO SE LLENA EL INPUT LO VA GUARDANDO EN FORMDATA
+  //Y LUEGO ACTUALIZA NEWFORMDATA CON ESOS DATOS.
   function handleOnChange(e) {
     const name = e.target.name;
     const value = e.target.value;
@@ -104,20 +111,17 @@ function EditProfileProfessional() {
       professional: selectUsuario,
     });
   }
+
+  //ESTA SUPONGO QUE ES PARA SELECCIONAR EL USUARIO PROFESSIONAL
+  //Y ENVIAR ESO AL NEWFORMDATA
   const handleSelectUsuario = (event) => {
     const select = event.target.value;
     setSelectUsuario(select);
     setNewFormData({ ...formData, professional: select });
   };
-  /*   console.log(newFormData); */
 
-  /*   useEffect(() => {
-    const savedData = JSON.parse(localStorage.getItem('myFormData'));
-
-    if (savedData) {
-      setFormData({});
-    }
-  }, []); */
+  console.log(updatedUser, 'REDUXXXXX');
+  console.log(newFormData, 'NEWFORMDATA= FORMDATA + SELECT');
 
   const userSchema = yup.object().shape({
     name: yup
@@ -162,8 +166,8 @@ function EditProfileProfessional() {
             professional: 'false',
             name: user.name,
             lastname: '',
+            country: '',
             city: '',
-            telefono: '',
             dateOfBirty: '',
             zipCode: '',
             email: user.email,

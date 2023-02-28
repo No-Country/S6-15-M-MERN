@@ -1,72 +1,90 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+
+import { useApi } from '../../hooks/useApi';
+
 function EditProfileProfessional() {
-  const navigate = useNavigate();
-  const [selectUsuario, setSelectUsuario] = useState('Cliente');
-
-  const handleSelectUsuario = (event) => {
-    setSelectUsuario(event.target.value);
-  };
-
+  const [userUpdatedStatus, setUserUpdatedStatus] = useState({});
+  const [, , , , getProfessional] = useApi();
   const userStatus = useSelector((state) => state.user);
-  console.log(userStatus);
+
+  const navigate = useNavigate();
+  const [selectUsuario, setSelectUsuario] = useState('false');
+  const profile = useSelector((state) => state.profile);
+  const updatedUser = profile.profile.user;
+  /* 
+  console.log(profile, 'EL USER STATUS'); */
+  console.log(updatedUser, 'EL PROFESIONAL');
+
+  useEffect(() => {
+    console.log(userStatus.user.id);
+    getProfessional(userStatus.user.id);
+  }, []);
+
   const location = useLocation();
   const user = location.state;
-  console.log(user);
 
   const [formData, setFormData] = useState({
-    rol: '',
-    name: user.name,
-    lastName: '',
-    email: user.email,
-    telefono: '',
-    pais: '',
-    ciudad: '',
-    zipCode: '',
-    dateOfBirty: '',
-    oficios: '',
+    professional: updatedUser.professional,
+    name: updatedUser.name,
+    lastName: updatedUser.lastname,
+    email: updatedUser.email,
+    telefono: updatedUser.telefono,
+    country: updatedUser.country,
+    city: updatedUser.city,
+    zipCode: updatedUser.zipCode,
+    dateOfBirty: updatedUser.dateOfBirty,
+    job: updatedUser.job,
+    description: updatedUser.description,
   });
+
+  const [newFormData, setNewFormData] = useState({
+    professional: updatedUser.professional,
+    name: updatedUser.name,
+    lastName: updatedUser.lastname,
+    email: updatedUser.email,
+    telefono: updatedUser.telefono,
+    country: updatedUser.country,
+    city: updatedUser.city,
+    zipCode: updatedUser.zipCode,
+    dateOfBirty: updatedUser.dateOfBirty,
+    job: updatedUser.job,
+    description: updatedUser.description,
+  });
+
+  const postEditUser = (data) => {
+    return new Promise((resolve, reject) =>
+      fetch(
+        'https://container-service-1.utth4a3kjn6m0.us-west-2.cs.amazonlightsail.com/user/me',
+        {
+          method: 'PUT',
+          body: JSON.stringify(data),
+          headers: {
+            'Content-Type': 'application/json',
+            Connection: 'keep-alive',
+            Authorization: `Bearer ${userStatus.user.token}`,
+          },
+        }
+      )
+        .then((res) => res.json(data))
+        .then((result) => {
+          resolve(result);
+          console.log(result);
+        })
+        .catch((error) => reject(error))
+    );
+  };
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
     if (userStatus.user.token) {
-      const postEditUser = (data) => {
-        console.log(data, 'DATA');
-        return new Promise((resolve, reject) =>
-          fetch(
-            'https://container-service-1.utth4a3kjn6m0.us-west-2.cs.amazonlightsail.com/user/me',
-            {
-              method: 'PUT',
-              headers: {
-                'Content-Type': 'application/json',
-                Connection: 'keep-alive',
-              },
-              body: JSON.stringify(data),
-            }
-          )
-            .then((res) => res.json())
-            .then((result) => {
-              const verifiedUser = {
-                token: result.user.token,
-                id: result.user.user._id,
-                professional: result.user.user.professional,
-              };
-
-              dispatch(userStatus(verifiedUser));
-
-              localStorage.setItem('user', JSON.stringify(verifiedUser));
-
-              resolve(result);
-            })
-            .catch((error) => reject(error))
-        );
-      };
-
+      postEditUser(newFormData);
+      localStorage.setItem('newFormData', JSON.stringify(newFormData));
       navigate(`/perfilProfesional/${userStatus.user.id}`);
     } else {
       navigate('/login');
@@ -74,12 +92,31 @@ function EditProfileProfessional() {
   };
 
   function handleOnChange(e) {
+    const name = e.target.name;
     const value = e.target.value;
 
-    setFormData({ ...formData, [e.target.name]: value });
-  }
+    setFormData({ ...formData, [name]: value });
 
-  console.log(formData);
+    setNewFormData({
+      ...formData,
+      [name]: value,
+      professional: selectUsuario,
+    });
+  }
+  const handleSelectUsuario = (event) => {
+    const select = event.target.value;
+    setSelectUsuario(select);
+    setNewFormData({ ...formData, professional: select });
+  };
+  /*   console.log(newFormData); */
+
+  /*   useEffect(() => {
+    const savedData = JSON.parse(localStorage.getItem('myFormData'));
+
+    if (savedData) {
+      setFormData({});
+    }
+  }, []); */
 
   const userSchema = yup.object().shape({
     name: yup
@@ -121,13 +158,17 @@ function EditProfileProfessional() {
         </h3>
         <Formik
           initialValues={{
-            oficios: '',
-            name: user.name,
-            lastname: '',
-            dateOfBirty: '',
-            zipCode: '',
-            email: user.email,
-            oficio: '',
+            professional: updatedUser.professional,
+            name: updatedUser.name,
+            lastName: updatedUser.lastname,
+            email: updatedUser.email,
+            telefono: updatedUser.telefono,
+            country: updatedUser.country,
+            city: updatedUser.city,
+            zipCode: updatedUser.zipCode,
+            dateOfBirty: updatedUser.dateOfBirty,
+            job: updatedUser.job,
+            description: updatedUser.description,
           }}
           validationSchema={userSchema}
         >
@@ -142,9 +183,9 @@ function EditProfileProfessional() {
                 </label>
                 <Field
                   as='select'
-                  name='rol'
-                  id='rol'
-                  type='password'
+                  name='professional'
+                  id='professional'
+                  type='text'
                   className='py-2  focus: outline-focusColor rounded-xl border-labelGrayColor border-2 pl-0 text-center'
                   value={selectUsuario}
                   onChange={handleSelectUsuario}
@@ -152,8 +193,8 @@ function EditProfileProfessional() {
                   <option hidden selected>
                     Selecciona una opción
                   </option>
-                  <option value='cliente'>Cliente</option>
-                  <option value='profesional'>Profesional</option>
+                  <option value='false'>Cliente</option>
+                  <option value='true'>Profesional</option>
                 </Field>
 
                 <ErrorMessage
@@ -162,7 +203,7 @@ function EditProfileProfessional() {
                   className='font-bold  text-[#ffffff]'
                 />
               </div>
-              {selectUsuario === 'cliente' ? (
+              {selectUsuario === 'false' ? (
                 <>
                   <div className=' w-full col-span-1 row-start-2 row-end-3 -mr-6 flex-shrink-0 mt-5'>
                     <label className='font-bold block text-labelColor  '>
@@ -320,14 +361,14 @@ function EditProfileProfessional() {
                   <div className='row-start-3 row-end-4 col-start-1 col-end-2 -mr-6 flex-shrink-0 -mt-24'>
                     <label
                       className=' font-bold block text-labelColor mt-5 '
-                      htmlFor='pais'
+                      htmlFor='country'
                     >
                       Pais
                     </label>
                     <Field
                       as='select'
-                      name='pais'
-                      id='pais'
+                      name='country'
+                      id='country'
                       type='text'
                       className='px-2 py-2.5 focus: outline-focusColor rounded-xl  border-labelGrayColor border-2 placeholder:-translate-x-6  '
                       onChange={handleOnChange}
@@ -350,13 +391,13 @@ function EditProfileProfessional() {
                   <div className='col-start-2 col-end-3 row-start-3 row-end-4 -mr-6 flex-shrink-0 -mt-24'>
                     <label
                       className=' font-bold block text-labelColor mt-5 '
-                      htmlFor='ciudad'
+                      htmlFor='city'
                     >
                       Ciudad/Provincia
                     </label>
                     <Field
-                      name='ciudad'
-                      id='ciudad'
+                      name='city'
+                      id='city'
                       type='text'
                       className=' px-2 py-2 focus: outline-focusColor rounded-xl  border-labelGrayColor border-2 placeholder:-translate-x-6  '
                       onChange={handleOnChange}
@@ -419,30 +460,63 @@ function EditProfileProfessional() {
                     </label>
                     <Field
                       as='select'
-                      name='oficios'
-                      id='oficios'
+                      name='job'
+                      id='job'
                       type='password'
                       className=' px-2 py-2 focus: outline-focusColor rounded-xl border-labelGrayColor border-2 placeholder:-translate-x-6  '
                       onChange={handleOnChange}
-                      value={formData.oficios}
+                      value={formData.job}
                     >
                       <option hidden selected>
                         Selecciona una opción
                       </option>
-                      <option value='electricista'>Electricista</option>
-                      <option value='soldador'>Soldador</option>
-                      <option value='electronico'>Electrónico</option>
-                      <option value='medico'>Médico</option>
-                      <option value='constructor'>Constructor</option>
-                      <option value='veterinario'>Veterinario</option>
-                      <option value='enfermero'>Enfermero</option>
-                      <option value='fotógrafo'>Fotógrafo</option>
+                      <option value='63f4c2d13174deb8a1c47222'>
+                        Electricista
+                      </option>
+                      <option value='63f4c2fc3174deb8a1c47227'>Soldador</option>
+                      <option value='63f4c3423174deb8a1c4722a'>
+                        Electrónico
+                      </option>
+                      <option value='63f4c4583174deb8a1c47231'>Médico</option>
+                      <option value='63f4c62a3174deb8a1c47242'>
+                        Constructor
+                      </option>
+                      <option value='63f4c6683174deb8a1c47244'>
+                        Veterinario
+                      </option>
+                      <option value='63f4c6a33174deb8a1c47246'>
+                        Enfermero
+                      </option>
+                      <option value='63f4c87e3174deb8a1c4724d'>
+                        Fotógrafo
+                      </option>
                     </Field>
 
                     <ErrorMessage
-                      name='oficios'
+                      name='job'
                       component='p'
                       className='font-bold  text-[#ffffff]'
+                    />
+                  </div>
+                  <div className='col-start-2 col-end-5 row-start-4 row-end-6 -mr-6 flex-shrink-0 -mt-24'>
+                    <label
+                      className=' font-bold block text-labelColor mt-5 whitespace-nowrap'
+                      htmlFor='password'
+                    >
+                      Descripción
+                    </label>
+                    <Field
+                      name='description'
+                      id='description'
+                      type='textarea'
+                      className=' w-full px-2 pb-24 text-start focus: outline-focusColor rounded-xl  border-labelGrayColor border-2 placeholder:-translate-x-6  '
+                      onChange={handleOnChange}
+                      value={formData.description}
+                    />
+                    <ErrorMessage
+                      name='description'
+                      component='p'
+                      className='whitespace-nowrap text-labelColor'
                     />
                   </div>
                   <div className='col-start-1 col-end-2 item '>
