@@ -33,13 +33,22 @@ function ServicesCards() {
           compartiremos tus datos
         </p>
 
+<<<<<<< HEAD
         <select className='text-base mx-auto mt-16 font-normal rounded-full border-2 bg-green-100 text-gray-600 h-12 w-[429px] pl-5 pr-10  hover:border-gray-400 focus:outline-none appearance-none'>
           <option onClick={handleOption}>Todos</option>
+=======
+        <select onClick={handleOption} className='text-base mx-auto mt-16 font-normal rounded-full border-2 bg-green-100 text-gray-600 h-12 w-[429px] pl-5 pr-10  hover:border-gray-400 focus:outline-none appearance-none'>
+          <option >Todos</option>
+>>>>>>> 6b729dc79f75447f23e307c86018f0a4bf67237c
 
           {jobs !== null &&
             jobs.jobs.map((requested) => {
               return (
+<<<<<<< HEAD
                 <option key={requested._id} onClick={handleOption}>
+=======
+                <option key={requested._id}>
+>>>>>>> 6b729dc79f75447f23e307c86018f0a4bf67237c
                   {requested.service}
                 </option>
               );

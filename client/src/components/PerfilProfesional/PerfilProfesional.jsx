@@ -1,80 +1,254 @@
-import Frame from "../../assets/Frame.png"
-import Foto from "../../assets/Foto.png"
-import Icon from "../../assets/Icon.png"
-import Facebook from "../../assets/Facebook.png"
-import Telefono from "../../assets/Telefono.png"
-import Correo from "../../assets/Correo.png"
-import Enviame from "../../assets/Enviame.png"
-import OurServices from "../OurServices/OurServices";
-import Reviews from "../Reviews";
-import Estrellas from "../Estrellas"
+import Foto from '../../assets/profile.jpeg';
+import Icon from '../../assets/Icon.png';
+import Telefono from '../../assets/Telefono.png';
+import Correo from '../../assets/Correo.png';
+import envelope from "../../assets/envelope.png"
+import { opcionesApp } from '../../utils/opcionesApp';
+
+import { useSearchParams, useParams, useNavigate } from 'react-router-dom';
+import { useApi } from '../../hooks/useApi';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faUpload } from '@fortawesome/free-solid-svg-icons';
 
 
 export default function PerfilProfesional() {
+
+  const profile = useSelector(state => state.profile)
+  const jobs = useSelector(state => state.jobs)
+
+  const {returnJob, returnBanners} = opcionesApp();
+
+
+  const [imagen, setImagen] = useState("https://firebasestorage.googleapis.com/v0/b/db-demo-e7d23.appspot.com/o/banners%2Felectricista.png?alt=media&token=41be896c-0152-4d4c-a6c4-79f14258b954")
+
+
+  const [readJobs, , , , getProfessional] = useApi()
+
+  const [searchparams] = useSearchParams();
+
+  /* {profesionalId === JSON.parse(localStorage.getItem("user")).id && console.log("Si")} */
+
+
+
+
+  const profesionalId = (searchparams.get('id'));
+  console.log(profesionalId);
+  console.log(JSON.parse(localStorage.getItem("user")).id);
+
+  const switchParam = (job) => {
+    switch (job) {
+      case "63f4c87e3174deb8a1c4724d":
+        return "Fotografo";
+      case "63f4c2d13174deb8a1c47222":
+        return "Electricista";
+      case "63f4c2fc3174deb8a1c47227":
+        return "Soldador";
+      case "63f4c3423174deb8a1c4722a":
+        return "Electrónico";
+      case "63f4c4583174deb8a1c47231":
+        return "Médico";
+      case "63f4c62a3174deb8a1c47242":
+        return "Constructor";
+      case "63f4c6683174deb8a1c47244":
+        return "Veterinario";
+      case "63f4c6a33174deb8a1c47246":
+        return "Enfermero";
+
+        break;
+
+      default:
+        break;
+    }
+
+  }
+
+
+  useEffect(() => {
+    readJobs()
+    getProfessional(profesionalId);
+
+
+
+  }, [])
+
+  useEffect(() => {
+
+    setTimeout(() => {
+      if ((jobs.jobs.filter(job => job._id === profile.profile.user.job)[0] !== undefined) && (profile.profile.user !== undefined)) {
+
+        setImagen(jobs.jobs.filter(job => job._id === profile.profile.user.job)[0].jobBannerUrl)
+
+
+
+      }
+
+    }, 1000)
+
+
+
+
+  })
+
+  const navigate = useNavigate();
+
+  const sendMessage = ()=>{
+    
+    const email = profile.profile.user.email;
+    console.log(email);
+    navigate("/sol-servicio", {state: { email }})
+
+  }
+
+
+
+
+
+
   return (
     <div>
-      <span className="w-[284px] ml-[10px]  top-[-4] font-['Nunito Sans'] not-italic font-bold leading-[33px] flex items-center text-[#083A50] mb-3">
+      {/* <span className="w-[284px] ml-[10px]  top-[-4] font-['Nunito Sans'] not-italic font-bold leading-[33px] flex items-center text-[#083A50] mb-3">
         Configuración de tu perfil
-      </span>
+      </span> */}
 
       <img
-        className='opacity-[0.6] w-[1503px] height-[146px] flex-none order-1 self-stretch grow-0'
-        src={Frame}
+        className='w-full height-[146px] flex-none order-1 self-stretch grow-0'
+        src={returnBanners(profile.profile.user.job)}
       />
-      <img
-        className='relative width-[100px] height-[100px] left-[15px] top-[-55px]'
-        src={Foto}
-      />
+      <div className="container mx-auto  ">
+        <div className='flex w-full'>
+          <div
+            className=''>
 
-            <img className="opacity-[0.6] w-[1503px] height-[146px] flex-none order-1 self-stretch grow-0" src={Frame}/>
-            <img className="relative width-[100px] height-[100px] left-[15px] top-[-55px] ml-[20px]" src={Foto}/>
+            <div className='relative top-[-55px] flex flex-col'>
+              <img
+                className=' w-64 h-64 mx-auto  rounded-full border-8 border-[#26B893] border-opacity-50 '
+                src={profile.profile.user.avatarURL !== "" ? profile.profile.user.avatarURL : Foto}
+              />
+              {profesionalId === JSON.parse(localStorage.getItem("user")).id &&
+                <button className='bg-[#43936c] w-9 h-9 rounded-full text-white relative left-[116px] top-[-25px]'>
+                  <FontAwesomeIcon icon={faUpload} />
 
-      <img
-        className='relative left-[260px] right-[16.67%] top-[-148px] bottom-[7.03%] ml-[100px]'
-        src={Icon}
-      />
-      <p className="relative font-['Inter'] not-italic font-normal text-[13px] leading-[120%] top-[-166px] left-[298px] ml-[100px] flex items-center text-[#083A50]">
-        CABA-Argentina
-      </p>
+                </button>
 
-               <img className="relative left-[15px] right-[12.5%] top-[-250px] bottom-[12.5%] ml-[20px]" src={Telefono}/>
-               <p className="relative font-['Inter'] not-italic font-medium text-[16px] leading-[120%] top-[-270px] left-[40px] flex items-center text-[#083A50] ml-[20px]">+ 59 1 1001 8830</p>
-               <p className="relative font-['Inter'] not-italic font-medium text-[16px] leading-[120%] top-[-250px] left-[40px] flex items-center text-[#083A50] ml-[20px]">+ 59 1 1001 8830</p>
+              }
 
-               <img className="relative left-[15px] right-[12.5%] top-[-226px] bottom-[20.83%] ml-[20px]" src={Correo}/>
-               <p className="relative font-['Poppins'] not-italic font-light text-[16px] leading-[150%] top-[-245px] left-[45px] flex items-center text-[#4285F4] ml-[20px]">mariana.gasista@gmail.com</p>
 
-               <img className="relative flex flex-row justify-center items-center p-0 gap-4 left-[10px] top-[-200px] w-[204px] ml-[20px]" src={Enviame}/>
+              {/* <img
+            className='relative flex flex-row justify-center items-center p-0 gap-4 left-[10px] top-[-200px] w-[204px]'
+            src={Enviame}
+          /> */}
 
-      <img
-        className='relative left-[15px] right-[12.5%] top-[-226px] bottom-[20.83%]'
-        src={Correo}
-      />
-      <p className="relative font-['Poppins'] not-italic font-light text-[16px] leading-[150%] top-[-245px] left-[45px] flex items-center text-[#4285F4]">
-        mariana.gasista@gmail.com
-      </p>
 
-      <img
-        className='relative flex flex-row justify-center items-center p-0 gap-4 left-[10px] top-[-200px] w-[204px]'
-        src={Enviame}
-      />
+            </div>
 
-      <div className='ml-[340px] mt-[-190px] w-[920px] h-[119px]'>
+
+
+
+            <div className='flex flex-row  '>
+              <img
+                className=" ml-4"/* 'relative left-[15px] right-[12.5%] top-[-250px] bottom-[12.5%]' */
+                src={Telefono}
+              />
+              <p className="ml-4">
+                + 59 1 1001 8830
+              </p>
+
+            </div>
+
+            <div className="flex flex-row items-center mt-4">
+              <img
+                className='ml-4 h-4'
+                src={Correo}
+              />
+              <p className="m-4">
+                {profile.profile.user.email}
+              </p>
+
+            </div>
+
+
+
+            {/* ES ACA EL BOTON */}
+
+
+
+
+            <div className='w-full flex justify-center'>
+              <button onClick={sendMessage} className=' bg-[#43936c] text-white py-3 px-8 rounded-lg w-full m-2 flex'  > <img src={envelope} alt="envelope" /> <p className=' ml-5'>Enviame un mensaje</p> </button>
+
+            </div>
+
+
+          </div>
+          <div className='flex-col'>
+            <h1 className="font-inter mt-5  not-italic font-bold text-[39px] leading-[120%] flex items-center  ml-[100px] text-[#083A50]">
+              {profile.profile.user.name}
+            </h1>
+            <p className="font-['Inter'] not-italic font-semibold text-[18px] leading-[24px] top-[-158px] ml-[100px] mt-2 text-[#083A50]">
+              {returnJob(profile.profile.user.job)}
+            </p>
+
+
+
+            <div className="flex mt-4">
+              <img
+                className=' left-[260px] right-[16.67%] top-[-148px] bottom-[7.03%] ml-[100px]'
+                src={Icon}
+              />
+              <p className=" font-['Inter'] not-italic font-normal text-[13px] leading-[120%] top-[-166px] ml-2 flex items-center text-[#083A50]">
+                {profile.profile.user.city}
+              </p>
+            </div>
+
+            <div>
+              <p className=" font-['Inter'] mt-16 not-italic font-normal text-[18px] leading-[24px] max-w-[832px]  ml-[100px] text-[#28315C] bg-[#F5F5F5] rounded-lg p-4">
+                {profile.profile.user.description}
+              </p>
+            </div>
+
+
+            <div className=' mt-7'>
+              <p className=' ml-[100px] font-bold text-3xl'>Proyectos más recientes</p>
+            </div>
+            <div>
+
+
+              {profesionalId === JSON.parse(localStorage.getItem("user")).id &&
+                <div className=' ml-[100px]'>
+                  <button className=' w-40 h-10 bg-[#43936c] rounded-lg text-white mt-10'>Subir fotos</button>
+                </div>
+              }
+
+
+            </div>
+
+
+
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+        {/* <div className=''>
         <OurServices />
       </div>
-          <h2 className="relative w-[86px] h-[69px] left-[-4px] top-[-198px] font-['Inter'] not-italic font-normal text-[57.3051px] leading-[120%] ml-[20px]">4.3</h2>
 
-          <div className="relative flex flex-row justify-center items-center p-0 gap-4 left-[-4px] top-[-260px] w-[204px] ml-[20px]">
-           <Estrellas />
-          </div>
-
-                <p className="relative w-[81px] h-[18px] left-[104px] top-[-245px] font-['Inter'] not-italic font-normal text-[15.2034px] leading-[120%] text-[#808080]">43 reseñas</p>
-
-      <div className='relative ml-[340px] bottom-[-300px]  w-[920px] h-[119px]'>
+      <div className=''>
         <Reviews className='absolute' />
+      </div> */}
+
+        <div className=''></div>
+
       </div>
 
-      <div className='relative bottom-[-900px]'></div>
     </div>
   );
 }

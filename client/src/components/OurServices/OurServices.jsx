@@ -49,7 +49,6 @@ const OurServices = () => {
         (result) => {
           setIsLoaded(true);
           setItems(result);
-          console.log(items);
         },
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow
@@ -65,7 +64,6 @@ const OurServices = () => {
     if (carousel !== null && carousel.current !== null) {
       carousel.current['scrollLeft'] =
         carousel.current.offsetWidth * currentIndex;
-      console.log(carousel.current.offsetWidth * currentIndex, 'el carrousel');
     }
   }, [currentIndex]);
 
@@ -73,7 +71,6 @@ const OurServices = () => {
     maxScrollWidth.current = carousel.current
       ? carousel.current.scrollWidth - carousel.current.offsetWidth
       : 0;
-    // console.log(carousel.current.scrollWidth - carousel.current.offsetWidth, "el otro carousel")
   }, [items]);
 
   if (error) {
@@ -81,7 +78,6 @@ const OurServices = () => {
   } else if (!isLoaded) {
     return <div>Loading...</div>;
   } else {
-    console.log(items);
     return (
       <div className='2xl:container 2xl:mx-auto 2xl:px-0 py-3 md:px-10'>
         <section className='carousel my-12 mx-auto '>

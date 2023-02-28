@@ -52,6 +52,11 @@ const App = () => {
           />
             <Route path='/editPerfil' element={<EditProfileProfessional />}
           />
+          <Route
+            path='/team'
+            element={<Team />}
+          />
+          
         </Routes>
       </section>
       <div className='footerDiv'>

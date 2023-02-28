@@ -1,4 +1,5 @@
 import React from 'react';
+<<<<<<< HEAD
 import { useSearchParams } from 'react-router-dom';
 import image from '../../assets/Image.png';
 import profile from '../../assets/profile.jpeg';
@@ -7,6 +8,14 @@ import './CardService.css';
 export const CardServices = ({ title, image, description, service, id }) => {
   const [searchparams] = useSearchParams();
   /* console.log(title, "la props"); */
+=======
+import profile from '../../assets/profile.jpeg';
+import './CardService.css';
+
+export const CardServices = ({ title, image, description, service, id }) => {
+
+
+>>>>>>> 6b729dc79f75447f23e307c86018f0a4bf67237c
 
   return (
     <div className='containerCard relative'>

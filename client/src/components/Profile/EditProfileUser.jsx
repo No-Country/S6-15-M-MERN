@@ -1,7 +1,8 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
-function EditProfileProfessional() {
+
+function EditProfileuser() {
   const userSchema = yup.object().shape({
     name: yup
       .string()
@@ -231,4 +232,5 @@ function EditProfileProfessional() {
   }
 }
 
-export default EditProfileUser;
+
+export default EditProfileuser;
