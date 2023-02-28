@@ -1,23 +1,18 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
+const initialState = {}
 
-const initialState = {register: [{name:'',email:'',password:''}]}
-
-const registerSlice = createSlice({
-    name: "register",
-    initialState,
+export const registerSlice = createSlice({
+  name: 'register',
+  initialState,
     reducers: {
-        registerFetched(state, action){
-            return {
-                ...state,
-                register: action.payload
-            }
+      userFetched(state, action) {
+        state.user = action.payload;
+        console.log(state.user, "EL ESTADO")
+      },
+    },
+});
 
 
-        }
-
-    }
-})
-
-export const { registerFetched } = registerSlice.actions
-export default registerSlice.reducer
+export default registerSlice.reducer;
+export const { userFetched } = registerSlice.actions;

@@ -6,7 +6,10 @@ import { useSelector } from "react-redux";
 function ServicesCards() {
 
     const jobs = useSelector(state => state.jobs);
-    console.log(jobs)
+    /* const user = useSelector(state => state.user);
+    console.log(user)
+    */
+    
 
     const [readJobs] = useApi();
     const [busqueda, setBusqueda] = useState("Todos");
@@ -20,7 +23,7 @@ function ServicesCards() {
 
     return (
         <>
-            <div className="flex flex-col justify-center">
+            <div className="flex flex-col justify-center ">
                 <button className='bg-orange-500' ></button>
                 <h2 className='text-[#28315C] align-middle font-extrabold text-5xl mt-28 text-center'>
                     Contrata profesionales de confianza
@@ -30,7 +33,7 @@ function ServicesCards() {
                     No compartiremos tus datos
                 </p>
 
-                <select class="text-base mx-auto mt-16 font-normal rounded-full border-2 bg-green-100 text-gray-600 h-12 w-[429px] pl-5 pr-10  hover:border-gray-400 focus:outline-none appearance-none">
+                <select className="text-base mx-auto mt-16 font-normal rounded-full border-2 bg-green-100 text-gray-600 h-12 w-[429px] pl-5 pr-10  hover:border-gray-400 focus:outline-none appearance-none">
             
             
             <option onClick={handleOption}>Todos</option>
@@ -55,7 +58,7 @@ function ServicesCards() {
                     jobs.jobs.map((requested, index) => {
                         return (
                             <div className="my-4" key={requested._id}>
-                                <Card imagen={requested.jobImageUrl} title={requested.service} description={requested.description}  />
+                                <Card id={requested._id} imagen={requested.jobImageUrl} title={requested.service} description={requested.description}  />
                             </div>
     
                         )

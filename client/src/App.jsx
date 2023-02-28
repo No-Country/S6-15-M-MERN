@@ -13,6 +13,7 @@ import { BoolHook } from './hooks/BoolHook';
 import Footer from './components/Footer';
 import Messages from './components/Messages';
 import PerfilProfesional from './components/PerfilProfesional/PerfilProfesional';
+import Team from './screens/Team';
 
 function App() {
   const [isModalOpen, changeModalStatus] = BoolHook(false);
@@ -31,6 +32,7 @@ function App() {
           <Route path="/sol-servicio" element={<OrderService />} />
           <Route path="/sol-servicio/solicitado" element={<SolicitedService />} />
           <Route path='perfilProfesional' element={<PerfilProfesional/>} />
+          <Route path='/team' element={<Team />}/>
         </Routes>
         </section>    
         <div className='footerDiv'>
