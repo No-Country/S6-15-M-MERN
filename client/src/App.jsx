@@ -11,11 +11,20 @@ import Login from './components/Login';
 import NavBar from './components/NavBar';
 import { BoolHook } from './hooks/BoolHook';
 import Footer from './components/Footer';
-import Messages from './components/Messages';
 import PerfilProfesional from './components/PerfilProfesional/PerfilProfesional';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useState } from 'react';
 
 function App() {
   const [isModalOpen, changeModalStatus] = BoolHook(false);
+  const userStatus = useSelector(state => state.user);
+
+    useEffect(() => {
+     JSON.parse(localStorage.getItem('user'));
+ 
+    },[])
+ 
   return (
   
       <BrowserRouter>

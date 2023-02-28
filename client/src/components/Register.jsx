@@ -54,7 +54,7 @@ function Register({ switchRegistro, closeModal }) {
     });
     closeModal();
 
-    // navigate('/perfil');
+    navigate('/perfil');
   };
 
   return (
