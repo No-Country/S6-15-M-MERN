@@ -29,7 +29,8 @@ const loginSchema = yup.object().shape({
 function Login({ isOpen, closeModal }) {
   const userStatus = useSelector((state) => state.user);
 
-  const [, , userLogin] = useApi();
+
+  const [,,userLogin] = useApi();
 
   const [user, setUser] = useState({
     password: 'felipe',
@@ -67,7 +68,7 @@ function Login({ isOpen, closeModal }) {
     e.preventDefault();
     userLogin(user);
     closeModal();
-    userStatus.user.professional ? navigate('/editPerfil') : navigate('/servicios');
+    userStatus.user.id ? navigate('/editPerfil') : navigate('/servicios');
   };
 
   return (

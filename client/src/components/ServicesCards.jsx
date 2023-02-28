@@ -9,12 +9,15 @@ function ServicesCards() {
     console.log(user)
     */
 
-  const [readJobs] = useApi();
-  const [busqueda, setBusqueda] = useState('Todos');
+    const [readJobs] = useApi();
+    const [,,,readUser] = useApi();
+    const [busqueda, setBusqueda] = useState("Todos");
 
-  useEffect(() => {
-    readJobs();
-  }, []);
+    useEffect(() => {
+        readJobs()
+        readUser()
+    }, [])
+    
 
   const handleOption = (e) => setBusqueda(e.target.value);
 

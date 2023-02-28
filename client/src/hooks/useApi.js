@@ -8,8 +8,7 @@ import  { profileFetched } from "../features/profile/ProfileSlice"
 import axios from 'axios';
 
 export function useApi(
-  initialValue = 'https://container-service-1.utth4a3kjn6m0.us-west-2.cs.amazonlightsail.com/'
-) {
+  initialValue = 'https://container-service-1.utth4a3kjn6m0.us-west-2.cs.amazonlightsail.com/' ) {
   const dispatch = useDispatch();
 
   const url = initialValue;
@@ -57,6 +56,8 @@ export function useApi(
         .catch((error) => reject(error))
     );
   };
+   
+
 
   const userLogin = (data) => {
     axios

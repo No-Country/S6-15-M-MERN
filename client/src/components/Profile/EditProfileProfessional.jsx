@@ -32,8 +32,8 @@ function EditProfileProfessional() {
 
   //ESTE ES EL ESTADO INICIAL DE LOS INPUTS
   const [formData, setFormData] = useState({
-    professional: userStatus.user.profesional,
-    name: userStatus.user.name,
+    professional: updatedUser.profesional,
+    name: updatedUser.name,
     lastName: '',
     email: "" ,
     telefono: '',
