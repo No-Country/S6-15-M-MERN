@@ -17,7 +17,7 @@ function Profile() {
 
   //   useEffect(() => {
   //     getUserById();
-  //   })
+  //   }) 
 
   return (
     <div>

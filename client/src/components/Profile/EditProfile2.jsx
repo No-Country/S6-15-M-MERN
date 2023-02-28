@@ -1,69 +1,62 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+
 import { useApi } from '../../hooks/useApi';
 
 function EditProfileProfessional() {
-  const navigate = useNavigate();
-
-  //ESTE ES PARA EL CAMBIO DEL SELECT
-  const [selectUsuario, setSelectUsuario] = useState('false');
-
-  //ESTE ES EL USUARIO VALIDADO. SOLO: ID, TOKEN y PROFESSIONAL
+  const [userUpdatedStatus, setUserUpdatedStatus] = useState({});
+  const [, , , , getProfessional] = useApi();
   const userStatus = useSelector((state) => state.user);
 
-  //ESTE ES PARA TRAER NOMBRE y EMAIL DESDE EL REGISTRO
-  const location = useLocation();
-  const user = location.state;
-
-  //ACA TRAIGO TODO DEL ESTADO GLOBAL DEL USUARIO:
-  const [, , , , getProfessional] = useApi();
+  const navigate = useNavigate();
+  const [selectUsuario, setSelectUsuario] = useState('false');
   const profile = useSelector((state) => state.profile);
-
-  //USUARIO CON TODA LA DATA DEL BACKEND
   const updatedUser = profile.profile.user;
+  /* 
+  console.log(profile, 'EL USER STATUS'); */
+  console.log(updatedUser, 'EL PROFESIONAL');
+
   useEffect(() => {
+    console.log(userStatus.user.id);
     getProfessional(userStatus.user.id);
   }, []);
 
-  //ESTE ES EL ESTADO INICIAL DE LOS INPUTS
+  const location = useLocation();
+  const user = location.state;
+
   const [formData, setFormData] = useState({
-<<<<<<< HEAD
-    professional: user.professional,
-=======
-    professional: selectUsuario,
->>>>>>> 627345247135dff3e513e0e5490abc3986ad7fd2
-    name: user.name,
-    lastName: '',
-    email: user.email,
-    telefono: '',
-    country: '',
-    city: '',
-    zipCode: '',
-    dateOfBirty: '',
-    job: '',
-    description: '',
+    professional: updatedUser.professional,
+    name: updatedUser.name,
+    lastName: updatedUser.lastname,
+    email: updatedUser.email,
+    telefono: updatedUser.telefono,
+    country: updatedUser.country,
+    city: updatedUser.city,
+    zipCode: updatedUser.zipCode,
+    dateOfBirty: updatedUser.dateOfBirty,
+    job: updatedUser.job,
+    description: updatedUser.description,
   });
 
-  //ESTE ES EL ESTADO QUE DEBERIA CARGARSE CON LOS DATOS ACTUALIZADOS
-  //Y ES EL QUE SE ENVIA AL BACKEND
   const [newFormData, setNewFormData] = useState({
-    professional: formData.professional,
-    name: formData.name,
-    lastName: formData.lastName,
-    email: formData.email,
-    telefono: formData.telefono,
-    country: formData.country,
-    city: formData.city,
-    zipCode: formData.zipCode,
-    dateOfBirty: formData.dateOfBirty,
-    job: formData.job,
-    description: formData.description,
+    professional: updatedUser.professional,
+    name: updatedUser.name,
+    lastName: updatedUser.lastname,
+    email: updatedUser.email,
+    telefono: updatedUser.telefono,
+    country: updatedUser.country,
+    city: updatedUser.city,
+    zipCode: updatedUser.zipCode,
+    dateOfBirty: updatedUser.dateOfBirty,
+    job: updatedUser.job,
+    description: updatedUser.description,
   });
 
-  //ACA LLAMADA AL ENDPOINT PARA EDITAR USUARIO
   const postEditUser = (data) => {
     return new Promise((resolve, reject) =>
       fetch(
@@ -81,28 +74,23 @@ function EditProfileProfessional() {
         .then((res) => res.json(data))
         .then((result) => {
           resolve(result);
+          console.log(result);
         })
         .catch((error) => reject(error))
     );
   };
 
-  //ACA AL HACER CLICK EN EL BOTON, SI EL USUARIO TIENE TOKEN
-  //ENVIA TODO AL BACKEND
-
   const handleOnSubmit = (e) => {
     e.preventDefault();
     if (userStatus.user.token) {
       postEditUser(newFormData);
-
-      /*       localStorage.setItem('newFormData', JSON.stringify(newFormData)); */
-      /*  navigate(`/perfilProfesional/${userStatus.user.id}`); */
+      localStorage.setItem('newFormData', JSON.stringify(newFormData));
+      navigate(`/perfilProfesional/${userStatus.user.id}`);
     } else {
       navigate('/login');
     }
   };
 
-  //ACA CUANDO SE LLENA EL INPUT LO VA GUARDANDO EN FORMDATA
-  //Y LUEGO ACTUALIZA NEWFORMDATA CON ESOS DATOS.
   function handleOnChange(e) {
     const name = e.target.name;
     const value = e.target.value;
@@ -115,17 +103,20 @@ function EditProfileProfessional() {
       professional: selectUsuario,
     });
   }
-
-  //ESTA SUPONGO QUE ES PARA SELECCIONAR EL USUARIO PROFESSIONAL
-  //Y ENVIAR ESO AL NEWFORMDATA
   const handleSelectUsuario = (event) => {
     const select = event.target.value;
     setSelectUsuario(select);
     setNewFormData({ ...formData, professional: select });
   };
+  /*   console.log(newFormData); */
 
-  console.log(updatedUser, 'REDUXXXXX');
-  console.log(newFormData, 'NEWFORMDATA= FORMDATA + SELECT');
+  /*   useEffect(() => {
+    const savedData = JSON.parse(localStorage.getItem('myFormData'));
+
+    if (savedData) {
+      setFormData({});
+    }
+  }, []); */
 
   const userSchema = yup.object().shape({
     name: yup
@@ -167,20 +158,17 @@ function EditProfileProfessional() {
         </h3>
         <Formik
           initialValues={{
-<<<<<<< HEAD
-            professional:user.professional,
-=======
-            professional: 'false',
->>>>>>> 627345247135dff3e513e0e5490abc3986ad7fd2
-            name: user.name,
-            lastname: '',
-            country: '',
-            city: '',
-            dateOfBirty: '',
-            zipCode: '',
-            email: user.email,
-            job: '',
-            description: '',
+            professional: updatedUser.professional,
+            name: updatedUser.name,
+            lastName: updatedUser.lastname,
+            email: updatedUser.email,
+            telefono: updatedUser.telefono,
+            country: updatedUser.country,
+            city: updatedUser.city,
+            zipCode: updatedUser.zipCode,
+            dateOfBirty: updatedUser.dateOfBirty,
+            job: updatedUser.job,
+            description: updatedUser.description,
           }}
           validationSchema={userSchema}
         >
@@ -199,13 +187,8 @@ function EditProfileProfessional() {
                   id='professional'
                   type='text'
                   className='py-2  focus: outline-focusColor rounded-xl border-labelGrayColor border-2 pl-0 text-center'
-<<<<<<< HEAD
-                  value={formData.true}
-                  onChange={handleOnChange}
-=======
                   value={selectUsuario}
                   onChange={handleSelectUsuario}
->>>>>>> 627345247135dff3e513e0e5490abc3986ad7fd2
                 >
                   <option hidden selected>
                     Selecciona una opción
@@ -220,301 +203,6 @@ function EditProfileProfessional() {
                   className='font-bold  text-[#ffffff]'
                 />
               </div>
-<<<<<<< HEAD
-
-              {!formData.professional ? 
-                <>
-                <div className=' w-full col-span-1 row-start-2 row-end-3 -mr-6 flex-shrink-0 mt-5'>
-                  <label className='font-bold block text-labelColor  '>
-                    Nombre
-                  </label>
-                  <Field
-                    name='name'
-                    id='name'
-                    type='text'
-                    className=' px-2 py-2 focus: outline-focusColor rounded-xl border-labelGrayColor border-2'
-                    onChange={handleOnChange}
-                    value={formData.name}
-                  />
-                  <ErrorMessage
-                    name='name'
-                    component='p'
-                    className='text-labelColor whitespace-nowrap'
-                  />
-                </div>
-                <div className=' w-full col-start-2 col-end-3 row-start-2 row-end-3 -mr-6 flex-shrink-0 mt-5'>
-                  <label
-                    className='  font-bold block text-labelColor  '
-                    htmlFor='password '
-                  >
-                    Apellido
-                  </label>
-                  <Field
-                    name='lastName'
-                    id='lastName'
-                    type='text'
-                    className='  px-2 py-2 focus: outline-focusColor  rounded-xl border-labelGrayColor border-2 placeholder:-translate-x-6'
-                    onChange={handleOnChange}
-                    value={formData.lastName}
-                  />
-                  <ErrorMessage
-                    name='lastName'
-                    component='p'
-                    className='text-labelColor whitespace-nowrap'
-                  />
-                </div>
-                <div className='w-full col-start-3 col-end-4 row-start-2 row-end-3 -mr-6 flex-shrink-0 mt-5'>
-                  <label
-                    className=' font-bold block text-labelColor whitespace-nowrap '
-                    htmlFor='email'
-                  >
-                    Nuevo Email
-                  </label>
-                  <Field
-                    name='email'
-                    id='email'
-                    type='email'
-                    className=' px-2 py-2 focus: outline-focusColor rounded-xl   border-labelGrayColor border-2 placeholder:-translate-x-6 '
-                    onChange={handleOnChange}
-                    value={formData.email}
-                  />
-                  <ErrorMessage
-                    name='passwordConfirmation'
-                    component='p'
-                    className='text-labelColor whitespace-nowrap'
-                  />
-                </div>
-                <div className='col-start-1 col-end-2 item '>
-                  <button
-                    type='submit'
-                    className='bg-btnColor w-48 h-12  rounded-xl text-xl  text-[#ffffff] font-bold  active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all  active:hover:bg-[#83e3be]  disabled:cursor-not-allowed  mt-8  hover:shadow-228b active:shadow'
-                  >
-                    Guardar
-                  </button>
-                </div>
-                </>
-               :                 <>
-               <div className=' w-full col-span-1 row-start-2 row-end-3 -mr-6 flex-shrink-0 -mt-12'>
-                 <label className='font-bold block text-labelColor  '>
-                   Nombre
-                 </label>
-                 <Field
-                   name='name'
-                   id='name'
-                   type='text'
-                   className=' px-2 py-2 focus: outline-focusColor rounded-xl border-labelGrayColor border-2'
-                   onChange={handleOnChange}
-                   value={formData.name}
-                 />
-                 <ErrorMessage
-                   name='name'
-                   component='p'
-                   className=' text-labelColor whitespace-nowrap'
-                 />
-               </div>
-               <div className=' w-full col-start-2 col-end-3 row-start-2 row-end-3 -mr-6 flex-shrink-0 -mt-12'>
-                 <label
-                   className='  font-bold block text-labelColor  '
-                   htmlFor='password '
-                 >
-                   Apellido
-                 </label>
-                 <Field
-                   name='lastName'
-                   id='lastName'
-                   type='text'
-                   className='  px-2 py-2 focus: outline-focusColor  rounded-xl border-labelGrayColor border-2 placeholder:-translate-x-6'
-                   onChange={handleOnChange}
-                   value={formData.lastName}
-                 />
-                 <ErrorMessage
-                   name='lastname'
-                   component='p'
-                   className=' text-labelColor whitespace-nowrap'
-                 />
-               </div>
-               <div className='w-full col-start-3 col-end-4 row-start-2 row-end-3 -mr-6 flex-shrink-0 -mt-12'>
-                 <label
-                   className=' font-bold block text-labelColor whitespace-nowrap '
-                   htmlFor='email'
-                 >
-                   Nuevo Email
-                 </label>
-                 <Field
-                   name='email'
-                   id='email'
-                   type='email'
-                   className=' px-2 py-2 focus: outline-focusColor rounded-xl   border-labelGrayColor border-2 placeholder:-translate-x-6 '
-                   onChange={handleOnChange}
-                   value={formData.email}
-                 />
-                 <ErrorMessage
-                   name='passwordConfirmation'
-                   component='p'
-                   className=' text-labelColor whitespace-nowrap'
-                 />
-               </div>
-               <div className=' w-full row-start-2 row-end-3 col-start-4 col-end-5 -mr-6 flex-shrink-0 -mt-12'>
-                 <label
-                   className=' font-bold block text-labelColor whitespace-nowrap '
-                   htmlFor='telefono'
-                 >
-                   Teléfono de contacto
-                 </label>
-                 <Field
-                   name='telefono'
-                   id='telefono'
-                   type='number'
-                   className=' px-2 py-2 focus: outline-focusColor  rounded-xl   border-labelGrayColor border-2 placeholder:-translate-x-6 '
-                   onChange={handleOnChange}
-                   value={formData.telefono}
-                 />
-                 <ErrorMessage
-                   name='telefono'
-                   component='p'
-                   className='whitespace-nowrap text-labelColor'
-                 />
-               </div>
-               <div className='row-start-3 row-end-4 col-start-1 col-end-2 -mr-6 flex-shrink-0 -mt-24'>
-                 <label
-                   className=' font-bold block text-labelColor mt-5 '
-                   htmlFor='pais'
-                 >
-                   Pais
-                 </label>
-                 <Field
-                   as='select'
-                   name='pais'
-                   id='pais'
-                   type='text'
-                   className='px-2 py-2.5 focus: outline-focusColor rounded-xl  border-labelGrayColor border-2 placeholder:-translate-x-6  '
-                   onChange={handleOnChange}
-                   value={formData.pais}
-                 >
-                   <option hidden selected>
-                     Selecciona una opción
-                   </option>
-                   <option value='argentina'>Argentina</option>
-                   <option value='chile'>Chile</option>
-                   <option value='colombia'>Colombia</option>
-                   <option value='ecuador'>Ecuador</option>
-                 </Field>
-                 <ErrorMessage
-                   name='pais'
-                   component='p'
-                   className='whitespace-nowrap text-labelColor'
-                 />
-               </div>
-               <div className='col-start-2 col-end-3 row-start-3 row-end-4 -mr-6 flex-shrink-0 -mt-24'>
-                 <label
-                   className=' font-bold block text-labelColor mt-5 '
-                   htmlFor='ciudad'
-                 >
-                   Ciudad/Provincia
-                 </label>
-                 <Field
-                   name='ciudad'
-                   id='ciudad'
-                   type='text'
-                   className=' px-2 py-2 focus: outline-focusColor rounded-xl  border-labelGrayColor border-2 placeholder:-translate-x-6  '
-                   onChange={handleOnChange}
-                   value={formData.ciudad}
-                 />
-                 <ErrorMessage
-                   name='ciudad'
-                   component='p'
-                   className='whitespace-nowrap text-labelColor'
-                 />
-               </div>
-               <div className='col-start-3 col-end-4 row-start-3 row-end-4 -mr-6 flex-shrink-0 -mt-24'>
-                 <label
-                   className=' font-bold block whitespace-nowrap text-labelColor mt-5 '
-                   htmlFor='zipCode'
-                 >
-                   Código Postal
-                 </label>
-                 <Field
-                   name='zipCode'
-                   id='zipCode'
-                   type='number'
-                   className='  px-2 py-2 focus: outline-focusColor rounded-xl  border-labelGrayColor border-2 placeholder:-translate-x-6  '
-                   onChange={handleOnChange}
-                   value={formData.zipCode}
-                 />
-                 <ErrorMessage
-                   name='zipCode'
-                   component='p'
-                   className='whitespace-nowrap text-labelColor'
-                 />
-               </div>
-               <div className='col-start-4 col-end-5 row-start-3 row-end-4 -mr-6 flex-shrink-0 -mt-24'>
-                 <label
-                   className=' font-bold block text-labelColor mt-5 whitespace-nowrap'
-                   htmlFor='password'
-                 >
-                   Fecha de nacimiento
-                 </label>
-                 <Field
-                   name='dateOfBirty'
-                   id='dateOfBirty'
-                   type='date'
-                   className=' px-2 py-2 focus: outline-focusColor rounded-xl  border-labelGrayColor border-2 placeholder:-translate-x-6  '
-                   onChange={handleOnChange}
-                   value={formData.dateOfBirty}
-                 />
-                 <ErrorMessage
-                   name='dateOfBirty'
-                   component='p'
-                   className='whitespace-nowrap text-labelColor'
-                 />
-               </div>
-               <div className='col-start-1 col-end-2 -mr-6 flex-shrink-0 -mt-24'>
-                 <label
-                   className=' font-bold block text-labelColor mt-5 '
-                   htmlFor='password'
-                 >
-                   Oficio
-                 </label>
-                 <Field
-                   as='select'
-                   name='oficios'
-                   id='oficios'
-                   type='password'
-                   className=' px-2 py-2 focus: outline-focusColor rounded-xl border-labelGrayColor border-2 placeholder:-translate-x-6  '
-                   onChange={handleOnChange}
-                   value={formData.oficios}
-                 >
-                   <option hidden selected>
-                     Selecciona una opción
-                   </option>
-                   <option value='electricista'>Electricista</option>
-                   <option value='soldador'>Soldador</option>
-                   <option value='electronico'>Electrónico</option>
-                   <option value='medico'>Médico</option>
-                   <option value='constructor'>Constructor</option>
-                   <option value='veterinario'>Veterinario</option>
-                   <option value='enfermero'>Enfermero</option>
-                   <option value='fotógrafo'>Fotógrafo</option>
-                 </Field>
-
-                 <ErrorMessage
-                   name='oficios'
-                   component='p'
-                   className='font-bold  text-[#ffffff]'
-                 />
-               </div>
-               <div className='col-start-1 col-end-2 item '>
-                 <button
-                   type='submit'
-                   className='bg-btnColor w-48 h-12  rounded-xl text-xl  text-[#ffffff] font-bold  active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all  active:hover:bg-[#83e3be]  disabled:cursor-not-allowed  mt-28  hover:shadow-228b active:shadow'
-                 >
-                   Guardar
-                 </button>
-               </div>
-             </>
-               
-              }
-=======
               {selectUsuario === 'false' ? (
                 <>
                   <div className=' w-full col-span-1 row-start-2 row-end-3 -mr-6 flex-shrink-0 mt-5'>
@@ -841,7 +529,6 @@ function EditProfileProfessional() {
                   </div>
                 </>
               )}
->>>>>>> 627345247135dff3e513e0e5490abc3986ad7fd2
             </div>
           </Form>
         </Formik>
