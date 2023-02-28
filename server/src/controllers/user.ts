@@ -77,13 +77,14 @@ const UpdateControllerUser = async (
     // const { id } = req.params;
       const User = await getUserbyId(id);
       if (User) {
-        const fileuser = getNewUrl(req);
+        //!fix fileuser to delete files from storage
+        // const fileuser = getNewUrl(req);
         // const (fileuser) {
-          if (fileuser) {
-            deleteFilefromFS(User.avatarURL);  // que parte del interface user poner aqui??
-            User.set({avatarURL: fileuser});
-          }
-          const {password, ...restOfProperties} = req.body;
+          // if (fileuser) {
+          //   deleteFilefromFS(User.avatarURL);  // que parte del interface user poner aqui??
+          //   User.set({avatarURL: fileuser});
+          // }
+          const {avatarURL, password, ...restOfProperties} = req.body;
           //const passHash = await encrypt(password);
           User.set({  ...restOfProperties});
           const result = await User.save();
@@ -117,7 +118,8 @@ const DeleteControllerUser = async (req: RequestExt, res: Response, next: NextFu
     if (result) {
       //Delete user 
       //? Para acceder a esta funcion debe crearse el avatar con newUrl?
-      if(result.avatarURL) deleteFilefromFS(result.avatarURL);
+      //!Falta borrar la imagen que pertenece al usario que esta alojada en storage
+      // if(result.avatarURL) deleteFilefromFS(result.avatarURL);
       // const deletefromusers = await DeleteUser(userId);
       // console.log("usuarios borrados ", deletefromusers);
       res.status(200).json({status: `User with ID ${userId} deleted`});
@@ -151,23 +153,31 @@ const getMyUser = async ( req: RequestExt, res: Response, next: NextFunction) =>
     handleHttp(res, "ERROR_GET_USER");
   }
 };
-const getAllProfessionals = async (req: Request, res: Response , next: NextFunction) => {
-  try {
-    const professional = true;
-    const city = req.query.city ?? null;
-    const job = req.query.job ?? null;
-    console.log({professional, city, job})
-    const responseGetUser = await getAllProfessionalsService(professional, city, job);
-    if(responseGetUser.length > 0) {
-      return res.status(200).json({
-        status: 'success',
-        responseGetUser,
-      }); 
-    } else {
-      next(new AppError(404, "No hay usuarios para mostrar"));
-    }
-  } catch (error:any) {
+
+const UpdateAvatarUser = async (req: RequestExt, res: Response, next: NextFunction) => {
+    try {
+      const id = req.user?.id;
+      const User = await getUserbyId(id);
+      if (User) {
+        //!fix fileuser to delete files from storage
+        // const fileuser = getNewUrl(req);
+        // const (fileuser) {
+          // if (fileuser) {
+          //   deleteFilefromFS(User.avatarURL);  // que parte del interface user poner aqui??
+          //   User.set({avatarURL: fileuser});
+          // }
+          const {avatarURL, password, ...restOfProperties} = req.body;
+          //const passHash = await encrypt(password);
+          User.set({  ...restOfProperties});
+          const result = await User.save();
+          return res.status(201).json(result);   
+        } else {
+          next(new AppError(404, `User with id ${User} not found`));
+        }
+    // res.send(response);
+  } catch (error: any) {
     next(new AppError(500, error.message));
+    // handleHttp(res, "ERROR_PUT_USER");
   };
 };
 
@@ -175,8 +185,6 @@ export {
   getControllerUserbyId,
   getControllerAllUser,
   UpdateControllerUser,
-  // postControllerUser,
   DeleteControllerUser,
-  getMyUser,
-  getAllProfessionals
+  getMyUser
 };

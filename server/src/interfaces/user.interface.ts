@@ -6,7 +6,7 @@ export interface IUser extends Auth {
   name: string,
   lastname: string,
   birthdate: String,
-  phone: Number,
+  phone: String,
   country: String,
   city: String,
   terms: String,

@@ -33,7 +33,10 @@ ENV NODE_ENV=${NODE_ENV}
 WORKDIR /usr/src/app
 
 COPY package*.json .
-RUN mkdir storage
+
+RUN mkdir -p storage/users
+RUN mkdir -p storage/jobs/image
+RUN mkdir -p storage/jobs/banner
 
 RUN npm ci --only=production
 

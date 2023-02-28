@@ -24,7 +24,7 @@ const userSchema = new Schema<IUser>(
       type: String
     },
     phone: {
-      type: Number
+      type: String
     },
     country: {
       type: String

@@ -1,8 +1,8 @@
-#CONTRATÁ
+# CONTRATÁ
 
 Compañia donde encontraras servicio profesionales para tu hogar, con referencia de clientes reales y con nuestro respaldo y garantía.
 
-##Correr la aplicacion en Local
+## Correr la aplicacion en Local
 Ejecuta npm install y npm run dev para instalar y ejecutar depedencias.
 
 instalar dependencias.
@@ -13,27 +13,27 @@ Ejectutar el cliente
 
 - ` npm run dev`
 
-##Correr la aplicacion con Docker en Local (Modo Desarrollo).
+## Correr la aplicacion con Docker en Local (Modo Desarrollo).
 
-#####Ejecutar.
+##### Ejecutar.
 
 - `Docker compose -f docker-compose.dev.yml build`
 
 - `Docker compose -f docker-compose.dev.yml up`
 
-##Correr la aplicacion con Docker en Produccion (Modo Produccion).
+## Correr la aplicacion con Docker en Produccion (Modo Produccion).
 
 - `Docker compose build`
 
 - `Docker compose up`
 
-##Descripcion de lo Realizado 👍 
+## Descripcion de lo Realizado 👍 
 
-###Problema.
+### Problema.
 
 Se solicitó realizar una app de servicio profesionales para el hogar . La app debe tener base de datos y responder peticiones CRUD del cliente.
 
-###Solucion
+### Solucion
 
 Para el entorno de desarrollo de la app se utilizo node con typeScript y express para la infraestructura del mismo, asimismo se utilizo mongodb como base de datos en la nube y mongoose para generar interaccion con la base de datos al traer informacion; de igual forma se utilizo docker y AWS.
 
@@ -41,11 +41,11 @@ Express – Como infraestructura flexible trabajada en el entorno de desarrollo.
 Mongodb – base de datos No relacional.
 Node con TypeScript  – entorno de desarrollo.
 
-#####ORM.
+##### ORM.
 
 Mongoose Para realizar consultas a la base de datos mongodb
 
-######Paqueterías.
+###### Paqueterías.
 
 1. Cors – Como mecanismo HTTP para obtener permisos para acceder a recursos seleccionados desde un servidor, en un origen distinto al dominio.
 
@@ -63,7 +63,7 @@ Mongoose Para realizar consultas a la base de datos mongodb
 
 
 
-####Deploy 🚀
+#### Deploy 🚀
 Puedes ver la aplicacion funcionando en produccion mediante este link: [CONTRATÁ](https://contrata.vercel.app/ "CONTRATÁ").
 
 Si llegaste aqui gracias 🙏🏼 me gusta ser leido, Buen Dia.

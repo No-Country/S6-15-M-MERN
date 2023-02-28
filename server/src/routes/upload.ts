@@ -5,7 +5,7 @@ import { checkJwt } from "../middleware/session";
 
 const router = Router();
 
-router.post("/", checkJwt, multerMiddleware.single("myfile"), getFile);
+router.post("/", checkJwt, multerMiddleware.single("jobImage"), getFile);
 
 
 export { router };
