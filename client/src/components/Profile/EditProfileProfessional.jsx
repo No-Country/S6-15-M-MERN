@@ -11,7 +11,7 @@ function EditProfileProfessional() {
 
   //ESTE ES PARA EL CAMBIO DEL SELECT
   const [selectUsuario, setSelectUsuario] = useState('false');
-  console.log(selectUsuario);
+
 
   //ESTE ES EL USUARIO VALIDADO. SOLO: ID, TOKEN y PROFESSIONAL
   const userStatus = useSelector((state) => state.user);
@@ -45,7 +45,6 @@ function EditProfileProfessional() {
 
   //ESTE ES EL ESTADO INICIAL DE LOS INPUTS
 
-  console.log(updatedUser, "ACAAAAAAAAAAAA");
 
   const [formData, setFormData] = useState({
     professional: updatedUser.professional,
@@ -136,7 +135,6 @@ function EditProfileProfessional() {
   const handleOnSubmit = (e) => {
     e.preventDefault();
     if (userStatus.user.token) {
-      console.log(formData, "QUIERO SABER QUIEN SE HA TOMADO TODO EL VINO");
       postEditUser(formData);
 
       /*       localStorage.setItem('newFormData', JSON.stringify(newFormData)); */
@@ -150,7 +148,6 @@ function EditProfileProfessional() {
   //Y LUEGO ACTUALIZA NEWFORMDATA CON ESOS DATOS.
   function handleOnChange(e) {
     const name = e.target.name;
-    console.log("entro");
     const value = e.target.value;
 
     setFormData({ ...formData, [name]: value });
@@ -188,7 +185,6 @@ function EditProfileProfessional() {
     /* setNewFormData({ ...formData, professional: select }); */
   };
 
-  console.log(selectUsuario);
 
   /* console.log(newFormData, 'NEWFORMDATA= FORMDATA + SELECT'); */
 
@@ -223,7 +219,6 @@ function EditProfileProfessional() {
   });
   return (
     <div>
-      {console.log(formData.name, "ACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")}
       <div className=' ml-40 mr-40'>
         <header className='text-labelGrayColor font-bold text-4xl mb-10 flex-shrink-0'>
           Editar tu perfil

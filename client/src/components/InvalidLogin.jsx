@@ -14,7 +14,6 @@ function InvalidLogin() {
             );
     }
 
-    console.log(loginStatus.invalidLogin);
   return (
     <>
     <Modal isOpen={loginStatus.invalidLogin} closeModal={closeInvalidLogin} >
