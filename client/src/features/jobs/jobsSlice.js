@@ -15,9 +15,20 @@ const jobsSlice = createSlice({
         jobs: action.payload,
       };
     },
+    userFetched( state, action){
+      return {
+          ...state,
+          users: action.payload
+      }
+  }
+
   },
 });
 
-export const { jobsFetched } = jobsSlice.actions;
 
-export default jobsSlice.reducer;
+
+export const { jobsFetched, userFetched } = jobsSlice.actions
+
+
+
+export default jobsSlice.reducer

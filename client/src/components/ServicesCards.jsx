@@ -8,6 +8,7 @@ function ServicesCards() {
   /* const user = useSelector(state => state.user);
     console.log(user)
     */
+    
 
     const [readJobs] = useApi();
     const [,,,readUser] = useApi();
@@ -19,7 +20,7 @@ function ServicesCards() {
     }, [])
     
 
-  const handleOption = (e) => setBusqueda(e.target.value);
+    const handleOption = (e)=>setBusqueda(e.target.value);
 
   return (
     <>
@@ -33,13 +34,13 @@ function ServicesCards() {
           compartiremos tus datos
         </p>
 
-        <select className='text-base mx-auto mt-16 font-normal rounded-full border-2 bg-green-100 text-gray-600 h-12 w-[429px] pl-5 pr-10  hover:border-gray-400 focus:outline-none appearance-none'>
-          <option onClick={handleOption}>Todos</option>
+        <select onClick={handleOption} className='text-base mx-auto mt-16 font-normal rounded-full border-2 bg-green-100 text-gray-600 h-12 w-[429px] pl-5 pr-10  hover:border-gray-400 focus:outline-none appearance-none'>
+          <option >Todos</option>
 
           {jobs !== null &&
             jobs.jobs.map((requested) => {
               return (
-                <option key={requested._id} onClick={handleOption}>
+                <option key={requested._id}>
                   {requested.service}
                 </option>
               );

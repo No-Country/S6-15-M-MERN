@@ -2,21 +2,21 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { jobsFetched } from '../features/jobs/jobsSlice';
 import { userStatus } from '../features/user/userSlice';
+import { profileFetched } from '../features/profile/ProfileSlice';
 import { professionalsFetched } from '../features/professionalsSlice/professionalsSlice';
-import  { profileFetched } from "../features/profile/ProfileSlice"
-
 import axios from 'axios';
 
 export function useApi(
-  initialValue = 'https://container-service-1.utth4a3kjn6m0.us-west-2.cs.amazonlightsail.com/' ) {
+  initialValue = 'https://container-service-1.utth4a3kjn6m0.us-west-2.cs.amazonlightsail.com/'
+) {
   const dispatch = useDispatch();
 
   const url = initialValue;
 
   const readJobs = async (id) => {
-    let job = '';
-    id !== undefined && (job = `/${id}`);
-
+    let job = "";
+    (id!== undefined) && (job = `/${id}`);
+    
     axios
       .get(`${url}jobs${job}`)
       .then((resp) => {
@@ -57,17 +57,15 @@ export function useApi(
     );
   };
    
-
-
-  const userLogin = (data) => {
-    axios
-      .post(`${url}auth/login`, data)
-      .then(function (response) {
-        const verifiedUser = {
-          token: response.data.responseUser.token,
-          id: response.data.responseUser.user._id,
-          professional: response.data.responseUser.user.professional,
-        };
+  const userLogin = (data)=>{
+    axios.post(`${url}auth/login`, data)
+    .then(function (response) {
+      const verifiedUser ={
+        token: response.data.responseUser.token,
+        id: response.data.responseUser.user._id,
+        professional: response.data.responseUser.user.professional,
+        avatarURL: response.data.responseUser.user.avatarURL
+      }
 
         dispatch(userStatus(verifiedUser));
 
@@ -91,26 +89,22 @@ export function useApi(
       .catch((err) => console.log(err));
   };
 
-  const getProfessional = (id) => {
-    const token = JSON.parse(localStorage.getItem('user')).token;
-    axios
-      .get(
-        `https://container-service-1.utth4a3kjn6m0.us-west-2.cs.amazonlightsail.com/user/${id}`,
-        {
-          headers: {
-            Authorization: `token ${token}`,
-          },
-        }
-      )
-      .then((res) => {
-        console.log(res, "RESPUESTA");
-
-        dispatch(profileFetched(res.data));
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
+  const getProfessional = (id)=>{
+    const token = JSON.parse(localStorage.getItem("user")).token;
+    axios.get(`https://container-service-1.utth4a3kjn6m0.us-west-2.cs.amazonlightsail.com/user/${id}`, {
+  headers: {
+    'Authorization': `token ${token}`
+  }
+})
+.then((res) => {
+  dispatch(
+    profileFetched(res.data)
+    )
+})
+.catch((error) => {
+  console.error(error)
+})
+  }
 
   return [readJobs, postUser, userLogin, professionalsList, getProfessional];
 }

@@ -9,6 +9,7 @@ import { BoolHook } from '../hooks/BoolHook';
 import { useApi } from '../hooks/useApi';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'universal-cookie';
 
 const loginSchema = yup.object().shape({
   password: yup
@@ -27,8 +28,9 @@ const loginSchema = yup.object().shape({
 });
 
 function Login({ isOpen, closeModal }) {
-  const userStatus = useSelector((state) => state.user);
 
+  
+  const userStatus = useSelector(state => state.user);
 
   const [,,userLogin] = useApi();
 
@@ -68,7 +70,9 @@ function Login({ isOpen, closeModal }) {
     e.preventDefault();
     userLogin(user);
     closeModal();
-    userStatus.user.id ? navigate('/editPerfil') : navigate('/servicios');
+    userStatus.user.professional
+      ? navigate('/perfilProfesional')
+      : navigate('/servicios');
   };
 
   return (
