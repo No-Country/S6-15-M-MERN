@@ -4,6 +4,7 @@ import * as yup from 'yup';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useApi } from '../../hooks/useApi';
+import axios from 'axios';
 
 function EditProfileProfessional() {
   const navigate = useNavigate();
@@ -41,14 +42,6 @@ function EditProfileProfessional() {
 
   },[profile])
 
- 
-
-  //ESTE ES EL ESTADO INICIAL DE LOS INPUTS
-
-  console.log(updatedUser, "ACAAAAAAAAAAAA");
-  
-  
-
 
   const [formData, setFormData] = useState({
     professional: updatedUser.professional,
@@ -62,38 +55,10 @@ function EditProfileProfessional() {
     dateOfBirty: updatedUser.dateOfBirty,
     job: String(updatedUser.job),
     description: updatedUser.description,
+    // avatarURL:updatedUser.avatarURL
   });
 
-  const [photo, setPhoto] = useState({
-    photo:updatedUser.avatarURL
-  })
 
-
-  
-
-  //ESTE ES EL ESTADO QUE DEBERIA CARGARSE CON LOS DATOS ACTUALIZADOS
-  //Y ES EL QUE SE ENVIA AL BACKEND
-
-  /* Nunca utiliza newFormData !!!*/
-
-
-
-
-  /* const [newFormData, setNewFormData] = useState({
-    professional: formData.professional,
-    name: formData.name,
-    lastName: formData.lastName,
-    email: formData.email,
-    telefono: formData.telefono,
-    country: formData.country,
-    city: formData.city,
-    zipCode: formData.zipCode,
-    dateOfBirty: formData.dateOfBirty,
-    job: formData.job,
-    description: formData.description,
-  }); */
-
-  //ACA LLAMADA AL ENDPOINT PARA EDITAR USUARIO
   const postEditUser = (data) => {
     return new Promise((resolve, reject) =>
       fetch(
@@ -116,37 +81,39 @@ function EditProfileProfessional() {
         .catch((error) => reject(error))
     );
   };
-  const postPhoto = (data) => {
-    return new Promise((resolve, reject) =>
-      fetch(
-        'https://container-service-1.utth4a3kjn6m0.us-west-2.cs.amazonlightsail.com/user/photo',
-        {
-          method: 'PUT',
-          body: JSON.stringify(data),
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            Connection: 'keep-alive',
-            Authorization: `Bearer ${userStatus.user.token}`,
-            
-          },
-        }
-      )
-        .then((res) => res.json(data))
-        .then((result) => {
-          resolve(result);
-        })
-        .catch((error) => reject(error))
-    );
+
+
+  let filesAvatar = null
+  
+  const putImg = async (file) => {
+    let formData = new FormData();
+    formData.append('avatar', file);
+    
+    console.log(formData, file, "el form data")
+    axios( {
+      url: 'https://container-service-1.utth4a3kjn6m0.us-west-2.cs.amazonlightsail.com/user/photo',
+      method: 'PUT',
+      data: formData,
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${userStatus.user.token}`,
+        'Access-Control-Allow-Origin': "*",
+        mode: 'no-cors',
+        Accept: '/',
+        
+        }}) 
+      .then((resp) => {resp.json()
+           })
+      .catch((err) => console.error(err));
   };
+
   //ACA AL HACER CLICK EN EL BOTON, SI EL USUARIO TIENE TOKEN
   //ENVIA TODO AL BACKEND
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
     if (userStatus.user.token) {
-      console.log(formData, "QUIERO SABER QUIEN SE HA TOMADO TODO EL VINO");
       postEditUser(formData);
-      postPhoto()
 
       /*       localStorage.setItem('newFormData', JSON.stringify(newFormData)); */
       /*  navigate(`/perfilProfesional/${userStatus.user.id}`); */
@@ -289,9 +256,11 @@ function EditProfileProfessional() {
                 />
               <label for="avatar">Choose a profile picture:</label>
 
-                <input type="file"
-              id="avatar" name="avatar"
-              accept="image/png, image/jpeg"/>
+              <input type="file"
+                id="avatar" name="avatar"
+                accept="image/png, image/jpeg"
+                value={filesAvatar}
+                onChange={(event)=> {filesAvatar = event.target.files[0], putImg(event.target.files[0]), console.log(event, "el avatar")}} />
               </div>
               {selectUsuario ==="false"  ? (
                 <>
