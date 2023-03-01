@@ -3,7 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { useApi } from '../hooks/useApi';
-
+import { useSelector } from 'react-redux';
 
 const userSchema = yup.object().shape({
   name: yup.string().required('Debes ingresar tu nombre'),
@@ -48,7 +48,8 @@ function Register({ switchRegistro, closeModal }) {
       console.log(response, ' la respuesta');
     });
     closeModal();
-    navigate('/perfil', { state: user });
+
+    navigate('/perfil');
   };
 
   return (

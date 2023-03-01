@@ -49,7 +49,6 @@ const OurServices = () => {
         (result) => {
           setIsLoaded(true);
           setItems(result);
-          console.log(items);
         },
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow
@@ -65,7 +64,6 @@ const OurServices = () => {
     if (carousel !== null && carousel.current !== null) {
       carousel.current['scrollLeft'] =
         carousel.current.offsetWidth * currentIndex;
-      console.log(carousel.current.offsetWidth * currentIndex, 'el carrousel');
     }
   }, [currentIndex]);
 
@@ -73,7 +71,6 @@ const OurServices = () => {
     maxScrollWidth.current = carousel.current
       ? carousel.current.scrollWidth - carousel.current.offsetWidth
       : 0;
-    // console.log(carousel.current.scrollWidth - carousel.current.offsetWidth, "el otro carousel")
   }, [items]);
 
   if (error) {
@@ -81,7 +78,6 @@ const OurServices = () => {
   } else if (!isLoaded) {
     return <div>Loading...</div>;
   } else {
-    console.log(items);
     return (
       <div className='2xl:container 2xl:mx-auto 2xl:px-0 py-3 md:px-10'>
         <section className='carousel my-12 mx-auto '>
@@ -89,9 +85,8 @@ const OurServices = () => {
             <h2 className='text-gray-600 font-extrabold text-3xl'>
               Nuestros Servicios
             </h2>
-            <p className=' text-gray-500'>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Totam,
-              voluptates!
+            <p className=' text-gray-500 text-xl'>
+              Contamos con la experiencia necesaria y el servicio requerido, en cada área profesional de tu necesidad, desde la proximidad de tu domicilio o ubicación!
             </p>
           </div>
           <div className='relative overflow-hidden'>
@@ -147,35 +142,35 @@ const OurServices = () => {
                 return (
                   <div
                     key={index}
-                    className=' carousel-item text-center relative w-52 h-64 snap-center'
+                    className=' carousel-item text-center relative w-52 h-72 snap-center'
                   >
-                    <div className='carousel-img relative w-52 h-52'>
-                      <a
-                        href={resource.jobImageUrl}
-                        className='h-full w-full sm:w-full aspect-square rounded-full block bg-origin-padding bg-left-top bg-cover bg-no-repeat z-0'
-                        style={{
-                          backgroundImage: `url(${resource.jobImageUrl || ''})`,
-                        }}
-                      >
-                        <img
-                          src={resource.jobImageUrl || ''}
-                          alt={resource.description}
-                          className='w-full aspect-square hidden '
-                        />
-                      </a>
-                      <a
-                        href={resource.jobImageUrl}
-                        className='h-full w-full aspect-square rounded-full block absolute top-0 left-0 transition-opacity duration-300 opacity-0 hover:opacity-100 bg-emerald-600/75 z-10'
-                      >
-                        <h3 className='text-white py-6 px-3 mx-auto text-base absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
-                          {resource.title}
-                        </h3>
-                      </a>
+                    <div className="carousel-img relative w-52 h-52">
+                        <a
+                          href="/servicios"
+                          className="h-full w-full sm:w-full aspect-square rounded-full block bg-origin-padding bg-left-top bg-cover bg-no-repeat z-0"
+                          style={{
+                            backgroundImage: `url(${resource.jobImageUrl || ""})`,
+                          }}
+                        >
+                          <img
+                            src={resource.jobImageUrl || ""}
+                            alt={resource.description}
+                            className="w-full aspect-square hidden "
+                          />
+                        </a>
+                        <a
+                          href="/servicios"
+                          className="h-full w-full aspect-square rounded-full block absolute top-0 left-0 transition-opacity duration-300 opacity-0 hover:opacity-100 bg-emerald-600/75 z-10"
+                        >
+                          <h3 className="text-white py-6 px-3 mx-auto text-base absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                            {resource.title}
+                          </h3>
+                        </a>
                     </div>
                     <h1 className='text-gray-600 font-extrabold text-xl'>
                       {resource.service}
                     </h1>
-                    <p className='text-gray-500'>{resource.description}</p>
+                    <p className='text-gray-500 text-sm '>{resource.description}</p>
                   </div>
                 );
               })}

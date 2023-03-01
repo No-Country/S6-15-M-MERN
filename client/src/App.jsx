@@ -12,10 +12,13 @@ import NavBar from './components/NavBar';
 import { BoolHook } from './hooks/BoolHook';
 import Footer from './components/Footer';
 import PerfilProfesional from './components/PerfilProfesional/PerfilProfesional';
-import EditProfileProfessional from './components/Profile/EditProfileProfessional';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
 import { userStatus } from './features/user/userSlice';
+import Team from './screens/Team';
+import InvalidLogin from './components/InvalidLogin';
+
 
 const App = () => {
   const [isModalOpen, changeModalStatus] = BoolHook(false);
@@ -35,6 +38,7 @@ const App = () => {
     <BrowserRouter>
       <NavBar changeModal={changeModalStatus} />
       <Login isOpen={isModalOpen} closeModal={changeModalStatus} />
+      <InvalidLogin />
       <section className='center'>
         <Routes>
           <Route path='/' element={<Home />} />
@@ -47,10 +51,15 @@ const App = () => {
             path='/sol-servicio/solicitado'
             element={<SolicitedService />}
           />
-          <Route path='/perfilProfesional/:id' element={<PerfilProfesional />}
+          <Route
+            path='/perfilProfesional'
+            element={<PerfilProfesional />}
           />
-            <Route path='/editPerfil' element={<EditProfileProfessional />}
+          <Route
+            path='/team'
+            element={<Team />}
           />
+          
         </Routes>
       </section>
       <div className='footerDiv'>

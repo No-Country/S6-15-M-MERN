@@ -2,22 +2,22 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   profile: {
-    user: [
-      {
-        avatarURL: '',
-        city: '',
-        createdAt: '',
-        email: '',
-        job: '',
-        name: '',
-        password: '',
-        professional: true,
-        updatedAt: '',
-        _id: '',
-        avatarURL: '',
-      },
-    ],
-  },
+  user: [
+    {
+    avatarURL: "",
+      city: "",
+      createdAt: "",
+      email: "",
+      job: "",
+      name: "",
+      password: "",
+      professional: true,
+      updatedAt: "",
+      _id: "",
+      avatarURL: ""
+    },
+  ],
+}
 };
 
 const profileSlice = createSlice({
@@ -36,3 +36,4 @@ const profileSlice = createSlice({
 export const { profileFetched } = profileSlice.actions;
 
 export default profileSlice.reducer;
+
