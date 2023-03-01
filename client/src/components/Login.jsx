@@ -9,7 +9,7 @@ import { BoolHook } from '../hooks/BoolHook';
 import { useApi } from '../hooks/useApi';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
+import Cookies from 'universal-cookie';
 
 const loginSchema = yup.object().shape({
   password: yup
@@ -32,14 +32,12 @@ function Login({ isOpen, closeModal }) {
   
   const userStatus = useSelector(state => state.user);
 
-  const [,, userLogin] = useApi();
+  const [,,userLogin] = useApi();
 
   const [user, setUser] = useState({
-    password: "felipe",
-    email: "felipe@felipe.com"
-    
+    password: 'felipe',
+    email: 'felipe@felipe.com',
   });
-
 
   const [activeLogin, switchLogin] = BoolHook();
 
@@ -59,23 +57,23 @@ function Login({ isOpen, closeModal }) {
     }
   };
 
-  const handleChange = (e)=>{
+  const handleChange = (e) => {
     setUser({
       ...user,
-      [e.target.name]:e.target.value
-    })
-  }
+      [e.target.name]: e.target.value,
+    });
+  };
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e)=>{
+  const handleSubmit = (e) => {
     e.preventDefault();
     userLogin(user);
-    closeModal()
-    userStatus.user.professional ?
-    navigate("/perfilProfesional") :
-    navigate("/servicios")
-  }
+    closeModal();
+    userStatus.user.professional
+      ? navigate('/perfilProfesional')
+      : navigate('/servicios');
+  };
 
   return (
     <Modal isOpen={isOpen} closeModal={closeModal}>
@@ -126,8 +124,8 @@ function Login({ isOpen, closeModal }) {
                     Email
                   </label>
                   <Field
-                  value={user.email}
-                  onChange={handleChange}
+                    value={user.email}
+                    onChange={handleChange}
                     name='email'
                     id='email'
                     type='text'
@@ -146,8 +144,8 @@ function Login({ isOpen, closeModal }) {
                     Contraseña
                   </label>
                   <Field
-                  value={user.password}
-                  onChange={handleChange}
+                    value={user.password}
+                    onChange={handleChange}
                     name='password'
                     id='password'
                     type='password'

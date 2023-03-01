@@ -28,6 +28,7 @@
     "redux": "^4.2.1",
     "sweetalert2": "^11.7.2",
     "tailwind-scrollbar-hide": "^1.1.7",
+    "universal-cookie": "^4.0.4",
     "yup": "^0.32.11"
   },
   "devDependencies": {

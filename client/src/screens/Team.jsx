@@ -6,7 +6,9 @@ function Team() {
     return (
         <>
             <div className="team-container container text-center">
+
                 <h2 className="team-title mt-5 mb-5 inter">Team S6-15-M-MERN</h2>
+
 
                 <div className="cards-container">
 
@@ -15,6 +17,7 @@ function Team() {
                     {
                         integrantes.map(integrante => {
                             return (
+
                                 <div>
                                     <img src={integrante.foto} />
                                     <div>
@@ -28,6 +31,7 @@ function Team() {
                                                         <div>
                                                             {link.logo}
                                                             <a href={link.link}>{link.descripcion}</a>
+
                                                         </div>
                                                     </li>
                                                 )

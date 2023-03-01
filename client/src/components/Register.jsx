@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
-import { useApi } from '../hooks/useApi'
+import { useApi } from '../hooks/useApi';
 import { useSelector } from 'react-redux';
-
 
 const userSchema = yup.object().shape({
   name: yup.string().required('Debes ingresar tu nombre'),
@@ -28,15 +27,12 @@ const userSchema = yup.object().shape({
 });
 
 function Register({ switchRegistro, closeModal }) {
-
-
-
-  const [,postUser] = useApi();
+  const [, postUser] = useApi();
   const [user, setUser] = useState({});
   const navigate = useNavigate();
 
   const userProfile = (event) => {
-    console.log(event, 'EVENTO')
+    console.log(event, 'EVENTO');
     setUser({
       ...user,
       [event.target.name]: event.target.value,
@@ -46,13 +42,13 @@ function Register({ switchRegistro, closeModal }) {
   };
 
   const handleOnSubmit = async (event) => {
-    console.log(user, 'el usuario222')
+    console.log(user, 'el usuario222');
     event.preventDefault();
-    await postUser(user)
-      .then((response) => {
+    await postUser(user).then((response) => {
       console.log(response, ' la respuesta');
     });
     closeModal();
+
     navigate('/perfil');
   };
 
