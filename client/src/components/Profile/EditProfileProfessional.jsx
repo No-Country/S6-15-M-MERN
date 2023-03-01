@@ -24,18 +24,16 @@ function EditProfileProfessional() {
 
   //USUARIO CON TODA LA DATA DEL BACKEND
   const updatedUser = profile.profile.user;
-  console.log(updatedUser, "L USUARIOOO")
-
   useEffect(() => {
     getProfessional(userStatus.user.id);
   }, []);
 
   //ESTE ES EL ESTADO INICIAL DE LOS INPUTS
   const [formData, setFormData] = useState({
-    professional: updatedUser.profesional,
-    name: updatedUser.name,
+    professional: selectUsuario,
+    name: user.name,
     lastName: '',
-    email: "" ,
+    email: user.email,
     telefono: '',
     country: '',
     city: '',
@@ -122,6 +120,7 @@ function EditProfileProfessional() {
     setNewFormData({ ...formData, professional: select });
   };
 
+  console.log(updatedUser, 'REDUXXXXX');
   console.log(newFormData, 'NEWFORMDATA= FORMDATA + SELECT');
 
   const userSchema = yup.object().shape({
@@ -164,14 +163,14 @@ function EditProfileProfessional() {
         </h3>
         <Formik
           initialValues={{
-            professional:"",
-            name: "",
+            professional: 'false',
+            name: user.name,
             lastname: '',
             country: '',
             city: '',
             dateOfBirty: '',
             zipCode: '',
-            email: "",
+            email: user.email,
             job: '',
             description: '',
           }}
@@ -220,7 +219,7 @@ function EditProfileProfessional() {
                       type='text'
                       className=' px-2 py-2 focus: outline-focusColor rounded-xl border-labelGrayColor border-2'
                       onChange={handleOnChange}
-                      value={updatedUser.name}
+                      value={formData.name}
                     />
                     <ErrorMessage
                       name='name'
@@ -241,7 +240,7 @@ function EditProfileProfessional() {
                       type='text'
                       className='  px-2 py-2 focus: outline-focusColor  rounded-xl border-labelGrayColor border-2 placeholder:-translate-x-6'
                       onChange={handleOnChange}
-                      value={updatedUser.lastName}
+                      value={formData.lastName}
                     />
                     <ErrorMessage
                       name='lastName'
@@ -262,7 +261,7 @@ function EditProfileProfessional() {
                       type='email'
                       className=' px-2 py-2 focus: outline-focusColor rounded-xl   border-labelGrayColor border-2 placeholder:-translate-x-6 '
                       onChange={handleOnChange}
-                      defaultValue={updatedUser.email}
+                      value={formData.email}
                     />
                     <ErrorMessage
                       name='passwordConfirmation'
@@ -291,7 +290,7 @@ function EditProfileProfessional() {
                       type='text'
                       className=' px-2 py-2 focus: outline-focusColor rounded-xl border-labelGrayColor border-2'
                       onChange={handleOnChange}
-                      value={updatedUser.name}
+                      value={formData.name}
                     />
                     <ErrorMessage
                       name='name'
@@ -312,7 +311,7 @@ function EditProfileProfessional() {
                       type='text'
                       className='  px-2 py-2 focus: outline-focusColor  rounded-xl border-labelGrayColor border-2 placeholder:-translate-x-6'
                       onChange={handleOnChange}
-                      value={updatedUser.lastName}
+                      value={formData.lastName}
                     />
                     <ErrorMessage
                       name='lastname'
@@ -333,7 +332,7 @@ function EditProfileProfessional() {
                       type='email'
                       className=' px-2 py-2 focus: outline-focusColor rounded-xl   border-labelGrayColor border-2 placeholder:-translate-x-6 '
                       onChange={handleOnChange}
-                      defaultValue={updatedUser.email}
+                      value={formData.email}
                     />
                     <ErrorMessage
                       name='passwordConfirmation'
@@ -355,7 +354,7 @@ function EditProfileProfessional() {
                       type='number'
                       className=' px-2 py-2 focus: outline-focusColor  rounded-xl   border-labelGrayColor border-2 placeholder:-translate-x-6 '
                       onChange={handleOnChange}
-                      value={updatedUser.phonecontact}
+                      value={formData.telefono}
                     />
                     <ErrorMessage
                       name='telefono'
@@ -377,7 +376,7 @@ function EditProfileProfessional() {
                       type='text'
                       className='px-2 py-2.5 focus: outline-focusColor rounded-xl  border-labelGrayColor border-2 placeholder:-translate-x-6  '
                       onChange={handleOnChange}
-                      value={updatedUser.country}
+                      value={formData.pais}
                     >
                       <option hidden selected>
                         Selecciona una opción
@@ -406,7 +405,7 @@ function EditProfileProfessional() {
                       type='text'
                       className=' px-2 py-2 focus: outline-focusColor rounded-xl  border-labelGrayColor border-2 placeholder:-translate-x-6  '
                       onChange={handleOnChange}
-                      value={updatedUser.city}
+                      value={formData.ciudad}
                     />
                     <ErrorMessage
                       name='ciudad'
@@ -427,7 +426,7 @@ function EditProfileProfessional() {
                       type='number'
                       className='  px-2 py-2 focus: outline-focusColor rounded-xl  border-labelGrayColor border-2 placeholder:-translate-x-6  '
                       onChange={handleOnChange}
-                      value={updatedUser.zipCode}
+                      value={formData.zipCode}
                     />
                     <ErrorMessage
                       name='zipCode'
@@ -448,7 +447,7 @@ function EditProfileProfessional() {
                       type='date'
                       className=' px-2 py-2 focus: outline-focusColor rounded-xl  border-labelGrayColor border-2 placeholder:-translate-x-6  '
                       onChange={handleOnChange}
-                      value={updatedUser.dateOfBirty}
+                      value={formData.dateOfBirty}
                     />
                     <ErrorMessage
                       name='dateOfBirty'
@@ -470,7 +469,7 @@ function EditProfileProfessional() {
                       type='password'
                       className=' px-2 py-2 focus: outline-focusColor rounded-xl border-labelGrayColor border-2 placeholder:-translate-x-6  '
                       onChange={handleOnChange}
-                      value={updatedUser.job}
+                      value={formData.job}
                     >
                       <option hidden selected>
                         Selecciona una opción
@@ -516,7 +515,7 @@ function EditProfileProfessional() {
                       type='textarea'
                       className=' w-full px-2 pb-24 text-start focus: outline-focusColor rounded-xl  border-labelGrayColor border-2 placeholder:-translate-x-6  '
                       onChange={handleOnChange}
-                      value={updatedUser.description}
+                      value={formData.description}
                     />
                     <ErrorMessage
                       name='description'
