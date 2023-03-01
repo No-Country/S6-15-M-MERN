@@ -1,37 +1,95 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
-import { useLocation } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useApi } from '../../hooks/useApi';
+
 function EditProfileProfessional() {
   const navigate = useNavigate();
+  
+
+  //ESTE ES PARA EL CAMBIO DEL SELECT
   const [selectUsuario, setSelectUsuario] = useState('false');
+  console.log(selectUsuario);
 
-  /*   const handleSelectUsuario = (event) => {
-    setSelectUsuario(event.target.value);
-  }; */
-
+  //ESTE ES EL USUARIO VALIDADO. SOLO: ID, TOKEN y PROFESSIONAL
   const userStatus = useSelector((state) => state.user);
-  console.log(userStatus);
+ 
+
+  //ESTE ES PARA TRAER NOMBRE y EMAIL DESDE EL REGISTRO
   const location = useLocation();
   const user = location.state;
-  "console.log(user);"
+
+  //ACA TRAIGO TODO DEL ESTADO GLOBAL DEL USUARIO:
+  const [, , , , getProfessional] = useApi();
+  const profile = useSelector((state) => state.profile);
+
+  //USUARIO CON TODA LA DATA DEL BACKEND
+  const updatedUser = profile.profile.user;
+ /*  console.log(updatedUser, "usuario de redux"); */
+ /*  console.log(updatedUser, "L USUARIOOO") */
+
+  useEffect(() => {
+    getProfessional(JSON.parse(localStorage.getItem("user")).id);
+  }, []);
+
+  useEffect(()=>{
+
+    setSelectUsuario(String(profile.profile.user.professional))
+
+
+  },[profile])
+
+ 
+
+  //ESTE ES EL ESTADO INICIAL DE LOS INPUTS
+
+  console.log(updatedUser, "ACAAAAAAAAAAAA");
+  
+  
+
 
   const [formData, setFormData] = useState({
-    professional: 'false',
-    name: "",
-    lastName: '',
-    email: "",
-    telefono: '',
-    pais: '',
-    ciudad: '',
-    zipCode: '',
-    dateOfBirty: '',
-    oficios: '',
+    professional: updatedUser.professional,
+    name: updatedUser.name,
+    lastname: updatedUser.lastname,
+    email: updatedUser.email ,
+    phone: updatedUser.phone,
+    country: updatedUser.country,
+    city: updatedUser.city,
+    postalCode: updatedUser.postalCode,
+    dateOfBirty: updatedUser.dateOfBirty,
+    job: String(updatedUser.job),
+    description: updatedUser.description,
   });
 
+
+  
+
+  //ESTE ES EL ESTADO QUE DEBERIA CARGARSE CON LOS DATOS ACTUALIZADOS
+  //Y ES EL QUE SE ENVIA AL BACKEND
+
+  /* Nunca utiliza newFormData !!!*/
+
+
+
+
+  /* const [newFormData, setNewFormData] = useState({
+    professional: formData.professional,
+    name: formData.name,
+    lastName: formData.lastName,
+    email: formData.email,
+    telefono: formData.telefono,
+    country: formData.country,
+    city: formData.city,
+    zipCode: formData.zipCode,
+    dateOfBirty: formData.dateOfBirty,
+    job: formData.job,
+    description: formData.description,
+  }); */
+
+  //ACA LLAMADA AL ENDPOINT PARA EDITAR USUARIO
   const postEditUser = (data) => {
     return new Promise((resolve, reject) =>
       fetch(
@@ -49,30 +107,72 @@ function EditProfileProfessional() {
         .then((res) => res.json(data))
         .then((result) => {
           resolve(result);
-          console.log(result);
         })
         .catch((error) => reject(error))
     );
   };
 
+  //ACA AL HACER CLICK EN EL BOTON, SI EL USUARIO TIENE TOKEN
+  //ENVIA TODO AL BACKEND
+
   const handleOnSubmit = (e) => {
     e.preventDefault();
     if (userStatus.user.token) {
+      console.log(formData, "QUIERO SABER QUIEN SE HA TOMADO TODO EL VINO");
       postEditUser(formData);
-      console.log();
-      navigate(`/perfilProfesional/${userStatus.user.id}`);
+
+      /*       localStorage.setItem('newFormData', JSON.stringify(newFormData)); */
+      /*  navigate(`/perfilProfesional/${userStatus.user.id}`); */
     } else {
       navigate('/login');
     }
   };
 
+  //ACA CUANDO SE LLENA EL INPUT LO VA GUARDANDO EN FORMDATA
+  //Y LUEGO ACTUALIZA NEWFORMDATA CON ESOS DATOS.
   function handleOnChange(e) {
+    const name = e.target.name;
+    console.log("entro");
     const value = e.target.value;
 
-    setFormData({ ...formData, [e.target.name]: value });
+    setFormData({ ...formData, [name]: value });
+
+    /* setNewFormData({
+      ...formData,
+      [name]: value,
+      professional: selectUsuario,
+    }); */
   }
 
-  console.log(formData);
+  //ESTA SUPONGO QUE ES PARA SELECCIONAR EL USUARIO PROFESSIONAL
+  //Y ENVIAR ESO AL NEWFORMDATA
+  const handleSelectUsuario = (event) => {
+    const select = event.target.value;
+    setSelectUsuario(select);
+    /* setFormData({...formData, professional: select}) */
+    if(select === "false"){
+      setFormData({
+        ...formData,
+        professional: select,        
+    email: updatedUser.email ,
+    phone: "",
+    country: "",
+    city: "",
+    postalCode: "",
+    dateOfBirty: "",
+    job: null,
+    description: "",
+    lastname: ""
+      })
+    }else{
+      setFormData({...formData, professional: select})
+    }
+    /* setNewFormData({ ...formData, professional: select }); */
+  };
+
+  console.log(selectUsuario);
+
+  /* console.log(newFormData, 'NEWFORMDATA= FORMDATA + SELECT'); */
 
   const userSchema = yup.object().shape({
     name: yup
@@ -114,13 +214,16 @@ function EditProfileProfessional() {
         </h3>
         <Formik
           initialValues={{
-            professional: 'false',
+            professional:"",
             name: "",
             lastname: '',
+            country: '',
+            city: '',
             dateOfBirty: '',
             zipCode: '',
             email: "",
-            oficios: '',
+            job: '',
+            description: '',
           }}
           validationSchema={userSchema}
         >
@@ -136,17 +239,21 @@ function EditProfileProfessional() {
                 <Field
                   as='select'
                   name='professional'
-                  id='rol'
-                  type='password'
+                  id='professional'
+                  type='text'
                   className='py-2  focus: outline-focusColor rounded-xl border-labelGrayColor border-2 pl-0 text-center'
-                  value={formData.professional}
-                  onChange={handleOnChange}
+                  value={selectUsuario}
+                  onChange={handleSelectUsuario}
                 >
-                  <option hidden selected>
+                  {/* <option  selected>
                     Selecciona una opción
-                  </option>
-                  <option value='false'>Cliente</option>
-                  <option value='true'>Profesional</option>
+                  </option> */}
+                  
+                  <option  value='false'>Cliente</option>
+                  <option  value='true'>Profesional</option>
+
+                  
+                  
                 </Field>
 
                 <ErrorMessage
@@ -155,8 +262,9 @@ function EditProfileProfessional() {
                   className='font-bold  text-[#ffffff]'
                 />
               </div>
-              {selectUsuario === 'cliente' ? (
+              {selectUsuario ==="false"  ? (
                 <>
+                false
                   <div className=' w-full col-span-1 row-start-2 row-end-3 -mr-6 flex-shrink-0 mt-5'>
                     <label className='font-bold block text-labelColor  '>
                       Nombre
@@ -167,6 +275,7 @@ function EditProfileProfessional() {
                       type='text'
                       className=' px-2 py-2 focus: outline-focusColor rounded-xl border-labelGrayColor border-2'
                       onChange={handleOnChange}
+                     /*  defaultValue={formData.name} */
                       value={formData.name}
                     />
                     <ErrorMessage
@@ -183,15 +292,15 @@ function EditProfileProfessional() {
                       Apellido
                     </label>
                     <Field
-                      name='lastName'
+                      name='lastname'
                       id='lastName'
                       type='text'
                       className='  px-2 py-2 focus: outline-focusColor  rounded-xl border-labelGrayColor border-2 placeholder:-translate-x-6'
                       onChange={handleOnChange}
-                      value={formData.lastName}
+                      value={formData.lastname}
                     />
                     <ErrorMessage
-                      name='lastName'
+                      name='lastname'
                       component='p'
                       className='text-labelColor whitespace-nowrap'
                     />
@@ -209,6 +318,7 @@ function EditProfileProfessional() {
                       type='email'
                       className=' px-2 py-2 focus: outline-focusColor rounded-xl   border-labelGrayColor border-2 placeholder:-translate-x-6 '
                       onChange={handleOnChange}
+                      /* defaultValue={updatedUser.email} */
                       value={formData.email}
                     />
                     <ErrorMessage
@@ -238,6 +348,7 @@ function EditProfileProfessional() {
                       type='text'
                       className=' px-2 py-2 focus: outline-focusColor rounded-xl border-labelGrayColor border-2'
                       onChange={handleOnChange}
+                      defaultValue={formData.name}
                       value={formData.name}
                     />
                     <ErrorMessage
@@ -254,12 +365,12 @@ function EditProfileProfessional() {
                       Apellido
                     </label>
                     <Field
-                      name='lastName'
+                      name='lastname'
                       id='lastName'
                       type='text'
                       className='  px-2 py-2 focus: outline-focusColor  rounded-xl border-labelGrayColor border-2 placeholder:-translate-x-6'
                       onChange={handleOnChange}
-                      value={formData.lastName}
+                      value={formData.lastname}
                     />
                     <ErrorMessage
                       name='lastname'
@@ -280,6 +391,7 @@ function EditProfileProfessional() {
                       type='email'
                       className=' px-2 py-2 focus: outline-focusColor rounded-xl   border-labelGrayColor border-2 placeholder:-translate-x-6 '
                       onChange={handleOnChange}
+                      defaultValue={formData.email}
                       value={formData.email}
                     />
                     <ErrorMessage
@@ -297,15 +409,15 @@ function EditProfileProfessional() {
                       Teléfono de contacto
                     </label>
                     <Field
-                      name='telefono'
+                      name='phone'
                       id='telefono'
                       type='number'
                       className=' px-2 py-2 focus: outline-focusColor  rounded-xl   border-labelGrayColor border-2 placeholder:-translate-x-6 '
                       onChange={handleOnChange}
-                      value={formData.telefono}
+                      value={formData.phone}
                     />
                     <ErrorMessage
-                      name='telefono'
+                      name='phone'
                       component='p'
                       className='whitespace-nowrap text-labelColor'
                     />
@@ -313,18 +425,18 @@ function EditProfileProfessional() {
                   <div className='row-start-3 row-end-4 col-start-1 col-end-2 -mr-6 flex-shrink-0 -mt-24'>
                     <label
                       className=' font-bold block text-labelColor mt-5 '
-                      htmlFor='pais'
+                      htmlFor='country'
                     >
                       Pais
                     </label>
                     <Field
                       as='select'
-                      name='pais'
-                      id='pais'
+                      name='country'
+                      id='country'
                       type='text'
                       className='px-2 py-2.5 focus: outline-focusColor rounded-xl  border-labelGrayColor border-2 placeholder:-translate-x-6  '
                       onChange={handleOnChange}
-                      value={formData.pais}
+                      value={formData.country}
                     >
                       <option hidden selected>
                         Selecciona una opción
@@ -343,17 +455,17 @@ function EditProfileProfessional() {
                   <div className='col-start-2 col-end-3 row-start-3 row-end-4 -mr-6 flex-shrink-0 -mt-24'>
                     <label
                       className=' font-bold block text-labelColor mt-5 '
-                      htmlFor='ciudad'
+                      htmlFor='city'
                     >
                       Ciudad/Provincia
                     </label>
                     <Field
-                      name='ciudad'
-                      id='ciudad'
+                      name='city'
+                      id='city'
                       type='text'
                       className=' px-2 py-2 focus: outline-focusColor rounded-xl  border-labelGrayColor border-2 placeholder:-translate-x-6  '
                       onChange={handleOnChange}
-                      value={formData.ciudad}
+                      value={formData.city}
                     />
                     <ErrorMessage
                       name='ciudad'
@@ -369,15 +481,15 @@ function EditProfileProfessional() {
                       Código Postal
                     </label>
                     <Field
-                      name='zipCode'
+                      name='postalCode'
                       id='zipCode'
                       type='number'
                       className='  px-2 py-2 focus: outline-focusColor rounded-xl  border-labelGrayColor border-2 placeholder:-translate-x-6  '
                       onChange={handleOnChange}
-                      value={formData.zipCode}
+                      value={formData.postalCode}
                     />
                     <ErrorMessage
-                      name='zipCode'
+                      name='postalCode'
                       component='p'
                       className='whitespace-nowrap text-labelColor'
                     />
@@ -412,30 +524,64 @@ function EditProfileProfessional() {
                     </label>
                     <Field
                       as='select'
-                      name='oficios'
-                      id='oficios'
+                      name='job'
+                      id='job'
                       type='password'
                       className=' px-2 py-2 focus: outline-focusColor rounded-xl border-labelGrayColor border-2 placeholder:-translate-x-6  '
                       onChange={handleOnChange}
-                      value={formData.oficios}
+                      value={formData.job}
                     >
                       <option hidden selected>
                         Selecciona una opción
                       </option>
-                      <option value='electricista'>Electricista</option>
-                      <option value='soldador'>Soldador</option>
-                      <option value='electronico'>Electrónico</option>
-                      <option value='medico'>Médico</option>
-                      <option value='constructor'>Constructor</option>
-                      <option value='veterinario'>Veterinario</option>
-                      <option value='enfermero'>Enfermero</option>
-                      <option value='fotógrafo'>Fotógrafo</option>
+                      <option value='63f4c2d13174deb8a1c47222'>
+                        Electricista
+                      </option>
+                      <option value='63f4c2fc3174deb8a1c47227'>Soldador</option>
+                      <option value='63f4c3423174deb8a1c4722a'>
+                        Electrónico
+                      </option>
+                      <option value='63f4c4583174deb8a1c47231'>Médico</option>
+                      <option value='63f4c62a3174deb8a1c47242'>
+                        Constructor
+                      </option>
+                      <option value='63f4c6683174deb8a1c47244'>
+                        Veterinario
+                      </option>
+                      <option value='63f4c6a33174deb8a1c47246'>
+                        Enfermero
+                      </option>
+                      <option value='63f4c87e3174deb8a1c4724d'>
+                        Fotógrafo
+                      </option>
                     </Field>
 
                     <ErrorMessage
-                      name='oficios'
+                      name='job'
                       component='p'
                       className='font-bold  text-[#ffffff]'
+                    />
+                  </div>
+                  <div className='col-start-2 col-end-5 row-start-4 row-end-6 -mr-6 flex-shrink-0 -mt-24'>
+                    <label
+                      className=' font-bold block text-labelColor mt-5 whitespace-nowrap'
+                      htmlFor='password'
+                    >
+                      Descripción
+                    </label>
+                    <Field
+                      name='description'
+                      id='description'
+                      type='textarea'
+                      className=' w-full px-2 pb-24 text-start focus: outline-focusColor rounded-xl  border-labelGrayColor border-2 placeholder:-translate-x-6  '
+                      onChange={handleOnChange}
+                      defaultValue={formData.description}
+                      value={formData.description}
+                    />
+                    <ErrorMessage
+                      name='description'
+                      component='p'
+                      className='whitespace-nowrap text-labelColor'
                     />
                   </div>
                   <div className='col-start-1 col-end-2 item '>
