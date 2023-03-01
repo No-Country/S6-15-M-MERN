@@ -46,9 +46,6 @@ function EditProfileProfessional() {
   //ESTE ES EL ESTADO INICIAL DE LOS INPUTS
 
   console.log(updatedUser, "ACAAAAAAAAAAAA");
-  
-  
-
 
   const [formData, setFormData] = useState({
     professional: updatedUser.professional,
@@ -63,6 +60,27 @@ function EditProfileProfessional() {
     job: String(updatedUser.job),
     description: updatedUser.description,
   });
+
+  useEffect(()=>{
+    setFormData({
+      professional: updatedUser.professional,
+      name: updatedUser.name,
+      lastname: updatedUser.lastname,
+      email: updatedUser.email ,
+      phone: updatedUser.phone,
+      country: updatedUser.country,
+      city: updatedUser.city,
+      postalCode: updatedUser.postalCode,
+      dateOfBirty: updatedUser.dateOfBirty,
+      job: String(updatedUser.job),
+      description: updatedUser.description,
+    })
+  },[updatedUser])
+  
+  
+
+
+ 
 
 
   
@@ -205,6 +223,7 @@ function EditProfileProfessional() {
   });
   return (
     <div>
+      {console.log(formData.name, "ACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")}
       <div className=' ml-40 mr-40'>
         <header className='text-labelGrayColor font-bold text-4xl mb-10 flex-shrink-0'>
           Editar tu perfil

@@ -24,7 +24,7 @@ const profileSlice = createSlice({
   name: 'profile',
   initialState,
   reducers: {
-    profileFetched(state, action) {
+    profileFetched(state, action) { 
       return {
         ...state,
         profile: action.payload,
