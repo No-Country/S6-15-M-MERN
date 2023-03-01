@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState, useRef, useEffect } from 'react';
+import { Link } from "react-router-dom";
 // import data from "./data.json";
 
 const OurServices = () => {
@@ -50,9 +51,6 @@ const OurServices = () => {
           setIsLoaded(true);
           setItems(result);
         },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
         (error) => {
           setIsLoaded(true);
           setError(error);
@@ -145,8 +143,8 @@ const OurServices = () => {
                     className=' carousel-item text-center relative w-52 h-72 snap-center'
                   >
                     <div className="carousel-img relative w-52 h-52">
-                        <a
-                          href="/servicios"
+                        <Link
+                          // href="/servicios"
                           className="h-full w-full sm:w-full aspect-square rounded-full block bg-origin-padding bg-left-top bg-cover bg-no-repeat z-0"
                           style={{
                             backgroundImage: `url(${resource.jobImageUrl || ""})`,
@@ -157,20 +155,20 @@ const OurServices = () => {
                             alt={resource.description}
                             className="w-full aspect-square hidden "
                           />
-                        </a>
-                        <a
-                          href="/servicios"
+                        </Link>
+                        <Link
+                          to="/servicios"
                           className="h-full w-full aspect-square rounded-full block absolute top-0 left-0 transition-opacity duration-300 opacity-0 hover:opacity-100 bg-emerald-600/75 z-10"
                         >
                           <h3 className="text-white py-6 px-3 mx-auto text-base absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                             {resource.title}
                           </h3>
-                        </a>
+                        </Link>
                     </div>
                     <h1 className='text-gray-600 font-extrabold text-xl'>
                       {resource.service}
                     </h1>
-                    <p className='text-gray-500 text-sm '>{resource.description}</p>
+                    <p className='text-gray-500 text-sm inline-block align-middle'>{resource.description}</p>
                   </div>
                 );
               })}
