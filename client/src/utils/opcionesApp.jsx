@@ -4,7 +4,6 @@ import gabriel from "../assets/Team/gabriel.jpeg"
 
 export function opcionesApp() {
 
-
   const returnBanners = (job)=>{
 
     switch (job) {
@@ -163,7 +162,5 @@ export function opcionesApp() {
     }
   ];
 
-
   return { integrantes, returnBanners, returnJob };
 }
-
