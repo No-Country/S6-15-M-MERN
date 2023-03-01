@@ -1,8 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import profile from '../../assets/profile.jpeg'
+import marta from '../../assets/marta.png'
 
-const avatarURL = profile
-
+const avatarURL = {name:'marta', path:marta}
 const initialState = {user:[{"name":"unknown", avatarURL }]};
 
 const userSlice = createSlice({
@@ -10,11 +9,14 @@ const userSlice = createSlice({
     initialState,
     reducers: {
         userStatus(state,action) {
-            const payload = !action.payload.avatarURL? {...action.payload, ...action.payload.avatarURL = avatarURL} : action.payload
-            console.log( action.payload , 'EL ESATDO')
+            const payload = !action.payload.avatarURL.path? 
+            {
+            ...action.payload, 
+           avatarURL: avatarURL} : action.payload
+            console.log( payload, avatarURL, 'EL ESATDO')
             return {
                 ...state,
-                user: action.payload,
+                user: payload
                 
             }
         }

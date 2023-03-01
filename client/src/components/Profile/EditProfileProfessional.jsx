@@ -64,6 +64,10 @@ function EditProfileProfessional() {
     description: updatedUser.description,
   });
 
+  const [photo, setPhoto] = useState({
+    photo:updatedUser.avatarURL
+  })
+
 
   
 
@@ -101,6 +105,7 @@ function EditProfileProfessional() {
             'Content-Type': 'application/json',
             Connection: 'keep-alive',
             Authorization: `Bearer ${userStatus.user.token}`,
+            
           },
         }
       )
@@ -111,7 +116,28 @@ function EditProfileProfessional() {
         .catch((error) => reject(error))
     );
   };
-
+  const postPhoto = (data) => {
+    return new Promise((resolve, reject) =>
+      fetch(
+        'https://container-service-1.utth4a3kjn6m0.us-west-2.cs.amazonlightsail.com/user/photo',
+        {
+          method: 'PUT',
+          body: JSON.stringify(data),
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            Connection: 'keep-alive',
+            Authorization: `Bearer ${userStatus.user.token}`,
+            
+          },
+        }
+      )
+        .then((res) => res.json(data))
+        .then((result) => {
+          resolve(result);
+        })
+        .catch((error) => reject(error))
+    );
+  };
   //ACA AL HACER CLICK EN EL BOTON, SI EL USUARIO TIENE TOKEN
   //ENVIA TODO AL BACKEND
 
@@ -120,6 +146,7 @@ function EditProfileProfessional() {
     if (userStatus.user.token) {
       console.log(formData, "QUIERO SABER QUIEN SE HA TOMADO TODO EL VINO");
       postEditUser(formData);
+      postPhoto()
 
       /*       localStorage.setItem('newFormData', JSON.stringify(newFormData)); */
       /*  navigate(`/perfilProfesional/${userStatus.user.id}`); */
@@ -153,7 +180,7 @@ function EditProfileProfessional() {
     if(select === "false"){
       setFormData({
         ...formData,
-        professional: select,        
+    professional: select,        
     email: updatedUser.email ,
     phone: "",
     country: "",
@@ -162,7 +189,7 @@ function EditProfileProfessional() {
     dateOfBirty: "",
     job: null,
     description: "",
-    lastname: ""
+    lastname: "",
       })
     }else{
       setFormData({...formData, professional: select})
@@ -170,9 +197,8 @@ function EditProfileProfessional() {
     /* setNewFormData({ ...formData, professional: select }); */
   };
 
-  console.log(selectUsuario);
 
-  /* console.log(newFormData, 'NEWFORMDATA= FORMDATA + SELECT'); */
+
 
   const userSchema = yup.object().shape({
     name: yup
@@ -261,6 +287,11 @@ function EditProfileProfessional() {
                   component='p'
                   className='font-bold  text-[#ffffff]'
                 />
+              <label for="avatar">Choose a profile picture:</label>
+
+                <input type="file"
+              id="avatar" name="avatar"
+              accept="image/png, image/jpeg"/>
               </div>
               {selectUsuario ==="false"  ? (
                 <>
@@ -465,6 +496,7 @@ function EditProfileProfessional() {
                       type='text'
                       className=' px-2 py-2 focus: outline-focusColor rounded-xl  border-labelGrayColor border-2 placeholder:-translate-x-6  '
                       onChange={handleOnChange}
+                      // defaultValue={updatedUser.city}
                       value={formData.city}
                     />
                     <ErrorMessage
@@ -575,7 +607,7 @@ function EditProfileProfessional() {
                       type='textarea'
                       className=' w-full px-2 pb-24 text-start focus: outline-focusColor rounded-xl  border-labelGrayColor border-2 placeholder:-translate-x-6  '
                       onChange={handleOnChange}
-                      defaultValue={formData.description}
+                      // defaultValue={updatedUser.description}
                       value={formData.description}
                     />
                     <ErrorMessage
