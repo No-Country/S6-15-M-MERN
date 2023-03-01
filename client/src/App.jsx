@@ -17,7 +17,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { userStatus } from './features/user/userSlice';
 import Team from './screens/Team';
-import InvalidLogin from './components/InvalidLogin';
+import InvalidLogin from './components/Modals/InvalidLogin';
 
 
 const App = () => {

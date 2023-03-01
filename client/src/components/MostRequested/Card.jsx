@@ -2,13 +2,16 @@ import { createSearchParams, useNavigate } from 'react-router-dom';
 
 const Card = ({ imagen, title, description, price, id }) => {
   const navigate = useNavigate();
+  const loginStatus = JSON.parse(localStorage.getItem("user"));
   const openCard = (titulo) => {
-    navigate({
+
+    loginStatus!== null?
+    (navigate({
       pathname: '/servicesDetail',
       search: createSearchParams({
         id: id,
       }).toString(),
-    });
+    })):(console.log("usuario no logueado"))
   };
   /* w-[277px] */
   /* w-[265px] */

@@ -1,10 +1,10 @@
 import React from 'react'
-import Modal from './Modal'
+import Modal from '../Modal'
 import { useSelector } from 'react-redux'
-import { loginReducer } from '../features//booleans/booleanSlice';
+import { loginReducer } from '../../features/booleans/booleanSlice';
 import { useDispatch } from 'react-redux';
 
-function InvalidLogin() {
+function MustLogin() {
     const loginStatus = useSelector(state=>state.modales)
     const dispatch = useDispatch();
 
@@ -18,7 +18,7 @@ function InvalidLogin() {
     <>
     <Modal isOpen={loginStatus.invalidLogin} closeModal={closeInvalidLogin} >
 
-    <div className=' bg-[#28315C] rounded-xl  flex '>
+    <div className=' bg-[#28315C] rounded-xl shadow-2xl  flex '>
           <div className=' mb-4 py-16 px-10 text-center flex-col justify-center items-center m-auto '>
             <header className=''>
               <h2 className='text-3xl font-bold text-[#ffffff] text-center mb-7 font-khula '>
@@ -46,4 +46,4 @@ function InvalidLogin() {
   )
 }
 
-export default InvalidLogin
+export default MustLogin
