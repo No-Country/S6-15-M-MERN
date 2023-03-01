@@ -72,9 +72,9 @@ const OurServices = () => {
   }, [items]);
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <div className='text-center'>Error: {error.message}</div>;
   } else if (!isLoaded) {
-    return <div>Loading...</div>;
+    return <div className=' text-center '>Cargando...</div>;
   } else {
     return (
       <div className='2xl:container 2xl:mx-auto 2xl:px-0 py-3 md:px-10'>
@@ -83,9 +83,8 @@ const OurServices = () => {
             <h2 className='text-gray-600 font-extrabold text-3xl'>
               Nuestros Servicios
             </h2>
-            <p className=' text-gray-500'>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Totam,
-              voluptates!
+            <p className=' text-gray-500 text-base md:text-lg'>
+            Contamos con la experiencia necesaria y el servicio requerido, en cada área profesional de tu necesidad, desde la proximidad de tu domicilio o ubicación!
             </p>
           </div>
           <div className='relative overflow-hidden'>
@@ -141,9 +140,9 @@ const OurServices = () => {
                 return (
                   <div
                     key={index}
-                    className=' carousel-item text-center relative w-52 h-64 snap-center'
+                    className=' carousel-item text-center relative w-52 h-56 md:h-72 '
                   >
-                    <div className="carousel-img relative w-52 h-52">
+                    <div className="carousel-img relative w-36 h-36 md:w-52 md:h-52">
                         <Link
                           // href="/servicios"
                           className="h-full w-full sm:w-full aspect-square rounded-full block bg-origin-padding bg-left-top bg-cover bg-no-repeat z-0"
