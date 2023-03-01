@@ -9,7 +9,7 @@ import { useApi } from '../hooks/useApi';
 
 function Profile() {
 
-const registrer = useSelector(state => state.registrer);
+/* const registrer = useSelector(state => state.registrer);
 
 const [,,postUser] = useApi();
 
@@ -23,7 +23,7 @@ const getUserById = async (data) => {
   useEffect(() => {
     getUserById();
   })
- 
+  */
 
   return (
     <div>
