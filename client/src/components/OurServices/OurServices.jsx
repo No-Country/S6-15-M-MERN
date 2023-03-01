@@ -83,8 +83,9 @@ const OurServices = () => {
             <h2 className='text-gray-600 font-extrabold text-3xl'>
               Nuestros Servicios
             </h2>
-            <p className=' text-gray-500 text-xl'>
-              Contamos con la experiencia necesaria y el servicio requerido, en cada área profesional de tu necesidad, desde la proximidad de tu domicilio o ubicación!
+            <p className=' text-gray-500'>
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Totam,
+              voluptates!
             </p>
           </div>
           <div className='relative overflow-hidden'>
@@ -140,7 +141,7 @@ const OurServices = () => {
                 return (
                   <div
                     key={index}
-                    className=' carousel-item text-center relative w-52 h-72 snap-center'
+                    className=' carousel-item text-center relative w-52 h-64 snap-center'
                   >
                     <div className="carousel-img relative w-52 h-52">
                         <Link

@@ -150,7 +150,6 @@ export default function PerfilProfesional() {
             <div className='w-full flex justify-center'>
               <button onClick={sendMessage} className=' bg-[#43936c] text-white py-3 px-8 rounded-lg w-full m-2 flex'  > <img src={envelope} alt="envelope" /> <p className=' ml-5'>Enviame un mensaje</p> </button>
 
-
             </div>
 
 
@@ -180,7 +179,6 @@ export default function PerfilProfesional() {
                 {profile.profile.user.description}
               </p>
             </div>
-
 
 
             <div className=' mt-7'>
@@ -213,6 +211,7 @@ export default function PerfilProfesional() {
         {/* <div className=''>
         <OurServices />
       </div>
+
       <div className=''>
         <Reviews className='absolute' />
       </div> */}
