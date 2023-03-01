@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { userStatus } from './features/user/userSlice';
 import Team from './screens/Team';
+import InvalidLogin from './components/InvalidLogin';
 
 const App = () => {
   const [isModalOpen, changeModalStatus] = BoolHook(false);
@@ -36,6 +37,7 @@ const App = () => {
     <BrowserRouter>
       <NavBar changeModal={changeModalStatus} />
       <Login isOpen={isModalOpen} closeModal={changeModalStatus} />
+      <InvalidLogin />
       <section className='center'>
         <Routes>
           <Route path='/' element={<Home />} />
