@@ -2,7 +2,7 @@ import {Request , Response, Router} from 'express';
 import { getControllerUserbyId,
     getControllerAllUser,
     UpdateControllerUser,
-    DeleteControllerUser, getMyUser } from '../controllers/user';
+    DeleteControllerUser, getMyUser, UpdatePhotoUser } from '../controllers/user';
 import { logMiddleware } from '../middleware/log';
 import {checkJwt} from '../middleware/session'
 import multerMiddleware from "../middleware/upload.middleware";
@@ -41,7 +41,11 @@ router
     .get(checkJwt , getMyUser)
     .put( checkJwt, UpdateControllerUser)
     .delete(checkJwt, DeleteControllerUser)
-router.post('/photo', checkJwt, )
+
+router
+    .route('/photo')
+    .put( checkJwt, multerMiddleware.single("avatar"), UpdatePhotoUser)
+       
 router
     .route('/:id')
     .get( checkJwt ,  logMiddleware , getControllerUserbyId)

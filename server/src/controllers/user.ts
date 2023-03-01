@@ -154,26 +154,28 @@ const getMyUser = async ( req: RequestExt, res: Response, next: NextFunction) =>
   }
 };
 
-const UpdateAvatarUser = async (req: RequestExt, res: Response, next: NextFunction) => {
+const UpdatePhotoUser = async (req: RequestExt, res: Response, next: NextFunction) => {
     try {
       const id = req.user?.id;
       const User = await getUserbyId(id);
       if (User) {
-        //!fix fileuser to delete files from storage
-        // const fileuser = getNewUrl(req);
-        // const (fileuser) {
-          // if (fileuser) {
-          //   deleteFilefromFS(User.avatarURL);  // que parte del interface user poner aqui??
-          //   User.set({avatarURL: fileuser});
-          // }
-          const {avatarURL, password, ...restOfProperties} = req.body;
-          //const passHash = await encrypt(password);
-          User.set({  ...restOfProperties});
-          const result = await User.save();
-          return res.status(201).json(result);   
-        } else {
-          next(new AppError(404, `User with id ${User} not found`));
+        const fileuser = getNewUrl(req);
+        if (fileuser) {
+          deleteFilefromFS(User.avatarURL.path);  // que parte del interface user poner aqui??
         }
+        if(req.file){
+          const avatarURL = {
+            name: req.file.filename,
+            path: fileuser
+          }
+          User.set({avatarURL});
+          const result = await User.save();
+          return res.status(200).json(result);  
+        }
+         
+      } else {
+        next(new AppError(404, `User with id ${User} not found`));
+      }
     // res.send(response);
   } catch (error: any) {
     next(new AppError(500, error.message));
@@ -186,5 +188,6 @@ export {
   getControllerAllUser,
   UpdateControllerUser,
   DeleteControllerUser,
-  getMyUser
+  getMyUser,
+  UpdatePhotoUser
 };

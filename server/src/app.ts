@@ -5,11 +5,15 @@ import { router } from "./routes";
 import db from "./config/mongo";
 import bodyParser from "body-parser";
 
+import path from 'path'
+
 import errorHandler from "./middleware/errorHandler.middleware";
 
 import swaggerUi from "swagger-ui-express";
 import swaggerSetup from "./doc/swagger"
 
+const PATH_STORAGE = `${process.cwd()}/storage/users`;
+console.log(PATH_STORAGE)
 const PORT = process.env.PORT || 3001;
 const app = express();
 
@@ -24,6 +28,7 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 
+
 app.use(router);
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSetup));
 
@@ -33,9 +38,12 @@ app.get("/", (_req: Request, res: Response) => {
   res.status(200).json({ message: "Welcome to myAPI v1" });
 });
 
+app.use('/storage/users', express.static(PATH_STORAGE))
+
 app.get("*", (_req: Request, res: Response) => {
   res.status(404).json({ message: "not found" });
 });
+
 
 app.use(errorHandler);
 

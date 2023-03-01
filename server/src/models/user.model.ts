@@ -39,8 +39,8 @@ const userSchema = new Schema<IUser>(
       type: String,
     },
     avatarURL: {
-      name: {type: String},
-      path: {type: String},
+      name: {type: String, default: ""},
+      path: {type: String, default: ""},
     },
     job: {
       type: Schema.Types.ObjectId,

@@ -18,7 +18,7 @@ export interface IUser extends Auth {
   pictures:String,
   idgoogle: String,
   proveedor: String,
-  avatarURL: {name: String, path: String}
+  avatarURL: any,
   job: {
     type: Schema.Types.ObjectId;
     ref: "Jobs";
