@@ -64,13 +64,13 @@ function Register({ switchRegistro, closeModal }) {
            '
           >
             <h3
-              onClick='text-decoration-line: underline;'
+        
               className='text-[#ffffff]  text-xl  ml-14 mb-7 mr-1 font-khula underline underline-offset-8 decoration-btnColor decoration-4'
             >
               Registro
             </h3>
             <button
-              onClick={switchRegistro}
+        
               className='text-[#ffffff]  text-xl ml-10  mb-5 font-khula'
             >
               Iniciar sesión
@@ -88,7 +88,7 @@ function Register({ switchRegistro, closeModal }) {
           }}
           validationSchema={userSchema}
         >
-          <Form onSubmit={handleOnSubmit}>
+          <Form >
             <div>
               <label className='  font-bold block text-[#ffffff] mt-5 mr-56'>
                 Nombre
@@ -191,6 +191,7 @@ function Register({ switchRegistro, closeModal }) {
               Cancelar
             </button>
             <button
+            onClick={handleOnSubmit}
               type='submit'
               className='bg-btnColor w-48 h-12 rounded-full text-xl mb-4 text-[#ffffff] font-bold  active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all  active:hover:bg-[#83e3be]  disabled:cursor-not-allowed  mt-4 hover:shadow-228b active:shadow '
             >

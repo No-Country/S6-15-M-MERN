@@ -140,7 +140,7 @@ export default function NavBar({ changeModal, isUserLogged}) {
           <div> 
           <img onClick={navigateProfile}
               className=' max-sm:hidden max-md:hidden cursor-pointer inline-flex items-center justify-center whitespace-nowrap rounded-full w-11 h-11 border-[#28315C] border-solid '  
-               src= {userStatus.user.avatarURL} />  
+               src= {userStatus.user.avatarURL.path} />  
           </div> }
         </div>
       </div>

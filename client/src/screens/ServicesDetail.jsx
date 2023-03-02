@@ -86,7 +86,13 @@ export const ServicesDetail = ({ props }) => {
               <select onClick={handleOption} className='text-base mx-auto mt-16 font-normal rounded-full border-2 bg-green-100 text-gray-600 h-12 w-[429px] pl-5 pr-10  hover:border-gray-400 focus:outline-none appearance-none'>
                 <option >Todos</option>
 
-                <option >Cucuta</option>
+                <option >Garin</option>
+                <option >Escobar</option>
+                <option >Tigre</option>
+                <option >Maschwitz</option>
+                <option >Campana</option>
+                <option >Benavidez</option>
+                <option >Pacheco</option>
               </select>
 
               {/* aqui termina el agregado configurarlo con el dropdown */}
