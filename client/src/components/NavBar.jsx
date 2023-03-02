@@ -138,9 +138,11 @@ export default function NavBar({ changeModal, isUserLogged}) {
             </button>
           </div> : 
           <div> 
-          <img onClick={navigateProfile}
+             <img onClick={navigateProfile}
               className=' max-sm:hidden max-md:hidden cursor-pointer inline-flex items-center justify-center whitespace-nowrap rounded-full w-11 h-11 border-[#28315C] border-solid '  
               src= {userStatus.user.avatarURL.path} />  
+              <button  className='inline-flex items-center justify-center whitespace-nowrap rounded-md border-transparent bg-buttons-buttonGreen px-4 py-2 text-base font-medium text-textWhite shadow-sm hover:bg-blueGeneral'
+               onClick={()=>localStorage.removeItem('user')}>Cerrar sesión</button>
           </div> }
         </div>
       </div>
@@ -213,6 +215,7 @@ export default function NavBar({ changeModal, isUserLogged}) {
               >
                 Perfil
               </button>
+              
               
             </div>
           </div> 
