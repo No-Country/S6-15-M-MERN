@@ -111,14 +111,14 @@ export default function PerfilProfesional() {
 
             {/* ES ACA EL BOTON */}
 
-            <div className=' max-[320px]:mt-36 max-[320px]:ml-8 w-full flex justify-center'>
+            <div className='max-[320px]:mt-36 max-[320px]:ml-8 w-full flex justify-center'>
               <button
                 onClick={sendMessage}
-                className=' bg-[#43936c] text-white py-3 px-8 rounded-lg w-full m-2 flex max-[428px]:w-48 max-[428px]:ml-4'
+                className=' bg-[#43936c] text-white py-3 px-8 rounded-lg w-full m-2 flex'
               >
                 {' '}
                 <img src={envelope} alt='envelope' />{' '}
-                <p className=' ml-5'>Mensaje</p>{' '}
+                <p className=' ml-5'>Enviame un mensaje</p>{' '}
               </button>
             </div>
           </div>
@@ -146,8 +146,8 @@ export default function PerfilProfesional() {
               </p>
             </div>
 
-            <div className=' mt-7 max-[428px]:-ml-[240px]'>
-              <p className=' ml-[100px] font-bold text-3xl max-[428px]:text-lg'>
+            <div className='  mt-7 max-[428px]:-ml-[240px]'>
+              <p className=' ml-[100px] font-bold text-3xl  max-[428px]:text-lg'>
                 Proyectos más recientes
               </p>
             </div>
@@ -167,6 +167,7 @@ export default function PerfilProfesional() {
         {/* <div className=''>
         <OurServices />
       </div>
+
       <div className=''>
         <Reviews className='absolute' />
       </div> */}
