@@ -79,9 +79,8 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-export default function NavBar({ changeModal, isUserLogged}) {
-  
-  const userStatus = useSelector(state => state.user);
+export default function NavBar({ changeModal, isUserLogged }) {
+  const userStatus = useSelector((state) => state.user);
   const navigate = useNavigate();
 
   const deleteLocal = () => {
@@ -96,9 +95,10 @@ export default function NavBar({ changeModal, isUserLogged}) {
 
   const navigateProfile = () => {
     navigate('/perfil');
-  }
+  };
+
+
   return (
-    
     <Popover className='relative bg-backgroundColor '>
       <div className='px-7'>
         <div className='flex items-center  py-6  md:space-x-10'>
@@ -201,16 +201,16 @@ export default function NavBar({ changeModal, isUserLogged}) {
               </div>
             </div>
             {!userStatus.user.token ? 
-            <div className='space-y-6 py-6 px-5'>
-              <div>
-                <button
-                  onClick={changeModal}
-                  className='flex w-full items-center justify-center rounded-md border-transparent bg-buttons-buttonGreen px-4 py-2 text-base font-medium  shadow-sm hover:bg-blueGeneral'
-                >
-                  Registrarse
-                </button>
-              </div>
-            </div> :
+              <div className='space-y-6 py-6 px-5'>
+                <div>
+                  <button
+                    onClick={changeModal}
+                    className='flex w-full items-center justify-center rounded-md border-transparent bg-buttons-buttonGreen px-4 py-2 text-base font-medium  shadow-sm hover:bg-blueGeneral'
+                  >
+                    Registrarse
+                  </button>
+                </div>
+              </div> :
             <div className='space-y-6 py-6 px-5'>
             <div>
               <button
@@ -222,8 +222,7 @@ export default function NavBar({ changeModal, isUserLogged}) {
               
               
             </div>
-          </div> 
-            }
+          </div>   }
           </div>
         </Popover.Panel>
       </Transition>
