@@ -151,13 +151,6 @@ function EditProfileProfessional() {
         'Access-Control-Allow-Origin': "*",
         mode: 'no-cors',
         Accept: '/',
-<<<<<<< HEAD
-        
-        }}) 
-      .then((resp) => {resp.json()
-           })
-      .catch((err) => console.log(err));
-=======
 
       }
     })
@@ -165,7 +158,6 @@ function EditProfileProfessional() {
         resp.json()
       })
       .catch((err) => console.error(err));
->>>>>>> 7db4bd1fa873cc2402f8140d5617ff1d3e5ff579
   };
 
   let filesImages = null
@@ -341,7 +333,6 @@ function EditProfileProfessional() {
                   component='p'
                   className='font-bold  text-[#ffffff]'
                 />
-<<<<<<< HEAD
                 <label for="images">Choose a  picture:</label>
               <input className='inline-flex items-center justify-center whitespace-nowrap rounded-md border-transparent bg-buttons-buttonGreen px-4 py-2 text-base font-medium text-textWhite shadow-sm hover:bg-blueGeneral'
                type="file"
@@ -358,8 +349,6 @@ function EditProfileProfessional() {
                 accept="image/png, image/jpeg"
                 value={filesAvatar}
                 onChange={(event)=> {filesAvatar = event.target.files[0], putImg(event.target.files[0]), console.log(event, "el avatar")}} />
-=======
->>>>>>> 7db4bd1fa873cc2402f8140d5617ff1d3e5ff579
 
 
                 <div className="container flex mt-5 mb-10 flex-wrap">
