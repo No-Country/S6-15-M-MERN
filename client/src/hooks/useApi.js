@@ -49,6 +49,7 @@ export function useApi(
             token: result.user.token,
             id: result.user.user._id,
             professional: result.user.user.professional,
+            avatarURL:result.user.user.avatarURL
           };
 
           dispatch(userStatus(verifiedUser));
