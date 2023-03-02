@@ -132,10 +132,11 @@ export default function NavBar({ changeModal, isUserLogged }) {
             >
               FAQ´s
             </Link>
-            <p onClick={deleteLocal} className='ml-3 text-base font-medium text-gray-500 hover:text-gray-900 cursor-pointer'>
+            {userStatus.user.token ? <p onClick={deleteLocal} className='ml-3 text-base font-medium text-gray-500 hover:text-gray-900 cursor-pointer'>
               Log Out
 
-            </p>
+            </p> :
+            <></>}
           </Popover.Group>
           {!userStatus.user.token ? 
           <div className='hidden items-center justify-end md:flex md:flex-2 '>
@@ -203,10 +204,12 @@ export default function NavBar({ changeModal, isUserLogged }) {
                     </Link>
                     
                   ))}
-                  <p onClick={deleteLocal} className='ml-3 text-base font-medium text-gray-500 hover:text-gray-900 cursor-pointer'>
+                  {userStatus.user.token ? <p onClick={deleteLocal} className='ml-3 text-base font-medium text-gray-500 hover:text-gray-900 cursor-pointer'>
               Log Out
 
-            </p>
+            </p> :
+            <></>}
+                  
                 </nav>
               </div>
             </div>

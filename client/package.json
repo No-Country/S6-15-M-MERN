@@ -26,6 +26,7 @@
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.8.1",
     "redux": "^4.2.1",
+    "rerousel": "^0.1.9",
     "sweetalert2": "^11.7.2",
     "tailwind-scrollbar-hide": "^1.1.7",
     "universal-cookie": "^4.0.4",
