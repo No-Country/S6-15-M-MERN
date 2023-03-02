@@ -1,4 +1,3 @@
-import clipper from "../assets/clipper.svg";
 import { useRef } from "react";
 import emailjs from "@emailjs/browser";
 // viene de cardServices
@@ -15,22 +14,22 @@ export const OrderService = () => {
   const sendEmail = (e) => {
     e.preventDefault();
     console.log(form.current);
-    // emailjs
-    //   .sendForm(
-    //     "service_60byldi",
-    //     "template_uj2wx57",
-    //     form.current,
-    //     "d_XVSuMm0pNrQoWNm"
-    //   )
-    //   .then(
-    //     (result) => {
-    //       console.log(result.text);
-    //       console.log("message sent");
-    //     },
-    //     (error) => {
-    //       console.log(error.text);
-    //     }
-    //   );
+    emailjs
+      .sendForm(
+        "service_60byldi",
+        "template_uj2wx57",
+        form.current,
+        "d_XVSuMm0pNrQoWNm"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+          console.log("message sent");
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
   };
 
   return (
@@ -60,12 +59,10 @@ export const OrderService = () => {
               </label>
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 max-sm:text-xs   leading-tight focus:outline-none focus:shadow-outline"
-                id="username"
+                id="fromname"
                 type="text"
                 name="from_name"
-                // value={inputs.username || ""}
                 placeholder="Nombre Completo"
-                // onChange={handleChange}
               />
             </div>
 
@@ -78,12 +75,10 @@ export const OrderService = () => {
               </label>
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 max-sm:text-xs  leading-tight focus:outline-none focus:shadow-outline"
-                id="email"
+                id="userEmail"
                 type="email "
                 name="user_email"
-                // value={inputs.email || ""}
                 placeholder="email"
-                // onChange={handleChange}
               />
             </div>
 
@@ -94,18 +89,14 @@ export const OrderService = () => {
               >
                 Barrio/Localidad
               </label>
-              <select
+              <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 max-sm:text-xs  leading-tight focus:outline-none focus:shadow-outline"
                 id="location"
-                name="to_name"
-                // value={inputs.location}
-                // onChange={handleChange}
+                type="text"
+                name="location"
               >
-                <option value="grapefruit">Grapefruit</option>
-                <option value="lime">Lime</option>
-                <option value="coconut">Coconut</option>
-                <option value="mango">Mango</option>
-              </select>
+                
+              </input>
             </div>
             <div className="mb-4 w-full md:w-1/2 p-2">
               <label
@@ -117,11 +108,9 @@ export const OrderService = () => {
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 max-sm:text-xs  leading-tight focus:outline-none focus:shadow-outline"
                 id="location"
-                name="to_name"
+                name="to_email"
                 value={email}
                 disabled={true}
-                // value={inputs.location}
-                // onChange={handleChange}
               >
                 
               </input>
@@ -137,24 +126,11 @@ export const OrderService = () => {
               <textarea
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline max-sm:text-xs "
                 id="ask"
-                type="number"
+                type="text"
                 rows="4"
                 name="message"
-                // value={inputs.ask || ""}
                 placeholder="Describe detalladamente tu problema"
-                // onChange={handleChange}
               />
-            </div>
-
-            <div className="shadow appearance-none border rounded w-full p-2 m-2  text-gray-700 focus:outline-none flex flex-col  justify-center items-center ">
-              <div className="">
-                <img src={clipper} alt="" />
-              </div>
-              <div className="">
-                <span className="text-gray-400 max-sm:text-xs text-center">
-                  Adjunta las fotos o archivos necesarios
-                </span>
-              </div>
             </div>
 
             <div className="flex items-center justify-center w-full p-2">
