@@ -4,6 +4,7 @@ import Telefono from '../../assets/Telefono.png';
 import Correo from '../../assets/Correo.png';
 import envelope from '../../assets/envelope.png';
 import { opcionesApp } from '../../utils/opcionesApp';
+import marta from '../../assets/marta.png';
 
 import { useSearchParams, useParams, useNavigate } from 'react-router-dom';
 import { useApi } from '../../hooks/useApi';
@@ -96,7 +97,7 @@ export default function PerfilProfesional() {
           /> */}
             </div>
 
-            <div className='flex flex-row  '>
+            <div className='flex flex-row max-[502px]:-mt-[140px] '>
               <img
                 className=' ml-4' /* 'relative left-[15px] right-[12.5%] top-[-250px] bottom-[12.5%]' */
                 src={Telefono}
@@ -111,23 +112,22 @@ export default function PerfilProfesional() {
 
             {/* ES ACA EL BOTONNNNNNNNN */}
 
-            <div className='w-full flex justify-center'>
+            <div className='w-full flex justify-center '>
               <button
                 onClick={sendMessage}
-                className=' bg-[#43936c] text-white py-3 px-8 rounded-lg w-48 whitespace-nowrap m-2 flex'
+                className=' max-[600px]:w-40  bg-[#43936c] text-white py-3 px-8 rounded-lg w-48 whitespace-nowrap m-2 flex'
               >
-                {' '}
                 <img
                   src={envelope}
                   alt='envelope'
-                  className='ml-4 w-4 mt-[3px]'
+                  className='ml-4 w-4 mt-[3px] max-[600px]:ml-0'
                 />{' '}
                 <p className=' ml-4'>Mensaje</p>{' '}
               </button>
             </div>
           </div>
-          <div className='flex-col'>
-            <h1 className='font-inter mt-5  not-italic font-bold text-[39px] leading-[120%] flex items-center  ml-[100px] text-[#083A50]'>
+          <div className='flex-col max-[662px]:-ml-16 max-[662px]:w-[395px] max-[662px]:mr-4 max-[502px]:mt-[160px] '>
+            <h1 className='font-inter mt-5  not-italic font-bold max-[662px]:text-[28px] text-[39px] leading-[120%] flex items-center  ml-[100px] text-[#083A50]'>
               {profile.profile.user.name}
             </h1>
             <p className="font-['Inter'] not-italic font-semibold text-[18px] leading-[24px] top-[-158px] ml-[100px] mt-2 text-[#083A50]">
@@ -145,12 +145,12 @@ export default function PerfilProfesional() {
             </div>
 
             <div>
-              <p className=" font-['Inter'] mt-16 not-italic font-normal text-[18px] leading-[24px] max-w-[832px]  ml-[100px] text-[#28315C] bg-[#F5F5F5] rounded-lg p-4">
+              <p className=" font-['Inter'] mt-16 not-italic font-normal text-[18px] leading-[24px] max-[662px]:text-[14px] max-w-[832px]  ml-[100px] text-[#28315C] bg-[#F5F5F5] rounded-lg p-4">
                 {profile.profile.user.description}
               </p>
             </div>
             {/*ACA VA EL CAROUSEL???????????? */}
-            <div className=' mt-52'>
+            <div className=' mt-60'>
               <p className=' ml-[100px] font-bold text-3xl'>
                 Proyectos más recientes
               </p>
