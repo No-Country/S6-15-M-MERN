@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Faqform from './Faqform';
+import HeaderFaqs from './HeaderFaqs';
 const Faq = () => {
   const [menu, setMenu] = useState(null);
 
@@ -9,6 +10,7 @@ const Faq = () => {
 
   return (
     <div className='bg-[#f5f5f5]  pt-1 pb-1  '>
+       <HeaderFaqs/>
       <div className='grid grid-cols-2 ml-[15%] mr-[15%] gap-24 mt-48 max-[900px]:mr-[5%] max-[900px]:ml-[5%] max-[900px]:gap-12 max-[680px]:gap-8 max-[412px]:grid-cols-1  '>
         <div className=' h-[600px]'>
           <h3 className='text-2xl font-bold text-[#28315C]'>Usuarios</h3>

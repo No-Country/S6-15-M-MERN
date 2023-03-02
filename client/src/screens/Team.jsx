@@ -5,10 +5,10 @@ function Team() {
     const { integrantes } = opcionesApp();
     return (
         <>
-            <div className="text-center">
+            <div className="text-center container mx-auto">
                 <h2 className="mt-5 mb-5 h-[100px] not-italic font-['Gilroy'] text-4xl">Team S6-15-M-MERN</h2>
 
-                <div className="grid grid-cols-3 ml-[100px] gap-3">
+                <div className="flex flex-wrap gap-10 items-center justify-center">
 
 
 

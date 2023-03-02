@@ -38,7 +38,7 @@ export function opcionesApp() {
 
   }
 
-  const returnJob = (job)=>{
+  const returnJob = (job)=>{ 
 
    
       switch (job) {
@@ -68,6 +68,37 @@ export function opcionesApp() {
     
 
   }
+
+  const returnDescripcion = (job)=>{ 
+
+   
+    switch (job) {
+      case "63f4c87e3174deb8a1c4724d":
+        return "La primera impresión cuenta!!! Tu producto debe transmitir emociones a tus consumidores. Trabajamos para resaltar las mejores características de tu empresa y conseguir un buen resultado.";
+      case "63f4c2d13174deb8a1c47222":
+        return "Electricistas matriculados para OBRAS/ HABILITACIONES/ SERVICIOS";
+      case "63f4c2fc3174deb8a1c47227":
+        return "Especialistas y profesionales en soldaduras de hierro, bronce entre otras aleaciones.";
+      case "63f4c3423174deb8a1c4722a":
+        return "Diseño, fabricación y ensamblaje de componentes electrónicos";
+      case "63f4c4583174deb8a1c47231":
+        return "Servicios médicos a domicilio particular para adultos, chicos y pre adolescentes.";
+      case "63f4c62a3174deb8a1c47242":
+        return "Desarrolladores de obras inmobiliarias, comerciales y estructuras de todo tipo.";
+      case "63f4c6683174deb8a1c47244":
+        return "Nuestro principal objetivo es mantener la salud y el bienestar de nuestros animales.";
+      case "63f4c6a33174deb8a1c47246":
+        return "Servicio de enfermería y acompañamiento, trabajamos con obras sociales";
+
+        break;
+
+      default:
+        break;
+    }
+
+  
+
+}
  
 
   const integrantes = [
@@ -459,5 +490,5 @@ export function opcionesApp() {
     }
   ];
 
-  return { integrantes, returnBanners, returnJob };
+  return { integrantes, returnBanners, returnJob, returnDescripcion };
 }
