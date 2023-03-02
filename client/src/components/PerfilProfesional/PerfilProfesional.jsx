@@ -71,12 +71,12 @@ export default function PerfilProfesional() {
         className='w-full height-[146px] flex-none order-1 self-stretch grow-0'
         src={returnBanners(profile.profile.user.job)}
       />
-      <div className='container mx-auto  '>
+      <div className='container mx-auto max-[320px]:w-100 '>
         <div className='flex w-full'>
           <div className=''>
             <div className='relative top-[-55px] flex '>
               <img
-                className=' max-[320px]:ml-4 max-[320px]:w-28 max-[320px]:h-28 w-64 h-64 mx-auto max-[428px]:w-32 max-[428px]:h-32  rounded-full border-8 border-[#26B893] border-opacity-50 '
+                className=' max-[320px]:ml-4 max-[320px]:w-28 max-[320px]:h-28 w-64 h-64 mx-auto max-[428px]:w-32 max-[428px]:h-32 max-[1200px]:w-48 max-[1200px]:h-48  rounded-full border-8 border-[#26B893] border-opacity-50 '
                 src={
                   profile.profile.user.avatarURL !== ''
                     ? profile.profile.user.avatarURL
@@ -109,24 +109,27 @@ export default function PerfilProfesional() {
               <p className='m-4'>{profile.profile.user.email}</p>
             </div>
 
-            {/* ES ACA EL BOTON */}
-
-            <div className='max-[320px]:mt-36 max-[320px]:ml-8 w-full flex justify-center'>
+            <div className=' max-[320px]:w-32 max-[320px]:h-14 max-[320px]:-mt-[8px] max-[320px]:ml-24 w-full flex justify-center'>
               <button
                 onClick={sendMessage}
                 className=' bg-[#43936c] text-white py-3 px-8 rounded-lg w-full m-2 flex'
               >
-                {' '}
-                <img src={envelope} alt='envelope' />{' '}
-                <p className=' ml-5'>Enviame un mensaje</p>{' '}
+                <img
+                  src={envelope}
+                  alt='envelope'
+                  className='max-[320px]:w-4 -ml-3'
+                />
+                <p className='max-[320px]:text-sm max-[320px]:ml-2 ml-5'>
+                  Mensaje
+                </p>
               </button>
             </div>
           </div>
-          <div className='hola max-[320]:bg-[#43936c]'>
-            <h1 className='z-05 max-[320px]:-ml-[90px] max-[428px]:text-2xl max-[428px]:-ml-4 font-inter mt-5  not-italic font-bold text-[39px] leading-[120%] flex items-center  ml-[100px] text-[#083A50]'>
+          <div className='hola max-[320px]:ml-0'>
+            <h1 className='max-[320px]:whitespace-nowrap max-[320px]:-ml-[100px] max-[428px]:text-2xl max-[428px]:-ml-4 font-inter mt-5  not-italic font-bold text-[39px] leading-[120%] flex items-center  ml-[100px] text-[#083A50]'>
               {profile.profile.user.name}
             </h1>
-            <p className="max-[320px]:-ml-[85px] max-[320px]:-mt-0 font-['Inter'] max-[428px]:-ml-4 not-italic font-semibold text-[18px] leading-[24px] top-[-158px] ml-[100px] mt-2 text-[#083A50]">
+            <p className="max-[320px]:-ml-[98px] max-[320px]:-mt-0 font-['Inter'] max-[428px]:-ml-4 not-italic font-semibold text-[18px] leading-[24px] top-[-158px] ml-[100px] mt-2 text-[#083A50]">
               {returnJob(profile.profile.user.job)}
             </p>
 
@@ -140,13 +143,7 @@ export default function PerfilProfesional() {
               </p>
             </div>
 
-            <div>
-              <p className=" max-[320px]:mt-36 max-[428px]:w-[358px] max-[428px]:mt-56 max-[390px]:-ml-[205px] max-[360px]:-ml-[210px] max-[360px]:w-[335px] max-[320px]:w-[275px] max-[428px]:-ml-[190px] max-[428px]:mr-[60px] font-['Inter'] mt-16 not-italic font-normal text-[18px] leading-[24px] max-w-[832px]  ml-[100px] text-[#28315C] bg-[#F5F5F5] rounded-lg p-4">
-                {profile.profile.user.description}
-              </p>
-            </div>
-
-            <div className='  mt-7 max-[428px]:-ml-[240px]'>
+            <div className=' max-[320px]:mt-[420px] mt-7 max-[428px]:-ml-[240px]'>
               <p className=' ml-[100px] font-bold text-3xl  max-[428px]:text-lg'>
                 Proyectos más recientes
               </p>
@@ -162,6 +159,12 @@ export default function PerfilProfesional() {
               )}
             </div>
           </div>
+        </div>
+
+        <div className='flex max-[320px]:mt-24 max-[320px]:w-[380px]'>
+          <p className=" max-[320px]:h-[180px] max-[320px]:-mt-[360px] max-[320px]:ml-[22px] max-[428px]:w-[358px] max-[428px]:mt-56 max-[390px]:-ml-[205px] max-[360px]:-ml-[210px] max-[360px]:w-[335px] max-[320px]:w-[275px] max-[428px]:-ml-[190px] max-[428px]:mr-[60px] font-['Inter'] mt-16 not-italic font-normal text-[18px] leading-[24px] max-w-[832px]  ml-[100px] text-[#28315C] bg-[#F5F5F5] rounded-lg p-4">
+            {profile.profile.user.description}
+          </p>
         </div>
 
         {/* <div className=''>
