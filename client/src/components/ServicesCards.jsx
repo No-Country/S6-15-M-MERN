@@ -8,19 +8,19 @@ function ServicesCards() {
   /* const user = useSelector(state => state.user);
     console.log(user)
     */
-    
 
-    const [readJobs] = useApi();
-    const [,,,readUser] = useApi();
-    const [busqueda, setBusqueda] = useState("Todos");
 
-    useEffect(() => {
-        readJobs()
-        readUser()
-    }, [])
-    
 
-    const handleOption = (e)=>setBusqueda(e.target.value);
+  const [readJobs, , , readUser] = useApi();
+  const [busqueda, setBusqueda] = useState("Todos");
+
+  useEffect(() => {
+    readJobs()
+    readUser()
+  }, [])
+
+
+  const handleOption = (e) => setBusqueda(e.target.value);
 
   return (
     <>
@@ -71,6 +71,7 @@ function ServicesCards() {
               return (
                 <div className='my-4' key={requested._id}>
                   <Card
+                    id={requested._id}
                     imagen={requested.jobImageUrl}
                     title={requested.service}
                     description={requested.description}

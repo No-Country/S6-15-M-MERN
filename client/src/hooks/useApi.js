@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { jobsFetched } from '../features/jobs/jobsSlice';
 import { userStatus } from '../features/user/userSlice';
 import { profileFetched } from '../features/profile/ProfileSlice';
 import { professionalsFetched } from '../features/professionalsSlice/professionalsSlice';
 import { loginReducer } from '../features//booleans/booleanSlice';
-import { useSelector } from 'react-redux';
+import { registerReducer } from '../features//booleans/booleanSlice';
+
 import axios from 'axios';
 
 export function useApi(
@@ -30,7 +31,6 @@ export function useApi(
   };
 
   const postUser = (data) => {
-    console.log(data, 'DATA');
     return new Promise((resolve, reject) =>
       fetch(
         'https://container-service-1.utth4a3kjn6m0.us-west-2.cs.amazonlightsail.com/auth/register',
@@ -57,7 +57,11 @@ export function useApi(
 
           resolve(result);
         })
-        .catch((error) => reject(error))
+        .catch((error) => {
+          dispatch(
+            registerReducer(!loginReducer.invalidRegister)
+          )
+        })
     );
   };
    
@@ -84,11 +88,13 @@ export function useApi(
 
   const professionalsList = (id, city) => {
     let searchCity = '';
+    let searchId ="";
 
     city != undefined && (searchCity = '&city=' + city);
+    id != undefined && (searchId = 'job=' + id)
 
     axios
-      .get(`${url}user?job=${id}${searchCity}`)
+      .get(`${url}user?${searchId}${searchCity}`)
       .then((resp) => {
         dispatch(professionalsFetched(resp.data.responseGetUser));
       })
