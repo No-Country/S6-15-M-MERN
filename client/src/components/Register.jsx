@@ -44,7 +44,8 @@ function Register({ switchRegistro, closeModal }) {
   const handleOnSubmit = async (event) => {
     console.log(user, 'el usuario222');
     event.preventDefault();
-    await postUser(user).then((response) => {
+    await postUser(user)
+    .then((response) => {
       console.log(response, ' la respuesta');
     });
     closeModal();
@@ -190,6 +191,7 @@ function Register({ switchRegistro, closeModal }) {
               Cancelar
             </button>
             <button
+           
               type='submit'
               className='bg-btnColor w-48 h-12 rounded-full text-xl mb-4 text-[#ffffff] font-bold  active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all  active:hover:bg-[#83e3be]  disabled:cursor-not-allowed  mt-4 hover:shadow-228b active:shadow '
             >
