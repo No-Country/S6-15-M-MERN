@@ -17,6 +17,7 @@ import { faUpload } from '@fortawesome/free-solid-svg-icons';
 export default function PerfilProfesional() {
   const profile = useSelector((state) => state.profile);
   const jobs = useSelector((state) => state.jobs);
+ /*  console.log(profile.profile.user.avatarURL.path, "el avatarrrrrrrrrrrrrrrrrrrrrrrr"); */
 
   const { returnJob, returnBanners } = opcionesApp();
 
@@ -62,7 +63,7 @@ export default function PerfilProfesional() {
     navigate('/sol-servicio', { state: { email } });
   };
 
-  return (
+  return (profile.profile.user.avatarURL !== undefined)?(
     <div>
       {/* <span className="w-[284px] ml-[10px]  top-[-4] font-['Nunito Sans'] not-italic font-bold leading-[33px] flex items-center text-[#083A50] mb-3">
         Configuración de tu perfil
@@ -79,9 +80,7 @@ export default function PerfilProfesional() {
               <img
                 className='w-64 h-64 max-[1625px]:w-52 max-[1625px]:h-52 max-[1280px]:w-48 max-[1280px]:h-48 max-[1024px]:w-48 max-[1024px]:h-48 max-[768px]:w-44 max-[768px]:h-44 max-[480px]:w-36 max-[480px]:h-36   mx-auto rounded-full border-8 border-[#26B893] border-opacity-50 max-[320px]:ml-2 max-[320px]:w-28 max-[320px]:h-28 '
                 src={
-                  profile.profile.user.avatarURL !== ''
-                    ? profile.profile.user.avatarURL
-                    : Foto
+                  (profile.profile.user.avatarURL !=="")?(profile.profile.user.avatarURL.path):(marta)
                 }
               />
               {profesionalId ===
@@ -179,5 +178,5 @@ export default function PerfilProfesional() {
         <div className=''></div>
       </div>
     </div>
-  );
+  ):(<>loading</>);
 }

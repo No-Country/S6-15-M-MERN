@@ -5,29 +5,30 @@ function Team() {
     const { integrantes } = opcionesApp();
     return (
         <>
-            <div className="team-container container text-center">
-                <h2 className="team-title mt-5 mb-5 inter">Team C8-64-FT-MERN</h2>
+            <div className="text-center">
+                <h2 className="mt-5 mb-5 h-[100px] not-italic font-['Gilroy'] text-4xl">Team S6-15-M-MERN</h2>
 
-                <div className="cards-container">
+                <div className="grid grid-cols-3 ml-[100px] gap-3">
 
 
 
                     {
                         integrantes.map(integrante => {
                             return (
-                                <div className="card team-card" style={{ width: "18rem" }}>
-                                    <img src={integrante.foto} className="card-img-top card-foto" alt="Foto del participante" />
-                                    <div className="card-body">
-                                        <h5 className="card-title nombre inter">{integrante.nombre}</h5>
-                                        <p className="card-text funcion inter">{integrante.ocupacion}</p>
-                                        <ul className="list-group list-group-flush">
+
+                                <div className="w-[300px] ">
+                                    <img className="w-[300px] h-[300px] object-cover rounded border-2 border-emerald-400 border-double" src={integrante.foto} />
+                                    <div className="border-solid rounded border-2 border-emerald-400 bg-emerald-50 w-[300px] h-[200px]">
+                                        <h5 className="mr-[10px] top-[100px] text-emerald-700">{integrante.nombre}</h5>
+                                        <p className="mr-[20px] top-[100px] mb-[50px] text-emerald-700">{integrante.ocupacion}</p>
+                                        <ul className="gap-3">
 
                                             {integrante.links.map(link => {
                                                 return (
-                                                    <li className="list-group-item prueba-card">
-                                                        <div className="d-flex">
+                                                    <li className="bottom-[40px] w-[350px] relative left-[50px]">
+                                                        <div className="w-[290px] h-[30px] mt-[0px] relative">
                                                             {link.logo}
-                                                            <a className="prueba-card inter" target="_blank" rel="noreferrer" href={link.link}>{link.descripcion}</a>
+                                                            <a className="top-[-22px] relative left-[-80px] underline text-emerald-900 hover:bg-emerald-200" href={link.link}>{link.descripcion}</a>
                                                         </div>
                                                     </li>
                                                 )

@@ -1,7 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '.././styles/HomeStyles.css';
 import homeimg from '../assets/homeimg.png';
-import { Link } from 'react-router-dom';
 
 export const HeaderHome = () => {
   return (

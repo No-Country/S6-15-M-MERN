@@ -87,7 +87,13 @@ export const ServicesDetail = ({ props }) => {
               >
                 <option>Todos</option>
 
-                <option>Cucuta</option>
+                <option>Garin</option>
+                <option>Escobar</option>
+                <option>Tigre</option>
+                <option>Maschwitz</option>
+                <option>Campana</option>
+                <option>Benavidez</option>
+                <option>Pacheco</option>
               </select>
 
               {/* aqui termina el agregado configurarlo con el dropdown */}
