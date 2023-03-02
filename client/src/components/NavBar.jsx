@@ -31,6 +31,7 @@ const solutions = [
     href: 'faq',
     icon: Squares2X2Icon,
   },
+ 
 ];
 const callsToAction = [
   { name: 'Watch Demo', href: '#', icon: PlayIcon },
@@ -83,6 +84,12 @@ export default function NavBar({ changeModal, isUserLogged }) {
   const userStatus = useSelector((state) => state.user);
   const navigate = useNavigate();
 
+  const deleteLocal = () => {
+    localStorage.removeItem('user')
+    window.location.replace("/")
+  }
+
+  
   const handleClick = () => {
     console.log(changeStatus());
   };
@@ -90,6 +97,8 @@ export default function NavBar({ changeModal, isUserLogged }) {
   const navigateProfile = () => {
     navigate('/perfil');
   };
+
+
   return (
     <Popover className='relative bg-backgroundColor '>
       <div className='px-7'>
@@ -123,25 +132,28 @@ export default function NavBar({ changeModal, isUserLogged }) {
             >
               FAQ´s
             </Link>
+            {userStatus.user.token ? <p onClick={deleteLocal} className='ml-3 text-base font-medium text-gray-500 hover:text-gray-900 cursor-pointer'>
+              Log Out
+
+            </p> :
+            <></>}
           </Popover.Group>
-          {!userStatus.user.token ? (
-            <div className='hidden items-center justify-end md:flex md:flex-2 '>
-              <button
-                onClick={changeModal}
-                className='inline-flex items-center justify-center whitespace-nowrap rounded-md border-transparent bg-buttons-buttonGreen px-4 py-2 text-base font-medium text-textWhite shadow-sm hover:bg-blueGeneral'
-              >
-                Registrarse
-              </button>
-            </div>
-          ) : (
-            <div>
-              <img
-                onClick={navigateProfile}
-                className=' max-sm:hidden max-md:hidden cursor-pointer inline-flex items-center justify-center whitespace-nowrap rounded-full w-11 h-11 border-[#28315C] border-solid '
-                src={userStatus.user.avatarURL.path}
-              />
-            </div>
-          )}
+          {!userStatus.user.token ? 
+          <div className='hidden items-center justify-end md:flex md:flex-2 '>
+            <button
+              onClick={changeModal}
+              className='inline-flex items-center justify-center whitespace-nowrap rounded-md border-transparent bg-buttons-buttonGreen px-4 py-2 text-base font-medium text-textWhite shadow-sm hover:bg-blueGeneral'
+            >
+              Registrarse
+            </button>
+          </div> : 
+          <div> 
+             <img onClick={navigateProfile}
+              className=' max-sm:hidden max-md:hidden cursor-pointer inline-flex items-center justify-center whitespace-nowrap rounded-full w-11 h-11 border-[#28315C] border-solid '  
+              src= {userStatus.user.avatarURL.path} />  
+              {/* <button  className='inline-flex items-center justify-center whitespace-nowrap rounded-md border-transparent bg-buttons-buttonGreen px-4 py-2 text-base font-medium text-textWhite shadow-sm hover:bg-blueGeneral'
+               onClick={deleteLocal}>Cerrar sesión</button> */}
+          </div> }
         </div>
       </div>
       <Transition
@@ -190,11 +202,18 @@ export default function NavBar({ changeModal, isUserLogged }) {
                         {item.name}
                       </span>
                     </Link>
+                    
                   ))}
+                  {userStatus.user.token ? <p onClick={deleteLocal} className='ml-3 text-base font-medium text-gray-500 hover:text-gray-900 cursor-pointer'>
+              Log Out
+
+            </p> :
+            <></>}
+                  
                 </nav>
               </div>
             </div>
-            {!userStatus.user.token ? (
+            {!userStatus.user.token ? 
               <div className='space-y-6 py-6 px-5'>
                 <div>
                   <button
@@ -204,19 +223,20 @@ export default function NavBar({ changeModal, isUserLogged }) {
                     Registrarse
                   </button>
                 </div>
-              </div>
-            ) : (
-              <div className='space-y-6 py-6 px-5'>
-                <div>
-                  <button
-                    onClick={navigateProfile}
-                    className=' flex w-full items-center justify-center rounded-md border-transparent bg-buttons-buttonGreen  px-4 py-2 text-base font-medium  shadow-sm hover:bg-blueGeneral '
-                  >
-                    Perfil
-                  </button>
-                </div>
-              </div>
-            )}
+              </div> :
+            <div className='space-y-6 py-6 px-5'>
+            <div>
+            
+              <button
+                onClick={navigateProfile}
+                className=' flex w-full items-center justify-center rounded-md border-transparent bg-buttons-buttonGreen  px-4 py-2 text-base font-medium  shadow-sm hover:bg-blueGeneral '
+              >
+                Perfil
+              </button>
+              
+              
+            </div>
+          </div>   }
           </div>
         </Popover.Panel>
       </Transition>
