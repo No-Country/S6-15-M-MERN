@@ -133,7 +133,6 @@ function EditProfileProfessional() {
     );
   };
 
-<<<<<<< HEAD
 
   let filesAvatar = null
   
@@ -182,8 +181,6 @@ function EditProfileProfessional() {
            })
       .catch((err) => console.error(err));
   };
-=======
->>>>>>> 82074bbb691cb682774b7e39290310013546a8aa
   //ACA AL HACER CLICK EN EL BOTON, SI EL USUARIO TIENE TOKEN
   //ENVIA TODO AL BACKEND
 
