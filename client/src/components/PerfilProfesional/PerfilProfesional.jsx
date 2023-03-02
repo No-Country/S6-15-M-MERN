@@ -19,7 +19,7 @@ export default function PerfilProfesional() {
 
   const profile = useSelector(state => state.profile)
   const jobs = useSelector(state => state.jobs)
-  console.log(profile.profile.user, " el avatar")
+  console.log(profile.profile.user.avatarURL, " el avatar")
 
   const {returnJob, returnBanners} = opcionesApp();
 
