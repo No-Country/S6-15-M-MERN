@@ -171,8 +171,8 @@ export default function PerfilProfesional() {
 
                 {(profile.profile.user.projectImages.length >=1) ? (profile.profile.user.projectImages.map(image =>{
                   return (
-                    <div className=" ml-[100px] container m-5 max-w-[900px]">
-                       <img className=' max-w-[900px]'  src={image.path} alt="" />
+                    <div className="  container m-5 max-w-[700px]">
+                       <img className=' '  src={image.path} alt="" />
 
                     </div>
                    
