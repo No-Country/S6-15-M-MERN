@@ -8,7 +8,7 @@ import axios from 'axios';
 
 function EditProfileProfessional() {
   const navigate = useNavigate();
-  
+
 
   //ESTE ES PARA EL CAMBIO DEL SELECT
   const [selectUsuario, setSelectUsuario] = useState('false');
@@ -16,7 +16,7 @@ function EditProfileProfessional() {
 
   //ESTE ES EL USUARIO VALIDADO. SOLO: ID, TOKEN y PROFESSIONAL
   const userStatus = useSelector((state) => state.user);
- 
+
 
   //ESTE ES PARA TRAER NOMBRE y EMAIL DESDE EL REGISTRO
   const location = useLocation();
@@ -28,34 +28,33 @@ function EditProfileProfessional() {
 
   //USUARIO CON TODA LA DATA DEL BACKEND
   const updatedUser = profile.profile.user;
- /*  console.log(updatedUser, "usuario de redux"); */
- /*  console.log(updatedUser, "L USUARIOOO") */
+  /*  console.log(updatedUser, "usuario de redux"); */
+  /*  console.log(updatedUser, "L USUARIOOO") */
 
   useEffect(() => {
     getProfessional(JSON.parse(localStorage.getItem("user")).id);
   }, []);
 
-  useEffect(()=>{
+  useEffect(() => {
 
     setSelectUsuario(String(profile.profile.user.professional))
 
 
-  },[profile])
+  }, [profile])
 
- 
+
 
   //ESTE ES EL ESTADO INICIAL DE LOS INPUTS
 
-  console.log(updatedUser, "ACAAAAAAAAAAAA");
-  
-  
+
+
 
 
   const [formData, setFormData] = useState({
     professional: updatedUser.professional,
     name: updatedUser.name,
     lastname: updatedUser.lastname,
-    email: updatedUser.email ,
+    email: updatedUser.email,
     phone: updatedUser.phone,
     country: updatedUser.country,
     city: updatedUser.city,
@@ -65,12 +64,12 @@ function EditProfileProfessional() {
     description: updatedUser.description,
   });
 
-  useEffect(()=>{
+  useEffect(() => {
     setFormData({
       professional: updatedUser.professional,
       name: updatedUser.name,
       lastname: updatedUser.lastname,
-      email: updatedUser.email ,
+      email: updatedUser.email,
       phone: updatedUser.phone,
       country: updatedUser.country,
       city: updatedUser.city,
@@ -79,15 +78,15 @@ function EditProfileProfessional() {
       job: String(updatedUser.job),
       description: updatedUser.description,
     })
-  },[updatedUser])
-  
-  
+  }, [updatedUser])
 
 
- 
 
 
-  
+
+
+
+
 
   //ESTE ES EL ESTADO QUE DEBERIA CARGARSE CON LOS DATOS ACTUALIZADOS
   //Y ES EL QUE SE ENVIA AL BACKEND
@@ -136,13 +135,13 @@ function EditProfileProfessional() {
 
 
   let filesAvatar = null
-  
+
   const putImg = async (file) => {
     let formData = new FormData();
     formData.append('avatar', file);
-    
-    console.log(formData, file, "el form data")
-    axios( {
+
+
+    axios({
       url: 'https://container-service-1.utth4a3kjn6m0.us-west-2.cs.amazonlightsail.com/user/photo',
       method: 'POST',
       data: formData,
@@ -152,21 +151,23 @@ function EditProfileProfessional() {
         'Access-Control-Allow-Origin': "*",
         mode: 'no-cors',
         Accept: '/',
-        
-        }}) 
-      .then((resp) => {resp.json()
-           })
+
+      }
+    })
+      .then((resp) => {
+        resp.json()
+      })
       .catch((err) => console.error(err));
   };
 
-   let filesImages = null
+  let filesImages = null
 
   const putImages = async (file) => {
     let formData = new FormData();
     formData.append('images', file);
-    
-    console.log(formData, file, "el form data")
-    axios( {
+
+
+    axios({
       url: 'https://container-service-1.utth4a3kjn6m0.us-west-2.cs.amazonlightsail.com/user/images',
       method: 'PUT',
       data: formData,
@@ -176,10 +177,12 @@ function EditProfileProfessional() {
         'Access-Control-Allow-Origin': "*",
         mode: 'no-cors',
         Accept: '/',
-        
-        }}) 
-      .then((resp) => {resp.json()
-           })
+
+      }
+    })
+      .then((resp) => {
+        resp.json()
+      })
       .catch((err) => console.error(err));
   };
   //ACA AL HACER CLICK EN EL BOTON, SI EL USUARIO TIENE TOKEN
@@ -188,7 +191,6 @@ function EditProfileProfessional() {
   const handleOnSubmit = (e) => {
     e.preventDefault();
     if (userStatus.user.token) {
-      console.log(formData, "QUIERO SABER QUIEN SE HA TOMADO TODO EL VINO");
       postEditUser(formData);
 
       /*       localStorage.setItem('newFormData', JSON.stringify(newFormData)); */
@@ -219,27 +221,27 @@ function EditProfileProfessional() {
     const select = event.target.value;
     setSelectUsuario(select);
     /* setFormData({...formData, professional: select}) */
-    if(select === "false"){
+    if (select === "false") {
       setFormData({
         ...formData,
-        professional: select,        
-    email: updatedUser.email ,
-    phone: "",
-    country: "",
-    city: "",
-    postalCode: "",
-    dateOfBirty: "",
-    job: null,
-    description: "",
-    lastname: ""
+        professional: select,
+        email: updatedUser.email,
+        phone: "",
+        country: "",
+        city: "",
+        postalCode: "",
+        dateOfBirty: "",
+        job: null,
+        description: "",
+        lastname: ""
       })
-    }else{
-      setFormData({...formData, professional: select})
+    } else {
+      setFormData({ ...formData, professional: select })
     }
     /* setNewFormData({ ...formData, professional: select }); */
   };
 
-  console.log(selectUsuario);
+
 
   /* console.log(newFormData, 'NEWFORMDATA= FORMDATA + SELECT'); */
 
@@ -274,16 +276,17 @@ function EditProfileProfessional() {
   });
   return (
     <div>
-      <div className=' ml-40 mr-40'>
-        <header className='text-labelGrayColor font-bold text-4xl mb-10 flex-shrink-0'>
+      <div className=' mx-auto'>
+        <header className='text-labelGrayColor font-bold text-4xl mb-10 mt-10 flex-shrink-0 container mx-auto'>
           Editar tu perfil
+          <h3 className=' font-bold text-lg text-black '>
+            Información Personal
+          </h3>
         </header>
-        <h3 className='text-labelGrayColor font-bold mb- mt-24 '>
-          Información Personal
-        </h3>
+
         <Formik
           initialValues={{
-            professional:"",
+            professional: "",
             name: "",
             lastname: '',
             country: '',
@@ -296,15 +299,15 @@ function EditProfileProfessional() {
           }}
           validationSchema={userSchema}
         >
-          <Form className='container' onSubmit={handleOnSubmit}>
+          <Form className='container mx-auto p-5' onSubmit={handleOnSubmit}>
             <div className='grid gap-x-64 mb-6 grid-cols-8 grid-rows-5 '>
-              <div className='col-start-1 col-end-2 row-start-1 row-end-2 mt-8 '>
-                  <label
-                    className=' font-bold block text-labelColor whitespace-nowrap'
-                    htmlFor='password'
-                  >
-                    CLIENTE O PROFESIONAL?
-                  </label>
+              <div className='col-start-1 col-end-2 row-start-1 row-end-2 mt-8 p-5'>
+                <label
+                  className=' font-bold block text-labelColor whitespace-nowrap'
+                  htmlFor='professional'
+                >
+                  CLIENTE O PROFESIONAL?
+                </label>
                 <Field
                   as='select'
                   name='professional'
@@ -317,12 +320,12 @@ function EditProfileProfessional() {
                   {/* <option  selected>
                     Selecciona una opción
                   </option> */}
-                  
-                  <option  value='false'>Cliente</option>
-                  <option  value='true'>Profesional</option>
 
-                  
-                  
+                  <option value='false'>Cliente</option>
+                  <option value='true'>Profesional</option>
+
+
+
                 </Field>
 
                 <ErrorMessage
@@ -330,27 +333,45 @@ function EditProfileProfessional() {
                   component='p'
                   className='font-bold  text-[#ffffff]'
                 />
-                <label for="images">Choose a  picture:</label>
-              <input type="file"
-                id="images" name="images"
-                accept="image/png, image/jpeg"
-                value={filesImages}
-                onChange={(event)=> {filesImages = event.target.files[0], putImages(event.target.files[0]), console.log(event, "el avatar")}} />
-              <label for="avatar">Choose a profile picture:</label>
-
-              <input type="file"
-                id="avatar" name="avatar"
-                accept="image/png, image/jpeg"
-                value={filesAvatar}
-                onChange={(event)=> {filesAvatar = event.target.files[0], putImg(event.target.files[0]), console.log(event, "el avatar")}} />
 
 
-              
+                <div className="container flex mt-5 mb-10 flex-wrap">
+                  <div className=''>
+                    <label htmlFor="avatar">Choose a profile picture:</label>
+
+                    <input type="file"
+                      id="avatar" name="avatar"
+                      accept="image/png, image/jpeg"
+                      value={filesAvatar}
+                      onChange={(event) => { filesAvatar = event.target.files[0], putImg(event.target.files[0]), console.log(event, "el avatar") }} />
+                  </div>
+                  <div className='mt-5'>
+                  <label htmlFor="images">Choose a  picture:</label>
+                <input type="file"
+                  id="images" name="images"
+                  accept="image/png, image/jpeg"
+                  value={filesImages}
+                  onChange={(event) => { filesImages = event.target.files[0], putImages(event.target.files[0]), console.log(event, "el avatar") }} />
+
+
+                  </div>
+                </div>
+
+
+
+
+
+
+
+                
+
+
+
+
               </div>
 
-              {selectUsuario ==="false"  ? (
+              {selectUsuario === "false" ? (
                 <>
-                false
                   <div className=' w-full col-span-1 row-start-2 row-end-3 -mr-6 flex-shrink-0 mt-5'>
                     <label className='font-bold block text-labelColor  '>
                       Nombre
@@ -361,7 +382,7 @@ function EditProfileProfessional() {
                       type='text'
                       className=' px-2 py-2 focus: outline-focusColor rounded-xl border-labelGrayColor border-2'
                       onChange={handleOnChange}
-                     /*  defaultValue={formData.name} */
+                      /*  defaultValue={formData.name} */
                       value={formData.name}
                     />
                     <ErrorMessage
@@ -524,7 +545,7 @@ function EditProfileProfessional() {
                       onChange={handleOnChange}
                       value={formData.country}
                     >
-                      <option hidden selected>
+                      <option hidden>
                         Selecciona una opción
                       </option>
                       <option value='argentina'>Argentina</option>
@@ -617,7 +638,7 @@ function EditProfileProfessional() {
                       onChange={handleOnChange}
                       value={formData.job}
                     >
-                      <option hidden selected>
+                      <option hidden >
                         Selecciona una opción
                       </option>
                       <option value='63f4c2d13174deb8a1c47222'>

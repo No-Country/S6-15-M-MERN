@@ -111,6 +111,7 @@ export const ServicesDetail = ({ props }) => {
                 >
                   <CardServices
                     image={imagen}
+                    avatar={item.avatarURL}
                     description={item.description}
                     service={item.name}
                     id={item._id}

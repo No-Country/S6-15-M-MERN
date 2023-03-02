@@ -13,7 +13,6 @@ const userSlice = createSlice({
             {
             ...action.payload, 
            avatarURL: avatarURL} : action.payload
-            console.log( payload, avatarURL, 'EL ESATDO')
             return {
                 ...state,
                 user: payload
