@@ -9,16 +9,13 @@ function ServicesCards() {
     console.log(user)
     */
 
-
-
   const [readJobs, , , readUser] = useApi();
-  const [busqueda, setBusqueda] = useState("Todos");
+  const [busqueda, setBusqueda] = useState('Todos');
 
   useEffect(() => {
-    readJobs()
-    readUser()
-  }, [])
-
+    readJobs();
+    readUser();
+  }, []);
 
   const handleOption = (e) => setBusqueda(e.target.value);
 
@@ -26,24 +23,23 @@ function ServicesCards() {
     <>
       <div className='flex flex-col justify-center '>
         <button className='bg-orange-500'></button>
-        <h2 className='text-[#28315C] align-middle font-extrabold text-5xl mt-28 text-center'>
+        <h2 className='max-[448px]:text-2xl max-[448px]:-ml-0 max-[448px]:w-[320px] text-[#28315C] align-middle font-extrabold text-5xl mt-28 text-center'>
           Contrata profesionales de confianza
         </h2>
-        <p className='mt-6 text-center text-2xl max-w-3xl mx-auto'>
+        <p className='max-[448px]:text-lg mt-6 text-center text-2xl max-w-3xl mx-auto'>
           Solicita un presupuesto sin cargo, con total confianza. No
           compartiremos tus datos
         </p>
 
-        <select onClick={handleOption} className='text-base mx-auto mt-16 font-normal rounded-full border-2 bg-green-100 text-gray-600 h-12 w-[429px] pl-5 pr-10  hover:border-gray-400 focus:outline-none appearance-none'>
-          <option >Todos</option>
+        <select
+          onClick={handleOption}
+          className=' max-[448px]:w-[260px] text-base mx-auto mt-16 font-normal rounded-full border-2 bg-green-100 text-gray-600 h-12 w-[429px] pl-5 pr-10  hover:border-gray-400 focus:outline-none appearance-none'
+        >
+          <option>Todos</option>
 
           {jobs !== null &&
             jobs.jobs.map((requested) => {
-              return (
-                <option key={requested._id}>
-                  {requested.service}
-                </option>
-              );
+              return <option key={requested._id}>{requested.service}</option>;
             })}
         </select>
       </div>

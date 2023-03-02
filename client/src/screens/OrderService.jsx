@@ -2,18 +2,19 @@ import { useRef } from "react";
 import emailjs from "@emailjs/browser";
 // viene de cardServices
 import { useLocation } from "react-router-dom";
+import Swal from 'sweetalert2'
 
 export const OrderService = () => {
   const { state } = useLocation();
   const { email } = state || {};
 
-  console.log(state);
+  // console.log(state);
   const form = useRef();
-  console.log(email);
+  // console.log(email);
 
   const sendEmail = (e) => {
     e.preventDefault();
-    console.log(form.current);
+    // console.log(form.current);
     emailjs
       .sendForm(
         "service_60byldi",
@@ -23,11 +24,20 @@ export const OrderService = () => {
       )
       .then(
         (result) => {
-          console.log(result.text);
-          console.log("message sent");
+          // console.log(result.text);
+          Swal.fire({
+            icon: 'success',
+            title: 'Todo salió muy bien...',
+            text: 'Muy pronto tendrás una respuesta a tu consulta!',
+          })
+          e.target.reset();
         },
         (error) => {
-          console.log(error.text);
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Algo salió mal!',
+          })
         }
       );
   };
