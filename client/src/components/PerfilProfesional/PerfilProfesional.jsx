@@ -75,9 +75,9 @@ export default function PerfilProfesional() {
       <div className='container mx-auto  '>
         <div className='flex w-full'>
           <div className=''>
-            <div className='relative top-[-55px] flex flex-col'>
+            <div className='relative top-[-55px] flex flex-col '>
               <img
-                className='w-64 h-64 max-[1625px]:w-52 max-[1625px]:h-52 max-[1280px]:w-48 max-[1280px]:h-48 max-[1024px]:w-48 max-[1024px]:h-48 max-[768px]:w-44 max-[768px]:h-44  mx-auto rounded-full border-8 border-[#26B893] border-opacity-50 '
+                className='w-64 h-64 max-[1625px]:w-52 max-[1625px]:h-52 max-[1280px]:w-48 max-[1280px]:h-48 max-[1024px]:w-48 max-[1024px]:h-48 max-[768px]:w-44 max-[768px]:h-44 max-[480px]:w-36 max-[480px]:h-36   mx-auto rounded-full border-8 border-[#26B893] border-opacity-50 max-[320px]:ml-2 max-[320px]:w-28 max-[320px]:h-28 '
                 src={
                   profile.profile.user.avatarURL !== ''
                     ? profile.profile.user.avatarURL
@@ -97,7 +97,7 @@ export default function PerfilProfesional() {
           /> */}
             </div>
 
-            <div className='flex flex-row max-[502px]:-mt-[140px] '>
+            <div className='flex flex-row max-[502px]:-mt-[35px] max-[320px]:mt-[40px] max-[320px]:ml-8 '>
               <img
                 className=' ml-4' /* 'relative left-[15px] right-[12.5%] top-[-250px] bottom-[12.5%]' */
                 src={Telefono}
@@ -105,14 +105,14 @@ export default function PerfilProfesional() {
               <p className='ml-4'>+ 59 1 1001 8830</p>
             </div>
 
-            <div className='flex flex-row items-center mt-4'>
+            <div className='flex flex-row items-center mt-4 max-[502px]:-mt-[5px] max-[320px]:ml-4'>
               <img className='ml-4 h-4' src={Correo} />
               <p className='m-4'>{profile.profile.user.email}</p>
             </div>
 
             {/* ES ACA EL BOTONNNNNNNNN */}
 
-            <div className='w-full flex justify-center '>
+            <div className='w-full flex justify-center max-[320px]:ml-[42px]'>
               <button
                 onClick={sendMessage}
                 className=' max-[600px]:w-40  bg-[#43936c] text-white py-3 px-8 rounded-lg w-48 whitespace-nowrap m-2 flex'
@@ -122,12 +122,12 @@ export default function PerfilProfesional() {
                   alt='envelope'
                   className='ml-4 w-4 mt-[3px] max-[600px]:ml-0'
                 />{' '}
-                <p className=' ml-4'>Mensaje</p>{' '}
+                <p className=' ml-4'>Mensaje</p>
               </button>
             </div>
           </div>
-          <div className='flex-col max-[662px]:-ml-16 max-[662px]:w-[395px] max-[662px]:mr-4 max-[502px]:mt-[160px] '>
-            <h1 className='font-inter mt-5  not-italic font-bold max-[662px]:text-[28px] text-[39px] leading-[120%] flex items-center  ml-[100px] text-[#083A50]'>
+          <div className='flex-col max-[662px]:-ml-16 max-[662px]:w-[395px] max-[662px]:mr-4 max-[460px]:-ml-24 max-[380px]:-ml-32 max-[320px]:-ml-44 max-[320px]:-mt-2 '>
+            <h1 className='font-inter mt-5  not-italic font-bold max-[662px]:text-[28px] text-[39px] leading-[120%] flex items-center  ml-[100px] text-[#083A50] max-[430px]:text-xl'>
               {profile.profile.user.name}
             </h1>
             <p className="font-['Inter'] not-italic font-semibold text-[18px] leading-[24px] top-[-158px] ml-[100px] mt-2 text-[#083A50]">
@@ -144,14 +144,14 @@ export default function PerfilProfesional() {
               </p>
             </div>
 
-            <div>
+            <div className='max-[502px]:mt-[235px] max-[502px]:-ml-[210px] max-[502px]:w-[490px] max-[460px]:-ml-[175px] max-[460px]:w-[450px] max-[425px]:w-[422px] max-[390px]:-ml-[210px] max-[390px]:w-[440px] max-[380px]:w-[400px] max-[380px]:-ml-[160px] max-[360px]:-ml-[170px] max-[320px]:-ml-36 max-[320px]:w-[390px]'>
               <p className=" font-['Inter'] mt-16 not-italic font-normal text-[18px] leading-[24px] max-[662px]:text-[14px] max-w-[832px]  ml-[100px] text-[#28315C] bg-[#F5F5F5] rounded-lg p-4">
                 {profile.profile.user.description}
               </p>
             </div>
             {/*ACA VA EL CAROUSEL???????????? */}
-            <div className=' mt-60'>
-              <p className=' ml-[100px] font-bold text-3xl'>
+            <div className=' mt-60 max-[600px]:-ml-[150px] max-[600px]:mr-10 max-[600px]:whitespace-nowrap max-[540px]:-ml-[180px] max-[540px]:-ml-[210px] max-[502px]:mt-32 max-[502px]:-ml-[98px] max-[320px]:whitespace-normal max-[320px]:-ml-24 '>
+              <p className=' ml-[100px] font-bold text-3xl max-[502px]:text-base'>
                 Proyectos más recientes
               </p>
             </div>
