@@ -2,12 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+
 import { useApi } from '../../hooks/useApi';
 import axios from 'axios';
+import { useDispatch, useSelector} from "react-redux"
 
+import { cambiosReducer} from "../../features/booleans/booleanSlice"
 function EditProfileProfessional() {
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+  const loginStatus = useSelector(state=>state.cambios)
+
+  console.log(loginStatus);
 
 
   //ESTE ES PARA EL CAMBIO DEL SELECT
@@ -127,6 +134,10 @@ function EditProfileProfessional() {
       )
         .then((res) => res.json(data))
         .then((result) => {
+          dispatch(
+            cambiosReducer(!loginStatus.cambios)
+          )
+
           resolve(result);
         })
         .catch((error) => reject(error))
