@@ -23,7 +23,7 @@ function ServicesCards() {
     <>
       <div className='flex flex-col justify-center '>
         <button className='bg-orange-500'></button>
-        <h2 className='max-[448px]:text-2xl max-[448px]:-ml-0 max-[448px]:w-[320px] text-[#28315C] align-middle font-extrabold text-5xl mt-28 text-center'>
+        <h2 className='max-[448px]:text-2xl max-[448px]:ml-10 max-[448px]:w-[320px] text-[#28315C] align-middle font-extrabold text-5xl mt-28 text-center'>
           Contrata profesionales de confianza
         </h2>
         <p className='max-[448px]:text-lg mt-6 text-center text-2xl max-w-3xl mx-auto'>

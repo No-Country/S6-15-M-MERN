@@ -91,7 +91,7 @@ const Reviews = () => {
           <div className='small-card snap-start  flex-shrink-0 w-screen flex items-center-justify-center flex-col'>
             <div className='small-foto-estrellas'>
               <img
-                className='user-picture h-[50px] w-[50px] rounded-full ml-auto mr-auto mt-10 object-cover '
+                className='max-[448px]:w-24 max-[448px]:h-24 user-picture h-[50px] w-[50px] rounded-full ml-auto mr-auto mt-2 object-cover '
                 src='https://images.pexels.com/photos/15104800/pexels-photo-15104800.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
               ></img>
               <div className='small-stars-container flex items-center justify-center mt-4 '>
@@ -138,7 +138,7 @@ const Reviews = () => {
           <div className='small-card snap-start  flex-shrink-0 w-screen flex items-center-justify-center flex-col'>
             <div className='small-foto-estrellas'>
               <img
-                className='user-picture h-[50px] w-[50px] rounded-full ml-auto mr-auto mt-10 object-cover '
+                className='max-[448px]:w-24 max-[448px]:h-24 user-picture h-[50px] w-[50px] rounded-full ml-auto mr-auto mt-2 object-cover '
                 src='https://img.freepik.com/foto-gratis/reparacion-fontanero-hombre-mediana-edad-atento-experimentado-que-examina-fondo-fregadero-cocina_259150-58266.jpg?w=1060&t=st=1677116433~exp=1677117033~hmac=871f4ea44f3918f27a25d561de7b12b0910190ee46d168265e1788b609ea7156'
               ></img>
               <div className='small-stars-container flex items-center justify-center mt-4 '>
@@ -185,7 +185,7 @@ const Reviews = () => {
           <div className='small-card snap-start  flex-shrink-0 w-screen flex items-center-justify-center flex-col'>
             <div className='small-foto-estrellas'>
               <img
-                className='user-picture h-[50px] w-[50px] rounded-full ml-auto mr-auto mt-10 object-cover '
+                className='max-[448px]:w-24 max-[448px]:h-24 user-picture h-[50px] w-[50px] rounded-full ml-auto mr-auto mt-2 object-cover'
                 src='https://images.pexels.com/photos/428364/pexels-photo-428364.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
               ></img>
               <div className='small-stars-container flex items-center justify-center mt-4 '>
@@ -232,7 +232,7 @@ const Reviews = () => {
           <div className='small-card snap-start  flex-shrink-0 w-screen flex items-center-justify-center flex-col'>
             <div className='small-foto-estrellas'>
               <img
-                className='user-picture h-[50px] w-[50px] rounded-full ml-auto mr-auto mt-10 object-cover '
+                className='max-[448px]:w-24 max-[448px]:h-24 user-picture h-[50px] w-[50px] rounded-full ml-auto mr-auto mt-2 object-cover'
                 src='https://images.pexels.com/photos/428364/pexels-photo-428364.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
               ></img>
               <div className='small-stars-container flex items-center justify-center mt-4 '>
