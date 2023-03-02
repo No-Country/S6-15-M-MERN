@@ -156,7 +156,7 @@ function EditProfileProfessional() {
         }}) 
       .then((resp) => {resp.json()
            })
-      .catch((err) => console.error(err));
+      .catch((err) => console.log(err));
   };
 
    let filesImages = null
