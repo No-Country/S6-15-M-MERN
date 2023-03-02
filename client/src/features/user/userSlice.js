@@ -9,9 +9,7 @@ const userSlice = createSlice({
     initialState,
     reducers: {
         userStatus(state,action) {
-            console.log(action.payload.avatarURL.path, "acaaaaaaaa");
             const payload = !action.payload.avatarURL.path? 
-            
             {
             ...action.payload, 
            avatarURL: avatarURL} : action.payload
@@ -19,10 +17,9 @@ const userSlice = createSlice({
             return {
                 ...state,
                 user: payload
-                
+
             }
-        }
-    }
+        } }
 })
 
 export const { userStatus } = userSlice.actions;

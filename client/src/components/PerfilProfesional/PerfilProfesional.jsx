@@ -4,6 +4,7 @@ import Telefono from '../../assets/Telefono.png';
 import Correo from '../../assets/Correo.png';
 import envelope from "../../assets/envelope.png"
 import { opcionesApp } from '../../utils/opcionesApp';
+import marta from '../../assets/marta.png'
 
 import { useSearchParams, useParams, useNavigate } from 'react-router-dom';
 import { useApi } from '../../hooks/useApi';
@@ -18,6 +19,7 @@ export default function PerfilProfesional() {
 
   const profile = useSelector(state => state.profile)
   const jobs = useSelector(state => state.jobs)
+  console.log(profile.profile.user, " el avatar")
 
   const {returnJob, returnBanners} = opcionesApp();
 
@@ -55,7 +57,6 @@ export default function PerfilProfesional() {
       if ((jobs.jobs.filter(job => job._id === profile.profile.user.job)[0] !== undefined) && (profile.profile.user !== undefined)) {
 
         setImagen(jobs.jobs.filter(job => job._id === profile.profile.user.job)[0].jobBannerUrl)
-
 
 
       }
@@ -98,7 +99,7 @@ export default function PerfilProfesional() {
             <div className='relative top-[-55px] flex flex-col'>
               <img
                 className=' w-64 h-64 mx-auto  rounded-full border-8 border-[#26B893] border-opacity-50 '
-                src={profile.profile.user.avatarURL !== "" ? profile.profile.user.avatarURL : Foto}
+                src={!profile.profile.user.avatarURL.path? marta : profile.profile.user.avatarURL.path }
               />
               {profesionalId === JSON.parse(localStorage.getItem("user")).id &&
                 <button className='bg-[#43936c] w-9 h-9 rounded-full text-white relative left-[116px] top-[-25px]'>
