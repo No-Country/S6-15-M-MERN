@@ -12,7 +12,7 @@ function EditProfileProfessional() {
 
   //ESTE ES PARA EL CAMBIO DEL SELECT
   const [selectUsuario, setSelectUsuario] = useState('false');
-  console.log(selectUsuario);
+
 
   //ESTE ES EL USUARIO VALIDADO. SOLO: ID, TOKEN y PROFESSIONAL
   const userStatus = useSelector((state) => state.user);
@@ -57,6 +57,27 @@ function EditProfileProfessional() {
     description: updatedUser.description,
     // avatarURL:updatedUser.avatarURL
   });
+
+  useEffect(()=>{
+    setFormData({
+      professional: updatedUser.professional,
+      name: updatedUser.name,
+      lastname: updatedUser.lastname,
+      email: updatedUser.email ,
+      phone: updatedUser.phone,
+      country: updatedUser.country,
+      city: updatedUser.city,
+      postalCode: updatedUser.postalCode,
+      dateOfBirty: updatedUser.dateOfBirty,
+      job: String(updatedUser.job),
+      description: updatedUser.description,
+    })
+  },[updatedUser])
+  
+  
+
+
+ 
 
 
   const postEditUser = (data) => {
@@ -126,7 +147,6 @@ function EditProfileProfessional() {
   //Y LUEGO ACTUALIZA NEWFORMDATA CON ESOS DATOS.
   function handleOnChange(e) {
     const name = e.target.name;
-    console.log("entro");
     const value = e.target.value;
 
     setFormData({ ...formData, [name]: value });

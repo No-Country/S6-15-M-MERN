@@ -72,6 +72,7 @@ const MostRequested = () => {
               return (
                 <div key={index}>
                   <Card
+                  id={requested._id}
                     imagen={requested.imageUrl}
                     title={requested.title}
                     description={requested.descripcion}

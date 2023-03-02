@@ -1,15 +1,13 @@
-import { createSlice } from '@reduxjs/toolkit';
-
-
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    invalidLogin: false,
-    invalidRegister: false
-
-}
+  invalidLogin: false,
+  invalidRegister: false,
+  notLogged: false,
+};
 
 const booleanSlice = createSlice({
-  name: 'booleans',
+  name: "booleans",
   initialState,
   reducers: {
     loginReducer(state, action) {
@@ -18,20 +16,21 @@ const booleanSlice = createSlice({
         invalidLogin: action.payload,
       };
     },
-    registerReducer( state, action){
+    registerReducer(state, action) {
       return {
-          ...state,
-          invalidRegister: action.payload
-      }
-  }
-
+        ...state,
+        invalidRegister: action.payload,
+      };
+    },
+    mustLoginReducer(state, action) {
+      return {
+        ...state,
+        notLogged: action.payload,
+      };
+    },
   },
 });
 
+export const { loginReducer, registerReducer } = booleanSlice.actions;
 
-
-export const { loginReducer, registerReducer } = booleanSlice.actions
-
-
-
-export default booleanSlice.reducer
+export default booleanSlice.reducer;
