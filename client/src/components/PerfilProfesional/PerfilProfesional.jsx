@@ -5,7 +5,6 @@ import Correo from '../../assets/Correo.png';
 import envelope from '../../assets/envelope.png';
 import { opcionesApp } from '../../utils/opcionesApp';
 import marta from '../../assets/marta.png';
-import { Rerousel } from 'rerousel';
 
 import { useSearchParams, useParams, useNavigate } from 'react-router-dom';
 import { useApi } from '../../hooks/useApi';
@@ -161,23 +160,24 @@ export default function PerfilProfesional() {
               </p>
             </div>
             {/*ACA VA EL CAROUSEL???????????? */}
-            <div className=' mt-20 max-[600px]:-ml-[150px] max-[600px]:mr-10 max-[600px]:whitespace-nowrap max-[540px]:-ml-[180px] max-[540px]:-ml-[210px] max-[502px]:mt-32 max-[502px]:-ml-[98px] max-[320px]:whitespace-normal max-[320px]:-ml-24 '>
-              <p className=' ml-[100px] font-bold text-3xl max-[502px]:text-base'>
+            <div className=' ml-[100px] mt-20 max-[600px]:-ml-[150px] max-[600px]:mr-10 max-[600px]:whitespace-nowrap  max-[540px]:-ml-[210px] max-[502px]:mt-32 max-[502px]:-ml-[98px] max-[320px]:whitespace-normal max-[320px]:-ml-24 '>
+              <p className='font-bold text-3xl max-[502px]:text-base text-[#083A50]'>
                 Proyectos más recientes
               </p>
 
               <div className='flex flex-wrap'>
-                {console.log(profile.profile.user.projectImages)}
+                
+                {console.log(profile.profile.user.projectImages.length, "ACAAAAAAAAAAAAAAAAAAAAAAAAA")}
 
-                {profile.profile.user.projectImages.map(image =>{
+                {(profile.profile.user.projectImages.length >=1) ? (profile.profile.user.projectImages.map(image =>{
                   return (
-                    <div className=" ml-[100px] container m-5 max-w-[700px]">
-                       <img className=' '  src={image.path} alt="" />
+                    <div className=" ml-[100px] container m-5 max-w-[900px]">
+                       <img className=' max-w-[900px]'  src={image.path} alt="" />
 
                     </div>
                    
                   )
-                })}
+                })):(<p className='mt-8'>El usuario no ha cargado ninguna foto aún</p>)}
             
 
 
