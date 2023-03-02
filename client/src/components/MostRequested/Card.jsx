@@ -1,17 +1,26 @@
 import { createSearchParams, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { mustLoginReducer } from '../../features/booleans/booleanSlice';
 
 const Card = ({ imagen, title, description, price, id }) => {
   const navigate = useNavigate();
-  const loginStatus = JSON.parse(localStorage.getItem("user"));
+  const logged = JSON.parse(localStorage.getItem("user"));
+  const dispatch = useDispatch();
+  const loginStatus = useSelector(state => state.modales)
+
+
+
   const openCard = (titulo) => {
 
-    loginStatus!== null?
+    logged!== null?
     (navigate({
       pathname: '/servicesDetail',
       search: createSearchParams({
         id: id,
       }).toString(),
-    })):(console.log("usuario no logueado"))
+    })):(dispatch(
+      mustLoginReducer(!loginStatus.notLogged)
+      ))
   };
   /* w-[277px] */
   /* w-[265px] */
