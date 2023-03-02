@@ -1,55 +1,46 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faFacebook, faInstagram, faTwitter } from "@fortawesome/fontawesome-free-brands"
-import Contrata from "../assets/Marcaempresa.png"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faFacebook,
+  faInstagram,
+  faTwitter,
+} from "@fortawesome/fontawesome-free-brands";
+import contrata from "../assets/contrata.png";
+import { Link } from "react-router-dom";
+
+
 
 
 export default function Footer(){
-    return(
-     <div>
-        <footer className="flex flex-col items-center p-[64px 24px 8px] w-[1506px] h-[303px] rounded-none flex-none order-4 grow-0">
-        <div className="flex justify-end">
-            <div className="columns-3 flex flex-row items-start p-4 gap-8 absolute w-[600px] h-[135px] left-[721px] top-0px rounded-none">
-                <ul>
-                <li className="font-family['Gilroy'] not-italic font-extrabold text-xs text-black 600 leading-8" >SOBRE NOSOTROS</li>
-                    <li className="text-sm font-family['Gilroy-medium'] leading-[150%]">Que hacemos</li>
-                    <li className="text-sm font-family['Gilroy-medium'] leading-[150%]">Servicios</li>
-                    <li className="text-sm font-family['Gilroy-medium'] leading-[150%]">FAQ's</li>
-                </ul>
-                <br/>
+  return(
+      <footer className="flex flex-col justify-between relative p-3.5 w-[100%] top[3299.25px] bottom-0  rounded-none">
+        <div className="flex justify-between max-sm:justify-center">
+          <div className="items-start ">
 
-                <ul>
-                    <li class="font-family['Gilroy'] not-italic font-extrabold text-xs text-black 600 leading-8">RECURSOS</li>
-                    <li className="text-sm font-family['Gilroy-medium'] leading-[150%] text-black">Blog de consejos para tu 
-                    <br/>hogar</li>
-                    <li className="text-sm font-family-['Gilroy-medium'] leading-[150%]">Contáctanos</li>
-                </ul>
-                <br/>
+              <img className="flex flex-col p-0 gap[50px] h-[61.28px] left-0 top-0 rounded-none" src={contrata}/>
 
-                <ul>
-                    <li className="font-family['Gilroy'] not-italic font-extrabold text-xs text-black 600 leading-8">SOBRE NOSOTROS</li>
-                    <li className="text-sm font-family['Gilroy-medium'] leading-[150%] text-black" >Terminos & condiciones del 
-                    <br/>servicio</li>
-                    <li className="text-sm font-family['Gilroy-medium'] leading-[150%] text-black">Política de privacidad</li>
-                </ul>
-            </div>
-
-          </div>
-          
-          <div className="flex flex-row items-center p-8 gap-16 absolute left-[1.5px] top-[603px]">
-           <img src={Contrata}/>
-          </div>
-
-          <div className="columns-3">
-          <ul className="flex flex-row items-center p-10 gap-16 absolute w-[229.4px] h-[51px] left-[1.5px] top-[680px]">
-                <li><FontAwesomeIcon icon={faFacebook} className="absolute w-12 h-12"></FontAwesomeIcon></li>
-                <li><FontAwesomeIcon icon={faInstagram} className="absolute w-12 h-12"></FontAwesomeIcon></li>
-                <li><FontAwesomeIcon icon={faTwitter} className="absolute w-12 h-12"></FontAwesomeIcon></li>
+            <ul className="flex flex-row gap-[20px] ">
+              <li><FontAwesomeIcon icon={faFacebook} className="w-[50px] h-[51px]"></FontAwesomeIcon></li>
+              <li><FontAwesomeIcon icon={faInstagram} className="w-[50.4px] h-[50.4px]"></FontAwesomeIcon></li>
+              <li><FontAwesomeIcon icon={faTwitter} className="w-[49px] h-[42px]"></FontAwesomeIcon></li>
             </ul>
           </div>
-          <div className="flex flex-row items-center p-10 gap-16 absolute bottom-px left-[540px] top-[760px] text-gray-600">  
-            <span>Copyright © 2023 Contratá</span>
+
+          <Link to='/team'><span className="flex mr-[82px] mt-[30px] text-neutral-700">Team S6-15-M-MERN</span></Link>
+
+          <div className="columns-3 flex flex-row items-start  rounded-none max-sm:hidden -center">
+              <ul>
+                <li className="font-family['Gilroy'] not-italic font-extrabold text-xs text-black  leading-8" >SOBRE NOSOTROS</li>
+                <li className="text-sm font-family['Gilroy-medium'] leading-[150%]">Que hacemos</li>
+                <li className="text-sm font-family['Gilroy-medium'] leading-[150%]">Servicios</li>
+                <li className="text-sm font-family['Gilroy-medium'] leading-[150%]">FAQ's</li>
+                <li className=" font-family-['Gilroy-medium'] font-extrabold text-xs text-black leading-8">Contáctanos</li>
+              </ul>
           </div>
-        </footer>
-     </div>
-    )
+
+        </div>
+          <div className="flex flex-row items-center justify-center gap-6 mt-[20px] text-gray-600">  
+            <span className="">Copyright © 2023 Contratá</span>
+          </div>
+      </footer>
+  )
 }

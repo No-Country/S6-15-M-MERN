@@ -1,20 +1,18 @@
-import React from 'react'
-import Login from '../components/Login';
-import NavBar from '../components/NavBar'
+import React from 'react';
 import { HeaderHome } from './../components/HeaderHome';
 import OurServices from './../components/OurServices/OurServices';
 import Reviews from './../components/Reviews';
 import MostRequested from './../components/MostRequested/MostRequested';
 
+
 export const Home = () => {
+
   return (
     <>
-      <NavBar/>
-      <HeaderHome/>
-      <OurServices/>
-      <Login/>
-      <MostRequested/>
-      <Reviews/>
+      <HeaderHome />
+      <OurServices />
+      <MostRequested />
+      <Reviews />
     </>
-  )
-}
+  );
+};

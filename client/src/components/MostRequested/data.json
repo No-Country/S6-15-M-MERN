@@ -1,0 +1,54 @@
+{
+  "resources": [
+    {
+      "_id": "63f4c2d13174deb8a1c47222",
+      "imageUrl": "https://familiamultiservicios.com/wp-content/uploads/2016/06/post-12.jpg",
+      "title": "Electricista",
+      "descripcion": "Electricistas matriculados para OBRAS/ HABILITACIONES/ SERVICIOS",
+      "price": "$5000"
+    },
+    {
+      "_id": "63f4c2fc3174deb8a1c47227",
+      "imageUrl": "https://www.webconsultas.com/sites/default/files/styles/wc_adaptive_noticia__medium__webp/public/noticias/soldadores-sintomas-parkinson_jpg.webp",
+      "title": "Soldador",
+      "descripcion": "Especialistas y profesionales en soldaduras de hierro, bronce entre otras aleaciones.",
+      "price": "$6000"
+    },
+    {
+      "_id": "63f4c3423174deb8a1c4722a",
+      "imageUrl": "https://noticias.unsam.edu.ar/wp-content/uploads/2018/08/Electronica.jpg",
+      "title": "Electrónico",
+      "descripcion": "Diseño, fabricación y ensamblaje de componentes electrónicos",
+      "price": "$4000"
+    },
+    {
+      "_id": "63f4c4583174deb8a1c47231",
+      "imageUrl": "https://d2lcsjo4hzzyvz.cloudfront.net/blog/wp-content/uploads/2019/11/medico-a-domicilio-con-nin%CC%83o-y-mama.jpg",
+      "title": "Médico",
+      "descripcion": "Servicios médicos a domicilio particular para adultos, chicos y pre adolescentes.",
+      "price": "$2000"
+    },
+    {
+      "_id": "63f4c62a3174deb8a1c47242",
+      "imageUrl": "https://www.construccionesgomo.com/wp-content/uploads/2018/03/SERVICIOS-DE-CONSTRUCCI%C3%93N.jpg",
+      "title": "Constructor",
+      "descripcion": "Desarrolladores de obras inmobiliarias, comerciales y estructuras de todo tipo.",
+      "price": "$10.000"
+    },
+
+    {
+      "_id": "63f4c6683174deb8a1c47244",
+      "imageUrl": "https://www.purina-latam.com/sites/default/files/styles/social_share_large/public/2020-12/purina-consulta-veterinaria-para-mascotas-lo-que-debes-saber.jpg?itok=ZW4piik1",
+      "title": "Veterinario",
+      "descripcion": "Nuestro principal objetivo es mantener la salud y el bienestar de nuestros animales.",
+      "price": "$3000"
+    },
+    {
+      "_id": "63f4c6a33174deb8a1c47246",
+      "imageUrl": "https://enfermeriamexicana.com/sites/default/files/blog/Krankenschwester-Symbolbild.jpg",
+      "title": "Enfermero",
+      "descripcion": "Servicio de enfermería y acompañamiento, trabajamos con obras sociales",
+      "price": "$4000"
+    }
+  ]
+}
