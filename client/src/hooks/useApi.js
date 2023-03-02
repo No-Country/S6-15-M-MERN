@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { jobsFetched } from '../features/jobs/jobsSlice';
 import { userStatus } from '../features/user/userSlice';
 import { profileFetched } from '../features/profile/ProfileSlice';
 import { professionalsFetched } from '../features/professionalsSlice/professionalsSlice';
 import { loginReducer } from '../features//booleans/booleanSlice';
-import { useSelector } from 'react-redux';
+import { registerReducer } from '../features//booleans/booleanSlice';
+
 import axios from 'axios';
 
 export function useApi(
@@ -56,7 +57,11 @@ export function useApi(
 
           resolve(result);
         })
-        .catch((error) => reject(error))
+        .catch((error) => {
+          dispatch(
+            registerReducer(!loginReducer.invalidRegister)
+          )
+        })
     );
   };
    

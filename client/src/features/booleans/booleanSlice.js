@@ -31,6 +31,6 @@ const booleanSlice = createSlice({
   },
 });
 
-export const { loginReducer, registerReducer } = booleanSlice.actions;
+export const { loginReducer, registerReducer, mustLoginReducer } = booleanSlice.actions;
 
 export default booleanSlice.reducer;
