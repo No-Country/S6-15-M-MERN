@@ -1,6 +1,8 @@
 import React from 'react';
 import profile from '../../assets/marta.png';
 import './CardService.css';
+import marta from '../../assets/marta.png'
+import { useSelector } from 'react-redux';
 
 export const CardServices = ({ title, image, description, service, id, avatar }) => {
   console.log(avatar.path, "AVATARRRRRRRRRRRRRRRR");
