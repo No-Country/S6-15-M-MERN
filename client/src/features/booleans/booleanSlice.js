@@ -4,7 +4,7 @@ const initialState = {
   invalidLogin: false,
   invalidRegister: false,
   notLogged: false,
-  cambios: true
+  cambios: false
 };
 
 const booleanSlice = createSlice({
