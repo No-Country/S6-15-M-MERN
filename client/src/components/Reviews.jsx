@@ -323,7 +323,7 @@ const Reviews = () => {
             ref={sliderRefBig}
             onTransitionEnd={handleTransitionEndBig}
           >
-            <div className='card-1 m-2 rounded-[100px] border-2 flex w-[300px] h-[420px] hover:scale-105 cursor-pointer gap-2 grow max-[1390px]:h-[380px] max-[1160px]:scale-[0.9] max-[1160px]:w-[380px] max-[1160px]:-m-2 '>
+            <div className='card-1 m-2 rounded-[100px] border-2 flex w-[300px] h-[420px] hover:scale-105 gap-2 grow max-[1390px]:h-[380px] max-[1160px]:scale-[0.9] max-[1160px]:w-[380px] max-[1160px]:-m-2 '>
               <div className='card-content '>
                 <div className='foto-estrellas'>
                   <img
@@ -374,7 +374,7 @@ const Reviews = () => {
                 </div>
               </div>
             </div>
-            <div className='card-1 m-2 rounded-[100px] border-2 flex w-[300px] h-[420px] hover:scale-105 cursor-pointer gap-2 grow max-[1390px]:h-[380px] max-[1160px]:scale-[0.9] max-[1160px]:w-[380px] max-[1160px]:-m-2'>
+            <div className='card-1 m-2 rounded-[100px] border-2 flex w-[300px] h-[420px] hover:scale-105 gap-2 grow max-[1390px]:h-[380px] max-[1160px]:scale-[0.9] max-[1160px]:w-[380px] max-[1160px]:-m-2'>
               <div className='card-content '>
                 <div className='foto-estrellas'>
                   <img
@@ -425,7 +425,7 @@ const Reviews = () => {
                 </div>
               </div>
             </div>
-            <div className='card-1 m-2 rounded-[100px] border-2 flex w-[300px] h-[420px] hover:scale-105 cursor-pointer gap-2 grow max-[1390px]:h-[380px] max-[1160px]:scale-[0.9] max-[1160px]:w-[380px] max-[1160px]:-m-2'>
+            <div className='card-1 m-2 rounded-[100px] border-2 flex w-[300px] h-[420px] hover:scale-105 gap-2 grow max-[1390px]:h-[380px] max-[1160px]:scale-[0.9] max-[1160px]:w-[380px] max-[1160px]:-m-2'>
               <div className='card-content '>
                 <div className='foto-estrellas'>
                   <img
@@ -477,7 +477,7 @@ const Reviews = () => {
                 </div>
               </div>
             </div>
-            <div className='card-1 m-2 rounded-[100px] border-2 flex w-[300px] h-[420px] hover:scale-105 cursor-pointer gap-2 grow max-[1390px]:h-[380px] max-[1160px]:scale-[0.9] max-[1160px]:w-[380px] max-[1160px]:-m-2 max-[840px]:hidden'>
+            <div className='card-1 m-2 rounded-[100px] border-2 flex w-[300px] h-[420px] hover:scale-105 gap-2 grow max-[1390px]:h-[380px] max-[1160px]:scale-[0.9] max-[1160px]:w-[380px] max-[1160px]:-m-2 max-[840px]:hidden'>
               <div className='card-content '>
                 <div className='foto-estrellas'>
                   <img
@@ -530,7 +530,7 @@ const Reviews = () => {
                 </div>
               </div>
             </div>
-            <div className='card-1 m-2 rounded-[100px] border-2 flex w-[300px] h-[420px] hover:scale-105 cursor-pointer gap-2 grow max-[1390px]:h-[380px] max-[1160px]:scale-[0.9] max-[1160px]:w-[380px] max-[1160px]:-m-2 max-[1050px]:hidden'>
+            <div className='card-1 m-2 rounded-[100px] border-2 flex w-[300px] h-[420px] hover:scale-105 gap-2 grow max-[1390px]:h-[380px] max-[1160px]:scale-[0.9] max-[1160px]:w-[380px] max-[1160px]:-m-2 max-[1050px]:hidden'>
               <div className='card-content '>
                 <div className='foto-estrellas'>
                   <img
@@ -582,7 +582,7 @@ const Reviews = () => {
                 </div>
               </div>
             </div>
-            <div className='card-1 m-2 rounded-[100px] border-2 flex w-[300px] h-[420px] hover:scale-105 cursor-pointer gap-2 grow max-[1680px]:hidden'>
+            <div className='card-1 m-2 rounded-[100px] border-2 flex w-[300px] h-[420px] hover:scale-105 gap-2 grow max-[1680px]:hidden'>
               <div className='card-content '>
                 <div className='foto-estrellas'>
                   <img
@@ -632,7 +632,7 @@ const Reviews = () => {
                 </div>
               </div>
             </div>
-            <div className='card-1 m-2 rounded-[100px] border-2 flex w-[300px] h-[420px] hover:scale-105 cursor-pointer gap-2 grow max-[1965px]:hidden'>
+            <div className='card-1 m-2 rounded-[100px] border-2 flex w-[300px] h-[420px] hover:scale-105 gap-2 grow max-[1965px]:hidden'>
               <div className='card-content '>
                 <div className='foto-estrellas'>
                   <img
