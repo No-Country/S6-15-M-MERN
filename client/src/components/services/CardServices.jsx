@@ -4,9 +4,9 @@ import './CardService.css';
 import marta from '../../assets/marta.png'
 import { useSelector } from 'react-redux';
 
-export const CardServices = ({ title, image, description, service, id }) => {
-  const profile = useSelector(state => state.profile)
-  console.log(profile.profile.user, " mini avatar")
+export const CardServices = ({ title, image, description, service, id, imagen }) => {
+
+
 
   return (
     <div className='containerCard relative'>
@@ -14,7 +14,7 @@ export const CardServices = ({ title, image, description, service, id }) => {
 
       <img
         className=' inset-0 rounded-full w-20 max-h-20 absolute ml-[42%] mt-16 border-[#28315C] border-solid border-2 '
-        // src={!profile.profile.user.avatarURL.path? marta : profile.profile.user.avatarURL.path }
+        src={imagen}
         alt=''
       />
       <div className='cardDiv' id={id}>
