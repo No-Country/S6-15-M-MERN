@@ -4,6 +4,7 @@ import * as yup from 'yup';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useApi } from '../../hooks/useApi';
+import axios from 'axios';
 
 function EditProfileProfessional() {
   const navigate = useNavigate();
