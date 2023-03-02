@@ -7,6 +7,7 @@ import { useApi } from '../hooks/useApi';
 import image from '../assets/Frame.png';
 import { useNavigate } from 'react-router-dom';
 import HeaderServicios from '../components/HeaderServicios';
+import { opcionesApp } from '../utils/opcionesApp';
 
 export const ServicesDetail = ({ props }) => {
   const [searchparams] = useSearchParams();
@@ -16,6 +17,8 @@ export const ServicesDetail = ({ props }) => {
   const [imagen, setImagen] = useState(
     'https://firebasestorage.googleapis.com/v0/b/db-demo-e7d23.appspot.com/o/banners%2Felectricista.png?alt=media&token=41be896c-0152-4d4c-a6c4-79f14258b954'
   );
+
+  const {returnDescripcion} = opcionesApp()
 
   const navigate = useNavigate();
   const handleOption = (e) => {
@@ -60,16 +63,17 @@ export const ServicesDetail = ({ props }) => {
       <div className=' flex flex-col p-10 justify-evenly'>
         <div className='flex-col items-center justify-around flex'>
           <div className='max-[448px]:mb-12'>
-            <h5 className='max-[448px]:text-lg max-[448px]:text-center leading-9 text-2xl font-normal text-greyText'>
+            {/* <h5 className='max-[448px]:text-lg max-[448px]:text-center leading-9 text-2xl font-normal text-greyText'>
               ¿Problemas eléctricos? ¿Necesitas cambiar los interruptores?
               Nuestros técnicos tiene la solución para que tu hogar siempre esté
               iluminado.
-            </h5>
+            </h5> */}
             <br />
             <h5 className='max-[448px]:text-lg max-[448px]:text-center leading-9 text-2xl font-normal text-greyText'>
-              Puedes programar o reprogramar hasta con 24 horas de anticipación
+              {/* Puedes programar o reprogramar hasta con 24 horas de anticipación
               evitando el cobro del 100% del valor del servicio. Consulta
-              nuestros Términos y condiciones para más información
+              nuestros Términos y condiciones para más información */}
+              {returnDescripcion(searchparams.get('id'))}
             </h5>
           </div>
         </div>
