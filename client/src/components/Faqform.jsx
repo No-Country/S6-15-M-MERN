@@ -3,6 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
 import image from "../assets/faqform.png";
 
+
 import emailjs from "@emailjs/browser";
 
 import Swal from 'sweetalert2'
@@ -49,10 +50,19 @@ function Faqform() {
       .then(
         (result) => {
           // console.log(result.text);
-          Swal.fire('Mensaje enviado correctamente, muy pronto recibirá una respuesta.')
+          Swal.fire({
+            icon: 'success',
+            title: 'Todo salió muy bien...',
+            text: 'Muy Pronto Alguien de nuestro equipo se comunicará contigo!',
+          })
         },
         (error) => {
-          console.log(error.text);
+          Swal.fire({
+            icon: 'error',
+            title: 'Uups...',
+            text: 'Algo salio mal!',
+            
+          })
         }
       );
   };
