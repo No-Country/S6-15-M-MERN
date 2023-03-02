@@ -4,6 +4,7 @@ import * as yup from 'yup';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useApi } from '../../hooks/useApi';
+import axios from 'axios';
 
 function EditProfileProfessional() {
   const navigate = useNavigate();
@@ -133,6 +134,54 @@ function EditProfileProfessional() {
     );
   };
 
+
+  let filesAvatar = null
+  
+  const putImg = async (file) => {
+    let formData = new FormData();
+    formData.append('avatar', file);
+    
+    console.log(formData, file, "el form data")
+    axios( {
+      url: 'https://container-service-1.utth4a3kjn6m0.us-west-2.cs.amazonlightsail.com/user/photo',
+      method: 'POST',
+      data: formData,
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${userStatus.user.token}`,
+        'Access-Control-Allow-Origin': "*",
+        mode: 'no-cors',
+        Accept: '/',
+        
+        }}) 
+      .then((resp) => {resp.json()
+           })
+      .catch((err) => console.error(err));
+  };
+
+   let filesImages = null
+
+  const putImages = async (file) => {
+    let formData = new FormData();
+    formData.append('images', file);
+    
+    console.log(formData, file, "el form data")
+    axios( {
+      url: 'https://container-service-1.utth4a3kjn6m0.us-west-2.cs.amazonlightsail.com/user/images',
+      method: 'PUT',
+      data: formData,
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${userStatus.user.token}`,
+        'Access-Control-Allow-Origin': "*",
+        mode: 'no-cors',
+        Accept: '/',
+        
+        }}) 
+      .then((resp) => {resp.json()
+           })
+      .catch((err) => console.error(err));
+  };
   //ACA AL HACER CLICK EN EL BOTON, SI EL USUARIO TIENE TOKEN
   //ENVIA TODO AL BACKEND
 
@@ -250,12 +299,12 @@ function EditProfileProfessional() {
           <Form className='container' onSubmit={handleOnSubmit}>
             <div className='grid gap-x-64 mb-6 grid-cols-8 grid-rows-5 '>
               <div className='col-start-1 col-end-2 row-start-1 row-end-2 mt-8 '>
-                <label
-                  className=' font-bold block text-labelColor whitespace-nowrap'
-                  htmlFor='password'
-                >
-                  CLIENTE O PROFESIONAL?
-                </label>
+                  <label
+                    className=' font-bold block text-labelColor whitespace-nowrap'
+                    htmlFor='password'
+                  >
+                    CLIENTE O PROFESIONAL?
+                  </label>
                 <Field
                   as='select'
                   name='professional'
@@ -281,7 +330,24 @@ function EditProfileProfessional() {
                   component='p'
                   className='font-bold  text-[#ffffff]'
                 />
+                <label for="images">Choose a  picture:</label>
+              <input type="file"
+                id="images" name="images"
+                accept="image/png, image/jpeg"
+                value={filesImages}
+                onChange={(event)=> {filesImages = event.target.files[0], putImages(event.target.files[0]), console.log(event, "el avatar")}} />
+              <label for="avatar">Choose a profile picture:</label>
+
+              <input type="file"
+                id="avatar" name="avatar"
+                accept="image/png, image/jpeg"
+                value={filesAvatar}
+                onChange={(event)=> {filesAvatar = event.target.files[0], putImg(event.target.files[0]), console.log(event, "el avatar")}} />
+
+
+              
               </div>
+
               {selectUsuario ==="false"  ? (
                 <>
                 false
