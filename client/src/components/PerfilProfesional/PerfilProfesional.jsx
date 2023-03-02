@@ -8,16 +8,27 @@ import marta from '../../assets/marta.png';
 
 import { useSearchParams, useParams, useNavigate } from 'react-router-dom';
 import { useApi } from '../../hooks/useApi';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useSelector } from 'react-redux';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUpload } from '@fortawesome/free-solid-svg-icons';
 
+
+
+
+
+
+
+
+
+
+
 export default function PerfilProfesional() {
   const profile = useSelector((state) => state.profile);
   const jobs = useSelector((state) => state.jobs);
  /*  console.log(profile.profile.user.avatarURL.path, "el avatarrrrrrrrrrrrrrrrrrrrrrrr"); */
+ const ref = useRef(null);
 
   const { returnJob, returnBanners } = opcionesApp();
 
@@ -149,18 +160,55 @@ export default function PerfilProfesional() {
               </p>
             </div>
             {/*ACA VA EL CAROUSEL???????????? */}
-            <div className=' mt-60 max-[600px]:-ml-[150px] max-[600px]:mr-10 max-[600px]:whitespace-nowrap max-[540px]:-ml-[180px] max-[540px]:-ml-[210px] max-[502px]:mt-32 max-[502px]:-ml-[98px] max-[320px]:whitespace-normal max-[320px]:-ml-24 '>
-              <p className=' ml-[100px] font-bold text-3xl max-[502px]:text-base'>
+            <div className=' ml-[100px] mt-20 max-[600px]:-ml-[150px] max-[600px]:mr-10 max-[600px]:whitespace-nowrap  max-[540px]:-ml-[210px] max-[502px]:mt-32 max-[502px]:-ml-[98px] max-[320px]:whitespace-normal max-[320px]:-ml-24 '>
+              <p className='font-bold text-3xl max-[502px]:text-base text-[#083A50]'>
                 Proyectos más recientes
               </p>
+
+              <div className='flex flex-wrap'>
+                
+                {console.log(profile.profile.user.projectImages.length, "ACAAAAAAAAAAAAAAAAAAAAAAAAA")}
+
+                {(profile.profile.user.projectImages.length >=1) ? (profile.profile.user.projectImages.map(image =>{
+                  return (
+                    <div className=" ml-[100px] container m-5 max-w-[900px]">
+                       <img className=' max-w-[900px]'  src={image.path} alt="" />
+
+                    </div>
+                   
+                  )
+                })):(<p className='mt-8'>El usuario no ha cargado ninguna foto aún</p>)}
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
             </div>
             <div>
               {profesionalId ===
                 JSON.parse(localStorage.getItem('user')).id && (
                 <div className=' ml-[100px]'>
-                  <button className=' w-40 h-10 bg-[#43936c] rounded-lg text-white mt-10'>
+                  {/* <button className=' w-40 h-10 bg-[#43936c] rounded-lg text-white mt-10'>
                     Subir fotos
-                  </button>
+                  </button> */}
                 </div>
               )}
             </div>

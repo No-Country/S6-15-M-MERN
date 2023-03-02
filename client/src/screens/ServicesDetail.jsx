@@ -55,7 +55,7 @@ export const ServicesDetail = ({ props }) => {
 
   return (
     <>
-      <HeaderServicios />
+      <HeaderServicios imagen={imagen} job={searchparams.get('id')} />
 
       <div className=' flex flex-col p-10 justify-evenly'>
         <div className='flex-col items-center justify-around flex'>
