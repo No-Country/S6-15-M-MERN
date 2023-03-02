@@ -119,6 +119,7 @@ export const ServicesDetail = ({ props }) => {
                     description={item.description}
                     service={item.name}
                     id={item._id}
+                    imagen={item.avatarURL}
                   />
                 </div>
               );

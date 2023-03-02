@@ -229,6 +229,6 @@ function EditProfileUser() {
       </div>
     );
   }
-}
+
 
 export default EditProfileUser;
