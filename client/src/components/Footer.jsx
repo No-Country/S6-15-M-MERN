@@ -5,6 +5,8 @@ import {
   faTwitter,
 } from "@fortawesome/fontawesome-free-brands";
 import contrata from "../assets/contrata.png";
+import { Link } from "react-router-dom";
+
 
 
 
@@ -23,6 +25,8 @@ export default function Footer(){
             </ul>
           </div>
 
+          <Link to='/team'><span className="flex mr-[82px] mt-[30px] text-neutral-700">Team S6-15-M-MERN</span></Link>
+
           <div className="columns-3 flex flex-row items-start  rounded-none max-sm:hidden -center">
               <ul>
                 <li className="font-family['Gilroy'] not-italic font-extrabold text-xs text-black  leading-8" >SOBRE NOSOTROS</li>
@@ -32,6 +36,7 @@ export default function Footer(){
                 <li className=" font-family-['Gilroy-medium'] font-extrabold text-xs text-black leading-8">Contáctanos</li>
               </ul>
           </div>
+
         </div>
           <div className="flex flex-row items-center justify-center gap-6 mt-[20px] text-gray-600">  
             <span className="">Copyright © 2023 Contratá</span>
