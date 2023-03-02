@@ -4,6 +4,7 @@ import * as yup from 'yup';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useApi } from '../../hooks/useApi';
+import axios from 'axios';
 
 function EditProfileProfessional() {
   const navigate = useNavigate();
@@ -41,10 +42,6 @@ function EditProfileProfessional() {
 
   },[profile])
 
- 
-
-  //ESTE ES EL ESTADO INICIAL DE LOS INPUTS
-
 
   const [formData, setFormData] = useState({
     professional: updatedUser.professional,
@@ -58,6 +55,7 @@ function EditProfileProfessional() {
     dateOfBirty: updatedUser.dateOfBirty,
     job: String(updatedUser.job),
     description: updatedUser.description,
+    // avatarURL:updatedUser.avatarURL
   });
 
   useEffect(()=>{
@@ -82,31 +80,6 @@ function EditProfileProfessional() {
  
 
 
-  
-
-  //ESTE ES EL ESTADO QUE DEBERIA CARGARSE CON LOS DATOS ACTUALIZADOS
-  //Y ES EL QUE SE ENVIA AL BACKEND
-
-  /* Nunca utiliza newFormData !!!*/
-
-
-
-
-  /* const [newFormData, setNewFormData] = useState({
-    professional: formData.professional,
-    name: formData.name,
-    lastName: formData.lastName,
-    email: formData.email,
-    telefono: formData.telefono,
-    country: formData.country,
-    city: formData.city,
-    zipCode: formData.zipCode,
-    dateOfBirty: formData.dateOfBirty,
-    job: formData.job,
-    description: formData.description,
-  }); */
-
-  //ACA LLAMADA AL ENDPOINT PARA EDITAR USUARIO
   const postEditUser = (data) => {
     return new Promise((resolve, reject) =>
       fetch(
@@ -118,6 +91,7 @@ function EditProfileProfessional() {
             'Content-Type': 'application/json',
             Connection: 'keep-alive',
             Authorization: `Bearer ${userStatus.user.token}`,
+            
           },
         }
       )
@@ -127,6 +101,31 @@ function EditProfileProfessional() {
         })
         .catch((error) => reject(error))
     );
+  };
+
+
+  let filesAvatar = null
+  
+  const putImg = async (file) => {
+    let formData = new FormData();
+    formData.append('avatar', file);
+    
+    console.log(formData, file, "el form data")
+    axios( {
+      url: 'https://container-service-1.utth4a3kjn6m0.us-west-2.cs.amazonlightsail.com/user/photo',
+      method: 'PUT',
+      data: formData,
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${userStatus.user.token}`,
+        'Access-Control-Allow-Origin': "*",
+        mode: 'no-cors',
+        Accept: '/',
+        
+        }}) 
+      .then((resp) => {resp.json()
+           })
+      .catch((err) => console.error(err));
   };
 
   //ACA AL HACER CLICK EN EL BOTON, SI EL USUARIO TIENE TOKEN
@@ -168,7 +167,7 @@ function EditProfileProfessional() {
     if(select === "false"){
       setFormData({
         ...formData,
-        professional: select,        
+    professional: select,        
     email: updatedUser.email ,
     phone: "",
     country: "",
@@ -177,7 +176,7 @@ function EditProfileProfessional() {
     dateOfBirty: "",
     job: null,
     description: "",
-    lastname: ""
+    lastname: "",
       })
     }else{
       setFormData({...formData, professional: select})
@@ -186,7 +185,7 @@ function EditProfileProfessional() {
   };
 
 
-  /* console.log(newFormData, 'NEWFORMDATA= FORMDATA + SELECT'); */
+
 
   const userSchema = yup.object().shape({
     name: yup
@@ -275,6 +274,13 @@ function EditProfileProfessional() {
                   component='p'
                   className='font-bold  text-[#ffffff]'
                 />
+              <label for="avatar">Choose a profile picture:</label>
+
+              <input type="file"
+                id="avatar" name="avatar"
+                accept="image/png, image/jpeg"
+                value={filesAvatar}
+                onChange={(event)=> {filesAvatar = event.target.files[0], putImg(event.target.files[0]), console.log(event, "el avatar")}} />
               </div>
               {selectUsuario ==="false"  ? (
                 <>
@@ -479,6 +485,7 @@ function EditProfileProfessional() {
                       type='text'
                       className=' px-2 py-2 focus: outline-focusColor rounded-xl  border-labelGrayColor border-2 placeholder:-translate-x-6  '
                       onChange={handleOnChange}
+                      // defaultValue={updatedUser.city}
                       value={formData.city}
                     />
                     <ErrorMessage
@@ -589,7 +596,7 @@ function EditProfileProfessional() {
                       type='textarea'
                       className=' w-full px-2 pb-24 text-start focus: outline-focusColor rounded-xl  border-labelGrayColor border-2 placeholder:-translate-x-6  '
                       onChange={handleOnChange}
-                      defaultValue={formData.description}
+                      // defaultValue={updatedUser.description}
                       value={formData.description}
                     />
                     <ErrorMessage

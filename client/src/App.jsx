@@ -21,7 +21,6 @@ import InvalidLogin from './components/Modals/InvalidLogin';
 import MustLogin from './components/Modals/MustLogin';
 import AccountExists from './components/Modals/AccountExists';
 
-
 const App = () => {
   const [isModalOpen, changeModalStatus] = BoolHook(false);
 
