@@ -101,7 +101,7 @@ export default function PerfilProfesional() {
                 className=' ml-4' /* 'relative left-[15px] right-[12.5%] top-[-250px] bottom-[12.5%]' */
                 src={Telefono}
               />
-              <p className='ml-4'>+ 59 1 1001 8830</p>
+              <p className='ml-4'>{profile.profile.user.phone}</p>
             </div>
 
             <div className='flex flex-row items-center mt-4 max-[502px]:-mt-[5px] max-[320px]:ml-4'>
