@@ -13,7 +13,7 @@ export const ValidateSchema = (schema: ObjectSchema) => {
       // Agregando borrado de imagenes
       if (req.file) {
         const jobImageUrl = `${req.protocol}://${req.get("host")}/storage/${req.file.filename}`;
-        deleteFilefromFS(jobImageUrl);
+        deleteFilefromFS(jobImageUrl, "storage/jobs/image/");
       }
       return res.status(422).json({ error });
     }

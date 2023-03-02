@@ -34,7 +34,7 @@ WORKDIR /usr/src/app
 
 COPY package*.json .
 
-RUN mkdir -p storage/users
+RUN mkdir -p storage/users/images
 RUN mkdir -p storage/jobs/image
 RUN mkdir -p storage/jobs/banner
 

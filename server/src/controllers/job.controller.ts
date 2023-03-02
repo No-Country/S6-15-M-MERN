@@ -13,7 +13,7 @@ import { AppError } from "../utils/errorObjectExtended";
 // Create a new job category
 const createJob = async (req: Request, res: Response, next: NextFunction) => {
   const { service, title, description } = req.body;
-  const jobImageUrl = getNewUrl(req);
+  const jobImageUrl = getNewUrl(req, req.file);
   if (jobImageUrl) {
     // Getting file name
     try {
@@ -64,9 +64,9 @@ const updateJob = async (req: Request, res: Response, next: NextFunction) => {
     // find the data to update
     const jobFounded = await getJobService(jobId);
     if (jobFounded) {
-      const filename = getNewUrl(req);
+      const filename = getNewUrl(req, req.file);
       if (filename) {
-        deleteFilefromFS(jobFounded.jobImageUrl);  //aqui el jobImageurl me redirije a la interface, en el caso de interface user , cual escojo?
+        deleteFilefromFS(jobFounded.jobImageUrl, "storage/jobs/image/");  //aqui el jobImageurl me redirije a la interface, en el caso de interface user , cual escojo?
         jobFounded.set({ jobImageUrl: filename });
       }
 
@@ -89,7 +89,7 @@ const deleteJob = async (req: Request, res: Response, next: NextFunction) => {
 
     if (result) {
       // Delete image from server
-      deleteFilefromFS(result.jobImageUrl);
+      deleteFilefromFS(result.jobImageUrl, "storage/jobs/image/");
 
       // Delete jobs category from users
       const deletefromusers = await deleteServiceFromUsers(jobId);

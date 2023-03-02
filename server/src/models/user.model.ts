@@ -9,7 +9,9 @@ const userSchema = new Schema<IUser>(
       type: String,
       required: [true, "Please provide a valid name"]
     },
-
+    lastname: {
+      type: String
+    },
     email: {
       type: String,
       required: [true, "Please enter your email"],
@@ -19,7 +21,6 @@ const userSchema = new Schema<IUser>(
       type: String,
       required: [true, "Please enter your password"]
     },
-
     birthdate: {
       type: String
     },
@@ -61,7 +62,18 @@ const userSchema = new Schema<IUser>(
     description: {
        type: String,
        default: ""
-    }
+    },
+    projectImages: [
+      {
+        name: {
+          type: String
+        },
+        path: {
+          type: String
+        }
+      }
+    ]
+    
   },
   {
     versionKey: false,

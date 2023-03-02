@@ -27,6 +27,7 @@ export interface IUser extends Auth {
   minimumquantityprice: Number;
   professional: Boolean;
   description: String;
+  projectImages: any;
 }
 
 export interface UserModel extends IUser, Document {}

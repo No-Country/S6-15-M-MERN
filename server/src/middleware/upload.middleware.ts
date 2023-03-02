@@ -7,11 +7,13 @@ const storage = diskStorage({
   destination(req: Request, file: Express.Multer.File, cb: any) {
     if ( file.fieldname === "avatar" ) { 
       cb(null, PATH_STORAGE+ '/users');
+    } else if ( file.fieldname === "images"){
+      cb(null, PATH_STORAGE+ '/users/images');
     } else if ( file.fieldname === "jobImage" ) {
       cb(null, PATH_STORAGE+ '/jobs/image');
     } else if ( file.fieldname === "jobBanner"){
       cb(null, PATH_STORAGE+ '/jobs/banner');
-    }
+    } 
   },
   filename(req: Request, file: Express.Multer.File, cb: any) {
     const ext = file.originalname.split(".").pop();

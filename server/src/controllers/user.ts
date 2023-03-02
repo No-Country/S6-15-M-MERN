@@ -16,7 +16,7 @@ import {RequestExt} from '../interfaces/req-ext';
 import {IUser} from '../interfaces/user.interface';
 import {AppError} from '../utils/errorObjectExtended';
 import { encrypt } from "../utils/bcrypt.handle";
-import { preferences } from "joi";
+import { preferences, string } from "joi";
 
 
 const getControllerUserbyId = async (req: Request, res: Response, next: NextFunction) => {
@@ -99,19 +99,9 @@ const UpdateControllerUser = async (
   };
 };
 
-// const postControllerUser = async ({ body }: Request, res: Response) => {
-//   try {
-//     const responseUser = await CreateUser(body);
-//     res.send(responseUser);
-//   } catch (e) {
-//     handleHttp(res, "ERROR_GET_ITEM", e);
-//   }
-// };
-
 const DeleteControllerUser = async (req: RequestExt, res: Response, next: NextFunction) => {
   // const userId = req.params.id;
   try {
-    // const { id } = params;
     const userId = req.user?.id;
     const result: IUser | null = await DeleteUser(userId);
     // console.log(result)
@@ -126,18 +116,34 @@ const DeleteControllerUser = async (req: RequestExt, res: Response, next: NextFu
     } else {
       next(new AppError(404, `user width ID ${userId} not found.`));
     }
-    // const responseDelete = await DeleteUser( id );
-    // res.status(204).json({
-    //   status: 'deleted',
-    //   responseDelete,
-    // })
-    // res.send(responseDelete);
   } catch (error: any) {
     next(new AppError(500, error.message));
     // handleHttp(res, "ERROR_DELETE_USER");
   };
 };
 
+const DeleteUserById = async (req: Request, res: Response, next: NextFunction) => {
+  // const userId = req.params.id;
+  try {
+    const {id} = req.params;
+    const result: IUser | null = await DeleteUser(id);
+    // console.log(result)
+    if (result) {
+      //Delete user 
+      //? Para acceder a esta funcion debe crearse el avatar con newUrl?
+      //!Falta borrar la imagen que pertenece al usario que esta alojada en storage
+      // if(result.avatarURL) deleteFilefromFS(result.avatarURL);
+      // const deletefromusers = await DeleteUser(userId);
+      // console.log("usuarios borrados ", deletefromusers);
+      res.status(200).json({status: `User with ID ${id} deleted`});
+    } else {
+      next(new AppError(404, `user width ID ${id} not found.`));
+    }
+  } catch (error: any) {
+    next(new AppError(500, error.message));
+    // handleHttp(res, "ERROR_DELETE_USER");
+  };
+};
 
 const getMyUser = async ( req: RequestExt, res: Response, next: NextFunction) => {
   try {
@@ -158,10 +164,12 @@ const UpdatePhotoUser = async (req: RequestExt, res: Response, next: NextFunctio
     try {
       const id = req.user?.id;
       const User = await getUserbyId(id);
+
+      //console.log({file: req.file, User, request: req})
       if (User) {
-        const fileuser = getNewUrl(req);
+        const fileuser = getNewUrl(req, req.file);
         if (fileuser) {
-          deleteFilefromFS(User.avatarURL.path);  // que parte del interface user poner aqui??
+          deleteFilefromFS(User.avatarURL.path || "", "storage/users/");  // que parte del interface user poner aqui??
         }
         if(req.file){
           const avatarURL = {
@@ -172,7 +180,7 @@ const UpdatePhotoUser = async (req: RequestExt, res: Response, next: NextFunctio
           const result = await User.save();
           return res.status(200).json(result);  
         }
-         
+        return res.status(400).json({message: "req.file not found"})
       } else {
         next(new AppError(404, `User with id ${User} not found`));
       }
@@ -183,11 +191,81 @@ const UpdatePhotoUser = async (req: RequestExt, res: Response, next: NextFunctio
   };
 };
 
+
+const addProjectImagesUser = async (req: RequestExt, res: Response, next: NextFunction) => {
+  try {
+    const id = req.user?.id;
+    const User = await getUserbyId(id);
+    
+    if (User) {
+      const projectImages = User.projectImages;
+      const imagesReq:any = req.files || [];
+      if(!(imagesReq.length > 0)){
+        return res.status(400).json({message: "Files not found"})
+      }
+      const projectObject = {
+        name: "",
+        path: ""
+      }
+      imagesReq.forEach((element:any) => {
+        projectObject.name = element.filename;
+        projectObject.path = getNewUrl( req, element) || "";
+        projectImages.push(projectObject);
+      });
+      User.set({projectImages});
+      const result = await User.save();
+      res.status(200).json(result);  
+
+    } else {
+      next(new AppError(404, `User with id ${User} not found`));
+    }
+  // res.send(response);
+} catch (error: any) {
+  next(new AppError(500, error.message));
+  // handleHttp(res, "ERROR_PUT_USER");
+};
+};
+
+const DeleteProjectImages = async (req: RequestExt, res: Response, next: NextFunction) => {
+  try {
+    const id = req.user?.id;
+    const { idImage } = req.params;
+    const User = await getUserbyId(id);
+    if (User) {
+      const { projectImages } = User;
+      if(!(projectImages.length > 0 )) {
+        return next(new AppError(400, `user without Images`));
+      }
+
+      const image = projectImages.filter((e:any) => e.id === idImage);
+      console.log({image})
+      if(!(image.length > 0 )) {
+        return next(new AppError(400, `image Id: ${idImage} doesn't exits in this User`));
+      }
+
+      const imagesArr = projectImages.filter((e:any) => e.id !== idImage);
+      console.log({imagesArr})
+      deleteFilefromFS(image[0].path || "", "storage/users/images/")
+
+      User.set({projectImages: imagesArr});
+      const result = await User.save();
+      res.status(200).json({status: `Image: ${image[0].name} deleted`, user: result});
+    } else {
+      next(new AppError(404, `user width ID ${id} not found.`));
+    }
+  } catch (error: any) {
+    next(new AppError(500, error.message));
+  };
+};
+
 export {
   getControllerUserbyId,
   getControllerAllUser,
   UpdateControllerUser,
   DeleteControllerUser,
   getMyUser,
-  UpdatePhotoUser
+  UpdatePhotoUser,
+  DeleteUserById,
+  addProjectImagesUser,
+  DeleteProjectImages
 };
