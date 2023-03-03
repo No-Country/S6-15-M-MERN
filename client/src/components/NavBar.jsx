@@ -100,7 +100,7 @@ export default function NavBar({ changeModal, isUserLogged }) {
 
 
   return (
-    <Popover className='relative bg-backgroundColor '>
+    <Popover className='relative bg-backgroundColor z-20 '>
       <div className='px-7'>
         <div className='flex items-center  py-6  md:space-x-10'>
           <div className='flex justify-start mr-auto '>
