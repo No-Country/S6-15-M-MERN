@@ -1,4 +1,4 @@
-# CONTRATÁ
+# CONTRÁTA
 
 Compañia donde encontraras servicio profesionales para tu hogar, con referencia de clientes reales y con nuestro respaldo y garantía.
 
