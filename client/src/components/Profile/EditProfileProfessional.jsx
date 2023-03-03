@@ -362,6 +362,7 @@ function EditProfileProfessional() {
                   id="images" name="images"
                   accept="image/png, image/jpeg"
                   value={filesImages}
+                  multiple
                   onChange={(event) => { filesImages = event.target.files[0], putImages(event.target.files[0]), console.log(event, "el avatar") }} />
 
 
