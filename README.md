@@ -29,10 +29,10 @@ Si sos un profesional en tu área, también contamos con la opción de que pueda
 
 #### Equipo Sprint 👩‍💻
 
-#####Project Manager: 
+##### Project Manager: 
 Alicia Zuliani 
 
-#####Front-End
+##### Front-End
 
 Maiten Cullen, Emiliano Pérez, Agustin Galvan, Melany Ressler, Diego Martin Guzman, Orlando Flores.
 
