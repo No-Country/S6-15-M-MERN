@@ -1,5 +1,5 @@
 
-  # CONTRATÁ 🚀
+  # CONTRÁTA 🚀
 
  ##### ¿Te ha pasado de necesitar una reparación en tu domicilio u oficina y no saber a dónde recurrir? 
 
