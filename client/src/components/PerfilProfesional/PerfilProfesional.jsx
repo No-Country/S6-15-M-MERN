@@ -5,6 +5,7 @@ import Correo from '../../assets/Correo.png';
 import envelope from '../../assets/envelope.png';
 import { opcionesApp } from '../../utils/opcionesApp';
 import marta from '../../assets/marta.png';
+import loading from "../../assets/loading.gif"
 
 import { useSearchParams, useParams, useNavigate } from 'react-router-dom';
 import { useApi } from '../../hooks/useApi';
@@ -40,6 +41,7 @@ export default function PerfilProfesional() {
   const [readJobs, , , , getProfessional] = useApi();
 
   const [searchparams] = useSearchParams();
+  const [perfil, setPerfil] = useState(null);
 
   /* {profesionalId === JSON.parse(localStorage.getItem("user")).id && console.log("Si")} */
 
@@ -48,10 +50,13 @@ export default function PerfilProfesional() {
   console.log(JSON.parse(localStorage.getItem("user")).id);
  */
 
+  console.log(profile);
   useEffect(() => {
     readJobs();
     getProfessional(profesionalId);
   }, []);
+
+
 
   useEffect(() => {
     setTimeout(() => {
@@ -71,11 +76,11 @@ export default function PerfilProfesional() {
   const navigate = useNavigate();
 
   const sendMessage = () => {
-    const email = profile.profile.user.email;
+    const email = perfil.profile.user.email;
     navigate('/sol-servicio', { state: { email } });
   };
 
-  return (profile.profile.user.avatarURL !== undefined) ? (
+  return (profile.profile.user.avatarURL !== undefined && profile.profile.user._id === profesionalId) ? (
     <div>
       {/* <span className="w-[284px] ml-[10px]  top-[-4] font-['Nunito Sans'] not-italic font-bold leading-[33px] flex items-center text-[#083A50] mb-3">
         Configuración de tu perfil
@@ -242,5 +247,7 @@ export default function PerfilProfesional() {
         <div className=''></div>
       </div>
     </div>
-  ) : (<>loading</>);
+  ) : (<><div className='flex justify-center items-center min-h-[500px]'>
+    <img src={loading} alt="" />
+    </div></>);
 }
