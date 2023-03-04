@@ -294,10 +294,10 @@ const Reviews = () => {
               />
             </svg>
           </button>
-          <button className=' -mr-4 z-50' onClick={slideRight} ref={nextRef}>
+          <button className=' max-[480px]:-mr-0 max-w-15  -mr-4 z-50 ' onClick={slideRight} ref={nextRef}>
             <svg
               xmlns='http://www.w3.org/2000/svg'
-              className='h-12 w-20 '
+              className='h-12 max-[480px]:w-14 w-20 '
               fill='none'
               viewBox='0 0 24 24'
               stroke='currentColor'
