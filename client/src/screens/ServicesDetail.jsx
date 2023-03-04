@@ -60,19 +60,11 @@ export const ServicesDetail = ({ props }) => {
     <>
       <HeaderServicios imagen={imagen} job={searchparams.get('id')} />
 
-      <div className=' flex flex-col p-10 justify-evenly'>
+      <div className=' flex flex-col p-10 justify-evenly max-[448px]:p-2'>
         <div className='flex-col items-center justify-around flex'>
           <div className='max-[448px]:mb-12'>
-            {/* <h5 className='max-[448px]:text-lg max-[448px]:text-center leading-9 text-2xl font-normal text-greyText'>
-              ¿Problemas eléctricos? ¿Necesitas cambiar los interruptores?
-              Nuestros técnicos tiene la solución para que tu hogar siempre esté
-              iluminado.
-            </h5> */}
             <br />
             <h5 className='max-[448px]:text-lg max-[448px]:text-center leading-9 text-2xl font-normal text-greyText'>
-              {/* Puedes programar o reprogramar hasta con 24 horas de anticipación
-              evitando el cobro del 100% del valor del servicio. Consulta
-              nuestros Términos y condiciones para más información */}
               {returnDescripcion(searchparams.get('id'))}
             </h5>
           </div>
@@ -82,7 +74,7 @@ export const ServicesDetail = ({ props }) => {
             <h6 className='max-[448px]:text-center leading-9 text-2xl font-normal pb-5'>
               Selecciona la ciudad para tu servicio
             </h6>
-            <div className='mb-4'>
+            <div className='mb-4 flex justify-center'>
               {/* agrego esta porcion de código solo para probarlo rápido */}
 
               <select

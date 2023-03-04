@@ -1,28 +1,41 @@
 import React from 'react';
 import profile from '../../assets/marta.png';
-import './CardService.css';
+
 import marta from '../../assets/marta.png'
 import { useSelector } from 'react-redux';
 
 export const CardServices = ({ title, image, description, service, id, avatar }) => {
-  console.log(avatar.path, "AVATARRRRRRRRRRRRRRRR");
+  let texto = description;
+  if (description.length > 270) texto = description.substring(0,270)+"...";
   return (
-    <div className='containerCard relative'>
-      <img src={image} />
+    <div className=' flex flex-col flex-wrap w-[277px] sm:w-[400px] h-auto md:h-[350px]  rounded-2xl shadow-md relative'>
+      <div className='top'>
+      <div className='avatar w-full absolute flex justify-center mt-14' >
+        <img
+          className='object-cover rounded-full w-20 h-20  border-[#28315C] border-solid border-2 '
+          src={((avatar.path !== undefined) && (avatar.path !== "")) ? (avatar.path) : (profile)}
+          alt=''
+        />
 
-      <img
-        className=' max-[448px]:ml-[85px] max-[448px]:mt-[18px]  object-cover inset-0 rounded-full w-20 max-h-20 absolute ml-[42%] mt-16 border-[#28315C] border-solid border-2 '
-        src={((avatar.path !== undefined)&&(avatar.path !== ""))?(avatar.path):(profile)}
-        alt=''
-      />
-      <div className='cardDiv' id={id}>
-        <div className='serviceDiv'>
+      </div>
+        <img className='object-cover max w-full h-[100px] rounded-t-2xl' src={image} />
+
+      </div>
+      
+      <div className="bottom">
+
+      </div>
+
+
+
+      <div className='cardDiv mt-6 bottom p-3' id={id}>
+        <div className='serviceDiv text-lg font-bold'>
           <h4> {service}</h4>
           <p className='pCard'>{title}</p>
         </div>
-        <div className='divTetx '>
+        <div className='divTetx mt-2 '>
           <div className='divPrice '>
-            <p className='max-[448px]:mt-6'>{description}</p>
+            <p className='mt-2  text-'>{texto}</p>
             {/* <h5 className='text-buttons-buttonGreen font-black'> $price</h5> */}
           </div>
         </div>

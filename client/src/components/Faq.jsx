@@ -212,7 +212,7 @@ const Faq = () => {
 
       <div className='bg-[#f5f5f5]'>
         <h3 className='text-center mt-11 mb-8 text-2xl'>¿Te quedaste con dudas?</h3>
-        <h3 className='text-center mb-8 text-4xl text-[#28315C] font-extrabold'>¡Comunicate nostros!</h3>
+        <h3 className='text-center mb-8 text-4xl text-[#28315C] font-extrabold'>¡Comunicate nosotros!</h3>
         <div>
           <Faqform />
         </div>
