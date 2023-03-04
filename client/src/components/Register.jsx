@@ -49,7 +49,7 @@ function Register({ switchRegistro, closeModal }) {
       console.log(response, ' la respuesta');
     });
     closeModal();
-    navigate('/perfil')
+    navigate('/perfil');
   };
 
   return (
