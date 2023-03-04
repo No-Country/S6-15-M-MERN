@@ -21,11 +21,14 @@ function ServicesCards() {
 
   return (
     <>
-      <div className='flex flex-col justify-center '>
-        <button className='bg-orange-500'></button>
-        <h2 className='  max-[448px]:text-2xl  max-[448px]:w-[320px] text-[#28315C] align-middle font-extrabold text-5xl mt-28 text-center'>
+      <div className='flex flex-col justify-center items-center p-5 '>
+        <div className='max-[448px]:w-[300px]'>
+        <h2 className='  max-[448px]:text-2xl   text-[#28315C] font-extrabold text-5xl mt-28 text-center'>
           Contrata profesionales de confianza
         </h2>
+        </div>
+    
+        
         <p className='max-[448px]:text-lg mt-6 text-center text-2xl max-w-3xl mx-auto'>
           Solicita un presupuesto sin cargo, con total confianza. No
           compartiremos tus datos
