@@ -20,6 +20,7 @@ import Team from './screens/Team';
 import InvalidLogin from './components/Modals/InvalidLogin';
 import MustLogin from './components/Modals/MustLogin';
 import AccountExists from './components/Modals/AccountExists';
+import GuardarCambios from './components/Modals/GuardarCambios';
 
 const App = () => {
   const [isModalOpen, changeModalStatus] = BoolHook(false);
@@ -41,6 +42,7 @@ const App = () => {
       <Login isOpen={isModalOpen} closeModal={changeModalStatus} />
       <InvalidLogin />
       <AccountExists />
+      <GuardarCambios />
 
       <MustLogin />
  
@@ -50,7 +52,7 @@ const App = () => {
           <Route path='/servicios' element={<Services />} />
           <Route path='/perfil' element={<Profile />} />
           <Route path='/servicesDetail' element={<ServicesDetail />} />
-          <Route path='faq' element={<Faq />} />
+          <Route path='/faq' element={<Faq />} />
           <Route path='/sol-servicio' element={<OrderService />} />
           <Route
             path='/sol-servicio/solicitado'

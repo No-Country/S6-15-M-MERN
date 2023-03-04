@@ -81,31 +81,24 @@ function Login({ isOpen, closeModal }) {
         <div className=' bg-[#28315C] rounded-xl  flex '>
           <div className=' mb-4 py-16 text-center flex-col justify-center items-center m-auto '>
             <header className=''>
-              <h2 className='text-5xl font-bold text-[#ffffff] text-left ml-14 mb-7 font-khula '>
+              <h2 className='max-md:text-5xl  max-lg:text-6xl max-xl:text-6xl max-2xl:text-6xl max-sm:text-base font-bold text-[#ffffff] text-left ml-14 mb-7 font-khula '>
                 Iniciar Sesión
               </h2>
               <div
-                className='inline-grid grid-cols-3 gap-9 mr-20
-           '
+                className='inline-grid grid-cols-3 gap-9 mr-20 sm:gap-20 max-sm:flex '
               >
                 <button
                   onClick={switchLogin}
-                  className='text-[#ffffff]  text-2xl  ml-14 mb-7 mr-1 font-khula '
+                  className='text-[#ffffff]  md:text-2xl  ml-14 mb-7 mr-1 font-khula max-sm:text-sm'
                 >
                   Registro
                 </button>
-                <h3 className='text-[#ffffff]  text-2xl   mb-7 font-khula underline underline-offset-8 decoration-btnColor decoration-4'>
+                <h3 className='text-[#ffffff]  md:text-2xl max-sm:text-xs  mb-7 font-khula underline underline-offset-8 decoration-btnColor decoration-4'>
                   {' '}
                   Inicia sesión
                 </h3>
               </div>
             </header>
-            <div className='flex justify-center'>
-              <GoogleLogin
-                clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}
-                cbresponse={googleLoginHandler}
-              />
-            </div>
             <Formik
               initialValues={{ email: '', password: '' }}
               validationSchema={loginSchema}
@@ -130,15 +123,15 @@ function Login({ isOpen, closeModal }) {
                     id='email'
                     type='text'
                     placeholder='Ingresa tu mail'
-                    className=' px-3 py-2 focus: outline-none rounded-xl pl-24 text-left'
+                    className=' px-3 py-2 focus: outline-none rounded-xl pl-24 text-left max-sm:p-2'
                   />
                   <ErrorMessage
                     name='email'
                     component='p'
-                    className='font-bold  text-[#ffffff]'
+                    className='font-bold  text-[#ffffff] '
                   />
                   <label
-                    className='  font-bold block text-[#ffffff] mt-5 mr-48  '
+                    className='  font-bold block text-[#ffffff] mt-5 mr-48   '
                     htmlFor='password font-khula'
                   >
                     Contraseña
@@ -150,7 +143,7 @@ function Login({ isOpen, closeModal }) {
                     id='password'
                     type='password'
                     placeholder='Ingresa una contraseña'
-                    className=' px-3 py-2 pl-24 focus: outline-none rounded-xl placeholder:-translate-x-6 '
+                    className=' px-3 py-2 pl-24 focus: outline-none rounded-xl placeholder:-translate-x-6   max-sm:p-2'
                   />
                   <ErrorMessage
                     name='password'
@@ -158,17 +151,17 @@ function Login({ isOpen, closeModal }) {
                     className='font-bold  text-[#ffffff]'
                   />
                   <br />
-                  <span className=' block text-[#ffffff]  ml-28 mb-5'>
+                  <span className=' block text-[#ffffff]  max-sm:ml-0  ml-24 mb-5 max-sm:text-base'>
                     ¿Olvidaste tu contraseña?
                   </span>
                 </div>
-                <button className='bg-[#ffffff] w-48 h-12 mr-5 rounded-full text-xl mb-4  font-bold  active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all  active:hover:bg-[#83e3be]  disabled:cursor-not-allowed  mt-4 hover:shadow-228b active:shadow  '>
+                <button className='bg-[#ffffff] w-48 h-12 max-sm:w-28 mr-5 rounded-full text-xl mb-4  font-bold  active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all  active:hover:bg-[#83e3be]  disabled:cursor-not-allowed  mt-4 hover:shadow-228b active:shadow  '>
                   Cancelar
                 </button>
                 <button
                   type='submit'
                   /* onClick={()=>handleLogin()} */
-                  className='bg-btnColor w-48 h-12 rounded-full text-xl mb-4 text-[#ffffff] font-bold  active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all  active:hover:bg-[#83e3be]  disabled:cursor-not-allowed  mt-4 hover:shadow-228b active:shadow '
+                  className='bg-btnColor w-48 h-12 max-sm:w-28 rounded-full text-xl mb-4 text-[#ffffff] font-bold  active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all  active:hover:bg-[#83e3be]  disabled:cursor-not-allowed  mt-4 hover:shadow-228b active:shadow '
                 >
                   Ingresar
                 </button>

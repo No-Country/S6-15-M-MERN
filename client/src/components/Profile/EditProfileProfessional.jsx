@@ -2,12 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+
 import { useApi } from '../../hooks/useApi';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { cambiosReducer } from '../../features/booleans/booleanSlice';
 function EditProfileProfessional() {
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+  const loginStatus = useSelector((state) => state.cambios);
+
+  console.log(loginStatus);
 
   //ESTE ES PARA EL CAMBIO DEL SELECT
   const [selectUsuario, setSelectUsuario] = useState('false');
@@ -37,8 +44,6 @@ function EditProfileProfessional() {
   }, [profile]);
 
   //ESTE ES EL ESTADO INICIAL DE LOS INPUTS
-
-  console.log(updatedUser, 'ACAAAAAAAAAAAA');
 
   const [formData, setFormData] = useState({
     professional: updatedUser.professional,
@@ -106,6 +111,8 @@ function EditProfileProfessional() {
       )
         .then((res) => res.json(data))
         .then((result) => {
+          dispatch(cambiosReducer(!loginStatus.cambios));
+
           resolve(result);
         })
         .catch((error) => reject(error))
@@ -118,7 +125,6 @@ function EditProfileProfessional() {
     let formData = new FormData();
     formData.append('avatar', file);
 
-    console.log(formData, file, 'el form data');
     axios({
       url: 'https://container-service-1.utth4a3kjn6m0.us-west-2.cs.amazonlightsail.com/user/photo',
       method: 'POST',
@@ -143,7 +149,6 @@ function EditProfileProfessional() {
     let formData = new FormData();
     formData.append('images', file);
 
-    console.log(formData, file, 'el form data');
     axios({
       url: 'https://container-service-1.utth4a3kjn6m0.us-west-2.cs.amazonlightsail.com/user/images',
       method: 'PUT',
@@ -167,7 +172,6 @@ function EditProfileProfessional() {
   const handleOnSubmit = (e) => {
     e.preventDefault();
     if (userStatus.user.token) {
-      console.log(formData, 'QUIERO SABER QUIEN SE HA TOMADO TODO EL VINO');
       postEditUser(formData);
 
       /*       localStorage.setItem('newFormData', JSON.stringify(newFormData)); */
@@ -218,8 +222,6 @@ function EditProfileProfessional() {
     /* setNewFormData({ ...formData, professional: select }); */
   };
 
-  console.log(selectUsuario);
-
   /* console.log(newFormData, 'NEWFORMDATA= FORMDATA + SELECT'); */
 
   const userSchema = yup.object().shape({
@@ -253,13 +255,14 @@ function EditProfileProfessional() {
   });
   return (
     <div>
-      <div className=' ml-40 mr-40'>
-        <header className='text-labelGrayColor font-bold text-4xl mb-10 flex-shrink-0 mt-8'>
+      <div className=' mx-auto'>
+        <header className='text-labelGrayColor font-bold text-4xl mb-10 mt-10 flex-shrink-0 container mx-auto'>
           Editar tu perfil
+          <h3 className=' font-bold text-lg text-black '>
+            Información Personal
+          </h3>
         </header>
-        <h3 className='text-labelGrayColor font-bold mb- mt-24 text-2xl mb-8 '>
-          Información Personal
-        </h3>
+
         <Formik
           initialValues={{
             professional: '',
@@ -275,12 +278,12 @@ function EditProfileProfessional() {
           }}
           validationSchema={userSchema}
         >
-          <Form className='container' onSubmit={handleOnSubmit}>
+          <Form className='container mx-auto p-5' onSubmit={handleOnSubmit}>
             <div className='grid gap-x-64 mb-6 grid-cols-8 grid-rows-5 '>
-              <div className='col-start-1 col-end-2 row-start-1 row-end-2 mt-8 '>
+              <div className='col-start-1 col-end-2 row-start-1 row-end-2 mt-8 p-5'>
                 <label
                   className=' font-bold block text-labelColor whitespace-nowrap'
-                  htmlFor='password'
+                  htmlFor='professional'
                 >
                   CLIENTE O PROFESIONAL?
                 </label>
@@ -306,32 +309,12 @@ function EditProfileProfessional() {
                   component='p'
                   className='font-bold  text-[#ffffff]'
                 />
-                <div className='mb-24 mt-6'>
-                  <div className='mb-6'>
-                    <label for='images' className='whitespace-nowrap font-bold'>
-                      Elige una foto de perfil
-                    </label>
-                    <input
-                      className='mt-2'
-                      type='file'
-                      id='images'
-                      name='images'
-                      accept='image/png, image/jpeg'
-                      value={filesImages}
-                      onChange={(event) => {
-                        (filesImages = event.target.files[0]),
-                          putImages(event.target.files[0]),
-                          console.log(event, 'el avatar');
-                      }}
-                    />
-                  </div>
-                  <div>
-                    <label for='avatar' className='whitespace-nowrap font-bold'>
-                      Carga fotos de tus trabajos anteriores:
-                    </label>
+
+                <div className='container flex mt-5 mb-10 flex-wrap'>
+                  <div className=''>
+                    <label htmlFor='avatar'>Choose a profile picture:</label>
 
                     <input
-                      className='mt-2'
                       type='file'
                       id='avatar'
                       name='avatar'
@@ -344,8 +327,24 @@ function EditProfileProfessional() {
                       }}
                     />
                   </div>
+                  <div className='mt-5'>
+                    <label htmlFor='images'>Choose a picture:</label>
+                    <input
+                      type='file'
+                      id='images'
+                      name='images'
+                      accept='image/png, image/jpeg'
+                      value={filesImages}
+                      onChange={(event) => {
+                        (filesImages = event.target.files[0]),
+                          putImages(event.target.files[0]),
+                          console.log(event, 'el avatar');
+                      }}
+                    />
+                  </div>
                 </div>
               </div>
+
               {selectUsuario === 'false' ? (
                 <>
                   <div className=' w-full col-span-1 row-start-2 row-end-3 -mr-6 flex-shrink-0 mt-5'>
@@ -505,7 +504,7 @@ function EditProfileProfessional() {
                       className='whitespace-nowrap text-labelColor'
                     />
                   </div>
-                  <div className='row-start-3 row-end-4 col-start-1 col-end-2 -mr-6 flex-shrink-0  -mt-60'>
+                  <div className='row-start-3 row-end-4 col-start-1 col-end-2 -mr-6 flex-shrink-0 -mt-24'>
                     <label
                       className=' font-bold block text-labelColor mt-5 '
                       htmlFor='country'
@@ -517,13 +516,11 @@ function EditProfileProfessional() {
                       name='country'
                       id='country'
                       type='text'
-                      className='w-[240px] py-[9px] focus: outline-focusColor rounded-xl  border-labelGrayColor border-2 placeholder:-translate-x-6   '
+                      className='px-2 py-2.5 focus: outline-focusColor rounded-xl  border-labelGrayColor border-2 placeholder:-translate-x-6  '
                       onChange={handleOnChange}
                       value={formData.country}
                     >
-                      <option hidden selected>
-                        Selecciona una opción
-                      </option>
+                      <option hidden>Selecciona una opción</option>
                       <option value='argentina'>Argentina</option>
                       <option value='chile'>Chile</option>
                       <option value='colombia'>Colombia</option>
@@ -535,7 +532,7 @@ function EditProfileProfessional() {
                       className='whitespace-nowrap text-labelColor'
                     />
                   </div>
-                  <div className='col-start-2 col-end-3 row-start-3 row-end-4 -mr-6 flex-shrink-0 -mt-60'>
+                  <div className='col-start-2 col-end-3 row-start-3 row-end-4 -mr-6 flex-shrink-0 -mt-24'>
                     <label
                       className=' font-bold block text-labelColor mt-5 '
                       htmlFor='city'
@@ -556,7 +553,7 @@ function EditProfileProfessional() {
                       className='whitespace-nowrap text-labelColor'
                     />
                   </div>
-                  <div className='col-start-3 col-end-4 row-start-3 row-end-4 -mr-6 flex-shrink-0  -mt-60'>
+                  <div className='col-start-3 col-end-4 row-start-3 row-end-4 -mr-6 flex-shrink-0 -mt-24'>
                     <label
                       className=' font-bold block whitespace-nowrap text-labelColor mt-5 '
                       htmlFor='zipCode'
@@ -577,7 +574,7 @@ function EditProfileProfessional() {
                       className='whitespace-nowrap text-labelColor'
                     />
                   </div>
-                  <div className='col-start-4 col-end-5 row-start-3 row-end-4 -mr-6 flex-shrink-0 -mt-60'>
+                  <div className='col-start-4 col-end-5 row-start-3 row-end-4 -mr-6 flex-shrink-0 -mt-24'>
                     <label
                       className=' font-bold block text-labelColor mt-5 whitespace-nowrap'
                       htmlFor='password'
@@ -598,7 +595,7 @@ function EditProfileProfessional() {
                       className='whitespace-nowrap text-labelColor'
                     />
                   </div>
-                  <div className='col-start-1 col-end-2 -mr-6 flex-shrink-0 -mt-96'>
+                  <div className='col-start-1 col-end-2 -mr-6 flex-shrink-0 -mt-24'>
                     <label
                       className=' font-bold block text-labelColor mt-5 '
                       htmlFor='password'
@@ -614,9 +611,7 @@ function EditProfileProfessional() {
                       onChange={handleOnChange}
                       value={formData.job}
                     >
-                      <option hidden selected>
-                        Selecciona una opción
-                      </option>
+                      <option hidden>Selecciona una opción</option>
                       <option value='63f4c2d13174deb8a1c47222'>
                         Electricista
                       </option>
@@ -645,17 +640,17 @@ function EditProfileProfessional() {
                       className='font-bold  text-[#ffffff]'
                     />
                   </div>
-                  <div className='col-start-2 col-end-5 row-start-4 row-end-6 -mr-6 flex-shrink-0 -mt-96'>
+                  <div className='col-start-2 col-end-5 row-start-4 row-end-6 -mr-6 flex-shrink-0 -mt-24'>
                     <label
                       className=' font-bold block text-labelColor mt-5 whitespace-nowrap'
-                      htmlFor='description'
+                      htmlFor='password'
                     >
                       Descripción
                     </label>
                     <Field
                       name='description'
                       id='description'
-                      type='text'
+                      type='textarea'
                       className=' w-full px-2 pb-24 text-start focus: outline-focusColor rounded-xl  border-labelGrayColor border-2 placeholder:-translate-x-6  '
                       onChange={handleOnChange}
                       defaultValue={formData.description}
