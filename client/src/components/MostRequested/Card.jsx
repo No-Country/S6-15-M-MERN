@@ -1,15 +1,18 @@
 import { createSearchParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { mustLoginReducer } from '../../features/booleans/booleanSlice';
+import { useEffect, useState } from 'react';
 
 const Card = ({ imagen, title, description, price, id }) => {
   const navigate = useNavigate();
-  const logged = JSON.parse(localStorage.getItem('user'));
   const dispatch = useDispatch();
+  const [logged, setLogged] = useState();
   const loginStatus = useSelector((state) => state.modales);
 
+  
+
   const openCard = (titulo) => {
-    logged !== null
+    JSON.parse(localStorage.getItem('user')) !== null
       ? navigate({
           pathname: '/servicesDetail',
           search: createSearchParams({
