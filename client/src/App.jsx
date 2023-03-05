@@ -21,6 +21,7 @@ import InvalidLogin from './components/Modals/InvalidLogin';
 import MustLogin from './components/Modals/MustLogin';
 import AccountExists from './components/Modals/AccountExists';
 import GuardarCambios from './components/Modals/GuardarCambios';
+import ProyectsCarrousel from './components/ProyectsCarrousel';
 
 const App = () => {
   const [isModalOpen, changeModalStatus] = BoolHook(false);
@@ -66,6 +67,9 @@ const App = () => {
             path='/team'
             element={<Team />}
           />
+          <Route
+          path='/prueba'
+          element={<ProyectsCarrousel />} />
           
         </Routes>
       </section>
