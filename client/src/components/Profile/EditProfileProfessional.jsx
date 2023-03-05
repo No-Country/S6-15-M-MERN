@@ -255,10 +255,10 @@ function EditProfileProfessional() {
   });
   return (
     <div>
-      <div className=' mx-auto'>
-        <header className='text-labelGrayColor font-bold text-4xl mb-10 mt-10 flex-shrink-0 container mx-auto'>
+      <div className=' mx-auto  '>
+        <header className='ml-8 max-[460px]:text-2xl max-[460px]:ml-6 text-labelGrayColor font-bold text-4xl mb-10 mt-10 flex-shrink-0  '>
           Editar tu perfil
-          <h3 className=' font-bold text-lg text-black '>
+          <h3 className=' max-[460px]:-mb-12 font-bold text-lg text-black '>
             Información Personal
           </h3>
         </header>
@@ -278,11 +278,14 @@ function EditProfileProfessional() {
           }}
           validationSchema={userSchema}
         >
-          <Form className='container mx-auto p-5' onSubmit={handleOnSubmit}>
-            <div className='grid gap-x-64 mb-6 grid-cols-8 grid-rows-5 '>
-              <div className='col-start-1 col-end-2 row-start-1 row-end-2 mt-8 p-5'>
+          <Form
+            className='max-[1280px]:-ml-42 max-[1110px]:ml-2 max-[1082px]:-ml-2 max-[1082px]:-mr-48 container  p-5  '
+            onSubmit={handleOnSubmit}
+          >
+            <div className=' max-[910px]:w-[200px] grid gap-x-64 mb-6 grid-cols-8 grid-rows-5 max-[460px]:grid-rows-12 max-[460px]:-mb-64  '>
+              <div className='max-[460px]:-ml-6 col-start-1 col-end-2 row-start-1 row-end-2 mt-8 p-5 '>
                 <label
-                  className=' font-bold block text-labelColor whitespace-nowrap'
+                  className=' font-bold block text-labelColor whitespace-nowrap mb-4 '
                   htmlFor='professional'
                 >
                   CLIENTE O PROFESIONAL?
@@ -310,44 +313,76 @@ function EditProfileProfessional() {
                   className='font-bold  text-[#ffffff]'
                 />
 
-                <div className='container flex mt-5 mb-10 flex-wrap'>
-                  <div className=''>
-                    <label htmlFor='avatar'>Choose a profile picture:</label>
+                <div className='container flex mt-5 mb-10 flex-wrap  '>
+                  {selectUsuario === 'false' ? (
+                    <>
+                      <div className='mb-4 '>
+                        <label htmlFor='avatar' className='font-bold'>
+                          Agrega una foto de perfil:
+                        </label>
 
-                    <input
-                      type='file'
-                      id='avatar'
-                      name='avatar'
-                      accept='image/png, image/jpeg'
-                      value={filesAvatar}
-                      onChange={(event) => {
-                        (filesAvatar = event.target.files[0]),
-                          putImg(event.target.files[0]),
-                          console.log(event, 'el avatar');
-                      }}
-                    />
-                  </div>
-                  <div className='mt-5'>
-                    <label htmlFor='images'>Choose a picture:</label>
-                    <input
-                      type='file'
-                      id='images'
-                      name='images'
-                      accept='image/png, image/jpeg'
-                      value={filesImages}
-                      onChange={(event) => {
-                        (filesImages = event.target.files[0]),
-                          putImages(event.target.files[0]),
-                          console.log(event, 'el avatar');
-                      }}
-                    />
-                  </div>
+                        <input
+                          type='file'
+                          id='avatar'
+                          name='avatar'
+                          accept='image/png, image/jpeg'
+                          value={filesAvatar}
+                          onChange={(event) => {
+                            (filesAvatar = event.target.files[0]),
+                              putImg(event.target.files[0]),
+                              console.log(event, 'el avatar');
+                          }}
+                        />
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className='mb-4'>
+                        <label htmlFor='avatar' className='font-bold'>
+                          Agrega una foto de perfil:
+                        </label>
+
+                        <input
+                          type='file'
+                          id='avatar'
+                          name='avatar'
+                          accept='image/png, image/jpeg'
+                          value={filesAvatar}
+                          onChange={(event) => {
+                            (filesAvatar = event.target.files[0]),
+                              putImg(event.target.files[0]),
+                              console.log(event, 'el avatar');
+                          }}
+                        />
+                      </div>
+                      <div className='mt-5 mb-4 max-[320px]:w-[160px]'>
+                        <label
+                          htmlFor='images'
+                          className='font-bold max-[320px]:text-base'
+                        >
+                          Agrega fotos de tus trabajos anteriores:
+                        </label>
+                        <input
+                          type='file'
+                          id='images'
+                          name='images'
+                          accept='image/png, image/jpeg'
+                          value={filesImages}
+                          onChange={(event) => {
+                            (filesImages = event.target.files[0]),
+                              putImages(event.target.files[0]),
+                              console.log(event, 'el avatar');
+                          }}
+                        />
+                      </div>
+                    </>
+                  )}
                 </div>
               </div>
 
               {selectUsuario === 'false' ? (
                 <>
-                  <div className=' w-full col-span-1 row-start-2 row-end-3 -mr-6 flex-shrink-0 mt-5'>
+                  <div className='  max-[320px]:ml-[35px] max-[360px]:ml-[35px] max-[886px]:ml-[20px] max-[460px]:ml-[28px] w-full col-span-1 row-start-2 row-end-3 -mr-6 flex-shrink-0 -mt-4'>
                     <label className='font-bold block text-labelColor  '>
                       Nombre
                     </label>
@@ -355,7 +390,7 @@ function EditProfileProfessional() {
                       name='name'
                       id='name'
                       type='text'
-                      className=' px-2 py-2 focus: outline-focusColor rounded-xl border-labelGrayColor border-2'
+                      className='max-[360px]:w-[230px] max-[505px]:w-[175px] max-[886px]:w-[210px] max-[1060px]:w-[190px] max-[460px]:w-[290px]  max-[460px]:px-8 px-2 py-2 focus: outline-focusColor rounded-xl border-labelGrayColor border-2'
                       onChange={handleOnChange}
                       /*  defaultValue={formData.name} */
                       value={formData.name}
@@ -366,7 +401,7 @@ function EditProfileProfessional() {
                       className='text-labelColor whitespace-nowrap'
                     />
                   </div>
-                  <div className=' w-full col-start-2 col-end-3 row-start-2 row-end-3 -mr-6 flex-shrink-0 mt-5'>
+                  <div className='max-[320px]:ml-[35px]  max-[360px]:ml-[35px] max-[505px]:-ml-[45px] max-[535px]:-ml-[12px] max-[886px]:ml-[20px] max-[910px]:-ml-10 max-[1060px]:-ml-8 max-[460px]:ml-[28px] max-[460px]:row-start-3 max-[460px]:col-start-1 max-[460px]:-mt-[210px] w-full col-start-2 col-end-3 row-start-2 row-end-3 -mr-6 flex-shrink-0 -mt-4'>
                     <label
                       className='  font-bold block text-labelColor  '
                       htmlFor='password '
@@ -377,7 +412,7 @@ function EditProfileProfessional() {
                       name='lastname'
                       id='lastName'
                       type='text'
-                      className='  px-2 py-2 focus: outline-focusColor  rounded-xl border-labelGrayColor border-2 placeholder:-translate-x-6'
+                      className='max-[360px]:w-[230px] max-[505px]:w-[175px] max-[886px]:w-[210px] max-[1060px]:w-[190px] max-[460px]:px-8 px-2 py-2 max-[460px]:w-[290px] focus: outline-focusColor  rounded-xl border-labelGrayColor border-2 placeholder:-translate-x-6'
                       onChange={handleOnChange}
                       value={formData.lastname}
                     />
@@ -387,7 +422,7 @@ function EditProfileProfessional() {
                       className='text-labelColor whitespace-nowrap'
                     />
                   </div>
-                  <div className='w-full col-start-3 col-end-4 row-start-2 row-end-3 -mr-6 flex-shrink-0 mt-5'>
+                  <div className=' max-[320px]:ml-[35px] max-[360px]:ml-[35px]  max-[886px]:row-start-4 max-[886px]:-mt-[185px] max-[886px]:ml-[20px] max-[886px]:col-start-1 max-[886px]:col-end-2 max-[910px]:-ml-20 max-[1060px]:-ml-16 max-[460px]:ml-[28px] max-[460px]:row-start-3 max-[460px]:col-start-1 max-[460px]:col-end-2 max-[460px]:-mt-[120px] w-full col-start-3 col-end-4 row-start-2 row-end-3 -mr-6 flex-shrink-0 -mt-4'>
                     <label
                       className=' font-bold block text-labelColor whitespace-nowrap '
                       htmlFor='email'
@@ -398,21 +433,21 @@ function EditProfileProfessional() {
                       name='email'
                       id='email'
                       type='email'
-                      className=' px-2 py-2 focus: outline-focusColor rounded-xl   border-labelGrayColor border-2 placeholder:-translate-x-6 '
+                      className='max-[360px]:w-[230px] max-[505px]:w-[175px] max-[886px]:w-[210px] max-[320px]:-pr-[200px] max-[1060px]:w-[190px] max-[460px]:w-[290px] max-[460px]:mb-12 max-[460px]:px-8 px-2 py-2 focus: outline-focusColor rounded-xl   border-labelGrayColor border-2 placeholder:-translate-x-6 '
                       onChange={handleOnChange}
                       /* defaultValue={updatedUser.email} */
                       value={formData.email}
                     />
                     <ErrorMessage
-                      name='passwordConfirmation'
+                      name='email'
                       component='p'
                       className='text-labelColor whitespace-nowrap'
                     />
                   </div>
-                  <div className='col-start-1 col-end-2 item '>
+                  <div className='max-[390px]:-mt-[380px] max-[360px]:-mt-[590px] max-[360px]:ml-[35px] max-[360px]:w-[35px] max-[886px]:-mt-[350px] max-[886px]:ml-[20px] max-[460px]:row-start-5 max-[460px]:-mt-[590px] max-[460px]:ml-[27px]   -mt-48 col-start-1 col-end-2 item '>
                     <button
                       type='submit'
-                      className='bg-btnColor w-48 h-12  rounded-xl text-xl  text-[#ffffff] font-bold  active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all  active:hover:bg-[#83e3be]  disabled:cursor-not-allowed  mt-8  hover:shadow-228b active:shadow'
+                      className=' max-[360px]:w-[128px] bg-btnColor w-48 h-12  rounded-xl text-xl  text-[#ffffff] font-bold  active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all  active:hover:bg-[#83e3be]  disabled:cursor-not-allowed  hover:shadow-228b active:shadow'
                     >
                       Guardar
                     </button>
@@ -420,7 +455,7 @@ function EditProfileProfessional() {
                 </>
               ) : (
                 <>
-                  <div className=' w-full col-span-1 row-start-2 row-end-3 -mr-6 flex-shrink-0 -mt-12'>
+                  <div className=' max-[320px]:ml-[35px] max-[360px]:ml-16 max-[886px]:ml-[20px] max-[460px]:ml-[28px] w-full col-span-1 row-start-2 row-end-3 -mr-6 flex-shrink-0 -mt-4'>
                     <label className='font-bold block text-labelColor  '>
                       Nombre
                     </label>
@@ -428,7 +463,7 @@ function EditProfileProfessional() {
                       name='name'
                       id='name'
                       type='text'
-                      className=' px-2 py-2 focus: outline-focusColor rounded-xl border-labelGrayColor border-2'
+                      className='max-[360px]:w-[230px] max-[505px]:w-[175px] max-[886px]:w-[210px] max-[1060px]:w-[190px] max-[460px]:w-[290px]  max-[460px]:px-8 px-2 py-2 focus: outline-focusColor rounded-xl border-labelGrayColor border-2'
                       onChange={handleOnChange}
                       defaultValue={formData.name}
                       value={formData.name}
@@ -439,10 +474,10 @@ function EditProfileProfessional() {
                       className=' text-labelColor whitespace-nowrap'
                     />
                   </div>
-                  <div className=' w-full col-start-2 col-end-3 row-start-2 row-end-3 -mr-6 flex-shrink-0 -mt-12'>
+                  <div className='max-[320px]:ml-[35px] max-[360px]:ml-16 max-[505px]:-ml-[45px] max-[535px]:-ml-[12px] max-[886px]:ml-[20px] max-[910px]:-ml-10 max-[1060px]:-ml-8 max-[460px]:ml-[28px] max-[460px]:row-start-3 max-[460px]:col-start-1 max-[460px]:-mt-[285px] w-full col-start-2 col-end-3 row-start-2 row-end-3 -mr-6 flex-shrink-0 -mt-4'>
                     <label
                       className='  font-bold block text-labelColor  '
-                      htmlFor='password '
+                      htmlFor='lastname '
                     >
                       Apellido
                     </label>
@@ -450,7 +485,7 @@ function EditProfileProfessional() {
                       name='lastname'
                       id='lastName'
                       type='text'
-                      className='  px-2 py-2 focus: outline-focusColor  rounded-xl border-labelGrayColor border-2 placeholder:-translate-x-6'
+                      className='max-[360px]:w-[230px] max-[505px]:w-[175px] max-[886px]:w-[210px] max-[1060px]:w-[190px] max-[460px]:px-8 px-2 py-2 max-[460px]:w-[290px] focus: outline-focusColor  rounded-xl border-labelGrayColor border-2 placeholder:-translate-x-6'
                       onChange={handleOnChange}
                       value={formData.lastname}
                     />
@@ -460,7 +495,7 @@ function EditProfileProfessional() {
                       className=' text-labelColor whitespace-nowrap'
                     />
                   </div>
-                  <div className='w-full col-start-3 col-end-4 row-start-2 row-end-3 -mr-6 flex-shrink-0 -mt-12'>
+                  <div className='max-[320px]:ml-[35px] max-[360px]:ml-16 max-[886px]:row-start-3 max-[886px]:-mt-[295px] max-[886px]:ml-[20px] max-[886px]:col-start-1 max-[886px]:col-end-2 max-[910px]:-ml-20 max-[1060px]:-ml-16 max-[460px]:ml-[28px] max-[460px]:row-start-3 max-[460px]:col-start-1 max-[460px]:col-end-2 max-[460px]:-mt-[180px] w-full col-start-3 col-end-4 row-start-2 row-end-3 -mr-6 flex-shrink-0 -mt-4'>
                     <label
                       className=' font-bold block text-labelColor whitespace-nowrap '
                       htmlFor='email'
@@ -471,19 +506,19 @@ function EditProfileProfessional() {
                       name='email'
                       id='email'
                       type='email'
-                      className=' px-2 py-2 focus: outline-focusColor rounded-xl   border-labelGrayColor border-2 placeholder:-translate-x-6 '
+                      className='max-[360px]:w-[230px] max-[505px]:w-[175px] max-[886px]:w-[210px] max-[320px]:-pr-[200px] max-[1060px]:w-[190px] max-[460px]:w-[290px] max-[460px]:px-8 px-2 py-2 focus: outline-focusColor rounded-xl   border-labelGrayColor border-2 placeholder:-translate-x-6 '
                       onChange={handleOnChange}
                       defaultValue={formData.email}
                       value={formData.email}
                     />
                     <ErrorMessage
-                      name='passwordConfirmation'
+                      name='email'
                       component='p'
                       className=' text-labelColor whitespace-nowrap'
                     />
                   </div>
 
-                  <div className=' w-full row-start-2 row-end-3 col-start-4 col-end-5 -mr-6 flex-shrink-0 -mt-12'>
+                  <div className='max-[320px]:ml-[35px] max-[360px]:ml-16 max-[505px]:-ml-[45px] max-[535px]:-ml-[12px] max-[886px]:ml-[20px] max-[886px]:row-start-3 max-[886px]:-mt-[295px] max-[886px]:col-start-2 max-[886px]:col-end-3 max-[910px]:-ml-[120px] max-[1060px]:-ml-24 max-[460px]:ml-[28px] max-[460px]:row-start-4 max-[460px]:col-start-1 max-[460px]:col-end-2 max-[460px]:-mt-[75px]   w-full row-start-2 row-end-3 col-start-4 col-end-5 -mr-6 flex-shrink-0 -mt-4'>
                     <label
                       className=' font-bold block text-labelColor whitespace-nowrap '
                       htmlFor='telefono'
@@ -494,7 +529,7 @@ function EditProfileProfessional() {
                       name='phone'
                       id='telefono'
                       type='number'
-                      className=' px-2 py-2 focus: outline-focusColor  rounded-xl   border-labelGrayColor border-2 placeholder:-translate-x-6 '
+                      className='max-[360px]:w-[230px] max-[505px]:w-[175px] max-[886px]:w-[210px] max-[1060px]:w-[190px] max-[1125px]:mr-[35px] max-[460px]:w-[290px] max-[460px]:px-8 px-2 py-2 focus: outline-focusColor  rounded-xl   border-labelGrayColor border-2 placeholder:-translate-x-6 '
                       onChange={handleOnChange}
                       value={formData.phone}
                     />
@@ -504,7 +539,7 @@ function EditProfileProfessional() {
                       className='whitespace-nowrap text-labelColor'
                     />
                   </div>
-                  <div className='row-start-3 row-end-4 col-start-1 col-end-2 -mr-6 flex-shrink-0 -mt-24'>
+                  <div className='max-[320px]:ml-[35px] max-[360px]:ml-16 max-[886px]:ml-[20px] max-[886px]:row-start-5 max-[886px]:-mt-[595px] max-[460px]:ml-[28px] max-[460px]:row-start-6 max-[460px]:col-start-1 max-[460px]:col-end-2 max-[460px]:-mt-[365px]   row-start-3 row-end-4 col-start-1 col-end-2 -mr-6 flex-shrink-0 -mt-64'>
                     <label
                       className=' font-bold block text-labelColor mt-5 '
                       htmlFor='country'
@@ -516,7 +551,7 @@ function EditProfileProfessional() {
                       name='country'
                       id='country'
                       type='text'
-                      className='px-2 py-2.5 focus: outline-focusColor rounded-xl  border-labelGrayColor border-2 placeholder:-translate-x-6  '
+                      className='max-[360px]:w-[230px] max-[505px]:w-[175px] max-[886px]:w-[210px] max-[1060px]:w-[190px] max-[460px]:w-[290px] px-[23px] py-[9px] focus: outline-focusColor rounded-xl  border-labelGrayColor border-2 placeholder:-translate-x-6  '
                       onChange={handleOnChange}
                       value={formData.country}
                     >
@@ -532,7 +567,7 @@ function EditProfileProfessional() {
                       className='whitespace-nowrap text-labelColor'
                     />
                   </div>
-                  <div className='col-start-2 col-end-3 row-start-3 row-end-4 -mr-6 flex-shrink-0 -mt-24'>
+                  <div className='max-[320px]:ml-[35px] max-[360px]:ml-16 max-[505px]:-ml-[45px] max-[535px]:-ml-[12px] max-[886px]:ml-[20px] max-[886px]:row-start-3 max-[886px]:-mt-[220px]  max-[910px]:-ml-10 max-[1060px]:-ml-8 max-[460px]:ml-[28px] max-[460px]:row-start-6 max-[460px]:col-start-1 max-[460px]:-mt-[258px]    col-start-2 col-end-3 row-start-3 row-end-4 -mr-6 flex-shrink-0 -mt-64'>
                     <label
                       className=' font-bold block text-labelColor mt-5 '
                       htmlFor='city'
@@ -543,7 +578,7 @@ function EditProfileProfessional() {
                       name='city'
                       id='city'
                       type='text'
-                      className=' px-2 py-2 focus: outline-focusColor rounded-xl  border-labelGrayColor border-2 placeholder:-translate-x-6  '
+                      className='max-[360px]:w-[230px] max-[505px]:w-[175px] max-[886px]:w-[210px] max-[1060px]:w-[190px] max-[460px]:w-[290px] max-[460px]:px-8 px-2 py-2 focus: outline-focusColor rounded-xl  border-labelGrayColor border-2 placeholder:-translate-x-6  '
                       onChange={handleOnChange}
                       value={formData.city}
                     />
@@ -553,7 +588,7 @@ function EditProfileProfessional() {
                       className='whitespace-nowrap text-labelColor'
                     />
                   </div>
-                  <div className='col-start-3 col-end-4 row-start-3 row-end-4 -mr-6 flex-shrink-0 -mt-24'>
+                  <div className='max-[320px]:ml-[35px] max-[360px]:ml-16 max-[886px]:ml-[20px] max-[886px]:row-start-5 max-[886px]:col-start-1 max-[886px]:col-end-2 max-[886px]:-mt-[497px] max-[910px]:-ml-20 max-[1060px]:-ml-16 max-[460px]:ml-[28px] max-[460px]:row-start-7 max-[460px]:col-start-1 max-[460px]:col-end-2 max-[460px]:-mt-[154px] col-start-3 col-end-4 row-start-3 row-end-4 -mr-6 flex-shrink-0 -mt-64'>
                     <label
                       className=' font-bold block whitespace-nowrap text-labelColor mt-5 '
                       htmlFor='zipCode'
@@ -564,7 +599,7 @@ function EditProfileProfessional() {
                       name='postalCode'
                       id='zipCode'
                       type='number'
-                      className='  px-2 py-2 focus: outline-focusColor rounded-xl  border-labelGrayColor border-2 placeholder:-translate-x-6  '
+                      className='max-[886px]:w-[110px] max-[1060px]:w-[190px] max-[460px]:w-[165px]  px-2 py-2 focus: outline-focusColor rounded-xl  border-labelGrayColor border-2 placeholder:-translate-x-6  '
                       onChange={handleOnChange}
                       value={formData.postalCode}
                     />
@@ -574,10 +609,10 @@ function EditProfileProfessional() {
                       className='whitespace-nowrap text-labelColor'
                     />
                   </div>
-                  <div className='col-start-4 col-end-5 row-start-3 row-end-4 -mr-6 flex-shrink-0 -mt-24'>
+                  <div className='max-[320px]:ml-[35px] max-[360px]:ml-16 max-[505px]:-ml-[45px] max-[535px]:-ml-[12px] max-[886px]:row-start-5 max-[886px]:col-start-2 max-[886px]:col-end-3 max-[886px]:-mt-[500px] max-[886px]:ml-[20px] max-[910px]:-ml-[120px] max-[1060px]:-ml-24 max-[460px]:ml-[28px] max-[460px]:row-start-5 max-[460px]:col-start-1 max-[460px]:col-end-2 max-[460px]:-mt-[50px] col-start-4 col-end-5 row-start-3 row-end-4 -mr-6 flex-shrink-0 -mt-64'>
                     <label
                       className=' font-bold block text-labelColor mt-5 whitespace-nowrap'
-                      htmlFor='password'
+                      htmlFor='dateOfBirty'
                     >
                       Fecha de nacimiento
                     </label>
@@ -585,7 +620,7 @@ function EditProfileProfessional() {
                       name='dateOfBirty'
                       id='dateOfBirty'
                       type='date'
-                      className=' px-2 py-2 focus: outline-focusColor rounded-xl  border-labelGrayColor border-2 placeholder:-translate-x-6  '
+                      className=' max-[886px]:w-[145px] px-2 py-2 focus: outline-focusColor rounded-xl  border-labelGrayColor border-2 placeholder:-translate-x-6  '
                       onChange={handleOnChange}
                       value={formData.dateOfBirty}
                     />
@@ -595,10 +630,10 @@ function EditProfileProfessional() {
                       className='whitespace-nowrap text-labelColor'
                     />
                   </div>
-                  <div className='col-start-1 col-end-2 -mr-6 flex-shrink-0 -mt-24'>
+                  <div className='max-[320px]:ml-[35px] max-[360px]:ml-16 max-[886px]:ml-[20px] max-[886px]:row-start-5 max-[886px]:-mt-[775px] max-[460px]:ml-[28px] max-[460px]:row-start-4 max-[460px]:mt-[58px] col-start-1 col-end-2 -mr-6 flex-shrink-0 -mt-[470px]'>
                     <label
                       className=' font-bold block text-labelColor mt-5 '
-                      htmlFor='password'
+                      htmlFor='jpb'
                     >
                       Oficio
                     </label>
@@ -606,8 +641,8 @@ function EditProfileProfessional() {
                       as='select'
                       name='job'
                       id='job'
-                      type='password'
-                      className=' px-2 py-2 focus: outline-focusColor rounded-xl border-labelGrayColor border-2 placeholder:-translate-x-6  '
+                      type='text'
+                      className=' max-[360px]:w-[230px] max-[505px]:w-[175px] px-2 py-2 focus: outline-focusColor rounded-xl border-labelGrayColor border-2 placeholder:-translate-x-6  '
                       onChange={handleOnChange}
                       value={formData.job}
                     >
@@ -640,10 +675,10 @@ function EditProfileProfessional() {
                       className='font-bold  text-[#ffffff]'
                     />
                   </div>
-                  <div className='col-start-2 col-end-5 row-start-4 row-end-6 -mr-6 flex-shrink-0 -mt-24'>
+                  <div className='max-[320px]:ml-[35px] max-[886px]:-ml-[235px] max-[886px]:row-start-6 max-[886px]:-mt-[1020px] max-[886px]:w-[428px] max-[460px]:ml-[30px] max-[460px]:row-start-7 max-[460px]:-mt-[575px] max-[460px]:col-start-1 max-[460px]:w-[340px]  col-start-2 col-end-5 row-start-4 row-end-6 -mr-6 flex-shrink-0 -mt-[470px]'>
                     <label
                       className=' font-bold block text-labelColor mt-5 whitespace-nowrap'
-                      htmlFor='password'
+                      htmlFor='description'
                     >
                       Descripción
                     </label>
@@ -651,7 +686,7 @@ function EditProfileProfessional() {
                       name='description'
                       id='description'
                       type='textarea'
-                      className=' w-full px-2 pb-24 text-start focus: outline-focusColor rounded-xl  border-labelGrayColor border-2 placeholder:-translate-x-6  '
+                      className='max-[320px]:w-[228px] max-[505px]:w-[350px] max-[360px]:w-[278px] max-[400px]:w-[310px] w-full px-2 pb-24 text-start focus: outline-focusColor rounded-xl  border-labelGrayColor border-2 placeholder:-translate-x-6  '
                       onChange={handleOnChange}
                       defaultValue={formData.description}
                       value={formData.description}
@@ -662,10 +697,10 @@ function EditProfileProfessional() {
                       className='whitespace-nowrap text-labelColor'
                     />
                   </div>
-                  <div className='col-start-1 col-end-2 item '>
+                  <div className='max-[320px]:ml-[35px] max-[360px]:ml-[29px] max-[886px]:-mt-[950px] max-[886px]:ml-[20px] -mt-[760px] max-[460px]:-mt-[495px] col-start-1 col-end-2 item '>
                     <button
                       type='submit'
-                      className='bg-btnColor w-48 h-12  rounded-xl text-xl  text-[#ffffff] font-bold  active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all  active:hover:bg-[#83e3be]  disabled:cursor-not-allowed  mt-28  hover:shadow-228b active:shadow'
+                      className='max-[360px]:w-[128px] bg-btnColor w-48 h-12  rounded-xl text-xl  text-[#ffffff] font-bold  active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all  active:hover:bg-[#83e3be]  disabled:cursor-not-allowed  mt-28  hover:shadow-228b active:shadow'
                     >
                       Guardar
                     </button>
