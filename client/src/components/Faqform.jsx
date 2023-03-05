@@ -3,6 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
 import image from "../assets/faqform.png";
 
+
 import emailjs from "@emailjs/browser";
 
 import Swal from 'sweetalert2'
@@ -49,22 +50,31 @@ function Faqform() {
       .then(
         (result) => {
           // console.log(result.text);
-          Swal.fire('Mensaje enviado correctamente, muy pronto recibirá una respuesta.')
+          Swal.fire({
+            icon: 'success',
+            title: 'Todo salió muy bien...',
+            text: 'Muy Pronto Alguien de nuestro equipo se comunicará contigo!',
+          })
         },
         (error) => {
-          console.log(error.text);
+          Swal.fire({
+            icon: 'error',
+            title: 'Uups...',
+            text: 'Algo salio mal!',
+            
+          })
         }
       );
   };
 
   return (
-    <div className="flex max-w-7xl mx-auto mb-28">
-      {" "}
-      {/* bg-[#f5f5f5] rounded-xl  md:m-auto md:w-1/3 xl:m-auto xl: w-1/4 */}
-      <div className="flex w-1/3 items-center justify-center ">
+    <div className="flex  max-w-7xl mx-auto mb-28">
+      
+      
+      <div className=" md:w-1/3 hidden md:block items-center justify-center ">
         <img className=" w-72 h-72" src={image} alt="" />
       </div>
-      <div className=" w-2/3">
+      <div className=" md:w-2/3 ">
         <Formik
           initialValues={{
             name: "",
@@ -83,8 +93,8 @@ function Faqform() {
         >
           <Form ref={form}>
             <div className="flex flex-wrap">
-              <div className="flex flex-row w-full">
-                <div className="p-3 w-1/2">
+              <div className="flex flex-col md:flex-row w-full">
+                <div className="p-3 md:w-1/2">
                   <label className="  font-bold block text-[#313D69] mt-5 mr-56">
                     Nombre
                   </label>
@@ -101,7 +111,7 @@ function Faqform() {
                     className="font-bold text-red-600"
                   />
                 </div>
-                <div className="p-3 w-1/2">
+                <div className="p-3 md:w-1/2">
                   <label className="  font-bold block text-[#313D69] mt-5 mr-56">
                     Email
                   </label>
@@ -120,7 +130,7 @@ function Faqform() {
                 </div>
               </div>
               <div className="flex  flex-row w-full">
-                <div className="p-3 w-1/2">
+                <div className="p-3 md:w-1/2">
                   <label className="  font-bold block text-[#313D69] mt-5 mr-56">
                     Tipo de usuario
                   </label>

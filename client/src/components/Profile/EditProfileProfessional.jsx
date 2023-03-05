@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+
 import { useApi } from '../../hooks/useApi';
 import axios from 'axios';
+import { useDispatch, useSelector} from "react-redux"
 
+import { cambiosReducer} from "../../features/booleans/booleanSlice"
 function EditProfileProfessional() {
   const navigate = useNavigate();
+
 
   //ESTE ES PARA EL CAMBIO DEL SELECT
   const [selectUsuario, setSelectUsuario] = useState('false');
@@ -70,6 +73,7 @@ function EditProfileProfessional() {
     });
   }, [updatedUser]);
 
+
   //ESTE ES EL ESTADO QUE DEBERIA CARGARSE CON LOS DATOS ACTUALIZADOS
   //Y ES EL QUE SE ENVIA AL BACKEND
 
@@ -106,6 +110,10 @@ function EditProfileProfessional() {
       )
         .then((res) => res.json(data))
         .then((result) => {
+          dispatch(
+            cambiosReducer(!loginStatus.cambios)
+          )
+
           resolve(result);
         })
         .catch((error) => reject(error))
@@ -114,10 +122,11 @@ function EditProfileProfessional() {
 
   let filesAvatar = null;
 
+
+
   const putImg = async (file) => {
     let formData = new FormData();
     formData.append('avatar', file);
-
     console.log(formData, file, 'el form data');
     axios({
       url: 'https://container-service-1.utth4a3kjn6m0.us-west-2.cs.amazonlightsail.com/user/photo',
@@ -138,6 +147,7 @@ function EditProfileProfessional() {
   };
 
   let filesImages = null;
+
 
   const putImages = async (file) => {
     let formData = new FormData();
@@ -218,7 +228,7 @@ function EditProfileProfessional() {
     /* setNewFormData({ ...formData, professional: select }); */
   };
 
-  console.log(selectUsuario);
+
 
   /* console.log(newFormData, 'NEWFORMDATA= FORMDATA + SELECT'); */
 
@@ -253,13 +263,14 @@ function EditProfileProfessional() {
   });
   return (
     <div>
-      <div className=' ml-40 mr-40'>
-        <header className='text-labelGrayColor font-bold text-4xl mb-10 flex-shrink-0'>
+      <div className=' mx-auto'>
+        <header className='text-labelGrayColor font-bold text-4xl mb-10 mt-10 flex-shrink-0 container mx-auto'>
           Editar tu perfil
+          <h3 className=' font-bold text-lg text-black '>
+            Información Personal
+          </h3>
         </header>
-        <h3 className='text-labelGrayColor font-bold mb- mt-24 '>
-          Información Personal
-        </h3>
+
         <Formik
           initialValues={{
             professional: '',
@@ -275,7 +286,7 @@ function EditProfileProfessional() {
           }}
           validationSchema={userSchema}
         >
-          <Form className='container' onSubmit={handleOnSubmit}>
+          <Form className='container mx-auto p-5' onSubmit={handleOnSubmit}>
             <div className='grid gap-x-64 mb-6 grid-cols-8 grid-rows-5 '>
               <div className='col-start-1 col-end-2 row-start-1 row-end-2 mt-8 '>
                 <label
@@ -511,7 +522,7 @@ function EditProfileProfessional() {
                       onChange={handleOnChange}
                       value={formData.country}
                     >
-                      <option hidden selected>
+                      <option hidden>
                         Selecciona una opción
                       </option>
                       <option value='argentina'>Argentina</option>
@@ -604,7 +615,7 @@ function EditProfileProfessional() {
                       onChange={handleOnChange}
                       value={formData.job}
                     >
-                      <option hidden selected>
+                      <option hidden >
                         Selecciona una opción
                       </option>
                       <option value='63f4c2d13174deb8a1c47222'>

@@ -4,18 +4,39 @@ import Telefono from '../../assets/Telefono.png';
 import Correo from '../../assets/Correo.png';
 import envelope from '../../assets/envelope.png';
 import { opcionesApp } from '../../utils/opcionesApp';
+import marta from '../../assets/marta.png';
+import loading from "../../assets/loading.gif"
 
 import { useSearchParams, useParams, useNavigate } from 'react-router-dom';
 import { useApi } from '../../hooks/useApi';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useSelector } from 'react-redux';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUpload } from '@fortawesome/free-solid-svg-icons';
 
+import ProyectsCarrousel from '../ProyectsCarrousel';
+
+
+
+
+
+
+  const [imagen, setImagen] = useState(
+    'https://firebasestorage.googleapis.com/v0/b/db-demo-e7d23.appspot.com/o/banners%2Felectricista.png?alt=media&token=41be896c-0152-4d4c-a6c4-79f14258b954'
+  );
+
+
+
+
+
+
+
 export default function PerfilProfesional() {
   const profile = useSelector((state) => state.profile);
   const jobs = useSelector((state) => state.jobs);
+  /*  console.log(profile.profile.user.avatarURL.path, "el avatarrrrrrrrrrrrrrrrrrrrrrrr"); */
+  const ref = useRef(null);
 
   const { returnJob, returnBanners } = opcionesApp();
 
@@ -26,6 +47,7 @@ export default function PerfilProfesional() {
   const [readJobs, , , , getProfessional] = useApi();
 
   const [searchparams] = useSearchParams();
+  const [perfil, setPerfil] = useState(null);
 
   /* {profesionalId === JSON.parse(localStorage.getItem("user")).id && console.log("Si")} */
 
@@ -34,16 +56,19 @@ export default function PerfilProfesional() {
   console.log(JSON.parse(localStorage.getItem("user")).id);
  */
 
+  console.log(profile);
   useEffect(() => {
     readJobs();
     getProfessional(profesionalId);
   }, []);
 
+
+
   useEffect(() => {
     setTimeout(() => {
       if (
         jobs.jobs.filter((job) => job._id === profile.profile.user.job)[0] !==
-          undefined &&
+        undefined &&
         profile.profile.user !== undefined
       ) {
         setImagen(
@@ -57,11 +82,12 @@ export default function PerfilProfesional() {
   const navigate = useNavigate();
 
   const sendMessage = () => {
-    const email = profile.profile.user.email;
+
+    const email = perfil.profile.user.email;
     navigate('/sol-servicio', { state: { email } });
   };
 
-  return (
+  return (profile.profile.user.avatarURL !== undefined && profile.profile.user._id === profesionalId) ? (
     <div>
       {/* <span className="w-[284px] ml-[10px]  top-[-4] font-['Nunito Sans'] not-italic font-bold leading-[33px] flex items-center text-[#083A50] mb-3">
         Configuración de tu perfil
@@ -71,71 +97,71 @@ export default function PerfilProfesional() {
         className='w-full height-[146px] flex-none order-1 self-stretch grow-0'
         src={returnBanners(profile.profile.user.job)}
       />
-      <div className='container mx-auto max-[320px]:w-100 '>
-        <div className='flex w-full'>
-          <div className=''>
-            <div className='relative top-[-55px] flex '>
-              <img
-                className=' max-[320px]:ml-4 max-[320px]:w-28 max-[320px]:h-28 w-64 h-64 mx-auto max-[428px]:w-32 max-[428px]:h-32 max-[1200px]:w-48 max-[1200px]:h-48  rounded-full border-8 border-[#26B893] border-opacity-50 '
-                src={
-                  profile.profile.user.avatarURL !== ''
-                    ? profile.profile.user.avatarURL
-                    : Foto
-                }
-              />
-              {profesionalId ===
-                JSON.parse(localStorage.getItem('user')).id && (
-                <button className='bg-[#43936c] w-9 h-9 rounded-full text-white relative left-[116px] top-[-25px]'>
-                  <FontAwesomeIcon icon={faUpload} />
-                </button>
-              )}
-
-              {/* <img
-            className='relative flex flex-row justify-center items-center p-0 gap-4 left-[10px] top-[-200px] w-[204px]'
-            src={Enviame}
-          /> */}
-            </div>
-
-            <div className='flex flex-row max-[320px]:mt-8 '>
-              <img
-                className=' ml-4' /* 'relative left-[15px] right-[12.5%] top-[-250px] bottom-[12.5%]' */
-                src={Telefono}
-              />
-              <p className='ml-4'>+ 59 1 1001 8830</p>
-            </div>
-
-            <div className='flex flex-row items-center mt-4 max-[428px]:mt-0'>
-              <img className='ml-4 h-4' src={Correo} />
-              <p className='m-4'>{profile.profile.user.email}</p>
-            </div>
-
-            <div className=' max-[320px]:w-32 max-[320px]:h-14 max-[320px]:-mt-[8px] max-[320px]:ml-24 w-full flex justify-center'>
-              <button
-                onClick={sendMessage}
-                className=' bg-[#43936c] text-white py-3 px-8 rounded-lg w-full m-2 flex'
-              >
-                <img
-                  src={envelope}
-                  alt='envelope'
-                  className='max-[320px]:w-4 -ml-3'
-                />
-                <p className='max-[320px]:text-sm max-[320px]:ml-2 ml-5'>
-                  Mensaje
-                </p>
-              </button>
-            </div>
+      <div className='container mx-auto  flex max-[600px]:flex-col'>
+        <div className="side-container  flex flex-col w-[350px] p-2 relative max-[600px]:w-full max-[600px]:h-36 ">
+          <div className='relative top-[-55px] flex flex-col max-[600px]:absolute '>
+            <img
+              className='w-64 h-64 max-[1625px]:w-52 max-[1625px]:h-52 max-[1280px]:w-48 max-[1280px]:h-48 max-[1024px]:w-48 max-[1024px]:h-48 max-[768px]:w-44 max-[768px]:h-44 max-[480px]:w-36 max-[480px]:h-36   mx-auto rounded-full border-8 border-[#26B893] border-opacity-50 max-[320px]:ml-2 max-[320px]:w-28 max-[320px]:h-28 '
+              src={
+                (profile.profile.user.avatarURL !== "") ? (profile.profile.user.avatarURL.path) : (marta)
+              }
+            />
           </div>
-          <div className='hola max-[320px]:ml-0'>
-            <h1 className='max-[320px]:whitespace-nowrap max-[320px]:-ml-[100px] max-[428px]:text-2xl max-[428px]:-ml-4 font-inter mt-5  not-italic font-bold text-[39px] leading-[120%] flex items-center  ml-[100px] text-[#083A50]'>
+
+          <div className='flex flex-row   max-[320px]:ml-8 max-[600px]:absolute max-[600px]:left-[180px] max-[600px]:top-4 max-[420px]:left-[140px] max-[320px]:left-[90px] max-[320px]:top-2 '>
+            <img
+              className=' ml-4' /* 'relative left-[15px] right-[12.5%] top-[-250px] bottom-[12.5%]' */
+              src={Telefono}
+            />
+            <p className='ml-4'>{profile.profile.user.phone}</p>
+          </div>
+
+          <div className='flex flex-row items-center mt-4 max-[320px]:ml-4 max-[600px]:absolute left-[180px] max-[600px]:top-4 max-[420px]:left-[140px] max-[320px]:left-[70px]'>
+            <img className='ml-4 h-4' src={Correo} />
+            <p className='m-4'>{profile.profile.user.email}</p>
+          </div>
+
+          <div className='w-full flex justify-center max-[320px]:ml-[42px] max-[600px]:absolute  max-[600px]:top-[75px] max-[320px]:w-full'>
+            <button
+              onClick={sendMessage}
+              className=' max-[600px]:w-40  bg-[#43936c] text-white py-3 px-8 rounded-lg w-full whitespace-nowrap   text-center flex justify-center items-center max-[320px]:w-[195px] max-[320px]:absolute max-[320px]:left-[50px] '
+            >
+              <div className='flex items-center justify-center'><img
+                src={envelope}
+                alt='envelope'
+                className=' w-5 h-5 max-[600px]:ml-0'
+              />{' '}
+                <p className=' ml-4 '>Mensaje</p></div>
+
+            </button>
+          </div>
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+        <div className='flex flex-grow  p-5 justify-center'>
+          <div className=''>
+          <div className=' '>
+            <h1 className='font-inter mt-5  not-italic font-bold max-[662px]:text-[28px] text-[39px] leading-[120%] flex    text-[#083A50] max-[430px]:text-xl max-[320px]:mt-2'>
               {profile.profile.user.name}
             </h1>
-            <p className="max-[320px]:-ml-[98px] max-[320px]:-mt-0 font-['Inter'] max-[428px]:-ml-4 not-italic font-semibold text-[18px] leading-[24px] top-[-158px] ml-[100px] mt-2 text-[#083A50]">
+            <p className="font-['Inter'] not-italic font-semibold text-[18px] leading-[24px] top-[-158px]  mt-2 text-[#083A50] max-[320px]:mt1">
               {returnJob(profile.profile.user.job)}
             </p>
 
-            <div className=' flex mt-4 max-[428px]:-ml-72 max-[428px]:mt-0 '>
+            <div className='flex mt-4 max-[320px]:mt-2'>
               <img
-                className='max-[320px]:ml-[70px] left-[260px] right-[16.67%] top-[-148px] bottom-[7.03%] ml-[100px]'
+                className=' left-[260px] right-[16.67%] top-[-148px] bottom-[7.03%]'
                 src={Icon}
               />
               <p className=" font-['Inter'] not-italic font-normal text-[13px] leading-[120%] top-[-166px] ml-2 flex items-center text-[#083A50]">
@@ -143,28 +169,72 @@ export default function PerfilProfesional() {
               </p>
             </div>
 
-            <div className=' max-[320px]:mt-[420px] mt-7 max-[428px]:-ml-[240px]'>
-              <p className=' ml-[100px] font-bold text-3xl  max-[428px]:text-lg'>
-                Proyectos más recientes
+
+
+
+          </div>
+          
+
+            <div className='  '>
+              <p className=" font-['Inter'] mt-16 not-italic font-normal text-[18px] leading-[24px] max-[662px]:text-[14px] max-w-[832px]   text-[#28315C] bg-[#F5F5F5] rounded-lg p-4 max-[600px]:mt-5">
+                {profile.profile.user.description}
               </p>
             </div>
-            <div>
-              {profesionalId ===
-                JSON.parse(localStorage.getItem('user')).id && (
-                <div className=' ml-[100px]'>
-                  <button className=' w-40 h-10 bg-[#43936c] rounded-lg text-white mt-10'>
-                    Subir fotos
-                  </button>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
+            {/*ACA VA EL CAROUSEL???????????? */}
+            <div className=' mt-20    '>
+              <p className='font-bold text-3xl max-[502px]:text-xl text-[#083A50]'>
+                Proyectos más recientes
+              </p>
+
+              <div className='flex flex-wrap'>
+
+
+                {(profile.profile.user.projectImages.length >= 1) ? (
+                  <ProyectsCarrousel imagenes={profile.profile.user.projectImages} />
+                  /* profile.profile.user.projectImages.map(image =>{
+                  return (
+                    <div className="  container m-5 max-w-[700px]">
+                       <img className=' '  src={image.path} alt="" />
+
+                    </div>
+                   
+                  )
+                }) */) : (<p className='mt-8'>El usuario no ha cargado ninguna foto aún</p>)}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         <div className='flex max-[320px]:mt-24 max-[320px]:w-[380px]'>
           <p className=" max-[320px]:h-[180px] max-[320px]:-mt-[360px] max-[320px]:ml-[22px] max-[428px]:w-[358px] max-[428px]:mt-56 max-[390px]:-ml-[205px] max-[360px]:-ml-[210px] max-[360px]:w-[335px] max-[320px]:w-[275px] max-[428px]:-ml-[190px] max-[428px]:mr-[60px] font-['Inter'] mt-16 not-italic font-normal text-[18px] leading-[24px] max-w-[832px]  ml-[100px] text-[#28315C] bg-[#F5F5F5] rounded-lg p-4">
             {profile.profile.user.description}
           </p>
+        </div>
+
+
+
+              </div>
+            </div>
+            <div>
+              {profesionalId ===
+                JSON.parse(localStorage.getItem('user')).id && (
+                  <div className=' ml-[100px]'>
+                    {/* <button className=' w-40 h-10 bg-[#43936c] rounded-lg text-white mt-10'>
+                    Subir fotos
+                  </button> */}
+                  </div>
+                )}
+            </div>
+          </div>
         </div>
 
         {/* <div className=''>
@@ -178,5 +248,7 @@ export default function PerfilProfesional() {
         <div className=''></div>
       </div>
     </div>
-  );
+  ) : (<><div className='flex justify-center items-center min-h-[500px]'>
+    <img src={loading} alt="" />
+    </div></>);
 }

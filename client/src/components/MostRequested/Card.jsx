@@ -1,26 +1,25 @@
 import { createSearchParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { mustLoginReducer } from '../../features/booleans/booleanSlice';
+import { useEffect, useState } from 'react';
 
 const Card = ({ imagen, title, description, price, id }) => {
   const navigate = useNavigate();
-  const logged = JSON.parse(localStorage.getItem("user"));
   const dispatch = useDispatch();
-  const loginStatus = useSelector(state => state.modales)
+  const [logged, setLogged] = useState();
+  const loginStatus = useSelector((state) => state.modales);
 
-
+  
 
   const openCard = (titulo) => {
-
-    logged!== null?
-    (navigate({
-      pathname: '/servicesDetail',
-      search: createSearchParams({
-        id: id,
-      }).toString(),
-    })):(dispatch(
-      mustLoginReducer(!loginStatus.notLogged)
-      ))
+    JSON.parse(localStorage.getItem('user')) !== null
+      ? navigate({
+          pathname: '/servicesDetail',
+          search: createSearchParams({
+            id: id,
+          }).toString(),
+        })
+      : dispatch(mustLoginReducer(!loginStatus.notLogged));
   };
   /* w-[277px] */
   /* w-[265px] */
@@ -31,7 +30,7 @@ const Card = ({ imagen, title, description, price, id }) => {
     >
       <div className='top '>
         <img
-          className='object-cover w-[277px] h-[137px] rounded-t-2xl'
+          className=' object-cover w-[277px] h-[137px] rounded-t-2xl'
           src={imagen}
           alt='imagen lavado de auto'
         />
