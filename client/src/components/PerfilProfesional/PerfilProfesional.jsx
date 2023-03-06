@@ -50,7 +50,7 @@ export default function PerfilProfesional() {
   console.log(JSON.parse(localStorage.getItem("user")).id);
  */
 
-  console.log(profile);
+
   useEffect(() => {
     readJobs();
     getProfessional(profesionalId);
@@ -76,16 +76,12 @@ export default function PerfilProfesional() {
   const navigate = useNavigate();
 
   const sendMessage = () => {
-    const email = perfil.profile.user.email;
+    const email = profile.profile.user.email;
     navigate('/sol-servicio', { state: { email } });
   };
 
   return (profile.profile.user.avatarURL !== undefined && profile.profile.user._id === profesionalId) ? (
     <div>
-      {/* <span className="w-[284px] ml-[10px]  top-[-4] font-['Nunito Sans'] not-italic font-bold leading-[33px] flex items-center text-[#083A50] mb-3">
-        Configuración de tu perfil
-      </span> */}
-
       <img
         className='w-full height-[146px] flex-none order-1 self-stretch grow-0'
         src={returnBanners(profile.profile.user.job)}
@@ -114,7 +110,7 @@ export default function PerfilProfesional() {
             <p className='m-4'>{profile.profile.user.email}</p>
           </div>
 
-          <div className='w-full flex justify-center max-[320px]:ml-[42px] max-[600px]:absolute  max-[600px]:top-[75px] max-[320px]:w-full'>
+          <div className='w-full flex justify-center max-[320px]:ml-[42px] max-[600px]:absolute  max-[600px]:top-[75px] max-[320px]:w-[100px]'>
             <button
               onClick={sendMessage}
               className=' max-[600px]:w-40  bg-[#43936c] text-white py-3 px-8 rounded-lg w-full whitespace-nowrap   text-center flex justify-center items-center max-[320px]:w-[195px] max-[320px]:absolute max-[320px]:left-[50px] '
@@ -175,7 +171,7 @@ export default function PerfilProfesional() {
           
 
             <div className='  '>
-              <p className=" font-['Inter'] mt-16 not-italic font-normal text-[18px] leading-[24px] max-[662px]:text-[14px] max-w-[832px]   text-[#28315C] bg-[#F5F5F5] rounded-lg p-4 max-[600px]:mt-5">
+              <p className=" font-['Inter'] mt-16 not-italic font-normal text-[18px] leading-[24px] max-[662px]:text-[14px] min-[1200px]:w-[832px] max-w-[832px]   text-[#28315C] bg-[#F5F5F5] rounded-lg p-4 max-[600px]:mt-5">
                 {profile.profile.user.description}
               </p>
             </div>

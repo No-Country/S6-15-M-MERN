@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 
 export const CardServices = ({ title, image, description, service, id, avatar }) => {
   let texto = description;
-  if (description.length > 270) texto = description.substring(0,270)+"...";
+  if (description !== undefined && description.length > 270) texto = description.substring(0,270)+"...";
   return (
     <div className=' flex flex-col flex-wrap w-[277px] sm:w-[400px] h-auto md:h-[350px]  rounded-2xl shadow-md relative'>
       <div className='top'>

@@ -22,6 +22,7 @@ import MustLogin from './components/Modals/MustLogin';
 import AccountExists from './components/Modals/AccountExists';
 import GuardarCambios from './components/Modals/GuardarCambios';
 import ProyectsCarrousel from './components/ProyectsCarrousel';
+import ExpiredSession from './components/Modals/ExpiredSession';
 
 const App = () => {
   const [isModalOpen, changeModalStatus] = BoolHook(false);
@@ -44,6 +45,7 @@ const App = () => {
       <InvalidLogin />
       <AccountExists />
       <GuardarCambios />
+      <ExpiredSession />
 
       <MustLogin />
  
@@ -66,11 +68,7 @@ const App = () => {
           <Route
             path='/team'
             element={<Team />}
-          />
-          <Route
-          path='/prueba'
-          element={<ProyectsCarrousel />} />
-          
+          />          
         </Routes>
       </section>
       <div className='footerDiv'>
