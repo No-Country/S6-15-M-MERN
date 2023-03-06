@@ -25,7 +25,7 @@ const Card = ({ imagen, title, description, price, id }) => {
   /* w-[265px] */
   return (
     <div
-      className='card bg-background-card-color w-[277px] h-[302px] rounded-2xl shadow-md'
+      className='card bg-background-card-color w-[277px] h-[302px] rounded-2xl shadow-md cursor-pointer'
       onClick={openCard}
     >
       <div className='top '>
