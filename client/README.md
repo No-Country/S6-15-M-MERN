@@ -23,8 +23,8 @@ npm run dev
 ## Problema
 
 Se solicito realizar una webapp que conste de 2 tipos de usuarios
-Prestadores de servicios: con la opcion de subir y mostrar sus datos de contacto junto a fotos de sus trabajos.
-Clientes: Solo los usuarios registrados pueden acceder a los datos de contancto de los prestadores de servicios.
+* Prestadores de servicios: con la opcion de subir y mostrar sus datos de contacto junto a fotos de sus trabajos.
+* Clientes: Solo los usuarios registrados pueden acceder a los datos de contancto de los prestadores de servicios.
 
 ## Solucion
 
