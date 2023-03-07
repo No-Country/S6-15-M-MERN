@@ -14,8 +14,6 @@ function EditProfileProfessional() {
   const dispatch = useDispatch();
   const loginStatus = useSelector((state) => state.cambios);
 
-  console.log(loginStatus);
-
   //ESTE ES PARA EL CAMBIO DEL SELECT
   const [selectUsuario, setSelectUsuario] = useState('false');
 

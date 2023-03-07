@@ -4,7 +4,8 @@ const initialState = {
   invalidLogin: false,
   invalidRegister: false,
   notLogged: false,
-  cambios: false
+  cambios: false,
+  expiredSession: false
 };
 
 const booleanSlice = createSlice({
@@ -34,10 +35,17 @@ const booleanSlice = createSlice({
         ...state,
         cambios: action.payload,
       };
+    },
+    expiredReducer(state, action){
+      return {
+        ...state,
+        expiredSession: action.payload,
+      };
+
     }
   },
 });
 
-export const { loginReducer, registerReducer, mustLoginReducer, cambiosReducer } = booleanSlice.actions;
+export const { loginReducer, registerReducer, mustLoginReducer, cambiosReducer, expiredReducer } = booleanSlice.actions;
 
 export default booleanSlice.reducer;
