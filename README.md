@@ -1,6 +1,9 @@
 
   # CONTRÁTA 🚀
 
+[![Captura-de-pantalla-42.png](https://i.postimg.cc/fTK3QQ2s/Captura-de-pantalla-42.png)](https://postimg.cc/VdJsXpPZ)
+
+
  ##### ¿Te ha pasado de necesitar una reparación en tu domicilio u oficina y no saber a dónde recurrir? 
 
 Te presentamos Contratá! Una  web orientada a solucionar las necesidades de los usuarios. Cada vez es más solicitado contar con una respuesta rápida y confiable, por eso creamos una web donde puedas encontrar a todos los profesionales y servicios, con comentarios de otros usuarios, comunicación directa con el profesional y en tu propia zona!
