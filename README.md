@@ -41,7 +41,7 @@ Maiten Cullen, Emiliano Pérez, Agustin Galvan, Melany Ressler, Diego Martin Guz
 
 ##### Back-End: 
 
-Gabriel Mancilla Ducuara, Andres Padilla
+Gabriel Mancilla Ducuara, Andres Padilla, Maria Villen
 
 ##### UX-UI: 
 
