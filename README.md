@@ -1,7 +1,8 @@
 
   # CONTRÁTA 🚀
 
-[![Captura-de-pantalla-42.png](https://i.postimg.cc/fTK3QQ2s/Captura-de-pantalla-42.png)](https://postimg.cc/VdJsXpPZ)
+![contrata-Bo1O0qxw](https://github.com/No-Country/S6-15-M-MERN/assets/95863162/ba077cd1-f272-4173-b5f7-8d3a139809ee)
+
 
 
  ##### ¿Te ha pasado de necesitar una reparación en tu domicilio u oficina y no saber a dónde recurrir? 
